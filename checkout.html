@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | CRAFTIO GIFTS</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #222;
+        }
+
+        nav {
+            background: #111;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 15px;
+        }
+
+        .checkout-wrapper {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+        }
+
+        .box {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .box h2 {
+            margin-bottom: 25px;
+            font-size: 25px;
+        }
+
+        .product-preview {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .product-preview img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 1px solid #eee;
+        }
+
+        .product-details h3 {
+            font-size: 18px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+        }
+
+        .product-price {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .quantity-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            margin-top: 15px;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quantity-controls button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: #111;
+            color: white;
+            border-radius: 5px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .quantity-controls input {
+            width: 55px;
+            height: 35px;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .total-box {
+            border-top: 1px solid #eee;
+            margin-top: 25px;
+            padding-top: 20px;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #111;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .payment-box {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-box label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+        }
+
+        .payment-box input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .cod-note {
+            color: #666;
+            font-size: 13px;
+            margin-top: 8px;
+            margin-left: 28px;
+        }
+
+        .order-btn {
+            width: 100%;
+            padding: 16px;
+            background: #111;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .order-btn:hover {
+            background: #333;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .error {
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .error h2 {
+            margin-bottom: 15px;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+
+            .checkout-wrapper {
+                grid-template-columns: 1fr;
+                margin: 25px auto;
+                padding: 15px;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 8px;
+            }
+
+            .box {
+                padding: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+
+    <div class="logo">
+        CRAFTIO GIFTS
+    </div>
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
+
+</nav>
+
+
+<div id="checkoutArea"></div>
+
+
+<footer>
+    © 2026 CRAFTIO GIFTS. All Rights Reserved.
+</footer>
+
+
+<script>
+
+/* =========================================
+   YOUR WHATSAPP NUMBER
+========================================= */
+
+const WHATSAPP_NUMBER = "923360763055";
+
+
+/* =========================================
+   PRODUCTS
+========================================= */
+
+const products = {
+
+    "led-photo-frame": {
+        name: "CUSTOMIZED LED PHOTO FRAME",
+        price: 2000,
+        image: "Light%20frame.jpeg"
+    },
+
+    "birthday-frame": {
+        name: "CUSTOMIZED BIRTHDAY FRAME",
+        price: 999,
+        image: "Birthday%20Frame.jpeg"
+    },
+
+    "birthday-mug": {
+        name: "CUSTOMIZED BIRTHDAY MUG",
+        price: 999,
+        image: "birthday%20mug.jpeg"
+    },
+
+    "led-heart-lamp": {
+        name: "CUSTOMIZED LED HEART LAMP",
+        price: 2500,
+        image: "MOON%20PICTURE%20FRAME.jpeg"
+    },
+
+    "nikkah-signature-frame": {
+        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
+        price: 999,
+        image: "nikkah%20frame.jpeg"
+    },
+
+    "magic-mug": {
+        name: "CUSTOMIZED MAGIC MUG",
+        price: 1400,
+        image: "magic%20mug.jpeg"
+    },
+
+    "wedding-ring-plaque": {
+        name: "CUSTOMIZED WEDDING RING PLAQUE",
+        price: 2500,
+        image: "NIKKAH%20PLAQUE.jpeg"
+    },
+
+    "trendy-charts": {
+        name: "CUSTOMIZED TRENDY CHARTS",
+        price: 1350,
+        image: "TRENDY%20CHARTS.jpeg"
+    },
+
+    "eye-pendant-necklace": {
+        name: "CUSTOMIZED EYE PENDANT NECKLACE",
+        price: 1300,
+        image: "EYE%20NECKLACE.jpeg"
+    },
+
+    "picture-frame": {
+        name: "CUSTOMIZED PICTURE FRAME",
+        price: 900,
+        image: "PICTURE%20FRAME.jpg"
+    },
+
+    "friendship-license-card": {
+        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
+        price: 900,
+        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
+    },
+
+    "name-key-chain": {
+        name: "CUSTOMIZED NAME KEY CHAIN",
+        price: 800,
+        image: "NAME%20KEY.jpeg"
+    },
+
+    "picture-mug-colors": {
+        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
+        price: 1350,
+        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
+    },
+
+    "pubg-mobile-card": {
+        name: "CUSTOMIZED PUBG MOBILE CARD",
+        price: 800,
+        image: "PUBG%20CARD.jpeg"
+    },
+
+    "snapchat-tiktok-instagram-card": {
+        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
+        price: 800,
+        image: "SNAPCHAT%20CARD.jpeg"
+    },
+
+    "pvc-card": {
+        name: "CUSTOMIZED PVC CARD",
+        price: 850,
+        image: "PVC%20CARD.jpg"
+    }
+
+};
+
+
+/* =========================================
+   GET PRODUCT
+========================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const productId = params.get("product");
+
+const product = products[productId];
+
+let quantity = parseInt(params.get("quantity")) || 1;
+
+if (quantity < 1) {
+    quantity = 1;
+}
+
+
+const checkoutArea =
+    document.getElementById("checkoutArea");
+
+
+/* =========================================
+   DISPLAY CHECKOUT
+========================================= */
+
+if (!product) {
+
+    checkoutArea.innerHTML = `
+
+        <div class="error">
+
+            <h2>Product Not Found</h2>
+
+            <p>
+                Please select a product from our products page.
+            </p>
+
+            <br>
+
+            <a href="products.html">
+                ← Back to Products
+            </a>
+
+        </div>
+
+    `;
+
+} else {
+
+    document.title =
+        product.name + " | Checkout";
+
+    checkoutArea.innerHTML = `
+
+        <div class="checkout-wrapper">
+
+
+            <!-- ORDER SUMMARY -->
+
+            <div class="box">
+
+                <h2>Order Summary</h2>
+
+
+                <div class="product-preview">
+
+                    <img
+                        src="${product.image}"
+                        alt="${product.name}"
+                    >
+
+
+                    <div class="product-details">
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <div class="product-price">
+                            Rs. ${product.price}
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="quantity-row">
+
+                    <strong>
+                        Quantity
+                    </strong>
+
+
+                    <div class="quantity-controls">
+
+                        <button onclick="decreaseQuantity()">
+                            −
+                        </button>
+
+
+                        <input
+                            type="number"
+                            id="quantity"
+                            value="${quantity}"
+                            min="1"
+                            onchange="changeQuantity()"
+                        >
+
+
+                        <button onclick="increaseQuantity()">
+                            +
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="total-box">
+
+                    <div class="total-row">
+
+                        <span>
+                            Total
+                        </span>
+
+                        <span id="totalPrice">
+                            Rs. ${product.price * quantity}
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <a
+                    href="products.html"
+                    class="back-link"
+                >
+                    ← Continue Shopping
+                </a>
+
+            </div>
+
+
+            <!-- CUSTOMER DETAILS -->
+
+            <div class="box">
+
+                <h2>
+                    Customer Information
+                </h2>
+
+
+                <form id="orderForm">
+
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number *
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="03XXXXXXXXX"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Complete Delivery Address *
+                        </label>
+
+                        <textarea
+                            id="address"
+                            placeholder="House/Street, Area, Landmark"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="city">
+                            City *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="city"
+                            placeholder="Enter your city"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="payment-box">
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="payment"
+                                value="Cash on Delivery"
+                                checked
+                            >
+
+                            Cash on Delivery
+
+                        </label>
+
+
+                        <div class="cod-note">
+
+                            Pay when your order is delivered.
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="order-btn"
+                    >
+                        PLACE ORDER ON WHATSAPP
+                    </button>
+
+
+                </form>
+
+            </div>
+
+        </div>
+
+    `;
+
+
+    document
+        .getElementById("orderForm")
+        .addEventListener(
+            "submit",
+            placeOrder
+        );
+
+}
+
+
+/* =========================================
+   QUANTITY
+========================================= */
+
+function getQuantity() {
+
+    return parseInt(
+        document.getElementById("quantity").value
+    ) || 1;
+
+}
+
+
+function updateTotal() {
+
+    let currentQuantity =
+        getQuantity();
+
+
+    if (currentQuantity < 1) {
+        currentQuantity = 1;
+    }
+
+
+    document.getElementById("quantity").value =
+        currentQuantity;
+
+
+    document.getElementById("totalPrice").textContent =
+        "Rs. " +
+        (product.price * currentQuantity);
+
+}
+
+
+function increaseQuantity() {
+
+    let currentQuantity =
+        getQuantity();
+
+    currentQuantity++;
+
+
+    document.getElementById("quantity").value =
+        currentQuantity;
+
+
+    updateTotal();
+
+}
+
+
+function decreaseQuantity() {
+
+    let currentQuantity =
+        getQuantity();
+
+
+    if (currentQuantity > 1) {
+        currentQuantity--;
+    }
+
+
+    document.getElementById("quantity").value =
+        currentQuantity;
+
+
+    updateTotal();
+
+}
+
+
+function changeQuantity() {
+
+    let currentQuantity =
+        getQuantity();
+
+
+    if (currentQuantity < 1) {
+        currentQuantity = 1;
+    }
+
+
+    document.getElementById("quantity").value =
+        currentQuantity;
+
+
+    updateTotal();
+
+}
+
+
+/* =========================================
+   PLACE ORDER ON WHATSAPP
+========================================= */
+
+function placeOrder(event) {
+
+    event.preventDefault();
+
+
+    const customerName =
+        document
+        .getElementById("name")
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById("phone")
+        .value
+        .trim();
+
+
+    const address =
+        document
+        .getElementById("address")
+        .value
+        .trim();
+
+
+    const city =
+        document
+        .getElementById("city")
+        .value
+        .trim();
+
+
+    const currentQuantity =
+        getQuantity();
+
+
+    const total =
+        product.price * currentQuantity;
+
+
+    if (
+        !customerName ||
+        !phone ||
+        !address ||
+        !city
+    ) {
+
+        alert(
+            "Please fill all required fields."
+        );
+
+        return;
+
+    }
+
+
+    /* =====================================
+       WHATSAPP ORDER MESSAGE
+    ===================================== */
+
+    const message =
+
+`*CRAFTIO GIFTS - NEW ORDER*
+
+*Product:* ${product.name}
+
+*Price:* Rs. ${product.price}
+
+*Quantity:* ${currentQuantity}
+
+*Total:* Rs. ${total}
+
+*CUSTOMER DETAILS*
+
+*Name:* ${customerName}
+
+*Phone:* ${phone}
+
+*Address:* ${address}
+
+*City:* ${city}
+
+*Payment Method:* Cash on Delivery
+
+Please confirm my order.`;
+
+
+    const whatsappURL =
+        "https://wa.me/" +
+        WHATSAPP_NUMBER +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+    window.open(
+        whatsappURL,
+        "_blank"
+    );
+
+}
+
+</script>
+
+</body>
+</html>
