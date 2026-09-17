@@ -6,12 +6,8 @@
 
   <title>Craftio Gifts | Personalized Gifts</title>
 
-  <!-- Temporary Favicon -->
-  <link rel="icon" href="data:image/svg+xml,
-  <svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22>
-  <rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2300AEEF%22/>
-  <text x=%2250%22 y=%2265%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22white%22>C</text>
-  </svg>">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
     * {
@@ -39,21 +35,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 18px 7%;
+      padding: 17px 7%;
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
-    .logo {
-      font-size: 25px;
+    .logo-text {
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: 1.5px;
-      color: #ffffff;
     }
 
-    .logo span {
-      color: #00AEEF;
+    .logo-text span {
+      color: #00aef0;
     }
 
     .nav-links {
@@ -71,15 +66,13 @@
     }
 
     .nav-links a:hover {
-      color: #00AEEF;
+      color: #00aef0;
     }
 
     /* HERO */
     .hero {
-      min-height: 85vh;
-      background:
-        linear-gradient(rgba(0,0,0,0.72), rgba(0,0,0,0.72)),
-        linear-gradient(135deg, #00AEEF, #111111);
+      min-height: 88vh;
+      background: linear-gradient(135deg, #00aef0 0%, #111111 55%, #000000 100%);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -88,25 +81,35 @@
     }
 
     .hero-content {
-      max-width: 850px;
+      max-width: 900px;
+      width: 100%;
+    }
+
+    /* MAIN LOGO */
+    .main-logo {
+      width: 260px;
+      height: 260px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 28px;
     }
 
     .hero h1 {
       color: #ffffff;
-      font-size: clamp(42px, 7vw, 78px);
+      font-size: clamp(40px, 6vw, 70px);
       line-height: 1.1;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       font-weight: 800;
     }
 
     .hero h1 span {
-      color: #00AEEF;
+      color: #00aef0;
     }
 
     .hero p {
       color: #eeeeee;
       font-size: 20px;
-      margin-bottom: 35px;
+      margin-bottom: 32px;
     }
 
     .hero-buttons {
@@ -126,12 +129,12 @@
     }
 
     .btn-primary {
-      background: #00AEEF;
+      background: #00aef0;
       color: #ffffff;
     }
 
     .btn-primary:hover {
-      background: #008fc9;
+      background: #008dcc;
       transform: translateY(-2px);
     }
 
@@ -145,7 +148,7 @@
       transform: translateY(-2px);
     }
 
-    /* ABOUT */
+    /* GENERAL SECTION */
     .section {
       padding: 80px 7%;
     }
@@ -161,7 +164,7 @@
     }
 
     .section-title span {
-      color: #00AEEF;
+      color: #00aef0;
     }
 
     .section-title p {
@@ -170,6 +173,7 @@
       margin: auto;
     }
 
+    /* ABOUT */
     .about {
       background: #f7f7f7;
     }
@@ -200,7 +204,7 @@
 
     .why-card {
       background: #f8f8f8;
-      border: 1px solid #e5e5e5;
+      border: 1px solid #e4e4e4;
       border-radius: 14px;
       padding: 35px 25px;
       text-align: center;
@@ -209,7 +213,7 @@
 
     .why-card:hover {
       transform: translateY(-5px);
-      border-color: #00AEEF;
+      border-color: #00aef0;
     }
 
     .why-icon {
@@ -217,7 +221,7 @@
       height: 65px;
       margin: 0 auto 20px;
       border-radius: 50%;
-      background: #00AEEF;
+      background: #00aef0;
       color: #ffffff;
       display: flex;
       justify-content: center;
@@ -247,6 +251,10 @@
       margin-bottom: 12px;
     }
 
+    .social-section h2 span {
+      color: #00aef0;
+    }
+
     .social-section p {
       color: #cccccc;
       margin-bottom: 30px;
@@ -263,7 +271,7 @@
     .social-links a {
       text-decoration: none;
       color: #ffffff;
-      background: #00AEEF;
+      background: #00aef0;
       padding: 13px 24px;
       border-radius: 8px;
       font-weight: 700;
@@ -279,7 +287,7 @@
     .cta {
       padding: 80px 7%;
       text-align: center;
-      background: #00AEEF;
+      background: #00aef0;
       color: #ffffff;
     }
 
@@ -313,15 +321,15 @@
     }
 
     footer strong {
-      color: #00AEEF;
+      color: #00aef0;
     }
 
-    /* MOBILE */
+    /* TABLET */
     @media (max-width: 800px) {
 
       nav {
         flex-direction: column;
-        gap: 15px;
+        gap: 14px;
         padding: 16px 5%;
       }
 
@@ -336,8 +344,13 @@
       }
 
       .hero {
-        min-height: 78vh;
+        min-height: 80vh;
         padding: 50px 20px;
+      }
+
+      .main-logo {
+        width: 220px;
+        height: 220px;
       }
 
       .hero p {
@@ -365,14 +378,29 @@
       }
     }
 
+    /* MOBILE */
     @media (max-width: 500px) {
 
-      .logo {
-        font-size: 21px;
+      .logo-text {
+        font-size: 20px;
+      }
+
+      .hero {
+        padding: 40px 18px;
+      }
+
+      .main-logo {
+        width: 175px;
+        height: 175px;
+        margin-bottom: 22px;
       }
 
       .hero h1 {
-        font-size: 43px;
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       .hero-buttons {
@@ -400,7 +428,8 @@
 
   <!-- NAVBAR -->
   <nav>
-    <div class="logo">
+
+    <div class="logo-text">
       CRAFTIO <span>GIFTS</span>
     </div>
 
@@ -410,12 +439,21 @@
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
+
   </nav>
 
 
-  <!-- HERO -->
+  <!-- HERO / HOME -->
   <section class="hero">
+
     <div class="hero-content">
+
+      <!-- MAIN CRAFTIO GIFTS LOGO -->
+      <img
+        src="logo.png"
+        alt="Craftio Gifts"
+        class="main-logo"
+      >
 
       <h1>
         Gifts Made <span>Just For You.</span>
@@ -441,7 +479,9 @@
         </a>
 
       </div>
+
     </div>
+
   </section>
 
 
@@ -449,11 +489,15 @@
   <section class="section about" id="about">
 
     <div class="section-title">
-      <h2>About <span>Craftio Gifts</span></h2>
+
+      <h2>
+        About <span>Craftio Gifts</span>
+      </h2>
 
       <p>
         Personalized gifts created especially for your special moments.
       </p>
+
     </div>
 
     <div class="about-content">
@@ -475,7 +519,9 @@
 
     <div class="section-title">
 
-      <h2>Why <span>Craftio?</span></h2>
+      <h2>
+        Why <span>Craftio?</span>
+      </h2>
 
       <p>
         We focus on quality, creativity and making every gift special.
@@ -531,7 +577,9 @@
   <!-- SOCIAL -->
   <section class="section social-section">
 
-    <h2>Follow <span>Craftio Gifts</span></h2>
+    <h2>
+      Follow <span>Craftio Gifts</span>
+    </h2>
 
     <p>
       Stay connected and see our latest customized creations.
@@ -562,10 +610,12 @@
   </section>
 
 
-  <!-- CTA -->
+  <!-- CONTACT / CTA -->
   <section class="cta" id="contact">
 
-    <h2>Have Something Special In Mind?</h2>
+    <h2>
+      Have Something Special In Mind?
+    </h2>
 
     <p>
       Tell us your idea and let's turn it into a beautiful customized gift.
