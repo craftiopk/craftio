@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,8 +89,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 70px 7%;
+      text-align: center;
+      padding: 70px 20px;
     }
+
+    /* Decorative circles */
 
     .hero::before {
       content: "";
@@ -116,21 +118,97 @@
     }
 
     .hero-content {
+      max-width: 900px;
       width: 100%;
-      max-width: 1200px;
       position: relative;
       z-index: 5;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 50px;
     }
 
-    /* LEFT SIDE */
+    /* MAIN LOGO */
 
-    .hero-text {
-      flex: 1;
-      text-align: left;
+    .main-logo {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15));
+    }
+
+    /* Gift ribbon behind logo */
+
+    .ribbon-left,
+    .ribbon-right {
+      position: absolute;
+      top: 125px;
+      width: 100px;
+      height: 100px;
+      border: 5px solid #00aef0;
+      opacity: 0.18;
+      z-index: -1;
+    }
+
+    .ribbon-left {
+      left: 8%;
+      border-radius: 50% 50% 10% 50%;
+      transform: rotate(-25deg);
+    }
+
+    .ribbon-right {
+      right: 8%;
+      border-radius: 50% 50% 50% 10%;
+      transform: rotate(25deg);
+    }
+
+    /* Sparkles */
+
+    .sparkle {
+      position: absolute;
+      color: #00aef0;
+      font-size: 28px;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    .sparkle.one {
+      top: 18%;
+      left: 23%;
+    }
+
+    .sparkle.two {
+      top: 25%;
+      right: 22%;
+      font-size: 20px;
+    }
+
+    .sparkle.three {
+      bottom: 18%;
+      left: 17%;
+      font-size: 18px;
+    }
+
+    .sparkle.four {
+      bottom: 22%;
+      right: 17%;
+    }
+
+    .hero h1 {
+      color: #111111;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: #00aef0;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: #555555;
+      max-width: 650px;
+      margin: 0 auto 30px;
     }
 
     .gift-tag {
@@ -149,36 +227,9 @@
       color: #00aef0;
     }
 
-    .main-logo {
-      width: 230px;
-      height: 230px;
-      object-fit: contain;
-      display: block;
-      margin: 0 0 20px;
-      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15));
-    }
-
-    .hero h1 {
-      color: #111111;
-      font-size: clamp(40px, 5vw, 64px);
-      line-height: 1.1;
-      margin-bottom: 18px;
-      font-weight: 800;
-    }
-
-    .hero h1 span {
-      color: #00aef0;
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      color: #555555;
-      max-width: 600px;
-      margin-bottom: 30px;
-    }
-
     .hero-buttons {
       display: flex;
+      justify-content: center;
       gap: 15px;
       flex-wrap: wrap;
     }
@@ -214,59 +265,7 @@
     }
 
     /* =========================
-       PRODUCT IMAGES - RIGHT SIDE
-    ========================= */
-
-    .hero-products {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 25px;
-      min-width: 420px;
-    }
-
-    .product-image-box {
-      width: 210px;
-      height: 280px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid rgba(0,174,240,0.20);
-      border-radius: 22px;
-      padding: 18px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.10);
-      transition: 0.3s;
-    }
-
-    .product-image-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.16);
-      border-color: #00aef0;
-    }
-
-    .product-image-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .mug-card {
-      transform: translateY(25px);
-    }
-
-    .frame-card {
-      transform: translateY(-25px);
-    }
-
-    .mug-card:hover,
-    .frame-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* =========================
-       GIFT MESSAGE
+       LITTLE GIFT MESSAGE
     ========================= */
 
     .gift-message {
@@ -318,7 +317,28 @@
       background: #ffffff;
     }
 
-    /* About text box removed */
+    .about-content {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      background: #f5fbfe;
+      border: 1px solid #dceff6;
+      border-radius: 18px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .about-content::before {
+      content: "🎁";
+      display: block;
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .about-content p {
+      font-size: 18px;
+      color: #444444;
+    }
 
     /* =========================
        WHY CRAFTIO
@@ -375,7 +395,7 @@
     }
 
     /* =========================
-       GIFTING BANNER
+       GIFTING MESSAGE
     ========================= */
 
     .gifting-section {
@@ -521,7 +541,7 @@
        TABLET
     ========================= */
 
-    @media (max-width: 900px) {
+    @media (max-width: 800px) {
 
       nav {
         flex-direction: column;
@@ -535,44 +555,71 @@
         justify-content: center;
       }
 
+      .nav-links a {
+        font-size: 14px;
+      }
+
       .hero {
-        padding: 55px 5%;
-      }
-
-      .hero-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .hero-text {
-        text-align: center;
+        min-height: 82vh;
+        padding: 55px 20px;
       }
 
       .main-logo {
-        margin: 0 auto 20px;
+        width: 220px;
+        height: 220px;
       }
 
-      .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
+      .ribbon-left,
+      .ribbon-right {
+        display: none;
       }
 
-      .hero-buttons {
-        justify-content: center;
+      .sparkle.one {
+        left: 8%;
       }
 
-      .hero-products {
-        min-width: auto;
-        width: 100%;
+      .sparkle.two {
+        right: 8%;
       }
 
-      .why-grid {
-        grid-template-columns: 1fr;
-        max-width: 500px;
+      .sparkle.three {
+        left: 7%;
+      }
+
+      .sparkle.four {
+        right: 7%;
       }
 
       .section {
         padding: 60px 5%;
+      }
+
+      .section-title h2 {
+        font-size: 31px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-content {
+        padding: 30px 22px;
+      }
+
+      .gifting-section {
+        padding: 60px 5%;
+      }
+
+      .gifting-section h2 {
+        font-size: 31px;
+      }
+
+      .cta {
+        padding: 60px 5%;
+      }
+
+      .cta h2 {
+        font-size: 31px;
       }
     }
 
@@ -580,7 +627,7 @@
        MOBILE
     ========================= */
 
-    @media (max-width: 550px) {
+    @media (max-width: 500px) {
 
       .logo-text {
         font-size: 20px;
@@ -593,6 +640,7 @@
       .main-logo {
         width: 175px;
         height: 175px;
+        margin-bottom: 18px;
       }
 
       .gift-tag {
@@ -617,46 +665,8 @@
         width: 100%;
       }
 
-      .hero-products {
-        gap: 12px;
-      }
-
-      .product-image-box {
-        width: 145px;
-        height: 210px;
-        padding: 12px;
-      }
-
-      .mug-card {
-        transform: translateY(15px);
-      }
-
-      .frame-card {
-        transform: translateY(-15px);
-      }
-
-      .section-title h2 {
-        font-size: 31px;
-      }
-
-      .gifting-section {
-        padding: 60px 5%;
-      }
-
-      .gifting-section h2 {
-        font-size: 28px;
-      }
-
-      .gifting-section p {
-        font-size: 16px;
-      }
-
-      .cta {
-        padding: 60px 5%;
-      }
-
-      .cta h2 {
-        font-size: 31px;
+      .sparkle {
+        font-size: 20px;
       }
 
       .social-links {
@@ -666,6 +676,14 @@
       .social-links a {
         width: 100%;
         max-width: 300px;
+      }
+
+      .gifting-section h2 {
+        font-size: 28px;
+      }
+
+      .gifting-section p {
+        font-size: 16px;
       }
     }
   </style>
@@ -699,68 +717,49 @@
 
   <section class="hero">
 
+    <div class="sparkle one">✦</div>
+    <div class="sparkle two">✧</div>
+    <div class="sparkle three">✧</div>
+    <div class="sparkle four">✦</div>
+
+    <div class="ribbon-left"></div>
+    <div class="ribbon-right"></div>
+
     <div class="hero-content">
 
-      <!-- LEFT SIDE -->
-
-      <div class="hero-text">
-
-        <div class="gift-tag">
-          ✦ <span>PERSONALIZED</span> WITH LOVE ✦
-        </div>
-
-        <img
-          src="logo.png"
-          alt="Craftio Gifts Logo"
-          class="main-logo"
-        >
-
-        <h1>
-          Gifts Made <span>Just For You.</span>
-        </h1>
-
-        <p class="hero-subtitle">
-          Turn your special moments into beautiful memories with
-          personalized gifts made especially for you.
-        </p>
-
-        <div class="hero-buttons">
-
-          <a
-            href="https://wa.me/qr/PLP2HGEKDYKJE1"
-            target="_blank"
-            class="btn btn-primary">
-            🎁 Order on WhatsApp
-          </a>
-
-          <a
-            href="products.html"
-            class="btn btn-secondary">
-            Explore Products
-          </a>
-
-        </div>
-
+      <div class="gift-tag">
+        ✦ <span>PERSONALIZED</span> WITH LOVE ✦
       </div>
 
+      <img
+        src="logo.png"
+        alt="Craftio Gifts Logo"
+        class="main-logo"
+      >
 
-      <!-- RIGHT SIDE - MUG + FRAME -->
+      <h1>
+        Gifts Made <span>Just For You.</span>
+      </h1>
 
-      <div class="hero-products">
+      <p class="hero-subtitle">
+        Turn your special moments into beautiful memories with
+        personalized gifts made especially for you.
+      </p>
 
-        <div class="product-image-box mug-card">
-          <img
-            src="mug.png"
-            alt="Personalized Craftio Gift Mug"
-          >
-        </div>
+      <div class="hero-buttons">
 
-        <div class="product-image-box frame-card">
-          <img
-            src="frame.png"
-            alt="Personalized Craftio Gift Frame"
-          >
-        </div>
+        <a
+          href="https://wa.me/qr/PLP2HGEKDYKJE1"
+          target="_blank"
+          class="btn btn-primary">
+          🎁 Order on WhatsApp
+        </a>
+
+        <a
+          href="products.html"
+          class="btn btn-secondary">
+          Explore Products
+        </a>
 
       </div>
 
@@ -794,6 +793,17 @@
       <p>
         Personalized creations for birthdays, celebrations,
         relationships and every special moment.
+      </p>
+
+    </div>
+
+    <div class="about-content">
+
+      <p>
+        At Craftio Gifts, we create customized products that turn
+        special memories into beautiful keepsakes. From personalized
+        frames and mugs to keychains and other custom gifts, every
+        order is made with creativity, care and attention to detail.
       </p>
 
     </div>
@@ -958,4 +968,3 @@
 
 </body>
 </html>
-```
