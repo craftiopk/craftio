@@ -6,6 +6,9 @@
 
   <title>Craftio Gifts | Personalized Gifts</title>
 
+  <!-- Temporary Favicon -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2387CEEB'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='55' font-family='Arial' font-weight='bold' fill='%23111'%3EC%3C/text%3E%3C/svg%3E">
+
   <style>
     * {
       margin: 0;
@@ -30,21 +33,22 @@
       top: 0;
       z-index: 1000;
       background: #ffffff;
-      border-bottom: 1px solid #eeeeee;
-      padding: 18px 7%;
+      border-bottom: 1px solid #e5e5e5;
+      padding: 15px 7%;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
     .logo {
-      font-size: 25px;
+      font-size: 23px;
       font-weight: 800;
       letter-spacing: 2px;
+      color: #111111;
     }
 
     .logo span {
-      color: #b08d35;
+      color: #5bbde8;
     }
 
     nav ul {
@@ -61,13 +65,13 @@
     }
 
     nav a:hover {
-      color: #b08d35;
+      color: #1597d1;
     }
 
     /* HERO */
     .hero {
       min-height: 88vh;
-      background: linear-gradient(120deg, #111111, #222222);
+      background: linear-gradient(135deg, #0b0f12, #111111 55%, #1d536b);
       color: white;
       display: flex;
       align-items: center;
@@ -77,11 +81,11 @@
     }
 
     .hero-text {
-      max-width: 600px;
+      max-width: 620px;
     }
 
     .hero small {
-      color: #d4af55;
+      color: #87ceeb;
       letter-spacing: 4px;
       font-weight: bold;
     }
@@ -94,24 +98,24 @@
     }
 
     .hero h1 span {
-      color: #d4af55;
+      color: #87ceeb;
     }
 
     .hero p {
       color: #dddddd;
       font-size: 18px;
       margin-bottom: 30px;
-      max-width: 500px;
+      max-width: 520px;
     }
 
     .btn {
       display: inline-block;
       padding: 14px 27px;
-      background: #d4af55;
+      background: #87ceeb;
       color: #111111;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 4px;
+      border-radius: 5px;
       margin-right: 10px;
       transition: 0.3s;
     }
@@ -124,14 +128,14 @@
     .btn-outline {
       background: transparent;
       color: white;
-      border: 1px solid #d4af55;
+      border: 1px solid #87ceeb;
     }
 
     /* HERO BOX */
     .hero-box {
       width: 390px;
       height: 390px;
-      border: 1px solid #d4af55;
+      border: 1px solid #87ceeb;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -140,7 +144,7 @@
     }
 
     .hero-box-inner {
-      border: 1px solid #555555;
+      border: 1px solid #477f96;
       width: 100%;
       height: 100%;
       display: flex;
@@ -171,7 +175,7 @@
     }
 
     .section-title small {
-      color: #b08d35;
+      color: #1597d1;
       letter-spacing: 3px;
       font-weight: bold;
     }
@@ -181,7 +185,7 @@
       margin-top: 8px;
     }
 
-    /* PRODUCTS */
+    /* FEATURED PRODUCTS */
     .products {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -189,10 +193,10 @@
     }
 
     .product {
-      border: 1px solid #e5e5e5;
+      border: 1px solid #e1e1e1;
       background: #ffffff;
-      transition: 0.3s;
       overflow: hidden;
+      transition: 0.3s;
     }
 
     .product:hover {
@@ -201,21 +205,20 @@
     }
 
     .product-image {
-.product-image {
-  height: 300px;
-  width: 100%;
-  background: #eeeeee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
+      height: 300px;
+      width: 100%;
+      background: #f2f8fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
 
     .product-content {
       padding: 23px;
@@ -270,6 +273,7 @@
     .feature {
       padding: 30px;
       border: 1px solid #eeeeee;
+      background: #ffffff;
     }
 
     .feature h3 {
@@ -281,9 +285,38 @@
       font-size: 14px;
     }
 
+    /* SOCIAL */
+    .social {
+      background: #f3faff;
+      text-align: center;
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social-icons a {
+      text-decoration: none;
+      padding: 13px 22px;
+      border: 1px solid #b8dfee;
+      background: white;
+      color: #111111;
+      font-weight: bold;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+
+    .social-icons a:hover {
+      background: #87ceeb;
+      transform: translateY(-2px);
+    }
+
     /* CTA */
     .cta {
-      background: #f7f7f7;
+      background: #eaf7fc;
       text-align: center;
     }
 
@@ -311,7 +344,7 @@
     }
 
     footer h2 span {
-      color: #d4af55;
+      color: #87ceeb;
     }
 
     footer p {
@@ -332,25 +365,30 @@
     }
 
     .footer-links a:hover {
-      color: #d4af55;
+      color: #87ceeb;
     }
 
     /* MOBILE */
     @media (max-width: 800px) {
 
       nav {
-        padding: 15px 5%;
-      }
-
-      nav ul {
+        padding: 14px 5%;
+        flex-direction: column;
         gap: 12px;
       }
 
+      nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
       nav a {
-        font-size: 11px;
+        font-size: 12px;
       }
 
       .hero {
+        min-height: auto;
         flex-direction: column;
         text-align: center;
         padding: 65px 6%;
@@ -364,6 +402,11 @@
         font-size: 16px;
       }
 
+      .hero small {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
+
       .hero-box {
         width: 280px;
         height: 280px;
@@ -371,6 +414,10 @@
 
       .hero-box h2 {
         font-size: 28px;
+      }
+
+      .hero .btn {
+        margin: 5px;
       }
 
       section {
@@ -390,6 +437,10 @@
       .cta h2 {
         font-size: 30px;
       }
+
+      .product-image {
+        height: 280px;
+      }
     }
   </style>
 </head>
@@ -398,16 +449,18 @@
 
   <!-- NAVIGATION -->
   <nav>
+
     <div class="logo">
       CRAFTIO <span>GIFTS</span>
     </div>
 
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#products">Products</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+
   </nav>
 
 
@@ -429,16 +482,17 @@
       </p>
 
       <a class="btn"
-         href="https://wa.me/923360763055"
+         href="https://wa.me/qr/PLP2HGEKDYKJE1"
          target="_blank">
         Order on WhatsApp
       </a>
 
-      <a class="btn btn-outline" href="#products">
+      <a class="btn btn-outline" href="products.html">
         Explore Products
       </a>
 
     </div>
+
 
     <div class="hero-box">
 
@@ -455,14 +509,14 @@
   </section>
 
 
-  <!-- PRODUCTS -->
+  <!-- FEATURED PRODUCTS -->
   <section id="products">
 
     <div class="section-title">
 
       <small>OUR COLLECTION</small>
 
-      <h2>What We Create</h2>
+      <h2>Featured Products</h2>
 
     </div>
 
@@ -474,8 +528,9 @@
       <div class="product">
 
         <div class="product-image">
-<img src="https://raw.githubusercontent.com/craftiopk/craftio/main/WhatsApp%20Image%202026-09-16%20at%206.06.23%20PM.jpeg"
-style="width:100%;height:100%;object-fit:cover;">        </div>
+          <img src="WhatsApp%20Image%202026-09-16%20at%206.06.23%20PM.jpeg"
+               alt="Personalized Frame">
+        </div>
 
         <div class="product-content">
 
@@ -487,9 +542,9 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
           </p>
 
           <a class="btn"
-             href="https://wa.me/923360763055"
+             href="https://wa.me/qr/PLP2HGEKDYKJE1"
              target="_blank">
-            Order Now
+            Order on WhatsApp
           </a>
 
         </div>
@@ -501,8 +556,9 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
       <div class="product">
 
         <div class="product-image">
-<img src="https://raw.githubusercontent.com/craftiopk/craftio/main/WhatsApp%20Image%202026-09-16%20at%207.36.51%20PM%20%281%29.jpeg"
-style="width:100%;height:100%;object-fit:cover;">        </div>
+          <img src="WhatsApp%20Image%202026-09-16%20at%207.36.51%20PM%20%281%29.jpeg"
+               alt="Customized Mug">
+        </div>
 
         <div class="product-content">
 
@@ -514,9 +570,9 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
           </p>
 
           <a class="btn"
-             href="https://wa.me/923360763055"
+             href="https://wa.me/qr/PLP2HGEKDYKJE1"
              target="_blank">
-            Order Now
+            Order on WhatsApp
           </a>
 
         </div>
@@ -528,8 +584,9 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
       <div class="product">
 
         <div class="product-image">
-<img src="https://raw.githubusercontent.com/craftiopk/craftio/main/WhatsApp%20Image%202026-09-16%20at%208.23.02%20PM%20%281%29.jpeg"
-style="width:100%;height:100%;object-fit:cover;">        </div>
+          <img src="WhatsApp%20Image%202026-09-16%20at%208.23.02%20PM%20%281%29.jpeg"
+               alt="Customized Keychain">
+        </div>
 
         <div class="product-content">
 
@@ -541,15 +598,14 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
           </p>
 
           <a class="btn"
-             href="https://wa.me/923360763055"
+             href="https://wa.me/qr/PLP2HGEKDYKJE1"
              target="_blank">
-            Order Now
+            Order on WhatsApp
           </a>
 
         </div>
 
       </div>
-
 
     </div>
 
@@ -578,7 +634,7 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
   </section>
 
 
-  <!-- FEATURES -->
+  <!-- WHY CRAFTIO -->
   <section>
 
     <div class="section-title">
@@ -593,38 +649,27 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
     <div class="features">
 
       <div class="feature">
-
         <h3>Personalized</h3>
-
         <p>
           Every order is customized according
           to your idea and requirements.
         </p>
-
       </div>
 
-
       <div class="feature">
-
         <h3>Made With Care</h3>
-
         <p>
           We focus on creating beautiful gifts
           that feel personal and meaningful.
         </p>
-
       </div>
 
-
       <div class="feature">
-
         <h3>Perfect For Gifting</h3>
-
         <p>
           Birthdays, weddings, couples, friends
           and every special occasion.
         </p>
-
       </div>
 
     </div>
@@ -632,7 +677,40 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
   </section>
 
 
-  <!-- CONTACT / CTA -->
+  <!-- SOCIAL -->
+  <section class="social">
+
+    <div class="section-title">
+
+      <small>FOLLOW CRAFTIO</small>
+
+      <h2>Connect With Us</h2>
+
+    </div>
+
+    <div class="social-icons">
+
+      <a href="https://www.instagram.com/craftiogifts.pkk?stkn=OGZjMmR1eWtzaXpk&utm_source=qr"
+         target="_blank">
+        Instagram
+      </a>
+
+      <a href="https://www.tiktok.com/@craftive.pkk?_r=1&_t=ZT-99mVtjMxaHu"
+         target="_blank">
+        TikTok
+      </a>
+
+      <a href="https://wa.me/qr/PLP2HGEKDYKJE1"
+         target="_blank">
+        WhatsApp
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
   <section class="cta" id="contact">
 
     <h2>Have a Gift Idea?</h2>
@@ -643,7 +721,7 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
     </p>
 
     <a class="btn"
-       href="https://wa.me/923360763055"
+       href="https://wa.me/qr/PLP2HGEKDYKJE1"
        target="_blank">
       Chat With Us on WhatsApp
     </a>
@@ -664,8 +742,8 @@ style="width:100%;height:100%;object-fit:cover;">        </div>
 
     <div class="footer-links">
 
-      <a href="#home">Home</a>
-      <a href="#products">Products</a>
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
 
