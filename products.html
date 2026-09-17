@@ -127,13 +127,7 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-
-    .placeholder {
-      color: #999999;
-      font-size: 14px;
-      text-align: center;
-      padding: 15px;
+      display: block;
     }
 
     .product-info {
@@ -144,21 +138,22 @@
     }
 
     .product-info h3 {
-      font-size: 19px;
-      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 1.4;
+      margin-bottom: 10px;
     }
 
-    .product-info p {
-      color: #666666;
-      font-size: 14px;
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1597d1;
       margin-bottom: 18px;
-      min-height: 65px;
     }
 
     .btn {
       display: block;
       width: 100%;
-      padding: 11px 15px;
+      padding: 12px 15px;
       background: #87ceeb;
       color: #111111;
       text-decoration: none;
@@ -166,6 +161,9 @@
       text-align: center;
       border-radius: 4px;
       margin-top: auto;
+      cursor: pointer;
+      border: none;
+      font-size: 14px;
     }
 
     .btn:hover {
@@ -259,6 +257,7 @@
 
 <body>
 
+  <!-- NAVBAR -->
   <nav>
 
     <div class="logo">
@@ -268,13 +267,13 @@
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="products.html">Products</a></li>
-      <li><a href="index.html#about">About</a></li>
       <li><a href="index.html#contact">Contact</a></li>
     </ul>
 
   </nav>
 
 
+  <!-- PAGE HEADER -->
   <header class="page-header">
 
     <small>CRAFTIO COLLECTION</small>
@@ -289,6 +288,7 @@
   </header>
 
 
+  <!-- PRODUCTS -->
   <section class="products-section">
 
     <div class="products-grid">
@@ -298,19 +298,21 @@
       <div class="product-card">
 
         <div class="product-image">
-          <img src="WhatsApp%20Image%202026-09-16%20at%206.06.23%20PM.jpeg"
-               alt="Personalized Frame">
+          <img
+            src="Light%20frame.jpeg"
+            alt="Customized LED Photo Frame">
         </div>
 
         <div class="product-info">
-          <h3>Personalized Frame</h3>
-          <p>Customized frame for your special memories.</p>
 
-          <a class="btn"
-             href="https://wa.me/qr/PLP2HGEKDYKJE1"
-             target="_blank">
-            Order on WhatsApp
+          <h3>CUSTOMIZED LED PHOTO FRAME</h3>
+
+          <div class="price">Rs. 2000</div>
+
+          <a class="btn" href="#">
+            View Product
           </a>
+
         </div>
 
       </div>
@@ -320,19 +322,21 @@
       <div class="product-card">
 
         <div class="product-image">
-          <img src="WhatsApp%20Image%202026-09-16%20at%207.36.51%20PM%20%281%29.jpeg"
-               alt="Customized Mug">
+          <img
+            src="Birthday%20Frame.jpeg"
+            alt="Customized Birthday Frame">
         </div>
 
         <div class="product-info">
-          <h3>Customized Mug</h3>
-          <p>Personalized mug with your name, photo or design.</p>
 
-          <a class="btn"
-             href="https://wa.me/qr/PLP2HGEKDYKJE1"
-             target="_blank">
-            Order on WhatsApp
+          <h3>CUSTOMIZED BIRTHDAY FRAME</h3>
+
+          <div class="price">Rs. 999</div>
+
+          <a class="btn" href="#">
+            View Product
           </a>
+
         </div>
 
       </div>
@@ -342,19 +346,21 @@
       <div class="product-card">
 
         <div class="product-image">
-          <img src="WhatsApp%20Image%202026-09-16%20at%208.23.02%20PM%20%281%29.jpeg"
-               alt="Customized Keychain">
+          <img
+            src="birthday%20mug.jpeg"
+            alt="Customized Birthday Mug">
         </div>
 
         <div class="product-info">
-          <h3>Customized Keychain</h3>
-          <p>Personalized name keychain perfect for gifting.</p>
 
-          <a class="btn"
-             href="https://wa.me/qr/PLP2HGEKDYKJE1"
-             target="_blank">
-            Order on WhatsApp
+          <h3>CUSTOMIZED BIRTHDAY MUG</h3>
+
+          <div class="price">Rs. 999</div>
+
+          <a class="btn" href="#">
+            View Product
           </a>
+
         </div>
 
       </div>
@@ -362,146 +368,313 @@
 
       <!-- PRODUCT 4 -->
       <div class="product-card">
+
         <div class="product-image">
-          <div class="placeholder">Product Photo Coming Soon</div>
+          <img
+            src="MOON%20PICTURE%20FRAME.jpeg"
+            alt="Customized LED Heart Lamp">
         </div>
+
         <div class="product-info">
-          <h3>Product 4</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+          <h3>CUSTOMIZED LED HEART LAMP</h3>
+
+          <div class="price">Rs. 2500</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
         </div>
+
       </div>
 
 
       <!-- PRODUCT 5 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 5</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="nikkah%20frame.jpeg"
+            alt="Customized Nikkah Signature Frame">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED NIKKAH SIGNATURE FRAME</h3>
+
+          <div class="price">Rs. 999</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 6 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 6</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="magic%20mug.jpeg"
+            alt="Customized Magic Mug">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED MAGIC MUG</h3>
+
+          <div class="price">Rs. 1400</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 7 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 7</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="NIKKAH%20PLAQUE.jpeg"
+            alt="Customized Wedding Ring Plaque">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED WEDDING RING PLAQUE</h3>
+
+          <div class="price">Rs. 2500</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 8 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 8</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="TRENDY%20CHARTS.jpeg"
+            alt="Customized Trendy Charts">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED TRENDY CHARTS</h3>
+
+          <div class="price">Rs. 1350</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 9 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 9</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="EYE%20NECKLACE.jpeg"
+            alt="Customized Eye Pendant Necklace">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED EYE PENDANT NECKLACE</h3>
+
+          <div class="price">Rs. 1300</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 10 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 10</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="PICTURE%20FRAME.jpg"
+            alt="Customized Picture Frame">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED PICTURE FRAME</h3>
+
+          <div class="price">Rs. 900</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 11 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 11</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="FRIENSHIP%20LICENSE%20CAED.jpeg"
+            alt="Customized Friendship License Card">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED FRIENDSHIP LICENSE CARD</h3>
+
+          <div class="price">Rs. 900</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 12 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 12</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="NAME%20KEY.jpeg"
+            alt="Customized Name Key Chain">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED NAME KEY CHAIN</h3>
+
+          <div class="price">Rs. 800</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 13 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 13</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
+            alt="Customized Picture Mug With Different Colors">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS</h3>
+
+          <div class="price">Rs. 1350</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 14 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 14</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="PUBG%20CARD.jpeg"
+            alt="Customized PUBG Mobile Card">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED PUBG MOBILE CARD</h3>
+
+          <div class="price">Rs. 800</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 15 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 15</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="SNAPCHAT%20CARD.jpeg"
+            alt="Customized Snapchat TikTok and Instagram Card">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD</h3>
+
+          <div class="price">Rs. 800</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
       <!-- PRODUCT 16 -->
       <div class="product-card">
-        <div class="product-image"><div class="placeholder">Product Photo Coming Soon</div></div>
-        <div class="product-info">
-          <h3>Product 16</h3>
-          <p>Product details will be added soon.</p>
-          <a class="btn" href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">Order on WhatsApp</a>
+
+        <div class="product-image">
+          <img
+            src="PVC%20CARD.jpg"
+            alt="Customized PVC Card">
         </div>
+
+        <div class="product-info">
+
+          <h3>CUSTOMIZED PVC CARD</h3>
+
+          <div class="price">Rs. 850</div>
+
+          <a class="btn" href="#">
+            View Product
+          </a>
+
+        </div>
+
       </div>
 
 
@@ -510,6 +683,7 @@
   </section>
 
 
+  <!-- BACK HOME -->
   <div class="back-home">
 
     <a href="index.html">
@@ -519,6 +693,7 @@
   </div>
 
 
+  <!-- FOOTER -->
   <footer>
 
     <h2>
@@ -532,6 +707,7 @@
     <p>© 2026 Craftio Gifts. All Rights Reserved.</p>
 
   </footer>
+
 
 </body>
 </html>
