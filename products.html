@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Products | Craftio Gifts</title>
 
+  <link rel="icon" type="image/png" href="favicon.png">
+
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -60,24 +64,18 @@
 
     .cart-button {
       background: #00aef0;
-      color: white !important;
       padding: 9px 15px;
       border-radius: 8px;
     }
 
     .page-header {
       text-align: center;
-      padding: 65px 20px 45px;
-      background: white;
+      padding: 60px 20px 30px;
     }
 
     .page-header h1 {
       font-size: 42px;
-      margin-bottom: 10px;
-    }
-
-    .page-header h1 span {
-      color: #00aef0;
+      margin-bottom: 12px;
     }
 
     .page-header p {
@@ -85,13 +83,10 @@
       font-size: 17px;
     }
 
-    .products-section {
-      padding: 50px 7% 80px;
-    }
-
     .products-grid {
       max-width: 1200px;
-      margin: auto;
+      margin: 20px auto 70px;
+      padding: 0 25px;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 25px;
@@ -99,64 +94,54 @@
 
     .product-card {
       background: white;
-      border: 1px solid #e5e5e5;
-      border-radius: 16px;
+      border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
       transition: 0.3s;
-      display: flex;
-      flex-direction: column;
     }
 
     .product-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
     }
 
-    .product-image {
+    .product-card img {
       width: 100%;
-      height: 250px;
+      height: 260px;
       object-fit: cover;
-      background: #eee;
+      display: block;
     }
 
     .product-info {
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
     }
 
     .product-info h3 {
       font-size: 18px;
-      line-height: 1.4;
-      margin-bottom: 10px;
+      line-height: 1.35;
+      margin-bottom: 12px;
     }
 
-    .price {
+    .product-price {
       color: #00aef0;
-      font-size: 20px;
+      font-size: 21px;
       font-weight: 800;
-      margin-bottom: 18px;
+      margin-bottom: 15px;
     }
 
-    .product-buttons {
-      margin-top: auto;
+    .product-actions {
       display: flex;
       gap: 8px;
-      flex-direction: column;
     }
 
-    .btn {
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
+    .view-btn,
+    .cart-btn {
+      flex: 1;
+      padding: 11px 8px;
       border: none;
+      border-radius: 7px;
       cursor: pointer;
-      padding: 12px 15px;
-      border-radius: 8px;
+      font-size: 13px;
       font-weight: 700;
-      font-size: 14px;
     }
 
     .view-btn {
@@ -168,32 +153,46 @@
       background: #333;
     }
 
-    .add-btn {
+    .cart-btn {
       background: #00aef0;
       color: white;
     }
 
-    .add-btn:hover {
+    .cart-btn:hover {
       background: #008fc5;
     }
 
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: #00aef0;
+    }
+
     /* =========================
-       CART PANEL
+       CART OVERLAY
     ========================= */
 
     .cart-overlay {
-      display: none;
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,0.55);
+      display: none;
+      justify-content: flex-end;
       z-index: 2000;
     }
 
+    .cart-overlay.active {
+      display: flex;
+    }
+
     .cart-panel {
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 430px;
+      width: 420px;
       max-width: 100%;
       height: 100%;
       background: white;
@@ -209,22 +208,19 @@
     }
 
     .cart-header h2 {
-      font-size: 25px;
+      font-size: 27px;
     }
 
     .close-cart {
       border: none;
-      background: #eee;
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
+      background: none;
+      font-size: 30px;
       cursor: pointer;
-      font-size: 20px;
     }
 
     .cart-item {
       display: flex;
-      gap: 12px;
+      gap: 15px;
       padding: 15px 0;
       border-bottom: 1px solid #eee;
     }
@@ -236,14 +232,13 @@
       border-radius: 8px;
     }
 
-    .cart-item-info {
+    .cart-item-details {
       flex: 1;
     }
 
-    .cart-item-info h4 {
+    .cart-item-details h4 {
       font-size: 14px;
-      margin-bottom: 6px;
-      line-height: 1.3;
+      margin-bottom: 7px;
     }
 
     .cart-item-price {
@@ -259,46 +254,46 @@
     }
 
     .quantity-controls button {
-      width: 27px;
-      height: 27px;
+      width: 28px;
+      height: 28px;
       border: 1px solid #ccc;
       background: white;
       border-radius: 5px;
       cursor: pointer;
-      font-weight: bold;
     }
 
-    .remove-item {
-      border: none !important;
-      color: #d00;
-      background: transparent !important;
-      width: auto !important;
-      margin-left: 5px;
+    .remove-btn {
+      margin-top: 7px;
+      border: none;
+      background: none;
+      color: #e33;
+      cursor: pointer;
+      font-size: 12px;
     }
 
     .cart-total {
       margin-top: 25px;
-      padding-top: 20px;
-      border-top: 2px solid #111;
+      font-size: 21px;
+      font-weight: 800;
       display: flex;
       justify-content: space-between;
-      font-size: 20px;
-      font-weight: 800;
     }
 
     .checkout-btn {
-      display: block;
       width: 100%;
       margin-top: 20px;
       padding: 15px;
-      background: #111;
-      color: white;
       border: none;
-      border-radius: 9px;
-      text-align: center;
-      text-decoration: none;
+      border-radius: 8px;
+      background: #00aef0;
+      color: white;
+      font-size: 16px;
       font-weight: 800;
       cursor: pointer;
+    }
+
+    .checkout-btn:hover {
+      background: #008fc5;
     }
 
     .empty-cart {
@@ -307,25 +302,16 @@
       padding: 50px 10px;
     }
 
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-    }
-
-    footer strong {
-      color: #00aef0;
-    }
-
     @media (max-width: 1000px) {
+
       .products-grid {
         grid-template-columns: repeat(3, 1fr);
       }
+
     }
 
     @media (max-width: 750px) {
+
       nav {
         flex-direction: column;
         gap: 15px;
@@ -334,29 +320,36 @@
       .products-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
     }
 
     @media (max-width: 500px) {
-      .products-grid {
-        grid-template-columns: 1fr;
+
+      .page-header {
+        padding-top: 40px;
       }
 
       .page-header h1 {
-        font-size: 34px;
+        font-size: 32px;
       }
 
-      .products-section {
-        padding: 35px 5% 60px;
+      .products-grid {
+        grid-template-columns: 1fr;
+        padding: 0 15px;
       }
 
-      .product-image {
-        height: 280px;
+      .product-card img {
+        height: 300px;
       }
+
     }
+
   </style>
+
 </head>
 
 <body>
+
 
   <!-- =========================
        NAVBAR
@@ -369,30 +362,37 @@
     </div>
 
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Products</a>
-      <a href="#contact">Contact</a>
 
-      <a href="#" class="cart-button" onclick="openCart(); return false;">
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="products.html">
+        Products
+      </a>
+
+      <a href="#contact" class="cart-button"
+         onclick="openCart(); return false;">
         🛒 Cart (<span id="cartCount">0</span>)
       </a>
+
     </div>
 
   </nav>
 
 
   <!-- =========================
-       HEADER
+       PAGE HEADER
   ========================= -->
 
   <section class="page-header">
 
     <h1>
-      Our <span>Products</span>
+      Our Products
     </h1>
 
     <p>
-      Personalized gifts made especially for your special moments.
+      Personalized gifts made specially for your special moments.
     </p>
 
   </section>
@@ -402,10 +402,9 @@
        PRODUCTS
   ========================= -->
 
-  <section class="products-section">
-
-    <div class="products-grid" id="productsGrid"></div>
-
+  <section
+    class="products-grid"
+    id="productsGrid">
   </section>
 
 
@@ -413,32 +412,56 @@
        CART
   ========================= -->
 
-  <div class="cart-overlay" id="cartOverlay">
+  <div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCart()">
 
-    <div class="cart-panel">
+    <div
+      class="cart-panel"
+      onclick="event.stopPropagation()">
 
       <div class="cart-header">
 
-        <h2>🛒 Your Cart</h2>
+        <h2>
+          Your Cart
+        </h2>
 
-        <button class="close-cart" onclick="closeCart()">×</button>
+        <button
+          class="close-cart"
+          onclick="closeCart()">
+          ×
+        </button>
 
       </div>
 
       <div id="cartItems"></div>
 
-      <div id="cartBottom"></div>
+      <div
+        class="cart-total">
+
+        <span>
+          Total:
+        </span>
+
+        <span id="cartTotal">
+          Rs. 0
+        </span>
+
+      </div>
+
+      <button
+        class="checkout-btn"
+        onclick="window.location.href='checkout.html'">
+        PROCEED TO CHECKOUT
+      </button>
 
     </div>
 
   </div>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
-
-  <footer id="contact">
+  <footer>
 
     © 2026 <strong>Craftio Gifts</strong>.
     All Rights Reserved.
@@ -569,7 +592,9 @@
        DISPLAY PRODUCTS
     ========================= */
 
-    const productsGrid = document.getElementById("productsGrid");
+    const productsGrid =
+      document.getElementById("productsGrid");
+
 
     products.forEach(product => {
 
@@ -580,29 +605,30 @@
           <img
             src="${product.image}"
             alt="${product.name}"
-            class="product-image"
           >
 
           <div class="product-info">
 
-            <h3>${product.name}</h3>
+            <h3>
+              ${product.name}
+            </h3>
 
-            <div class="price">
+            <div class="product-price">
               Rs. ${product.price}
             </div>
 
-            <div class="product-buttons">
-
-              <a
-                href="product.html?product=${product.id}"
-                class="btn view-btn">
-                View Product
-              </a>
+            <div class="product-actions">
 
               <button
-                class="btn add-btn"
+                class="view-btn"
+                onclick="window.location.href='product.html?product=${product.id}'">
+                VIEW PRODUCT
+              </button>
+
+              <button
+                class="cart-btn"
                 onclick="addToCart('${product.id}')">
-                🛒 Add to Cart
+                🛒 ADD
               </button>
 
             </div>
@@ -617,12 +643,14 @@
 
 
     /* =========================
-       CART FUNCTIONS
+       CART
     ========================= */
 
     function getCart() {
 
-      return JSON.parse(localStorage.getItem("craftioCart")) || [];
+      return JSON.parse(
+        localStorage.getItem("craftioCart")
+      ) || [];
 
     }
 
@@ -634,34 +662,36 @@
         JSON.stringify(cart)
       );
 
-      updateCartCount();
-      renderCart();
-
     }
 
 
-    function addToCart(productId, quantity = 1) {
+    function addToCart(productId) {
 
       const cart = getCart();
 
-      const existing = cart.find(
-        item => item.id === productId
-      );
+      const existing =
+        cart.find(item => item.id === productId);
+
 
       if (existing) {
 
-        existing.quantity += quantity;
+        existing.quantity += 1;
 
       } else {
 
         cart.push({
           id: productId,
-          quantity: quantity
+          quantity: 1
         });
 
       }
 
+
       saveCart(cart);
+
+      updateCartCount();
+
+      renderCart();
 
       openCart();
 
@@ -672,39 +702,57 @@
 
       const cart = getCart();
 
-      const count = cart.reduce(
-        (total, item) => total + item.quantity,
-        0
-      );
+      const count =
+        cart.reduce(
+          (total, item) =>
+            total + item.quantity,
+          0
+        );
 
-      document.getElementById("cartCount").textContent = count;
+
+      document.getElementById(
+        "cartCount"
+      ).textContent = count;
 
     }
 
 
-    function changeQuantity(productId, amount) {
+    function changeQuantity(
+      productId,
+      change
+    ) {
 
       const cart = getCart();
 
-      const item = cart.find(
-        item => item.id === productId
-      );
+      const item =
+        cart.find(
+          item => item.id === productId
+        );
+
 
       if (!item) return;
 
-      item.quantity += amount;
+
+      item.quantity += change;
+
 
       if (item.quantity <= 0) {
 
-        const index = cart.findIndex(
-          item => item.id === productId
-        );
+        const index =
+          cart.findIndex(
+            item => item.id === productId
+          );
 
         cart.splice(index, 1);
 
       }
 
+
       saveCart(cart);
+
+      updateCartCount();
+
+      renderCart();
 
     }
 
@@ -713,32 +761,42 @@
 
       let cart = getCart();
 
-      cart = cart.filter(
-        item => item.id !== productId
-      );
+      cart =
+        cart.filter(
+          item => item.id !== productId
+        );
+
 
       saveCart(cart);
+
+      updateCartCount();
+
+      renderCart();
 
     }
 
 
     function renderCart() {
 
-      const cartItems = document.getElementById("cartItems");
-      const cartBottom = document.getElementById("cartBottom");
-
       const cart = getCart();
+
+      const cartItems =
+        document.getElementById("cartItems");
+
+      const cartTotal =
+        document.getElementById("cartTotal");
+
 
       if (cart.length === 0) {
 
         cartItems.innerHTML = `
           <div class="empty-cart">
-            <h3>Your cart is empty.</h3>
-            <p>Add some products to your cart.</p>
+            Your cart is empty.
           </div>
         `;
 
-        cartBottom.innerHTML = "";
+        cartTotal.textContent =
+          "Rs. 0";
 
         return;
 
@@ -747,19 +805,24 @@
 
       let total = 0;
 
+
       cartItems.innerHTML = "";
 
 
       cart.forEach(item => {
 
-        const product = products.find(
-          p => p.id === item.id
-        );
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
+
 
         if (!product) return;
 
+
         const itemTotal =
           product.price * item.quantity;
+
 
         total += itemTotal;
 
@@ -773,9 +836,11 @@
               alt="${product.name}"
             >
 
-            <div class="cart-item-info">
+            <div class="cart-item-details">
 
-              <h4>${product.name}</h4>
+              <h4>
+                ${product.name}
+              </h4>
 
               <div class="cart-item-price">
                 Rs. ${itemTotal}
@@ -788,20 +853,22 @@
                   −
                 </button>
 
-                <strong>${item.quantity}</strong>
+                <span>
+                  ${item.quantity}
+                </span>
 
                 <button
                   onclick="changeQuantity('${product.id}', 1)">
                   +
                 </button>
 
-                <button
-                  class="remove-item"
-                  onclick="removeFromCart('${product.id}')">
-                  Remove
-                </button>
-
               </div>
+
+              <button
+                class="remove-btn"
+                onclick="removeFromCart('${product.id}')">
+                Remove
+              </button>
 
             </div>
 
@@ -812,61 +879,34 @@
       });
 
 
-      cartBottom.innerHTML = `
-
-        <div class="cart-total">
-
-          <span>Total</span>
-
-          <span>Rs. ${total}</span>
-
-        </div>
-
-        <a
-          href="checkout.html"
-          class="checkout-btn">
-          PROCEED TO CHECKOUT
-        </a>
-
-      `;
+      cartTotal.textContent =
+        "Rs. " + total;
 
     }
 
 
     function openCart() {
 
-      renderCart();
+      document
+        .getElementById("cartOverlay")
+        .classList.add("active");
 
-      document.getElementById(
-        "cartOverlay"
-      ).style.display = "block";
+      renderCart();
 
     }
 
 
     function closeCart() {
 
-      document.getElementById(
-        "cartOverlay"
-      ).style.display = "none";
+      document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
 
     }
 
 
-    document.getElementById(
-      "cartOverlay"
-    ).addEventListener("click", function(event) {
-
-      if (event.target === this) {
-
-        closeCart();
-
-      }
-
-    });
-
-
     updateCartCount();
+
     renderCart();
 
   </script>
