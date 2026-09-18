@@ -1,427 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Product | CRAFTIO GIFTS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <title>Product | Craftio Gifts</title>
 
-        body {
-            background: #f8f9fa;
-            color: #222;
-        }
+  <style>
 
-        nav {
-            background: #111;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
-        }
+    nav {
+      background: #111;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        .product-container {
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
+    .logo-text {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
-        .product-image-box {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            text-align: center;
-        }
+    .logo-text span {
+      color: #00aef0;
+    }
 
-        .product-image-box img {
-            width: 100%;
-            max-height: 550px;
-            object-fit: contain;
-            border-radius: 10px;
-        }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
 
-        .product-info h1 {
-            font-size: 34px;
-            line-height: 1.3;
-            margin-bottom: 20px;
-        }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
 
-        .price {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 25px;
-        }
+    .nav-links a:hover {
+      color: #00aef0;
+    }
 
-        .description {
-            font-size: 16px;
-            line-height: 1.7;
-            color: #666;
-            margin-bottom: 30px;
-        }
+    .cart-link {
+      background: #00aef0;
+      padding: 9px 15px;
+      border-radius: 8px;
+    }
 
-        .quantity-box {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
+    .product-page {
+      max-width: 1150px;
+      margin: 60px auto;
+      padding: 0 25px;
+    }
 
-        .quantity-box label {
-            font-weight: bold;
-        }
+    .product-box {
+      background: white;
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      padding: 35px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+    }
 
-        .quantity-box input {
-            width: 70px;
-            padding: 10px;
-            font-size: 17px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            text-align: center;
-        }
+    .product-image {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      border-radius: 14px;
+      background: #eee;
+    }
 
-        .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 16px;
-            background: #111;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .product-details {
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .buy-btn:hover {
-            background: #333;
-        }
+    .product-details h1 {
+      font-size: 38px;
+      line-height: 1.15;
+      margin-bottom: 18px;
+    }
 
-        .back-btn {
-            display: inline-block;
-            margin-top: 20px;
-            color: #555;
-            text-decoration: none;
-        }
+    .price {
+      color: #00aef0;
+      font-size: 29px;
+      font-weight: 800;
+      margin-bottom: 25px;
+    }
 
-        .not-found {
-            text-align: center;
-            padding: 120px 20px;
-        }
+    .description {
+      font-size: 17px;
+      line-height: 1.7;
+      color: #555;
+      margin-bottom: 30px;
+    }
 
-        .not-found h2 {
-            margin-bottom: 20px;
-        }
+    .quantity-label {
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
 
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 25px;
-            margin-top: 60px;
-        }
+    .quantity-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 25px;
+    }
 
-        @media (max-width: 768px) {
+    .quantity-box button {
+      width: 42px;
+      height: 42px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 7px;
+      cursor: pointer;
+      font-size: 22px;
+    }
 
-            .product-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                margin: 30px auto;
-            }
+    .quantity-box input {
+      width: 75px;
+      height: 42px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      text-align: center;
+      font-size: 18px;
+    }
 
-            .product-info h1 {
-                font-size: 27px;
-            }
+    .buy-btn,
+    .add-cart-btn {
+      width: 100%;
+      padding: 16px;
+      border: none;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
 
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
+    .buy-btn {
+      background: #111;
+      color: white;
+    }
 
-            nav a {
-                margin: 0 8px;
-            }
-        }
-    </style>
+    .buy-btn:hover {
+      background: #333;
+    }
+
+    .add-cart-btn {
+      background: #00aef0;
+      color: white;
+    }
+
+    .add-cart-btn:hover {
+      background: #008fc5;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 25px;
+      color: #555;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover {
+      color: #00aef0;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      margin-top: 60px;
+    }
+
+    footer strong {
+      color: #00aef0;
+    }
+
+    @media (max-width: 800px) {
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .product-box {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 20px;
+      }
+
+      .product-image {
+        height: 400px;
+      }
+
+      .product-details h1 {
+        font-size: 30px;
+      }
+
+    }
+
+    @media (max-width: 500px) {
+
+      .product-page {
+        margin: 30px auto;
+        padding: 0 15px;
+      }
+
+      .product-image {
+        height: 330px;
+      }
+
+      .product-details {
+        padding: 10px 5px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-<nav>
 
-    <div class="logo">
-        CRAFTIO GIFTS
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <nav>
+
+    <div class="logo-text">
+      CRAFTIO <span>GIFTS</span>
     </div>
 
-    <div>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="index.html#contact">Contact</a>
+    <div class="nav-links">
+
+      <a href="index.html">
+        Home
+      </a>
+
+      <a href="products.html">
+        Products
+      </a>
+
+      <a
+        href="products.html"
+        class="cart-link">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </a>
+
     </div>
 
-</nav>
+  </nav>
 
 
-<div id="productArea"></div>
+  <!-- =========================
+       PRODUCT
+  ========================= -->
+
+  <main class="product-page">
+
+    <div class="product-box">
+
+      <img
+        id="productImage"
+        class="product-image"
+        src=""
+        alt=""
+      >
+
+      <div class="product-details">
+
+        <h1 id="productName">
+          Product
+        </h1>
+
+        <div
+          class="price"
+          id="productPrice">
+          Rs. 0
+        </div>
+
+        <p
+          class="description"
+          id="productDescription">
+        </p>
 
 
-<footer>
-    © 2026 CRAFTIO GIFTS. All Rights Reserved.
-</footer>
+        <div class="quantity-label">
+          Quantity:
+        </div>
+
+        <div class="quantity-box">
+
+          <button onclick="decreaseQuantity()">
+            −
+          </button>
+
+          <input
+            type="number"
+            id="quantity"
+            value="1"
+            min="1"
+          >
+
+          <button onclick="increaseQuantity()">
+            +
+          </button>
+
+        </div>
 
 
-<script>
+        <button
+          class="buy-btn"
+          onclick="buyNow()">
+          BUY NOW
+        </button>
 
-const products = {
 
-    "led-photo-frame": {
+        <button
+          class="add-cart-btn"
+          onclick="addProductToCart()">
+          🛒 ADD TO CART
+        </button>
+
+
+        <a
+          href="products.html"
+          class="back-link">
+          ← Back to Products
+        </a>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <footer>
+
+    © 2026 <strong>Craftio Gifts</strong>.
+    All Rights Reserved.
+
+  </footer>
+
+
+  <script>
+
+    const products = [
+
+      {
+        id: "led-photo-frame",
         name: "CUSTOMIZED LED PHOTO FRAME",
         price: 2000,
-        image: "Light%20frame.jpeg"
-    },
+        image: "Light%20frame.jpeg",
+        description:
+          "Turn your favorite memories into a beautiful glowing keepsake. A personalized LED frame made to brighten up your special moments and your room."
+      },
 
-    "birthday-frame": {
+      {
+        id: "birthday-frame",
         name: "CUSTOMIZED BIRTHDAY FRAME",
         price: 999,
-        image: "Birthday%20Frame.jpeg"
-    },
+        image: "Birthday%20Frame.jpeg",
+        description:
+          "Celebrate a special birthday with a personalized frame featuring your favorite memories. A thoughtful keepsake made especially for someone you love."
+      },
 
-    "birthday-mug": {
+      {
+        id: "birthday-mug",
         name: "CUSTOMIZED BIRTHDAY MUG",
         price: 999,
-        image: "birthday%20mug.jpeg"
-    },
+        image: "birthday%20mug.jpeg",
+        description:
+          "Make their birthday extra special with a customized mug designed just for them. Add a favorite photo or personal touch for a memorable gift."
+      },
 
-    "led-heart-lamp": {
+      {
+        id: "led-heart-lamp",
         name: "CUSTOMIZED LED HEART LAMP",
         price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg"
-    },
+        image: "MOON%20PICTURE%20FRAME.jpeg",
+        description:
+          "A beautiful heart-shaped LED lamp made to turn special memories into a glowing display. Perfect for romantic occasions, anniversaries and meaningful gifts."
+      },
 
-    "nikkah-signature-frame": {
+      {
+        id: "nikkah-signature-frame",
         name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
         price: 999,
-        image: "nikkah%20frame.jpeg"
-    },
+        image: "nikkah%20frame.jpeg",
+        description:
+          "Preserve the beautiful memories of your Nikkah with a personalized signature frame. A meaningful keepsake for couples and their special day."
+      },
 
-    "magic-mug": {
+      {
+        id: "magic-mug",
         name: "CUSTOMIZED MAGIC MUG",
         price: 1400,
-        image: "magic%20mug.jpeg"
-    },
+        image: "magic%20mug.jpeg",
+        description:
+          "Surprise someone special with a magical customized mug that reveals your design with heat. A fun and memorable gift for every occasion."
+      },
 
-    "wedding-ring-plaque": {
+      {
+        id: "wedding-ring-plaque",
         name: "CUSTOMIZED WEDDING RING PLAQUE",
         price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg"
-    },
+        image: "NIKKAH%20PLAQUE.jpeg",
+        description:
+          "Keep your wedding memories beautifully displayed with a customized ring plaque. Designed as a special keepsake for couples and their unforgettable day."
+      },
 
-    "trendy-charts": {
+      {
+        id: "trendy-charts",
         name: "CUSTOMIZED TRENDY CHARTS",
         price: 1350,
-        image: "TRENDY%20CHARTS.jpeg"
-    },
+        image: "TRENDY%20CHARTS.jpeg",
+        description:
+          "Add personality to your space with a trendy customized chart made around your favorite memories or ideas. Stylish, personal and made especially for you."
+      },
 
-    "eye-pendant-necklace": {
+      {
+        id: "eye-pendant-necklace",
         name: "CUSTOMIZED EYE PENDANT NECKLACE",
         price: 1300,
-        image: "EYE%20NECKLACE.jpeg"
-    },
+        image: "EYE%20NECKLACE.jpeg",
+        description:
+          "A stylish personalized eye pendant designed to make your gift truly meaningful. A beautiful accessory for someone special."
+      },
 
-    "picture-frame": {
+      {
+        id: "picture-frame",
         name: "CUSTOMIZED PICTURE FRAME",
         price: 900,
-        image: "PICTURE%20FRAME.jpg"
-    },
+        image: "PICTURE%20FRAME.jpg",
+        description:
+          "Turn your favorite photo into a beautiful personalized frame. A simple and elegant way to keep a special memory close forever."
+      },
 
-    "friendship-license-card": {
+      {
+        id: "friendship-license-card",
         name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
         price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
-    },
+        image: "FRIENSHIP%20LICENSE%20CAED.jpeg",
+        description:
+          "Celebrate your friendship with a fun personalized license card. Add names and special details to create a unique gift for your best friend."
+      },
 
-    "name-key-chain": {
+      {
+        id: "name-key-chain",
         name: "CUSTOMIZED NAME KEY CHAIN",
         price: 800,
-        image: "NAME%20KEY.jpeg"
-    },
+        image: "NAME%20KEY.jpeg",
+        description:
+          "Carry your name or a special name wherever you go with a personalized key chain. A small, stylish and meaningful everyday gift."
+      },
 
-    "picture-mug-colors": {
+      {
+        id: "picture-mug-colors",
         name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
         price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
-    },
+        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg",
+        description:
+          "Choose your favorite color and personalize your mug with a special picture. A colorful everyday gift made to bring a smile with every cup."
+      },
 
-    "pubg-mobile-card": {
+      {
+        id: "pubg-mobile-card",
         name: "CUSTOMIZED PUBG MOBILE CARD",
         price: 800,
-        image: "PUBG%20CARD.jpeg"
-    },
+        image: "PUBG%20CARD.jpeg",
+        description:
+          "A personalized PUBG Mobile card made specially for gaming lovers. Turn a favorite gaming profile or memory into a unique gift."
+      },
 
-    "snapchat-tiktok-instagram-card": {
+      {
+        id: "snapchat-tiktok-instagram-card",
         name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
         price: 800,
-        image: "SNAPCHAT%20CARD.jpeg"
-    },
+        image: "SNAPCHAT%20CARD.jpeg",
+        description:
+          "Showcase your favorite social profile in a stylish personalized card. Perfect for creators, friends and anyone who loves social media."
+      },
 
-    "pvc-card": {
+      {
+        id: "pvc-card",
         name: "CUSTOMIZED PVC CARD",
         price: 850,
-        image: "PVC%20CARD.jpg"
+        image: "PVC%20CARD.jpg",
+        description:
+          "A durable customized PVC card designed around your own idea. Personalize it with names, pictures or details for a unique everyday card."
+      }
+
+    ];
+
+
+    /* =========================
+       GET PRODUCT
+    ========================= */
+
+    const params =
+      new URLSearchParams(window.location.search);
+
+    const productId =
+      params.get("product");
+
+    const product =
+      products.find(p => p.id === productId);
+
+
+    if (product) {
+
+      document.getElementById(
+        "productImage"
+      ).src = product.image;
+
+      document.getElementById(
+        "productImage"
+      ).alt = product.name;
+
+      document.getElementById(
+        "productName"
+      ).textContent = product.name;
+
+      document.getElementById(
+        "productPrice"
+      ).textContent =
+        "Rs. " + product.price;
+
+      document.getElementById(
+        "productDescription"
+      ).textContent =
+        product.description;
+
     }
 
-};
+
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    function increaseQuantity() {
+
+      const input =
+        document.getElementById("quantity");
+
+      input.value =
+        parseInt(input.value) + 1;
+
+    }
 
 
-const params = new URLSearchParams(window.location.search);
+    function decreaseQuantity() {
 
-const productId = params.get("product");
+      const input =
+        document.getElementById("quantity");
 
-const product = products[productId];
+      let value =
+        parseInt(input.value);
 
-const productArea = document.getElementById("productArea");
+      if (value > 1) {
+        input.value = value - 1;
+      }
 
-
-if (product) {
-
-    document.title = product.name + " | CRAFTIO GIFTS";
-
-    productArea.innerHTML = `
-
-        <div class="product-container">
-
-            <div class="product-image-box">
-
-                <img
-                    src="${product.image}"
-                    alt="${product.name}"
-                >
-
-            </div>
+    }
 
 
-            <div class="product-info">
+    /* =========================
+       CART
+    ========================= */
 
-                <h1>
-                    ${product.name}
-                </h1>
+    function getCart() {
 
-                <div class="price">
-                    Rs. ${product.price}
-                </div>
+      return JSON.parse(
+        localStorage.getItem("craftioCart")
+      ) || [];
 
-                <div class="description">
-
-                    Make your special moments memorable
-                    with our customized gift.
-                    Perfect for birthdays, weddings,
-                    anniversaries and special occasions.
-
-                </div>
+    }
 
 
-                <div class="quantity-box">
+    function saveCart(cart) {
 
-                    <label>
-                        Quantity:
-                    </label>
+      localStorage.setItem(
+        "craftioCart",
+        JSON.stringify(cart)
+      );
 
-                    <input
-                        type="number"
-                        id="quantity"
-                        value="1"
-                        min="1"
-                    >
-
-                </div>
+    }
 
 
-                <button
-                    class="buy-btn"
-                    onclick="buyNow()"
-                >
-                    BUY NOW
-                </button>
+    function addProductToCart() {
+
+      if (!product) return;
+
+      const quantity =
+        parseInt(
+          document.getElementById("quantity").value
+        ) || 1;
+
+      const cart = getCart();
+
+      const existing =
+        cart.find(item => item.id === product.id);
 
 
-                <a
-                    class="back-btn"
-                    href="products.html"
-                >
-                    ← Back to Products
-                </a>
+      if (existing) {
 
-            </div>
+        existing.quantity += quantity;
 
-        </div>
+      } else {
 
-    `;
+        cart.push({
+          id: product.id,
+          quantity: quantity
+        });
 
-} else {
-
-    productArea.innerHTML = `
-
-        <div class="not-found">
-
-            <h2>
-                Product Not Found
-            </h2>
-
-            <p>
-                Please select a product from our products page.
-            </p>
-
-            <br>
-
-            <a href="products.html">
-                ← Back to Products
-            </a>
-
-        </div>
-
-    `;
-
-}
+      }
 
 
-function buyNow() {
+      saveCart(cart);
 
-    const quantity =
-        document.getElementById("quantity").value;
+      updateCartCount();
 
-    window.location.href =
-        "checkout.html?product=" +
-        encodeURIComponent(productId) +
-        "&quantity=" +
-        encodeURIComponent(quantity);
 
-}
+      alert(
+        product.name +
+        " added to your cart!"
+      );
 
-</script>
+
+      window.location.href =
+        "products.html";
+
+    }
+
+
+    /* =========================
+       BUY NOW
+    ========================= */
+
+    function buyNow() {
+
+      if (!product) return;
+
+      const quantity =
+        parseInt(
+          document.getElementById("quantity").value
+        ) || 1;
+
+
+      const buyNowCart = [
+
+        {
+          id: product.id,
+          quantity: quantity
+        }
+
+      ];
+
+
+      localStorage.setItem(
+        "craftioBuyNow",
+        JSON.stringify(buyNowCart)
+      );
+
+
+      window.location.href =
+        "checkout.html?buyNow=true";
+
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    function updateCartCount() {
+
+      const cart = getCart();
+
+      const count =
+        cart.reduce(
+          (total, item) =>
+            total + item.quantity,
+          0
+        );
+
+
+      document.getElementById(
+        "cartCount"
+      ).textContent = count;
+
+    }
+
+
+    updateCartCount();
+
+  </script>
 
 </body>
 </html>
