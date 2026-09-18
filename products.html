@@ -1,397 +1,875 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Products | CRAFTIO GIFTS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <title>Products | Craftio Gifts</title>
 
-        body {
-            background: #f8f9fa;
-            color: #222;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        nav {
-            background: #111;
-            padding: 18px 7%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #111;
+    }
 
-        .logo {
-            color: white;
-            font-size: 24px;
-            font-weight: bold;
-        }
+    nav {
+      background: #111;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 25px;
-            font-size: 15px;
-        }
+    .logo-text {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
 
-        .page-title {
-            text-align: center;
-            padding: 55px 20px 35px;
-        }
+    .logo-text span {
+      color: #00aef0;
+    }
 
-        .page-title h1 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
+    .nav-links {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
 
-        .page-title p {
-            color: #666;
-        }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
 
-        .products-grid {
-            width: 90%;
-            max-width: 1250px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            padding-bottom: 60px;
-        }
+    .nav-links a:hover {
+      color: #00aef0;
+    }
 
-        .product-card {
-            background: white;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 5px 18px rgba(0,0,0,0.08);
-            transition: 0.3s;
-        }
+    .cart-button {
+      background: #00aef0;
+      color: white !important;
+      padding: 9px 15px;
+      border-radius: 8px;
+    }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-        }
+    .page-header {
+      text-align: center;
+      padding: 65px 20px 45px;
+      background: white;
+    }
 
-        .product-image {
-            width: 100%;
-            height: 280px;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    .page-header h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
+    .page-header h1 span {
+      color: #00aef0;
+    }
 
-        .product-info {
-            padding: 20px;
-        }
+    .page-header p {
+      color: #666;
+      font-size: 17px;
+    }
 
-        .product-info h3 {
-            font-size: 17px;
-            line-height: 1.4;
-            min-height: 48px;
-        }
+    .products-section {
+      padding: 50px 7% 80px;
+    }
 
-        .price {
-            font-size: 20px;
-            font-weight: bold;
-            margin: 12px 0 18px;
-        }
+    .products-grid {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
 
-        .btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 12px;
-            background: #111;
-            color: white;
-            text-decoration: none;
-            border-radius: 7px;
-            font-weight: bold;
-        }
+    .product-card {
+      background: white;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+      overflow: hidden;
+      transition: 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .btn:hover {
-            background: #333;
-        }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
 
-        footer {
-            background: #111;
-            color: white;
-            text-align: center;
-            padding: 25px;
-        }
+    .product-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      background: #eee;
+    }
 
-        @media (max-width: 1000px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+    .product-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
 
-        @media (max-width: 600px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-                width: 92%;
-            }
+    .product-info h3 {
+      font-size: 18px;
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
 
-            nav {
-                flex-direction: column;
-                gap: 15px;
-            }
+    .price {
+      color: #00aef0;
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
 
-            nav a {
-                margin: 0 8px;
-            }
+    .product-buttons {
+      margin-top: auto;
+      display: flex;
+      gap: 8px;
+      flex-direction: column;
+    }
 
-            .page-title h1 {
-                font-size: 30px;
-            }
-        }
-    </style>
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      padding: 12px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .view-btn {
+      background: #111;
+      color: white;
+    }
+
+    .view-btn:hover {
+      background: #333;
+    }
+
+    .add-btn {
+      background: #00aef0;
+      color: white;
+    }
+
+    .add-btn:hover {
+      background: #008fc5;
+    }
+
+    /* =========================
+       CART PANEL
+    ========================= */
+
+    .cart-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 2000;
+    }
+
+    .cart-panel {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 430px;
+      max-width: 100%;
+      height: 100%;
+      background: white;
+      padding: 25px;
+      overflow-y: auto;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .cart-header h2 {
+      font-size: 25px;
+    }
+
+    .close-cart {
+      border: none;
+      background: #eee;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 75px;
+      height: 75px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .cart-item-info {
+      flex: 1;
+    }
+
+    .cart-item-info h4 {
+      font-size: 14px;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .cart-item-price {
+      color: #00aef0;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quantity-controls button {
+      width: 27px;
+      height: 27px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .remove-item {
+      border: none !important;
+      color: #d00;
+      background: transparent !important;
+      width: auto !important;
+      margin-left: 5px;
+    }
+
+    .cart-total {
+      margin-top: 25px;
+      padding-top: 20px;
+      border-top: 2px solid #111;
+      display: flex;
+      justify-content: space-between;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 15px;
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 9px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .empty-cart {
+      text-align: center;
+      color: #777;
+      padding: 50px 10px;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: #00aef0;
+    }
+
+    @media (max-width: 1000px) {
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 750px) {
+      nav {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-header h1 {
+        font-size: 34px;
+      }
+
+      .products-section {
+        padding: 35px 5% 60px;
+      }
+
+      .product-image {
+        height: 280px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-    <div class="logo">CRAFTIO GIFTS</div>
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-    <div>
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="index.html#contact">Contact</a>
-    </div>
-</nav>
+  <nav>
 
-
-<section class="page-title">
-    <h1>Our Products</h1>
-    <p>Make your special moments memorable with personalized gifts.</p>
-</section>
-
-
-<div class="products-grid">
-
-    <!-- 1 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="Light%20frame.jpeg" alt="CUSTOMIZED LED PHOTO FRAME">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED LED PHOTO FRAME</h3>
-            <div class="price">Rs. 2000</div>
-            <a class="btn" href="product.html?product=led-photo-frame">View Product</a>
-        </div>
+    <div class="logo-text">
+      CRAFTIO <span>GIFTS</span>
     </div>
 
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="#contact">Contact</a>
 
-    <!-- 2 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="Birthday%20Frame.jpeg" alt="CUSTOMIZED BIRTHDAY FRAME">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED BIRTHDAY FRAME</h3>
-            <div class="price">Rs. 999</div>
-            <a class="btn" href="product.html?product=birthday-frame">View Product</a>
-        </div>
+      <a href="#" class="cart-button" onclick="openCart(); return false;">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </a>
     </div>
 
+  </nav>
 
-    <!-- 3 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="birthday%20mug.jpeg" alt="CUSTOMIZED BIRTHDAY MUG">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED BIRTHDAY MUG</h3>
-            <div class="price">Rs. 999</div>
-            <a class="btn" href="product.html?product=birthday-mug">View Product</a>
-        </div>
+
+  <!-- =========================
+       HEADER
+  ========================= -->
+
+  <section class="page-header">
+
+    <h1>
+      Our <span>Products</span>
+    </h1>
+
+    <p>
+      Personalized gifts made especially for your special moments.
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================= -->
+
+  <section class="products-section">
+
+    <div class="products-grid" id="productsGrid"></div>
+
+  </section>
+
+
+  <!-- =========================
+       CART
+  ========================= -->
+
+  <div class="cart-overlay" id="cartOverlay">
+
+    <div class="cart-panel">
+
+      <div class="cart-header">
+
+        <h2>🛒 Your Cart</h2>
+
+        <button class="close-cart" onclick="closeCart()">×</button>
+
+      </div>
+
+      <div id="cartItems"></div>
+
+      <div id="cartBottom"></div>
+
     </div>
 
+  </div>
 
-    <!-- 4 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="MOON%20PICTURE%20FRAME.jpeg" alt="CUSTOMIZED LED HEART LAMP">
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer id="contact">
+
+    © 2026 <strong>Craftio Gifts</strong>.
+    All Rights Reserved.
+
+  </footer>
+
+
+  <script>
+
+    const products = [
+
+      {
+        id: "led-photo-frame",
+        name: "CUSTOMIZED LED PHOTO FRAME",
+        price: 2000,
+        image: "Light%20frame.jpeg"
+      },
+
+      {
+        id: "birthday-frame",
+        name: "CUSTOMIZED BIRTHDAY FRAME",
+        price: 999,
+        image: "Birthday%20Frame.jpeg"
+      },
+
+      {
+        id: "birthday-mug",
+        name: "CUSTOMIZED BIRTHDAY MUG",
+        price: 999,
+        image: "birthday%20mug.jpeg"
+      },
+
+      {
+        id: "led-heart-lamp",
+        name: "CUSTOMIZED LED HEART LAMP",
+        price: 2500,
+        image: "MOON%20PICTURE%20FRAME.jpeg"
+      },
+
+      {
+        id: "nikkah-signature-frame",
+        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
+        price: 999,
+        image: "nikkah%20frame.jpeg"
+      },
+
+      {
+        id: "magic-mug",
+        name: "CUSTOMIZED MAGIC MUG",
+        price: 1400,
+        image: "magic%20mug.jpeg"
+      },
+
+      {
+        id: "wedding-ring-plaque",
+        name: "CUSTOMIZED WEDDING RING PLAQUE",
+        price: 2500,
+        image: "NIKKAH%20PLAQUE.jpeg"
+      },
+
+      {
+        id: "trendy-charts",
+        name: "CUSTOMIZED TRENDY CHARTS",
+        price: 1350,
+        image: "TRENDY%20CHARTS.jpeg"
+      },
+
+      {
+        id: "eye-pendant-necklace",
+        name: "CUSTOMIZED EYE PENDANT NECKLACE",
+        price: 1300,
+        image: "EYE%20NECKLACE.jpeg"
+      },
+
+      {
+        id: "picture-frame",
+        name: "CUSTOMIZED PICTURE FRAME",
+        price: 900,
+        image: "PICTURE%20FRAME.jpg"
+      },
+
+      {
+        id: "friendship-license-card",
+        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
+        price: 900,
+        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
+      },
+
+      {
+        id: "name-key-chain",
+        name: "CUSTOMIZED NAME KEY CHAIN",
+        price: 800,
+        image: "NAME%20KEY.jpeg"
+      },
+
+      {
+        id: "picture-mug-colors",
+        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
+        price: 1350,
+        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
+      },
+
+      {
+        id: "pubg-mobile-card",
+        name: "CUSTOMIZED PUBG MOBILE CARD",
+        price: 800,
+        image: "PUBG%20CARD.jpeg"
+      },
+
+      {
+        id: "snapchat-tiktok-instagram-card",
+        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
+        price: 800,
+        image: "SNAPCHAT%20CARD.jpeg"
+      },
+
+      {
+        id: "pvc-card",
+        name: "CUSTOMIZED PVC CARD",
+        price: 850,
+        image: "PVC%20CARD.jpg"
+      }
+
+    ];
+
+
+    /* =========================
+       DISPLAY PRODUCTS
+    ========================= */
+
+    const productsGrid = document.getElementById("productsGrid");
+
+    products.forEach(product => {
+
+      productsGrid.innerHTML += `
+
+        <div class="product-card">
+
+          <img
+            src="${product.image}"
+            alt="${product.name}"
+            class="product-image"
+          >
+
+          <div class="product-info">
+
+            <h3>${product.name}</h3>
+
+            <div class="price">
+              Rs. ${product.price}
+            </div>
+
+            <div class="product-buttons">
+
+              <a
+                href="product.html?product=${product.id}"
+                class="btn view-btn">
+                View Product
+              </a>
+
+              <button
+                class="btn add-btn"
+                onclick="addToCart('${product.id}')">
+                🛒 Add to Cart
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED LED HEART LAMP</h3>
-            <div class="price">Rs. 2500</div>
-            <a class="btn" href="product.html?product=led-heart-lamp">View Product</a>
+
+      `;
+
+    });
+
+
+    /* =========================
+       CART FUNCTIONS
+    ========================= */
+
+    function getCart() {
+
+      return JSON.parse(localStorage.getItem("craftioCart")) || [];
+
+    }
+
+
+    function saveCart(cart) {
+
+      localStorage.setItem(
+        "craftioCart",
+        JSON.stringify(cart)
+      );
+
+      updateCartCount();
+      renderCart();
+
+    }
+
+
+    function addToCart(productId, quantity = 1) {
+
+      const cart = getCart();
+
+      const existing = cart.find(
+        item => item.id === productId
+      );
+
+      if (existing) {
+
+        existing.quantity += quantity;
+
+      } else {
+
+        cart.push({
+          id: productId,
+          quantity: quantity
+        });
+
+      }
+
+      saveCart(cart);
+
+      openCart();
+
+    }
+
+
+    function updateCartCount() {
+
+      const cart = getCart();
+
+      const count = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+
+      document.getElementById("cartCount").textContent = count;
+
+    }
+
+
+    function changeQuantity(productId, amount) {
+
+      const cart = getCart();
+
+      const item = cart.find(
+        item => item.id === productId
+      );
+
+      if (!item) return;
+
+      item.quantity += amount;
+
+      if (item.quantity <= 0) {
+
+        const index = cart.findIndex(
+          item => item.id === productId
+        );
+
+        cart.splice(index, 1);
+
+      }
+
+      saveCart(cart);
+
+    }
+
+
+    function removeFromCart(productId) {
+
+      let cart = getCart();
+
+      cart = cart.filter(
+        item => item.id !== productId
+      );
+
+      saveCart(cart);
+
+    }
+
+
+    function renderCart() {
+
+      const cartItems = document.getElementById("cartItems");
+      const cartBottom = document.getElementById("cartBottom");
+
+      const cart = getCart();
+
+      if (cart.length === 0) {
+
+        cartItems.innerHTML = `
+          <div class="empty-cart">
+            <h3>Your cart is empty.</h3>
+            <p>Add some products to your cart.</p>
+          </div>
+        `;
+
+        cartBottom.innerHTML = "";
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+      cartItems.innerHTML = "";
+
+
+      cart.forEach(item => {
+
+        const product = products.find(
+          p => p.id === item.id
+        );
+
+        if (!product) return;
+
+        const itemTotal =
+          product.price * item.quantity;
+
+        total += itemTotal;
+
+
+        cartItems.innerHTML += `
+
+          <div class="cart-item">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+            >
+
+            <div class="cart-item-info">
+
+              <h4>${product.name}</h4>
+
+              <div class="cart-item-price">
+                Rs. ${itemTotal}
+              </div>
+
+              <div class="quantity-controls">
+
+                <button
+                  onclick="changeQuantity('${product.id}', -1)">
+                  −
+                </button>
+
+                <strong>${item.quantity}</strong>
+
+                <button
+                  onclick="changeQuantity('${product.id}', 1)">
+                  +
+                </button>
+
+                <button
+                  class="remove-item"
+                  onclick="removeFromCart('${product.id}')">
+                  Remove
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+
+      cartBottom.innerHTML = `
+
+        <div class="cart-total">
+
+          <span>Total</span>
+
+          <span>Rs. ${total}</span>
+
         </div>
-    </div>
+
+        <a
+          href="checkout.html"
+          class="checkout-btn">
+          PROCEED TO CHECKOUT
+        </a>
+
+      `;
+
+    }
 
 
-    <!-- 5 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="nikkah%20frame.jpeg" alt="CUSTOMIZED NIKKAH SIGNATURE FRAME">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED NIKKAH SIGNATURE FRAME</h3>
-            <div class="price">Rs. 999</div>
-            <a class="btn" href="product.html?product=nikkah-signature-frame">View Product</a>
-        </div>
-    </div>
+    function openCart() {
+
+      renderCart();
+
+      document.getElementById(
+        "cartOverlay"
+      ).style.display = "block";
+
+    }
 
 
-    <!-- 6 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="magic%20mug.jpeg" alt="CUSTOMIZED MAGIC MUG">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED MAGIC MUG</h3>
-            <div class="price">Rs. 1400</div>
-            <a class="btn" href="product.html?product=magic-mug">View Product</a>
-        </div>
-    </div>
+    function closeCart() {
+
+      document.getElementById(
+        "cartOverlay"
+      ).style.display = "none";
+
+    }
 
 
-    <!-- 7 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="NIKKAH%20PLAQUE.jpeg" alt="CUSTOMIZED WEDDING RING PLAQUE">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED WEDDING RING PLAQUE</h3>
-            <div class="price">Rs. 2500</div>
-            <a class="btn" href="product.html?product=wedding-ring-plaque">View Product</a>
-        </div>
-    </div>
+    document.getElementById(
+      "cartOverlay"
+    ).addEventListener("click", function(event) {
+
+      if (event.target === this) {
+
+        closeCart();
+
+      }
+
+    });
 
 
-    <!-- 8 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="TRENDY%20CHARTS.jpeg" alt="CUSTOMIZED TRENDY CHARTS">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED TRENDY CHARTS</h3>
-            <div class="price">Rs. 1350</div>
-            <a class="btn" href="product.html?product=trendy-charts">View Product</a>
-        </div>
-    </div>
+    updateCartCount();
+    renderCart();
 
-
-    <!-- 9 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="EYE%20NECKLACE.jpeg" alt="CUSTOMIZED EYE PENDANT NECKLACE">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED EYE PENDANT NECKLACE</h3>
-            <div class="price">Rs. 1300</div>
-            <a class="btn" href="product.html?product=eye-pendant-necklace">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 10 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="PICTURE%20FRAME.jpg" alt="CUSTOMIZED PICTURE FRAME">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED PICTURE FRAME</h3>
-            <div class="price">Rs. 900</div>
-            <a class="btn" href="product.html?product=picture-frame">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 11 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="FRIENSHIP%20LICENSE%20CAED.jpeg" alt="CUSTOMIZED FRIENDSHIP LICENSE CARD">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED FRIENDSHIP LICENSE CARD</h3>
-            <div class="price">Rs. 900</div>
-            <a class="btn" href="product.html?product=friendship-license-card">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 12 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="NAME%20KEY.jpeg" alt="CUSTOMIZED NAME KEY CHAIN">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED NAME KEY CHAIN</h3>
-            <div class="price">Rs. 800</div>
-            <a class="btn" href="product.html?product=name-key-chain">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 13 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="CUSTOMIZED%20MUG%20WITH%20COLORS.jpg" alt="CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS</h3>
-            <div class="price">Rs. 1350</div>
-            <a class="btn" href="product.html?product=picture-mug-colors">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 14 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="PUBG%20CARD.jpeg" alt="CUSTOMIZED PUBG MOBILE CARD">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED PUBG MOBILE CARD</h3>
-            <div class="price">Rs. 800</div>
-            <a class="btn" href="product.html?product=pubg-mobile-card">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 15 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="SNAPCHAT%20CARD.jpeg" alt="CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD</h3>
-            <div class="price">Rs. 800</div>
-            <a class="btn" href="product.html?product=snapchat-tiktok-instagram-card">View Product</a>
-        </div>
-    </div>
-
-
-    <!-- 16 -->
-    <div class="product-card">
-        <div class="product-image">
-            <img src="PVC%20CARD.jpg" alt="CUSTOMIZED PVC CARD">
-        </div>
-        <div class="product-info">
-            <h3>CUSTOMIZED PVC CARD</h3>
-            <div class="price">Rs. 850</div>
-            <a class="btn" href="product.html?product=pvc-card">View Product</a>
-        </div>
-    </div>
-
-</div>
-
-
-<footer>
-    © 2026 CRAFTIO GIFTS. All Rights Reserved.
-</footer>
+  </script>
 
 </body>
 </html>
