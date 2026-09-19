@@ -85,12 +85,19 @@
       box-shadow: 0 10px 35px rgba(0,0,0,0.06);
     }
 
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
+
     .product-image {
       width: 100%;
       height: 500px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 14px;
-      background: #eee;
+      background: #f7f7f7;
+      padding: 10px;
+      cursor: zoom-in;
+      display: block;
     }
 
     .product-details {
@@ -194,6 +201,67 @@
       color: #00aef0;
     }
 
+    /* =========================
+       IMAGE ZOOM MODAL
+    ========================= */
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.90);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      z-index: 5000;
+      overflow: auto;
+    }
+
+    .image-modal.active {
+      display: flex;
+    }
+
+    .image-modal img {
+      max-width: 92vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+      touch-action: pinch-zoom;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .image-modal img.zoomed {
+      transform: scale(1.7);
+      cursor: zoom-out;
+    }
+
+    .image-modal-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: #111;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 5001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-modal-close:hover {
+      background: #eee;
+    }
+
     footer {
       background: #111;
       color: white;
@@ -226,6 +294,19 @@
 
       .product-details h1 {
         font-size: 30px;
+      }
+
+      .image-modal {
+        padding: 15px;
+      }
+
+      .image-modal img {
+        max-width: 94vw;
+        max-height: 85vh;
+      }
+
+      .image-modal img.zoomed {
+        transform: scale(1.45);
       }
 
     }
@@ -298,6 +379,7 @@
         class="product-image"
         src=""
         alt=""
+        onclick="openImageZoom()"
       >
 
       <div class="product-details">
@@ -348,7 +430,6 @@
           BUY NOW
         </button>
 
-
         <button
           class="add-cart-btn"
           onclick="addProductToCart()">
@@ -367,6 +448,32 @@
     </div>
 
   </main>
+
+
+  <!-- =========================
+       IMAGE ZOOM MODAL
+  ========================= -->
+
+  <div
+    class="image-modal"
+    id="imageModal"
+    onclick="closeImageZoom(event)">
+
+    <button
+      class="image-modal-close"
+      type="button"
+      onclick="closeImageZoom(event)">
+      ×
+    </button>
+
+    <img
+      id="zoomedImage"
+      src=""
+      alt=""
+      onclick="toggleImageZoom(event)"
+    >
+
+  </div>
 
 
   <footer>
@@ -570,13 +677,156 @@
 
 
     /* =========================
+       IMAGE ZOOM
+    ========================= */
+
+    function openImageZoom() {
+
+      const mainImage =
+        document.getElementById(
+          "productImage"
+        );
+
+      const modal =
+        document.getElementById(
+          "imageModal"
+        );
+
+      const zoomedImage =
+        document.getElementById(
+          "zoomedImage"
+        );
+
+
+      if (!mainImage.src) {
+        return;
+      }
+
+
+      zoomedImage.src =
+        mainImage.src;
+
+      zoomedImage.alt =
+        mainImage.alt;
+
+      zoomedImage.classList.remove(
+        "zoomed"
+      );
+
+      modal.classList.add(
+        "active"
+      );
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function toggleImageZoom(event) {
+
+      event.stopPropagation();
+
+      const image =
+        document.getElementById(
+          "zoomedImage"
+        );
+
+      image.classList.toggle(
+        "zoomed"
+      );
+
+    }
+
+
+    function closeImageZoom(event) {
+
+      const modal =
+        document.getElementById(
+          "imageModal"
+        );
+
+
+      if (
+        event &&
+        event.target !== modal &&
+        !event.target.classList.contains(
+          "image-modal-close"
+        )
+      ) {
+        return;
+      }
+
+
+      modal.classList.remove(
+        "active"
+      );
+
+      document.getElementById(
+        "zoomedImage"
+      ).classList.remove(
+        "zoomed"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    /* =========================
+       ESC TO CLOSE IMAGE
+    ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          const modal =
+            document.getElementById(
+              "imageModal"
+            );
+
+
+          if (
+            modal.classList.contains(
+              "active"
+            )
+          ) {
+
+            modal.classList.remove(
+              "active"
+            );
+
+            document.getElementById(
+              "zoomedImage"
+            ).classList.remove(
+              "zoomed"
+            );
+
+            document.body.style.overflow =
+              "";
+
+          }
+
+        }
+
+      }
+    );
+
+
+    /* =========================
        QUANTITY
     ========================= */
 
     function increaseQuantity() {
 
       const input =
-        document.getElementById("quantity");
+        document.getElementById(
+          "quantity"
+        );
 
       input.value =
         parseInt(input.value) + 1;
@@ -587,13 +837,19 @@
     function decreaseQuantity() {
 
       const input =
-        document.getElementById("quantity");
+        document.getElementById(
+          "quantity"
+        );
 
       let value =
         parseInt(input.value);
 
+
       if (value > 1) {
-        input.value = value - 1;
+
+        input.value =
+          value - 1;
+
       }
 
     }
@@ -606,7 +862,9 @@
     function getCart() {
 
       return JSON.parse(
-        localStorage.getItem("craftioCart")
+        localStorage.getItem(
+          "craftioCart"
+        )
       ) || [];
 
     }
@@ -626,26 +884,39 @@
 
       if (!product) return;
 
+
       const quantity =
         parseInt(
-          document.getElementById("quantity").value
+          document.getElementById(
+            "quantity"
+          ).value
         ) || 1;
 
-      const cart = getCart();
+
+      const cart =
+        getCart();
+
 
       const existing =
-        cart.find(item => item.id === product.id);
+        cart.find(
+          item =>
+            item.id === product.id
+        );
 
 
       if (existing) {
 
-        existing.quantity += quantity;
+        existing.quantity +=
+          quantity;
 
       } else {
 
         cart.push({
+
           id: product.id,
+
           quantity: quantity
+
         });
 
       }
@@ -676,17 +947,23 @@
 
       if (!product) return;
 
+
       const quantity =
         parseInt(
-          document.getElementById("quantity").value
+          document.getElementById(
+            "quantity"
+          ).value
         ) || 1;
 
 
       const buyNowCart = [
 
         {
+
           id: product.id,
+
           quantity: quantity
+
         }
 
       ];
@@ -694,7 +971,9 @@
 
       localStorage.setItem(
         "craftioBuyNow",
-        JSON.stringify(buyNowCart)
+        JSON.stringify(
+          buyNowCart
+        )
       );
 
 
@@ -710,7 +989,9 @@
 
     function updateCartCount() {
 
-      const cart = getCart();
+      const cart =
+        getCart();
+
 
       const count =
         cart.reduce(
@@ -722,7 +1003,8 @@
 
       document.getElementById(
         "cartCount"
-      ).textContent = count;
+      ).textContent =
+        count;
 
     }
 
