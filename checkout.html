@@ -3,6 +3,7 @@
 <head>
 
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0">
@@ -110,8 +111,12 @@
     .order-item img {
       width: 85px;
       height: 85px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 8px;
+      background: #f7f7f7;
+      padding: 5px;
+      cursor: zoom-in;
+      flex-shrink: 0;
     }
 
     .order-item-info {
@@ -256,6 +261,67 @@
       color: #777;
     }
 
+    /* =========================
+       IMAGE ZOOM MODAL
+    ========================= */
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      z-index: 3000;
+      overflow: auto;
+    }
+
+    .image-modal.active {
+      display: flex;
+    }
+
+    .image-modal img {
+      max-width: 92vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+      touch-action: pinch-zoom;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .image-modal img.zoomed {
+      transform: scale(1.7);
+      cursor: zoom-out;
+    }
+
+    .image-modal-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: #111;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 3001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .image-modal-close:hover {
+      background: #eee;
+    }
+
     footer {
       background: #111;
       color: white;
@@ -278,6 +344,19 @@
 
       .checkout-grid {
         grid-template-columns: 1fr;
+      }
+
+      .image-modal {
+        padding: 15px;
+      }
+
+      .image-modal img {
+        max-width: 94vw;
+        max-height: 85vh;
+      }
+
+      .image-modal img.zoomed {
+        transform: scale(1.45);
       }
 
     }
@@ -468,6 +547,31 @@
     </div>
 
   </main>
+
+
+  <!-- =========================
+       IMAGE ZOOM MODAL
+  ========================= -->
+
+  <div
+    class="image-modal"
+    id="imageModal"
+    onclick="closeImageZoom(event)">
+
+    <button
+      class="image-modal-close"
+      type="button"
+      onclick="closeImageZoom(event)">
+      ×
+    </button>
+
+    <img
+      id="zoomedImage"
+      src=""
+      alt=""
+      onclick="toggleImageZoom(event)">
+
+  </div>
 
 
   <footer>
@@ -700,6 +804,7 @@
             p => p.id === item.id
           );
 
+
         if (!product) return;
 
 
@@ -718,6 +823,7 @@
             <img
               src="${product.image}"
               alt="${product.name}"
+              onclick="openImageZoom(this.src, this.alt)"
             >
 
             <div class="order-item-info">
@@ -789,6 +895,128 @@
 
 
     /* =========================
+       IMAGE ZOOM
+    ========================= */
+
+    function openImageZoom(src, alt) {
+
+      const modal =
+        document.getElementById(
+          "imageModal"
+        );
+
+      const zoomedImage =
+        document.getElementById(
+          "zoomedImage"
+        );
+
+
+      zoomedImage.src = src;
+      zoomedImage.alt = alt || "";
+
+      zoomedImage.classList.remove(
+        "zoomed"
+      );
+
+      modal.classList.add("active");
+
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+
+    function toggleImageZoom(event) {
+
+      event.stopPropagation();
+
+      const image =
+        document.getElementById(
+          "zoomedImage"
+        );
+
+      image.classList.toggle(
+        "zoomed"
+      );
+
+    }
+
+
+    function closeImageZoom(event) {
+
+      const modal =
+        document.getElementById(
+          "imageModal"
+        );
+
+
+      if (
+        event &&
+        event.target !== modal &&
+        !event.target.classList.contains(
+          "image-modal-close"
+        )
+      ) {
+        return;
+      }
+
+
+      modal.classList.remove(
+        "active"
+      );
+
+      document.getElementById(
+        "zoomedImage"
+      ).classList.remove(
+        "zoomed"
+      );
+
+      document.body.style.overflow =
+        "";
+
+    }
+
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          const modal =
+            document.getElementById(
+              "imageModal"
+            );
+
+
+          if (
+            modal.classList.contains(
+              "active"
+            )
+          ) {
+
+            modal.classList.remove(
+              "active"
+            );
+
+            document.getElementById(
+              "zoomedImage"
+            ).classList.remove(
+              "zoomed"
+            );
+
+            document.body.style.overflow =
+              "";
+
+          }
+
+        }
+
+      }
+    );
+
+
+    /* =========================
        CHANGE QUANTITY
     ========================= */
 
@@ -801,6 +1029,7 @@
         cart.find(
           item => item.id === productId
         );
+
 
       if (!item) return;
 
@@ -887,6 +1116,7 @@
             p => p.id === item.id
           );
 
+
         if (product) {
 
           total +=
@@ -962,20 +1192,24 @@
         message +=
           "*Customer Details*%0A";
 
+
         message +=
           "Name: " +
           encodeURIComponent(fullName) +
           "%0A";
+
 
         message +=
           "Phone: " +
           encodeURIComponent(phone) +
           "%0A";
 
+
         message +=
           "Address: " +
           encodeURIComponent(address) +
           "%0A";
+
 
         message +=
           "City: " +
@@ -995,6 +1229,7 @@
                 p => p.id === item.id
               );
 
+
             if (!product) return;
 
 
@@ -1011,10 +1246,12 @@
               ) +
               "%0A";
 
+
             message +=
               "Qty: " +
               item.quantity +
               "%0A";
+
 
             message +=
               "Price: Rs. " +
