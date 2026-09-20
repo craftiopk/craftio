@@ -6,7 +6,6 @@
 
   <title>Craftio Gifts | Personalized Gifts</title>
 
-  <!-- FAVICON -->
   <link rel="icon" type="image/png" href="favicon.png">
 
   <style>
@@ -61,22 +60,12 @@
       color: #00aef0;
     }
 
-    .nav-links {
+    .nav-tools {
       display: flex;
-      gap: 28px;
       align-items: center;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #00aef0;
+      justify-content: flex-end;
+      gap: 18px;
+      position: relative;
     }
 
     .nav-home-link,
@@ -85,6 +74,7 @@
       color: #ffffff;
       font-size: 15px;
       font-weight: 600;
+      transition: 0.3s;
     }
 
     .nav-home-link:hover,
@@ -93,16 +83,8 @@
     }
 
     /* =========================
-       SEARCH + CATEGORIES
+       REAL SEARCH ICON
     ========================= */
-
-    .nav-tools {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-      position: relative;
-    }
 
     .search-icon-btn {
       width: 32px;
@@ -131,6 +113,10 @@
       stroke: currentColor;
     }
 
+    /* =========================
+       PRODUCTS BUTTON
+    ========================= */
+
     .category-btn {
       border: none;
       background: #00aef0;
@@ -148,6 +134,10 @@
       background: #008dcc;
     }
 
+    /* =========================
+       MOBILE 3 LINES
+    ========================= */
+
     .mobile-menu-btn {
       display: none;
       width: 32px;
@@ -160,12 +150,6 @@
       align-items: center;
       justify-content: center;
       border-radius: 6px;
-      transition: 0.3s;
-    }
-
-    .mobile-menu-btn:hover {
-      background: rgba(0,174,240,0.15);
-      color: #00aef0;
     }
 
     .mobile-menu-btn svg {
@@ -222,6 +206,10 @@
       cursor: pointer;
       font-weight: 700;
     }
+
+    /* =========================
+       SEARCH SUGGESTIONS
+    ========================= */
 
     .search-suggestions {
       display: none;
@@ -333,8 +321,6 @@
       text-align: center;
       padding: 70px 20px;
     }
-
-    /* Decorative circles */
 
     .hero::before {
       content: "";
@@ -478,17 +464,6 @@
       transition: 0.3s;
     }
 
-    .btn-primary {
-      background: #00aef0;
-      color: #ffffff;
-      box-shadow: 0 8px 20px rgba(0,174,240,0.25);
-    }
-
-    .btn-primary:hover {
-      background: #008dcc;
-      transform: translateY(-3px);
-    }
-
     .btn-secondary {
       background: #111111;
       color: #ffffff;
@@ -500,7 +475,7 @@
     }
 
     /* =========================
-       LITTLE GIFT MESSAGE
+       GIFT MESSAGE
     ========================= */
 
     .gift-message {
@@ -719,7 +694,7 @@
 
       .nav-tools {
         justify-content: flex-end;
-        gap: 4px;
+        gap: 5px;
       }
 
       .search-popover {
@@ -737,10 +712,6 @@
       .search-popover input {
         width: 100%;
         flex: 1;
-      }
-
-      .search-popover button {
-        flex-shrink: 0;
       }
 
       .search-suggestions {
@@ -806,9 +777,6 @@
     @media (max-width: 500px) {
 
       nav {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 10px;
         padding: 12px 5%;
       }
 
@@ -902,7 +870,7 @@
 
     <div class="nav-tools">
 
-      <!-- SEARCH ICON FIRST ON DESKTOP -->
+      <!-- SEARCH ICON FIRST -->
 
       <button
         class="search-icon-btn"
@@ -916,8 +884,7 @@
           stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true">
+          stroke-linejoin="round">
 
           <circle
             cx="11"
@@ -948,11 +915,10 @@
       </a>
 
 
-      <!-- PRODUCTS OPENS CATEGORIES -->
+      <!-- PRODUCTS -->
 
       <button
         class="category-btn"
-        type="button"
         onclick="openCategories()">
 
         Products
@@ -973,8 +939,7 @@
           fill="none"
           stroke="currentColor"
           stroke-width="2"
-          stroke-linecap="round"
-          aria-hidden="true">
+          stroke-linecap="round">
 
           <line
             x1="4"
@@ -1029,8 +994,11 @@
             placeholder="Search products..."
             oninput="showSearchSuggestions(this.value)">
 
-          <button type="submit">
+          <button
+            type="submit">
+
             Search
+
           </button>
 
         </form>
@@ -1152,29 +1120,17 @@
 
 
   <!-- =========================
-       HERO / HOME
+       HERO
   ========================= -->
 
   <section class="hero">
 
-    <div class="sparkle one">
-      ✦
-    </div>
-
-    <div class="sparkle two">
-      ✧
-    </div>
-
-    <div class="sparkle three">
-      ✧
-    </div>
-
-    <div class="sparkle four">
-      ✦
-    </div>
+    <div class="sparkle one">✦</div>
+    <div class="sparkle two">✧</div>
+    <div class="sparkle three">✧</div>
+    <div class="sparkle four">✦</div>
 
     <div class="ribbon-left"></div>
-
     <div class="ribbon-right"></div>
 
 
@@ -1359,7 +1315,7 @@
 
 
   <!-- =========================
-       CONTACT / CTA
+       CTA
   ========================= -->
 
   <section
@@ -1407,33 +1363,96 @@
   <script>
 
     /* =========================
-       ALL PRODUCT NAMES
+       PRODUCT SEARCH CATALOG
     ========================= */
 
     const searchCatalog = [
 
-      "CUSTOMIZED LED PHOTO FRAME",
-      "CUSTOMIZED BIRTHDAY FRAME",
-      "CUSTOMIZED BIRTHDAY MUG",
-      "CUSTOMIZED LED HEART LAMP",
-      "CUSTOMIZED NIKKAH SIGNATURE FRAME",
-      "CUSTOMIZED MAGIC MUG",
-      "CUSTOMIZED WEDDING RING PLAQUE",
-      "CUSTOMIZED TRENDY CHARTS",
-      "CUSTOMIZED EYE PENDANT NECKLACE",
-      "CUSTOMIZED PICTURE FRAME",
-      "CUSTOMIZED FRIENDSHIP LICENSE CARD",
-      "CUSTOMIZED NAME KEY CHAIN",
-      "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
-      "CUSTOMIZED PUBG MOBILE CARD",
-      "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
-      "CUSTOMIZED PVC CARD"
+      {
+        id: "led-photo-frame",
+        name: "CUSTOMIZED LED PHOTO FRAME"
+      },
+
+      {
+        id: "birthday-frame",
+        name: "CUSTOMIZED BIRTHDAY FRAME"
+      },
+
+      {
+        id: "birthday-mug",
+        name: "CUSTOMIZED BIRTHDAY MUG"
+      },
+
+      {
+        id: "led-heart-lamp",
+        name: "CUSTOMIZED LED HEART LAMP"
+      },
+
+      {
+        id: "nikkah-signature-frame",
+        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME"
+      },
+
+      {
+        id: "magic-mug",
+        name: "CUSTOMIZED MAGIC MUG"
+      },
+
+      {
+        id: "wedding-ring-plaque",
+        name: "CUSTOMIZED WEDDING RING PLAQUE"
+      },
+
+      {
+        id: "trendy-charts",
+        name: "CUSTOMIZED TRENDY CHARTS"
+      },
+
+      {
+        id: "eye-pendant-necklace",
+        name: "CUSTOMIZED EYE PENDANT NECKLACE"
+      },
+
+      {
+        id: "picture-frame",
+        name: "CUSTOMIZED PICTURE FRAME"
+      },
+
+      {
+        id: "friendship-license-card",
+        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD"
+      },
+
+      {
+        id: "name-key-chain",
+        name: "CUSTOMIZED NAME KEY CHAIN"
+      },
+
+      {
+        id: "picture-mug-colors",
+        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS"
+      },
+
+      {
+        id: "pubg-mobile-card",
+        name: "CUSTOMIZED PUBG MOBILE CARD"
+      },
+
+      {
+        id: "snapchat-tiktok-instagram-card",
+        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD"
+      },
+
+      {
+        id: "pvc-card",
+        name: "CUSTOMIZED PVC CARD"
+      }
 
     ];
 
 
     /* =========================
-       SEARCH TEXT
+       NORMALIZE
     ========================= */
 
     function normalizeSearchText(value) {
@@ -1448,32 +1467,41 @@
 
 
     /* =========================
-       FIND RELATED PRODUCTS
+       FIND MATCHES
     ========================= */
 
     function getSuggestionMatches(query) {
 
-      const q =
+      const cleanQuery =
         normalizeSearchText(query);
 
-      if (!q) {
+
+      if (!cleanQuery) {
+
         return [];
+
       }
 
+
       const words =
-        q.split(/\s+/).filter(Boolean);
+        cleanQuery
+          .split(/\s+/)
+          .filter(Boolean);
 
 
       return searchCatalog
 
-        .filter(name => {
+        .filter(product => {
 
-          const normalized =
-            normalizeSearchText(name);
+          const cleanName =
+            normalizeSearchText(
+              product.name
+            );
+
 
           return words.every(
             word =>
-              normalized.includes(word)
+              cleanName.includes(word)
           );
 
         })
@@ -1489,19 +1517,23 @@
 
     function showSearchSuggestions(query) {
 
-      const box =
+      const suggestionBox =
         document.getElementById(
           "homeSearchSuggestions"
         );
 
 
-      if (!box) {
+      if (!suggestionBox) {
+
         return;
+
       }
 
 
       const matches =
-        getSuggestionMatches(query);
+        getSuggestionMatches(
+          query
+        );
 
 
       if (
@@ -1509,48 +1541,52 @@
         matches.length === 0
       ) {
 
-        box.innerHTML = "";
+        suggestionBox.innerHTML = "";
 
-        box.classList.remove(
-          "active"
-        );
+        suggestionBox
+          .classList
+          .remove("active");
 
         return;
 
       }
 
 
-      box.innerHTML =
-        matches.map(name => `
+      suggestionBox.innerHTML =
+        matches.map(product => `
 
           <button
             type="button"
             class="search-suggestion"
-            onclick="useSearchSuggestion(${JSON.stringify(name)})">
+            onclick="
+              openProduct(
+                '${product.id}'
+              )
+            ">
 
-            ${name}
+            ${product.name}
 
           </button>
 
         `).join("");
 
 
-      box.classList.add(
-        "active"
-      );
+      suggestionBox
+        .classList
+        .add("active");
 
     }
 
 
     /* =========================
-       SELECT SUGGESTION
+       OPEN SELECTED PRODUCT
     ========================= */
 
-    function useSearchSuggestion(value) {
+    function openProduct(productId) {
 
       window.location.href =
-        "products.html?search=" +
-        encodeURIComponent(value);
+        "product.html?id=" +
+        encodeURIComponent(productId);
 
     }
 
@@ -1606,24 +1642,18 @@
           .contains("active")
       ) {
 
-        setTimeout(() => {
+        setTimeout(
+          function() {
 
-          document
-            .getElementById(
-              "homeSearch"
-            )
-            .focus();
+            document
+              .getElementById(
+                "homeSearch"
+              )
+              .focus();
 
-        }, 50);
-
-      } else {
-
-        document
-          .getElementById(
-            "homeSearchSuggestions"
-          )
-          .classList
-          .remove("active");
+          },
+          50
+        );
 
       }
 
@@ -1639,7 +1669,7 @@
       event.preventDefault();
 
 
-      const q =
+      const query =
         document
           .getElementById(
             "homeSearch"
@@ -1648,11 +1678,11 @@
           .trim();
 
 
-      if (q) {
+      if (query) {
 
         window.location.href =
           "products.html?search=" +
-          encodeURIComponent(q);
+          encodeURIComponent(query);
 
       } else {
 
@@ -1665,17 +1695,19 @@
 
 
     /* =========================
-       ESCAPE
+       ESC
     ========================= */
 
     document.addEventListener(
       "keydown",
       function(event) {
 
-        if (event.key === "Escape") {
+        if (
+          event.key ===
+          "Escape"
+        ) {
 
           closeCategories();
-
 
           document
             .getElementById(
@@ -1683,7 +1715,6 @@
             )
             .classList
             .remove("active");
-
 
           document
             .getElementById(
@@ -1699,7 +1730,7 @@
 
 
     /* =========================
-       CLICK OUTSIDE SEARCH
+       OUTSIDE SEARCH
     ========================= */
 
     document.addEventListener(
@@ -1711,6 +1742,7 @@
             "searchPopover"
           );
 
+
         const button =
           document.querySelector(
             ".search-icon-btn"
@@ -1720,8 +1752,12 @@
         if (
           popover &&
           button &&
-          !popover.contains(event.target) &&
-          !button.contains(event.target)
+          !popover.contains(
+            event.target
+          ) &&
+          !button.contains(
+            event.target
+          )
         ) {
 
           popover
