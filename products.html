@@ -249,7 +249,7 @@
     .cart-item img {
       width: 75px;
       height: 75px;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: 8px;
     }
 
@@ -359,12 +359,151 @@
       }
 
       .products-grid {
-        grid-template-columns: 1fr;
-        padding: 0 15px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 12px;
+      }
+
+      .product-info {
+        padding: 12px;
+        min-height: 165px;
+      }
+
+      .product-info h3 {
+        font-size: 14px;
+        min-height: 58px;
+      }
+
+      .product-price {
+        font-size: 17px;
+      }
+
+      .product-actions {
+        flex-direction: column;
+      }
+
+      .view-btn,
+      .cart-btn {
+        width: 100%;
       }
 
       .product-card img {
         height: 300px;
+      }
+
+    }
+
+    /* =========================
+       MOBILE CATEGORY MENU
+    ========================= */
+
+    .menu-toggle {
+      display: none;
+      border: none;
+      background: #00aef0;
+      color: white;
+      font-size: 25px;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .mobile-menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      z-index: 3000;
+    }
+
+    .mobile-menu-overlay.active {
+      display: block;
+    }
+
+    .mobile-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 310px;
+      max-width: 88%;
+      height: 100%;
+      background: white;
+      padding: 25px 20px;
+      overflow-y: auto;
+      box-shadow: 8px 0 30px rgba(0,0,0,0.18);
+    }
+
+    .mobile-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .mobile-menu-header h2 {
+      font-size: 22px;
+    }
+
+    .mobile-menu-close {
+      border: none;
+      background: none;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .mobile-menu a {
+      display: block;
+      color: #111;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 13px 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .mobile-menu a:hover {
+      color: #00aef0;
+      background: #f7f7f7;
+    }
+
+    .category-title {
+      margin-top: 20px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .no-products {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: white;
+      padding: 60px 25px;
+      border-radius: 15px;
+      color: #666;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .no-products h2 {
+      color: #111;
+      margin-bottom: 10px;
+    }
+
+    @media (max-width: 750px) {
+
+      nav {
+        flex-direction: row;
+        gap: 15px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
       }
 
     }
@@ -388,13 +527,9 @@
 
     <div class="nav-links">
 
-      <a href="index.html">
-        Home
-      </a>
+      <a href="index.html">Home</a>
 
-      <a href="products.html">
-        Products
-      </a>
+      <a href="products.html">Products</a>
 
       <a href="#contact" class="cart-button"
          onclick="openCart(); return false;">
@@ -403,7 +538,139 @@
 
     </div>
 
+    <button
+      class="menu-toggle"
+      onclick="openMobileMenu()"
+      aria-label="Open menu">
+      ☰
+    </button>
+
   </nav>
+
+
+  <!-- =========================
+       MOBILE MENU
+  ========================= -->
+
+  <div
+    class="mobile-menu-overlay"
+    id="mobileMenuOverlay"
+    onclick="closeMobileMenu()">
+
+    <div
+      class="mobile-menu"
+      onclick="event.stopPropagation()">
+
+      <div class="mobile-menu-header">
+
+        <h2>
+          Craftio Gifts
+        </h2>
+
+        <button
+          class="mobile-menu-close"
+          onclick="closeMobileMenu()">
+          ×
+        </button>
+
+      </div>
+
+      <a href="index.html">
+        HOME
+      </a>
+
+      <a href="products.html">
+        ALL PRODUCTS
+      </a>
+
+
+      <div class="category-title">
+        Categories
+      </div>
+
+
+      <a href="products.html?category=ISLAMIC%20COLLECTION">
+        ISLAMIC COLLECTION
+      </a>
+
+      <a href="products.html?category=LED%20PICTURE%20FRAME">
+        LED PICTURE FRAME
+      </a>
+
+      <a href="products.html?category=ANNIVERSARY%20FRAMES">
+        ANNIVERSARY FRAMES
+      </a>
+
+      <a href="products.html?category=NIKKAH%20FRAMES">
+        NIKKAH FRAMES
+      </a>
+
+      <a href="products.html?category=BIRTHDAY%20FRAMES">
+        BIRTHDAY FRAMES
+      </a>
+
+      <a href="products.html?category=PICTURE%20FRAMES">
+        PICTURE FRAMES
+      </a>
+
+      <a href="products.html?category=MUG%20COLLECTION">
+        MUG COLLECTION
+      </a>
+
+      <a href="products.html?category=MAGIC%20MUGS">
+        MAGIC MUGS
+      </a>
+
+      <a href="products.html?category=NEW%20BORN%20FRAMES">
+        NEW BORN FRAMES
+      </a>
+
+      <a href="products.html?category=SNAPCHAT%20%2F%20TIKTOK%20%2F%20INSTAGRAM%20PVC%20CARDS">
+        SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS
+      </a>
+
+      <a href="products.html?category=FRIENDSHIP%20LICENCE%20CARD">
+        FRIENDSHIP LICENCE CARD
+      </a>
+
+      <a href="products.html?category=EYE%20NECKLACE">
+        EYE NECKLACE
+      </a>
+
+      <a href="products.html?category=WEDDING%20RING%20PLATES">
+        WEDDING RING PLATES
+      </a>
+
+      <a href="products.html?category=TRENDY%20CHARTS">
+        TRENDY CHARTS
+      </a>
+
+      <a href="products.html?category=NAME%20KEYCHAINS">
+        NAME KEYCHAINS
+      </a>
+
+      <a href="products.html?category=PVC%20CARD">
+        PVC CARD
+      </a>
+
+
+      <div class="category-title">
+        Other
+      </div>
+
+      <a href="index.html#contact">
+        CONTACT
+      </a>
+
+      <a
+        href="#"
+        onclick="openCart(); closeMobileMenu(); return false;">
+        🛒 CART (<span id="mobileCartCount">0</span>)
+      </a>
+
+    </div>
+
+  </div>
 
 
   <!-- =========================
@@ -412,11 +679,11 @@
 
   <section class="page-header">
 
-    <h1>
+    <h1 id="pageTitle">
       Our Products
     </h1>
 
-    <p>
+    <p id="pageSubtitle">
       Personalized gifts made specially for your special moments.
     </p>
 
@@ -500,6 +767,7 @@
 
       {
         id: "led-photo-frame",
+        category: "LED PICTURE FRAME",
         name: "CUSTOMIZED LED PHOTO FRAME",
         price: 2000,
         image: "Light%20frame.jpeg"
@@ -507,6 +775,7 @@
 
       {
         id: "birthday-frame",
+        category: "BIRTHDAY FRAMES",
         name: "CUSTOMIZED BIRTHDAY FRAME",
         price: 999,
         image: "Birthday%20Frame.jpeg"
@@ -514,6 +783,7 @@
 
       {
         id: "birthday-mug",
+        category: "MUG COLLECTION",
         name: "CUSTOMIZED BIRTHDAY MUG",
         price: 999,
         image: "birthday%20mug.jpeg"
@@ -521,6 +791,7 @@
 
       {
         id: "led-heart-lamp",
+        category: "LED PICTURE FRAME",
         name: "CUSTOMIZED LED HEART LAMP",
         price: 2500,
         image: "MOON%20PICTURE%20FRAME.jpeg"
@@ -528,6 +799,7 @@
 
       {
         id: "nikkah-signature-frame",
+        category: "NIKKAH FRAMES",
         name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
         price: 999,
         image: "nikkah%20frame.jpeg"
@@ -535,6 +807,7 @@
 
       {
         id: "magic-mug",
+        category: "MAGIC MUGS",
         name: "CUSTOMIZED MAGIC MUG",
         price: 1400,
         image: "magic%20mug.jpeg"
@@ -542,6 +815,7 @@
 
       {
         id: "wedding-ring-plaque",
+        category: "WEDDING RING PLATES",
         name: "CUSTOMIZED WEDDING RING PLAQUE",
         price: 2500,
         image: "NIKKAH%20PLAQUE.jpeg"
@@ -549,6 +823,7 @@
 
       {
         id: "trendy-charts",
+        category: "TRENDY CHARTS",
         name: "CUSTOMIZED TRENDY CHARTS",
         price: 1350,
         image: "TRENDY%20CHARTS.jpeg"
@@ -556,6 +831,7 @@
 
       {
         id: "eye-pendant-necklace",
+        category: "EYE NECKLACE",
         name: "CUSTOMIZED EYE PENDANT NECKLACE",
         price: 1300,
         image: "EYE%20NECKLACE.jpeg"
@@ -563,6 +839,7 @@
 
       {
         id: "picture-frame",
+        category: "PICTURE FRAMES",
         name: "CUSTOMIZED PICTURE FRAME",
         price: 900,
         image: "PICTURE%20FRAME.jpg"
@@ -570,6 +847,7 @@
 
       {
         id: "friendship-license-card",
+        category: "FRIENDSHIP LICENCE CARD",
         name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
         price: 900,
         image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
@@ -577,6 +855,7 @@
 
       {
         id: "name-key-chain",
+        category: "NAME KEYCHAINS",
         name: "CUSTOMIZED NAME KEY CHAIN",
         price: 800,
         image: "NAME%20KEY.jpeg"
@@ -584,6 +863,7 @@
 
       {
         id: "picture-mug-colors",
+        category: "MUG COLLECTION",
         name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
         price: 1350,
         image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
@@ -591,6 +871,7 @@
 
       {
         id: "pubg-mobile-card",
+        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
         name: "CUSTOMIZED PUBG MOBILE CARD",
         price: 800,
         image: "PUBG%20CARD.jpeg"
@@ -598,6 +879,7 @@
 
       {
         id: "snapchat-tiktok-instagram-card",
+        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
         name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
         price: 800,
         image: "SNAPCHAT%20CARD.jpeg"
@@ -605,6 +887,7 @@
 
       {
         id: "pvc-card",
+        category: "PVC CARD",
         name: "CUSTOMIZED PVC CARD",
         price: 850,
         image: "PVC%20CARD.jpg"
@@ -620,51 +903,99 @@
     const productsGrid =
       document.getElementById("productsGrid");
 
+    const pageTitle =
+      document.getElementById("pageTitle");
 
-    products.forEach(product => {
+    const pageSubtitle =
+      document.getElementById("pageSubtitle");
 
-      productsGrid.innerHTML += `
+    const selectedCategory =
+      new URLSearchParams(window.location.search).get("category");
 
-        <div class="product-card">
 
-          <img
-            src="${product.image}"
-            alt="${product.name}"
-          >
+    function renderProducts() {
 
-          <div class="product-info">
+      const filteredProducts = selectedCategory
+        ? products.filter(product => product.category === selectedCategory)
+        : products;
 
-            <h3>
-              ${product.name}
-            </h3>
+      if (selectedCategory) {
 
-            <div class="product-price">
-              Rs. ${product.price}
-            </div>
+        pageTitle.textContent = selectedCategory;
 
-            <div class="product-actions">
+        pageSubtitle.textContent =
+          "Personalized gifts made specially for your special moments.";
 
-              <button
-                class="view-btn"
-                onclick="window.location.href='product.html?product=${product.id}'">
-                VIEW PRODUCT
-              </button>
+      }
 
-              <button
-                class="cart-btn"
-                onclick="addToCart('${product.id}')">
-                🛒 ADD
-              </button>
+
+      if (filteredProducts.length === 0) {
+
+        productsGrid.innerHTML = `
+          <div class="no-products">
+
+            <h2>
+              No Products Available
+            </h2>
+
+            <p>
+              Products for this category will be added soon.
+            </p>
+
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      productsGrid.innerHTML =
+        filteredProducts.map(product => `
+
+          <div class="product-card">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+            >
+
+            <div class="product-info">
+
+              <h3>
+                ${product.name}
+              </h3>
+
+              <div class="product-price">
+                Rs. ${product.price}
+              </div>
+
+              <div class="product-actions">
+
+                <button
+                  class="view-btn"
+                  onclick="window.location.href='product.html?product=${product.id}'">
+                  VIEW PRODUCT
+                </button>
+
+                <button
+                  class="cart-btn"
+                  onclick="addToCart('${product.id}')">
+                  🛒 ADD
+                </button>
+
+              </div>
 
             </div>
 
           </div>
 
-        </div>
+        `).join("");
 
-      `;
+    }
 
-    });
+
+    renderProducts();
 
 
     /* =========================
@@ -723,6 +1054,32 @@
     }
 
 
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    function openMobileMenu() {
+
+      document
+        .getElementById("mobileMenuOverlay")
+        .classList.add("active");
+
+    }
+
+
+    function closeMobileMenu() {
+
+      document
+        .getElementById("mobileMenuOverlay")
+        .classList.remove("active");
+
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
     function updateCartCount() {
 
       const cart = getCart();
@@ -739,8 +1096,25 @@
         "cartCount"
       ).textContent = count;
 
+
+      const mobileCartCount =
+        document.getElementById(
+          "mobileCartCount"
+        );
+
+
+      if (mobileCartCount) {
+
+        mobileCartCount.textContent = count;
+
+      }
+
     }
 
+
+    /* =========================
+       CHANGE QUANTITY
+    ========================= */
 
     function changeQuantity(
       productId,
@@ -782,6 +1156,10 @@
     }
 
 
+    /* =========================
+       REMOVE FROM CART
+    ========================= */
+
     function removeFromCart(productId) {
 
       let cart = getCart();
@@ -801,6 +1179,10 @@
     }
 
 
+    /* =========================
+       RENDER CART
+    ========================= */
+
     function renderCart() {
 
       const cart = getCart();
@@ -815,9 +1197,11 @@
       if (cart.length === 0) {
 
         cartItems.innerHTML = `
+
           <div class="empty-cart">
             Your cart is empty.
           </div>
+
         `;
 
         cartTotal.textContent =
@@ -910,6 +1294,10 @@
     }
 
 
+    /* =========================
+       OPEN CART
+    ========================= */
+
     function openCart() {
 
       document
@@ -921,6 +1309,10 @@
     }
 
 
+    /* =========================
+       CLOSE CART
+    ========================= */
+
     function closeCart() {
 
       document
@@ -929,6 +1321,10 @@
 
     }
 
+
+    /* =========================
+       INITIAL LOAD
+    ========================= */
 
     updateCartCount();
 
