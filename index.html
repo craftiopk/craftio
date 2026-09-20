@@ -61,20 +61,22 @@
       color: #00aef0;
     }
 
-    /* =========================
-       DESKTOP NAV
-    ========================= */
-
     .nav-links {
-      display: none;
+      display: flex;
+      gap: 28px;
+      align-items: center;
     }
 
-    .nav-tools {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 18px;
-      position: relative;
+    .nav-links a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #00aef0;
     }
 
     .nav-home-link,
@@ -83,7 +85,6 @@
       color: #ffffff;
       font-size: 15px;
       font-weight: 600;
-      transition: 0.3s;
     }
 
     .nav-home-link:hover,
@@ -92,8 +93,16 @@
     }
 
     /* =========================
-       REAL SEARCH ICON
+       SEARCH + CATEGORIES
     ========================= */
+
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      position: relative;
+    }
 
     .search-icon-btn {
       width: 32px;
@@ -111,7 +120,7 @@
     }
 
     .search-icon-btn:hover {
-      background: rgba(0, 174, 240, 0.15);
+      background: rgba(0,174,240,0.15);
       color: #00aef0;
     }
 
@@ -121,10 +130,6 @@
       display: block;
       stroke: currentColor;
     }
-
-    /* =========================
-       PRODUCTS BUTTON
-    ========================= */
 
     .category-btn {
       border: none;
@@ -143,10 +148,6 @@
       background: #008dcc;
     }
 
-    /* =========================
-       MOBILE 3 LINES
-    ========================= */
-
     .mobile-menu-btn {
       display: none;
       width: 32px;
@@ -163,7 +164,7 @@
     }
 
     .mobile-menu-btn:hover {
-      background: rgba(0, 174, 240, 0.15);
+      background: rgba(0,174,240,0.15);
       color: #00aef0;
     }
 
@@ -186,12 +187,13 @@
       background: #ffffff;
       padding: 8px;
       border-radius: 9px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
       z-index: 2000;
+      min-width: 240px;
     }
 
     .search-popover.active {
-      display: flex;
+      display: block;
     }
 
     .search-popover form {
@@ -221,8 +223,37 @@
       font-weight: 700;
     }
 
-    .search-popover button:hover {
-      background: #008dcc;
+    .search-suggestions {
+      display: none;
+      margin-top: 6px;
+      background: #ffffff;
+      border: 1px solid #e6e6e6;
+      border-radius: 7px;
+      overflow: hidden;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .search-suggestions.active {
+      display: block;
+    }
+
+    .search-suggestion {
+      display: block;
+      width: 100%;
+      border: none;
+      background: #ffffff;
+      color: #111111;
+      text-align: left;
+      padding: 10px 11px;
+      font-size: 13px;
+      line-height: 1.35;
+      cursor: pointer;
+    }
+
+    .search-suggestion:hover {
+      background: #f1fbff;
+      color: #008dcc;
     }
 
     /* =========================
@@ -232,7 +263,7 @@
     .category-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.55);
+      background: rgba(0,0,0,.55);
       display: none;
       z-index: 3000;
     }
@@ -248,7 +279,7 @@
       background: #ffffff;
       padding: 24px 20px;
       overflow-y: auto;
-      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 8px 0 30px rgba(0,0,0,.2);
     }
 
     .category-header {
@@ -267,7 +298,6 @@
       background: none;
       font-size: 30px;
       cursor: pointer;
-      color: #111111;
     }
 
     .category-panel a {
@@ -278,7 +308,6 @@
       font-weight: 700;
       padding: 12px 9px;
       border-bottom: 1px solid #eeeeee;
-      transition: 0.2s;
     }
 
     .category-panel a:hover {
@@ -336,8 +365,6 @@
       z-index: 5;
     }
 
-    /* MAIN LOGO */
-
     .main-logo {
       width: 250px;
       height: 250px;
@@ -346,8 +373,6 @@
       margin: 0 auto 20px;
       filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15));
     }
-
-    /* Gift ribbon behind logo */
 
     .ribbon-left,
     .ribbon-right {
@@ -371,8 +396,6 @@
       border-radius: 50% 50% 50% 10%;
       transform: rotate(25deg);
     }
-
-    /* Sparkles */
 
     .sparkle {
       position: absolute;
@@ -681,7 +704,7 @@
     @media (max-width: 800px) {
 
       nav {
-        padding: 15px 5%;
+        padding: 16px 5%;
       }
 
       .nav-home-link,
@@ -695,17 +718,8 @@
       }
 
       .nav-tools {
-        gap: 6px;
-      }
-
-      .search-icon-btn {
-        width: 34px;
-        height: 34px;
-      }
-
-      .search-icon-btn svg {
-        width: 21px;
-        height: 21px;
+        justify-content: flex-end;
+        gap: 4px;
       }
 
       .search-popover {
@@ -713,6 +727,7 @@
         top: 62px;
         left: 10px;
         right: 10px;
+        min-width: 0;
       }
 
       .search-popover form {
@@ -722,6 +737,19 @@
       .search-popover input {
         width: 100%;
         flex: 1;
+      }
+
+      .search-popover button {
+        flex-shrink: 0;
+      }
+
+      .search-suggestions {
+        max-height: 240px;
+      }
+
+      .hero {
+        min-height: 82vh;
+        padding: 55px 20px;
       }
 
       .main-logo {
@@ -769,7 +797,6 @@
       .cta h2 {
         font-size: 31px;
       }
-
     }
 
     /* =========================
@@ -779,15 +806,14 @@
     @media (max-width: 500px) {
 
       nav {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px;
         padding: 12px 5%;
       }
 
       .logo-text {
         font-size: 20px;
-      }
-
-      .nav-tools {
-        gap: 3px;
       }
 
       .search-icon-btn {
@@ -854,7 +880,6 @@
         width: 100%;
         max-width: 300px;
       }
-
     }
   </style>
 </head>
@@ -867,7 +892,6 @@
 
   <nav>
 
-    <!-- LOGO -->
     <a href="index.html" class="logo-link">
 
       <div class="logo-text">
@@ -876,19 +900,10 @@
 
     </a>
 
-
-    <!-- RIGHT SIDE -->
     <div class="nav-tools">
 
-      <!-- DESKTOP HOME -->
-      <a
-        href="index.html"
-        class="nav-home-link">
-        Home
-      </a>
+      <!-- SEARCH ICON FIRST ON DESKTOP -->
 
-
-      <!-- REAL SEARCH ICON -->
       <button
         class="search-icon-btn"
         type="button"
@@ -898,6 +913,7 @@
         <svg
           viewBox="0 0 24 24"
           fill="none"
+          stroke="currentColor"
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -921,7 +937,31 @@
       </button>
 
 
+      <!-- HOME -->
+
+      <a
+        href="index.html"
+        class="nav-home-link">
+
+        Home
+
+      </a>
+
+
+      <!-- PRODUCTS OPENS CATEGORIES -->
+
+      <button
+        class="category-btn"
+        type="button"
+        onclick="openCategories()">
+
+        Products
+
+      </button>
+
+
       <!-- MOBILE 3 LINES -->
+
       <button
         class="mobile-menu-btn"
         type="button"
@@ -962,17 +1002,8 @@
       </button>
 
 
-      <!-- DESKTOP PRODUCTS = CATEGORIES -->
-      <button
-        class="category-btn"
-        onclick="openCategories()">
+      <!-- CONTACT -->
 
-        Products
-
-      </button>
-
-
-      <!-- DESKTOP CONTACT -->
       <a
         href="#contact"
         class="nav-contact-link">
@@ -983,6 +1014,7 @@
 
 
       <!-- SEARCH POPUP -->
+
       <div
         class="search-popover"
         id="searchPopover">
@@ -993,16 +1025,21 @@
           <input
             id="homeSearch"
             type="search"
-            placeholder="Search products...">
+            autocomplete="off"
+            placeholder="Search products..."
+            oninput="showSearchSuggestions(this.value)">
 
-          <button
-            type="submit">
-
+          <button type="submit">
             Search
-
           </button>
 
         </form>
+
+
+        <div
+          class="search-suggestions"
+          id="homeSearchSuggestions">
+        </div>
 
       </div>
 
@@ -1136,7 +1173,6 @@
       ✦
     </div>
 
-
     <div class="ribbon-left"></div>
 
     <div class="ribbon-right"></div>
@@ -1219,7 +1255,6 @@
 
     <div class="why-grid">
 
-
       <div class="why-card">
 
         <div class="why-icon">
@@ -1269,7 +1304,6 @@
         </p>
 
       </div>
-
 
     </div>
 
@@ -1373,27 +1407,176 @@
   <script>
 
     /* =========================
-       OPEN CATEGORIES
+       ALL PRODUCT NAMES
+    ========================= */
+
+    const searchCatalog = [
+
+      "CUSTOMIZED LED PHOTO FRAME",
+      "CUSTOMIZED BIRTHDAY FRAME",
+      "CUSTOMIZED BIRTHDAY MUG",
+      "CUSTOMIZED LED HEART LAMP",
+      "CUSTOMIZED NIKKAH SIGNATURE FRAME",
+      "CUSTOMIZED MAGIC MUG",
+      "CUSTOMIZED WEDDING RING PLAQUE",
+      "CUSTOMIZED TRENDY CHARTS",
+      "CUSTOMIZED EYE PENDANT NECKLACE",
+      "CUSTOMIZED PICTURE FRAME",
+      "CUSTOMIZED FRIENDSHIP LICENSE CARD",
+      "CUSTOMIZED NAME KEY CHAIN",
+      "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
+      "CUSTOMIZED PUBG MOBILE CARD",
+      "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
+      "CUSTOMIZED PVC CARD"
+
+    ];
+
+
+    /* =========================
+       SEARCH TEXT
+    ========================= */
+
+    function normalizeSearchText(value) {
+
+      return value
+        .toLowerCase()
+        .replace(/customized/g, "")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+
+    }
+
+
+    /* =========================
+       FIND RELATED PRODUCTS
+    ========================= */
+
+    function getSuggestionMatches(query) {
+
+      const q =
+        normalizeSearchText(query);
+
+      if (!q) {
+        return [];
+      }
+
+      const words =
+        q.split(/\s+/).filter(Boolean);
+
+
+      return searchCatalog
+
+        .filter(name => {
+
+          const normalized =
+            normalizeSearchText(name);
+
+          return words.every(
+            word =>
+              normalized.includes(word)
+          );
+
+        })
+
+        .slice(0, 8);
+
+    }
+
+
+    /* =========================
+       SHOW SUGGESTIONS
+    ========================= */
+
+    function showSearchSuggestions(query) {
+
+      const box =
+        document.getElementById(
+          "homeSearchSuggestions"
+        );
+
+
+      if (!box) {
+        return;
+      }
+
+
+      const matches =
+        getSuggestionMatches(query);
+
+
+      if (
+        !query.trim() ||
+        matches.length === 0
+      ) {
+
+        box.innerHTML = "";
+
+        box.classList.remove(
+          "active"
+        );
+
+        return;
+
+      }
+
+
+      box.innerHTML =
+        matches.map(name => `
+
+          <button
+            type="button"
+            class="search-suggestion"
+            onclick="useSearchSuggestion(${JSON.stringify(name)})">
+
+            ${name}
+
+          </button>
+
+        `).join("");
+
+
+      box.classList.add(
+        "active"
+      );
+
+    }
+
+
+    /* =========================
+       SELECT SUGGESTION
+    ========================= */
+
+    function useSearchSuggestion(value) {
+
+      window.location.href =
+        "products.html?search=" +
+        encodeURIComponent(value);
+
+    }
+
+
+    /* =========================
+       CATEGORIES
     ========================= */
 
     function openCategories() {
 
       document
-        .getElementById("categoryOverlay")
+        .getElementById(
+          "categoryOverlay"
+        )
         .classList
         .add("active");
 
     }
 
 
-    /* =========================
-       CLOSE CATEGORIES
-    ========================= */
-
     function closeCategories() {
 
       document
-        .getElementById("categoryOverlay")
+        .getElementById(
+          "categoryOverlay"
+        )
         .classList
         .remove("active");
 
@@ -1401,32 +1584,46 @@
 
 
     /* =========================
-       TOGGLE SEARCH
+       SEARCH ICON
     ========================= */
 
     function toggleSearch() {
 
-      const searchPopover =
-        document.getElementById("searchPopover");
+      const popover =
+        document.getElementById(
+          "searchPopover"
+        );
 
-      searchPopover
+
+      popover
         .classList
         .toggle("active");
 
 
       if (
-        searchPopover
+        popover
           .classList
           .contains("active")
       ) {
 
-        setTimeout(function() {
+        setTimeout(() => {
 
           document
-            .getElementById("homeSearch")
+            .getElementById(
+              "homeSearch"
+            )
             .focus();
 
         }, 50);
+
+      } else {
+
+        document
+          .getElementById(
+            "homeSearchSuggestions"
+          )
+          .classList
+          .remove("active");
 
       }
 
@@ -1434,25 +1631,28 @@
 
 
     /* =========================
-       SEARCH PRODUCTS
+       SEARCH SUBMIT
     ========================= */
 
     function searchProducts(event) {
 
       event.preventDefault();
 
-      const query =
+
+      const q =
         document
-          .getElementById("homeSearch")
+          .getElementById(
+            "homeSearch"
+          )
           .value
           .trim();
 
 
-      if (query) {
+      if (q) {
 
         window.location.href =
           "products.html?search=" +
-          encodeURIComponent(query);
+          encodeURIComponent(q);
 
       } else {
 
@@ -1465,7 +1665,7 @@
 
 
     /* =========================
-       ESC KEY
+       ESCAPE
     ========================= */
 
     document.addEventListener(
@@ -1476,8 +1676,55 @@
 
           closeCategories();
 
+
           document
-            .getElementById("searchPopover")
+            .getElementById(
+              "searchPopover"
+            )
+            .classList
+            .remove("active");
+
+
+          document
+            .getElementById(
+              "homeSearchSuggestions"
+            )
+            .classList
+            .remove("active");
+
+        }
+
+      }
+    );
+
+
+    /* =========================
+       CLICK OUTSIDE SEARCH
+    ========================= */
+
+    document.addEventListener(
+      "click",
+      function(event) {
+
+        const popover =
+          document.getElementById(
+            "searchPopover"
+          );
+
+        const button =
+          document.querySelector(
+            ".search-icon-btn"
+          );
+
+
+        if (
+          popover &&
+          button &&
+          !popover.contains(event.target) &&
+          !button.contains(event.target)
+        ) {
+
+          popover
             .classList
             .remove("active");
 
