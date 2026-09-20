@@ -1,1336 +1,1335 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Products | Craftio Gifts</title>
-
-  <link rel="icon" type="image/png" href="favicon.png">
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #111;
-    }
-
-    nav {
-      background: #111;
-      color: white;
-      padding: 18px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .logo-text {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .logo-text span {
-      color: #00aef0;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: white;
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 600;
-    }
-
-    .nav-links a:hover {
-      color: #00aef0;
-    }
-
-    .cart-button {
-      background: #00aef0;
-      padding: 9px 15px;
-      border-radius: 8px;
-    }
-
-    .page-header {
-      text-align: center;
-      padding: 60px 20px 30px;
-    }
-
-    .page-header h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
-    }
-
-    .page-header p {
-      color: #666;
-      font-size: 17px;
-    }
-
-    .products-grid {
-      max-width: 1200px;
-      margin: 20px auto 70px;
-      padding: 0 25px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      align-items: stretch;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-      transition: 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* =========================
-       PRODUCT IMAGE
-    ========================= */
-
-    .product-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: contain;
-      display: block;
-      background: white;
-      padding: 8px;
-      flex-shrink: 0;
-    }
-
-    /* =========================
-       PRODUCT INFORMATION
-    ========================= */
-
-    .product-info {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 190px;
-    }
-
-    .product-info h3 {
-      font-size: 18px;
-      line-height: 1.35;
-      font-weight: 700;
-      margin: 0 0 12px 0;
-      min-height: 73px;
-    }
-
-    .product-price {
-      color: #00aef0;
-      font-size: 21px;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .product-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: auto;
-    }
-
-    .view-btn,
-    .cart-btn {
-      flex: 1;
-      padding: 11px 8px;
-      border: none;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .view-btn {
-      background: #111;
-      color: white;
-    }
-
-    .view-btn:hover {
-      background: #333;
-    }
-
-    .cart-btn {
-      background: #00aef0;
-      color: white;
-    }
-
-    .cart-btn:hover {
-      background: #008fc5;
-    }
-
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-    }
-
-    footer strong {
-      color: #00aef0;
-    }
-
-    /* =========================
-       CART OVERLAY
-    ========================= */
-
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none;
-      justify-content: flex-end;
-      z-index: 2000;
-    }
-
-    .cart-overlay.active {
-      display: flex;
-    }
-
-    .cart-panel {
-      width: 420px;
-      max-width: 100%;
-      height: 100%;
-      background: white;
-      padding: 25px;
-      overflow-y: auto;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
-    }
-
-    .cart-header h2 {
-      font-size: 27px;
-    }
-
-    .close-cart {
-      border: none;
-      background: none;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
-    .cart-item {
-      display: flex;
-      gap: 15px;
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .cart-item img {
-      width: 75px;
-      height: 75px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-
-    .cart-item-details {
-      flex: 1;
-    }
-
-    .cart-item-details h4 {
-      font-size: 14px;
-      margin-bottom: 7px;
-    }
-
-    .cart-item-price {
-      color: #00aef0;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .quantity-controls button {
-      width: 28px;
-      height: 28px;
-      border: 1px solid #ccc;
-      background: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .remove-btn {
-      margin-top: 7px;
-      border: none;
-      background: none;
-      color: #e33;
-      cursor: pointer;
-      font-size: 12px;
-    }
-
-    .cart-total {
-      margin-top: 25px;
-      font-size: 21px;
-      font-weight: 800;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      background: #00aef0;
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .checkout-btn:hover {
-      background: #008fc5;
-    }
-
-    .empty-cart {
-      text-align: center;
-      color: #777;
-      padding: 50px 10px;
-    }
-
-    /* =========================
-       RESPONSIVE
-    ========================= */
-
-    @media (max-width: 1000px) {
-
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-    }
-
-    @media (max-width: 750px) {
-
-      nav {
-        flex-direction: column;
-        gap: 15px;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-    }
-
-    @media (max-width: 500px) {
-
-      .page-header {
-        padding-top: 40px;
-      }
-
-      .page-header h1 {
-        font-size: 32px;
-      }
-
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 0 12px;
-      }
-
-      .product-info {
-        padding: 12px;
-        min-height: 165px;
-      }
-
-      .product-info h3 {
-        font-size: 14px;
-        min-height: 58px;
-      }
-
-      .product-price {
-        font-size: 17px;
-      }
-
-      .product-actions {
-        flex-direction: column;
-      }
-
-      .view-btn,
-      .cart-btn {
-        width: 100%;
-      }
-
-      .product-card img {
-        height: 300px;
-      }
-
-    }
-
-    /* =========================
-       MOBILE CATEGORY MENU
-    ========================= */
-
-    .menu-toggle {
-      display: none;
-      border: none;
-      background: #00aef0;
-      color: white;
-      font-size: 25px;
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .mobile-menu-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none;
-      z-index: 3000;
-    }
-
-    .mobile-menu-overlay.active {
-      display: block;
-    }
-
-    .mobile-menu {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 310px;
-      max-width: 88%;
-      height: 100%;
-      background: white;
-      padding: 25px 20px;
-      overflow-y: auto;
-      box-shadow: 8px 0 30px rgba(0,0,0,0.18);
-    }
-
-    .mobile-menu-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 20px;
-    }
-
-    .mobile-menu-header h2 {
-      font-size: 22px;
-    }
-
-    .mobile-menu-close {
-      border: none;
-      background: none;
-      font-size: 30px;
-      cursor: pointer;
-    }
-
-    .mobile-menu a {
-      display: block;
-      color: #111;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 13px 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .mobile-menu a:hover {
-      color: #00aef0;
-      background: #f7f7f7;
-    }
-
-    .category-title {
-      margin-top: 20px;
-      margin-bottom: 12px;
-      font-size: 13px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .no-products {
-      grid-column: 1 / -1;
-      text-align: center;
-      background: white;
-      padding: 60px 25px;
-      border-radius: 15px;
-      color: #666;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-    }
-
-    .no-products h2 {
-      color: #111;
-      margin-bottom: 10px;
-    }
-
-    @media (max-width: 750px) {
-
-      nav {
-        flex-direction: row;
-        gap: 15px;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-    }
-
-  </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products | Craftio Gifts</title>
+<link rel="icon" type="image/png" href="favicon.png">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f7f7f7;
+  color:#111;
+}
+
+nav{
+  width:100%;
+  background:#080808;
+  color:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 7%;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  border-bottom:2px solid #00aef0;
+}
+
+.logo-link{
+  text-decoration:none;
+  color:#fff;
+}
+
+.logo-text{
+  font-size:24px;
+  font-weight:800;
+  letter-spacing:1.5px;
+}
+
+.logo-text span{
+  color:#00aef0;
+}
+
+.nav-tools{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:24px;
+}
+
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  font-weight:600;
+}
+
+.nav-links a:hover{
+  color:#00aef0;
+}
+
+.search-box{
+  display:flex;
+  align-items:center;
+  background:#fff;
+  border-radius:8px;
+  overflow:hidden;
+  height:40px;
+}
+
+.search-box input{
+  width:190px;
+  height:40px;
+  border:none;
+  outline:none;
+  padding:0 12px;
+  font-size:14px;
+  color:#111;
+}
+
+.search-box button{
+  height:40px;
+  border:none;
+  background:#00aef0;
+  color:#fff;
+  padding:0 13px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.category-btn{
+  border:none;
+  background:#00aef0;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+.cart-btn{
+  background:#fff;
+  color:#111;
+  border:none;
+  padding:10px 15px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.cart-btn:hover{
+  background:#00aef0;
+  color:#fff;
+}
+
+/* CATEGORY MENU */
+
+.category-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  z-index:3000;
+}
+
+.category-overlay.active{
+  display:block;
+}
+
+.category-panel{
+  width:350px;
+  max-width:88%;
+  height:100%;
+  background:#fff;
+  padding:24px 20px;
+  overflow-y:auto;
+  box-shadow:8px 0 30px rgba(0,0,0,.2);
+}
+
+.category-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:18px;
+}
+
+.category-header h2{
+  font-size:23px;
+}
+
+.category-close{
+  border:none;
+  background:none;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.category-panel a{
+  display:block;
+  text-decoration:none;
+  color:#111;
+  font-size:14px;
+  font-weight:700;
+  padding:12px 9px;
+  border-bottom:1px solid #eee;
+}
+
+.category-panel a:hover{
+  color:#00aef0;
+  background:#f7f7f7;
+}
+
+/* PAGE */
+
+.page-header{
+  text-align:center;
+  padding:55px 20px 35px;
+  background:#fff;
+}
+
+.page-header h1{
+  font-size:42px;
+  margin-bottom:8px;
+}
+
+.page-header h1 span{
+  color:#00aef0;
+}
+
+.page-header p{
+  color:#666;
+  font-size:16px;
+}
+
+/* ACTIVE FILTER */
+
+.filter-info{
+  display:none;
+  max-width:1400px;
+  margin:0 auto 20px;
+  padding:0 5%;
+}
+
+.filter-info.active{
+  display:block;
+}
+
+.filter-box{
+  background:#fff;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.filter-box strong{
+  color:#00aef0;
+}
+
+.clear-filter{
+  border:none;
+  background:#111;
+  color:#fff;
+  padding:8px 13px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+/* PRODUCTS */
+
+.products-section{
+  max-width:1400px;
+  margin:auto;
+  padding:20px 5% 70px;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:24px;
+}
+
+.product-card{
+  background:#fff;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  border:1px solid #e7e7e7;
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+
+.product-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 28px rgba(0,0,0,.13);
+}
+
+.product-card img{
+  width:100%;
+  height:260px;
+  object-fit:contain;
+  display:block;
+  background:white;
+  padding:8px;
+  flex-shrink:0;
+}
+
+.product-info{
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.product-info h3{
+  font-size:17px;
+  line-height:1.4;
+  min-height:48px;
+  margin-bottom:8px;
+}
+
+.category-label{
+  color:#00aef0;
+  font-size:12px;
+  font-weight:700;
+  text-transform:uppercase;
+  margin-bottom:9px;
+}
+
+.price{
+  font-size:20px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+
+.product-actions{
+  display:flex;
+  gap:8px;
+  margin-top:auto;
+}
+
+.view-btn,
+.cart-add-btn{
+  flex:1;
+  border:none;
+  padding:11px 8px;
+  border-radius:7px;
+  cursor:pointer;
+  font-weight:700;
+  text-decoration:none;
+  text-align:center;
+  font-size:13px;
+}
+
+.view-btn{
+  background:#111;
+  color:#fff;
+}
+
+.cart-add-btn{
+  background:#00aef0;
+  color:#fff;
+}
+
+.view-btn:hover{
+  background:#333;
+}
+
+.cart-add-btn:hover{
+  background:#008ec5;
+}
+
+/* NO RESULTS */
+
+.no-results{
+  display:none;
+  text-align:center;
+  background:#fff;
+  padding:50px 20px;
+  border-radius:14px;
+  border:1px solid #ddd;
+}
+
+.no-results h2{
+  margin-bottom:10px;
+}
+
+.no-results p{
+  color:#666;
+}
+
+/* CART TOAST */
+
+.cart-toast{
+  position:fixed;
+  right:25px;
+  bottom:25px;
+  background:#111;
+  color:#fff;
+  padding:15px 20px;
+  border-radius:9px;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  display:none;
+  z-index:5000;
+}
+
+.cart-toast.show{
+  display:block;
+}
+
+/* FOOTER */
+
+footer{
+  background:#080808;
+  color:#aaa;
+  text-align:center;
+  padding:25px 15px;
+  font-size:14px;
+}
+
+footer strong{
+  color:#00aef0;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+  .products-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+  nav{
+    padding-left:5%;
+    padding-right:5%;
+  }
+}
+
+@media(max-width:800px){
+
+  nav{
+    flex-wrap:wrap;
+    gap:12px;
+    padding:15px 5%;
+  }
+
+  .nav-tools{
+    order:3;
+    width:100%;
+    justify-content:center;
+  }
+
+  .nav-links{
+    gap:15px;
+  }
+
+  .search-box{
+    flex:1;
+    max-width:260px;
+  }
+
+  .search-box input{
+    width:auto;
+    flex:1;
+  }
+
+  .page-header{
+    padding:40px 18px 25px;
+  }
+
+  .page-header h1{
+    font-size:34px;
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+  }
+
+  .product-card img{
+    height:220px;
+  }
+
+  .product-info{
+    padding:12px;
+  }
+
+  .product-info h3{
+    font-size:14px;
+    min-height:58px;
+  }
+
+  .category-label{
+    font-size:10px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  .product-actions{
+    flex-direction:column;
+  }
+
+  .view-btn,
+  .cart-add-btn{
+    width:100%;
+  }
+}
+
+@media(max-width:500px){
+
+  .logo-text{
+    font-size:20px;
+  }
+
+  .nav-links{
+    width:100%;
+    justify-content:center;
+  }
+
+  .nav-links a{
+    font-size:13px;
+  }
+
+  .nav-tools{
+    flex-wrap:wrap;
+  }
+
+  .search-box{
+    width:100%;
+    max-width:none;
+  }
+
+  .category-btn{
+    flex:1;
+  }
+
+  .cart-btn{
+    flex:1;
+    text-align:center;
+  }
+
+  .products-section{
+    padding-left:4%;
+    padding-right:4%;
+  }
+
+  .products-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-card{
+    border-radius:10px;
+  }
+
+  .product-card img{
+    height:170px;
+    padding:5px;
+  }
+
+  .product-info{
+    padding:9px;
+  }
+
+  .product-info h3{
+    font-size:12px;
+    min-height:52px;
+  }
+
+  .category-label{
+    font-size:9px;
+    line-height:1.3;
+  }
+
+  .price{
+    font-size:15px;
+    margin-bottom:9px;
+  }
+
+  .view-btn,
+  .cart-add-btn{
+    padding:9px 5px;
+    font-size:11px;
+  }
+
+  .filter-box{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
 
-  <!-- =========================
-       NAVBAR
-  ========================= -->
+<nav>
 
-  <nav>
+<a href="index.html" class="logo-link">
+  <div class="logo-text">CRAFTIO <span>GIFTS</span></div>
+</a>
 
-    <div class="logo-text">
-      CRAFTIO <span>GIFTS</span>
-    </div>
+<div class="nav-tools">
 
-    <div class="nav-links">
+<form class="search-box" onsubmit="searchProducts(event)">
+  <input
+    id="searchInput"
+    type="search"
+    placeholder="Search products..."
+  >
+  <button type="submit">🔎</button>
+</form>
 
-      <a href="index.html">Home</a>
+<button class="category-btn" onclick="openCategories()">
+  ☰ Categories
+</button>
 
-      <a href="products.html">Products</a>
+<a href="checkout.html" class="cart-btn">
+  🛒 Cart (<span id="cartCount">0</span>)
+</a>
 
-      <a href="#contact" class="cart-button"
-         onclick="openCart(); return false;">
-        🛒 Cart (<span id="cartCount">0</span>)
-      </a>
+</div>
 
-    </div>
+<div class="nav-links">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+</div>
 
-    <button
-      class="menu-toggle"
-      onclick="openMobileMenu()"
-      aria-label="Open menu">
-      ☰
-    </button>
+</nav>
 
-  </nav>
 
+<!-- CATEGORY MENU -->
 
-  <!-- =========================
-       MOBILE MENU
-  ========================= -->
+<div
+  class="category-overlay"
+  id="categoryOverlay"
+  onclick="closeCategories()"
+>
 
-  <div
-    class="mobile-menu-overlay"
-    id="mobileMenuOverlay"
-    onclick="closeMobileMenu()">
+<div
+  class="category-panel"
+  onclick="event.stopPropagation()"
+>
 
-    <div
-      class="mobile-menu"
-      onclick="event.stopPropagation()">
+<div class="category-header">
+  <h2>Categories</h2>
+  <button
+    class="category-close"
+    onclick="closeCategories()"
+  >×</button>
+</div>
 
-      <div class="mobile-menu-header">
+<a href="products.html">ALL PRODUCTS</a>
 
-        <h2>
-          Craftio Gifts
-        </h2>
+<a href="products.html?category=ISLAMIC%20COLLECTION">
+ISLAMIC COLLECTION
+</a>
 
-        <button
-          class="mobile-menu-close"
-          onclick="closeMobileMenu()">
-          ×
-        </button>
+<a href="products.html?category=LED%20PICTURE%20FRAME">
+LED PICTURE FRAME
+</a>
 
-      </div>
+<a href="products.html?category=ANNIVERSARY%20FRAMES">
+ANNIVERSARY FRAMES
+</a>
 
-      <a href="index.html">
-        HOME
-      </a>
+<a href="products.html?category=NIKKAH%20FRAMES">
+NIKKAH FRAMES
+</a>
 
-      <a href="products.html">
-        ALL PRODUCTS
-      </a>
+<a href="products.html?category=BIRTHDAY%20FRAMES">
+BIRTHDAY FRAMES
+</a>
 
+<a href="products.html?category=PICTURE%20FRAMES">
+PICTURE FRAMES
+</a>
 
-      <div class="category-title">
-        Categories
-      </div>
+<a href="products.html?category=MUG%20COLLECTION">
+MUG COLLECTION
+</a>
 
+<a href="products.html?category=MAGIC%20MUGS">
+MAGIC MUGS
+</a>
 
-      <a href="products.html?category=ISLAMIC%20COLLECTION">
-        ISLAMIC COLLECTION
-      </a>
+<a href="products.html?category=NEW%20BORN%20FRAMES">
+NEW BORN FRAMES
+</a>
 
-      <a href="products.html?category=LED%20PICTURE%20FRAME">
-        LED PICTURE FRAME
-      </a>
+<a href="products.html?category=SNAPCHAT%20%2F%20TIKTOK%20%2F%20INSTAGRAM%20PVC%20CARDS">
+SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS
+</a>
 
-      <a href="products.html?category=ANNIVERSARY%20FRAMES">
-        ANNIVERSARY FRAMES
-      </a>
+<a href="products.html?category=FRIENDSHIP%20LICENCE%20CARD">
+FRIENDSHIP LICENCE CARD
+</a>
 
-      <a href="products.html?category=NIKKAH%20FRAMES">
-        NIKKAH FRAMES
-      </a>
+<a href="products.html?category=EYE%20NECKLACE">
+EYE NECKLACE
+</a>
 
-      <a href="products.html?category=BIRTHDAY%20FRAMES">
-        BIRTHDAY FRAMES
-      </a>
+<a href="products.html?category=WEDDING%20RING%20PLATES">
+WEDDING RING PLATES
+</a>
 
-      <a href="products.html?category=PICTURE%20FRAMES">
-        PICTURE FRAMES
-      </a>
+<a href="products.html?category=TRENDY%20CHARTS">
+TRENDY CHARTS
+</a>
 
-      <a href="products.html?category=MUG%20COLLECTION">
-        MUG COLLECTION
-      </a>
+<a href="products.html?category=NAME%20KEYCHAINS">
+NAME KEYCHAINS
+</a>
 
-      <a href="products.html?category=MAGIC%20MUGS">
-        MAGIC MUGS
-      </a>
+<a href="products.html?category=PVC%20CARD">
+PVC CARD
+</a>
 
-      <a href="products.html?category=NEW%20BORN%20FRAMES">
-        NEW BORN FRAMES
-      </a>
+</div>
+</div>
 
-      <a href="products.html?category=SNAPCHAT%20%2F%20TIKTOK%20%2F%20INSTAGRAM%20PVC%20CARDS">
-        SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS
-      </a>
 
-      <a href="products.html?category=FRIENDSHIP%20LICENCE%20CARD">
-        FRIENDSHIP LICENCE CARD
-      </a>
+<!-- PAGE HEADER -->
 
-      <a href="products.html?category=EYE%20NECKLACE">
-        EYE NECKLACE
-      </a>
+<section class="page-header">
 
-      <a href="products.html?category=WEDDING%20RING%20PLATES">
-        WEDDING RING PLATES
-      </a>
+<h1>Our <span>Products</span></h1>
 
-      <a href="products.html?category=TRENDY%20CHARTS">
-        TRENDY CHARTS
-      </a>
+<p>
+Beautiful personalized gifts made especially for your special moments.
+</p>
 
-      <a href="products.html?category=NAME%20KEYCHAINS">
-        NAME KEYCHAINS
-      </a>
+</section>
 
-      <a href="products.html?category=PVC%20CARD">
-        PVC CARD
-      </a>
 
+<!-- FILTER INFO -->
 
-      <div class="category-title">
-        Other
-      </div>
+<div class="filter-info" id="filterInfo">
 
-      <a href="index.html#contact">
-        CONTACT
-      </a>
+<div class="filter-box">
 
-      <a
-        href="#"
-        onclick="openCart(); closeMobileMenu(); return false;">
-        🛒 CART (<span id="mobileCartCount">0</span>)
-      </a>
+<div>
+  Showing results for:
+  <strong id="filterText"></strong>
+</div>
 
-    </div>
+<button
+  class="clear-filter"
+  onclick="clearFilters()"
+>
+Clear
+</button>
 
-  </div>
+</div>
 
+</div>
 
-  <!-- =========================
-       PAGE HEADER
-  ========================= -->
 
-  <section class="page-header">
+<!-- PRODUCTS -->
 
-    <h1 id="pageTitle">
-      Our Products
-    </h1>
+<section class="products-section">
 
-    <p id="pageSubtitle">
-      Personalized gifts made specially for your special moments.
-    </p>
+<div class="products-grid" id="productsGrid"></div>
 
-  </section>
+<div class="no-results" id="noResults">
 
+<h2>No products found</h2>
 
-  <!-- =========================
-       PRODUCTS
-  ========================= -->
+<p>
+Try another search or choose a different category.
+</p>
 
-  <section
-    class="products-grid"
-    id="productsGrid">
-  </section>
+</div>
 
+</section>
 
-  <!-- =========================
-       CART
-  ========================= -->
 
-  <div
-    class="cart-overlay"
-    id="cartOverlay"
-    onclick="closeCart()">
+<div class="cart-toast" id="cartToast">
+✓ Product added to cart
+</div>
 
-    <div
-      class="cart-panel"
-      onclick="event.stopPropagation()">
 
-      <div class="cart-header">
+<footer>
+© 2026 <strong>Craftio Gifts</strong>. All Rights Reserved.
+</footer>
 
-        <h2>
-          Your Cart
-        </h2>
 
-        <button
-          class="close-cart"
-          onclick="closeCart()">
-          ×
-        </button>
+<script>
 
-      </div>
+/* =========================
+   PRODUCTS
+========================= */
 
-      <div id="cartItems"></div>
+const products = [
 
-      <div
-        class="cart-total">
-
-        <span>
-          Total:
-        </span>
-
-        <span id="cartTotal">
-          Rs. 0
-        </span>
-
-      </div>
-
-      <button
-        class="checkout-btn"
-        onclick="window.location.href='checkout.html'">
-        PROCEED TO CHECKOUT
-      </button>
-
-    </div>
-
-  </div>
-
-
-  <footer>
-
-    © 2026 <strong>Craftio Gifts</strong>.
-    All Rights Reserved.
-
-  </footer>
-
-
-  <script>
-
-    const products = [
-
-      {
-        id: "led-photo-frame",
-        category: "LED PICTURE FRAME",
-        name: "CUSTOMIZED LED PHOTO FRAME",
-        price: 2000,
-        image: "Light%20frame.jpeg"
-      },
-
-      {
-        id: "birthday-frame",
-        category: "BIRTHDAY FRAMES",
-        name: "CUSTOMIZED BIRTHDAY FRAME",
-        price: 999,
-        image: "Birthday%20Frame.jpeg"
-      },
-
-      {
-        id: "birthday-mug",
-        category: "MUG COLLECTION",
-        name: "CUSTOMIZED BIRTHDAY MUG",
-        price: 999,
-        image: "birthday%20mug.jpeg"
-      },
-
-      {
-        id: "led-heart-lamp",
-        category: "LED PICTURE FRAME",
-        name: "CUSTOMIZED LED HEART LAMP",
-        price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg"
-      },
-
-      {
-        id: "nikkah-signature-frame",
-        category: "NIKKAH FRAMES",
-        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
-        price: 999,
-        image: "nikkah%20frame.jpeg"
-      },
-
-      {
-        id: "magic-mug",
-        category: "MAGIC MUGS",
-        name: "CUSTOMIZED MAGIC MUG",
-        price: 1400,
-        image: "magic%20mug.jpeg"
-      },
-
-      {
-        id: "wedding-ring-plaque",
-        category: "WEDDING RING PLATES",
-        name: "CUSTOMIZED WEDDING RING PLAQUE",
-        price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg"
-      },
-
-      {
-        id: "trendy-charts",
-        category: "TRENDY CHARTS",
-        name: "CUSTOMIZED TRENDY CHARTS",
-        price: 1350,
-        image: "TRENDY%20CHARTS.jpeg"
-      },
-
-      {
-        id: "eye-pendant-necklace",
-        category: "EYE NECKLACE",
-        name: "CUSTOMIZED EYE PENDANT NECKLACE",
-        price: 1300,
-        image: "EYE%20NECKLACE.jpeg"
-      },
-
-      {
-        id: "picture-frame",
-        category: "PICTURE FRAMES",
-        name: "CUSTOMIZED PICTURE FRAME",
-        price: 900,
-        image: "PICTURE%20FRAME.jpg"
-      },
-
-      {
-        id: "friendship-license-card",
-        category: "FRIENDSHIP LICENCE CARD",
-        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
-        price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
-      },
-
-      {
-        id: "name-key-chain",
-        category: "NAME KEYCHAINS",
-        name: "CUSTOMIZED NAME KEY CHAIN",
-        price: 800,
-        image: "NAME%20KEY.jpeg"
-      },
-
-      {
-        id: "picture-mug-colors",
-        category: "MUG COLLECTION",
-        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
-        price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
-      },
-
-      {
-        id: "pubg-mobile-card",
-        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
-        name: "CUSTOMIZED PUBG MOBILE CARD",
-        price: 800,
-        image: "PUBG%20CARD.jpeg"
-      },
-
-      {
-        id: "snapchat-tiktok-instagram-card",
-        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
-        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
-        price: 800,
-        image: "SNAPCHAT%20CARD.jpeg"
-      },
-
-      {
-        id: "pvc-card",
-        category: "PVC CARD",
-        name: "CUSTOMIZED PVC CARD",
-        price: 850,
-        image: "PVC%20CARD.jpg"
-      }
-
-    ];
-
-
-    /* =========================
-       DISPLAY PRODUCTS
-    ========================= */
-
-    const productsGrid =
-      document.getElementById("productsGrid");
-
-    const pageTitle =
-      document.getElementById("pageTitle");
-
-    const pageSubtitle =
-      document.getElementById("pageSubtitle");
-
-    const selectedCategory =
-      new URLSearchParams(window.location.search).get("category");
-
-
-    function renderProducts() {
-
-      const filteredProducts = selectedCategory
-        ? products.filter(product => product.category === selectedCategory)
-        : products;
-
-      if (selectedCategory) {
-
-        pageTitle.textContent = selectedCategory;
-
-        pageSubtitle.textContent =
-          "Personalized gifts made specially for your special moments.";
-
-      }
-
-
-      if (filteredProducts.length === 0) {
-
-        productsGrid.innerHTML = `
-          <div class="no-products">
-
-            <h2>
-              No Products Available
-            </h2>
-
-            <p>
-              Products for this category will be added soon.
-            </p>
-
-          </div>
-        `;
-
-        return;
-
-      }
-
-
-      productsGrid.innerHTML =
-        filteredProducts.map(product => `
-
-          <div class="product-card">
-
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-            >
-
-            <div class="product-info">
-
-              <h3>
-                ${product.name}
-              </h3>
-
-              <div class="product-price">
-                Rs. ${product.price}
-              </div>
-
-              <div class="product-actions">
-
-                <button
-                  class="view-btn"
-                  onclick="window.location.href='product.html?product=${product.id}'">
-                  VIEW PRODUCT
-                </button>
-
-                <button
-                  class="cart-btn"
-                  onclick="addToCart('${product.id}')">
-                  🛒 ADD
-                </button>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        `).join("");
-
+{
+  id:"led-photo-frame",
+  name:"CUSTOMIZED LED PHOTO FRAME",
+  price:2000,
+  image:"Light%20frame.jpeg",
+  category:"LED PICTURE FRAME"
+},
+
+{
+  id:"birthday-frame",
+  name:"CUSTOMIZED BIRTHDAY FRAME",
+  price:999,
+  image:"Birthday%20Frame.jpeg",
+  category:"BIRTHDAY FRAMES"
+},
+
+{
+  id:"birthday-mug",
+  name:"CUSTOMIZED BIRTHDAY MUG",
+  price:999,
+  image:"birthday%20mug.jpeg",
+  category:"MUG COLLECTION"
+},
+
+{
+  id:"led-heart-lamp",
+  name:"CUSTOMIZED LED HEART LAMP",
+  price:2500,
+  image:"MOON%20PICTURE%20FRAME.jpeg",
+  category:"LED PICTURE FRAME"
+},
+
+{
+  id:"nikkah-signature-frame",
+  name:"CUSTOMIZED NIKKAH SIGNATURE FRAME",
+  price:999,
+  image:"nikkah%20frame.jpeg",
+  category:"NIKKAH FRAMES"
+},
+
+{
+  id:"magic-mug",
+  name:"CUSTOMIZED MAGIC MUG",
+  price:1400,
+  image:"magic%20mug.jpeg",
+  category:"MAGIC MUGS"
+},
+
+{
+  id:"wedding-ring-plaque",
+  name:"CUSTOMIZED WEDDING RING PLAQUE",
+  price:2500,
+  image:"NIKKAH%20PLAQUE.jpeg",
+  category:"WEDDING RING PLATES"
+},
+
+{
+  id:"trendy-charts",
+  name:"CUSTOMIZED TRENDY CHARTS",
+  price:1350,
+  image:"TRENDY%20CHARTS.jpeg",
+  category:"TRENDY CHARTS"
+},
+
+{
+  id:"eye-pendant-necklace",
+  name:"CUSTOMIZED EYE PENDANT NECKLACE",
+  price:1300,
+  image:"EYE%20NECKLACE.jpeg",
+  category:"EYE NECKLACE"
+},
+
+{
+  id:"picture-frame",
+  name:"CUSTOMIZED PICTURE FRAME",
+  price:900,
+  image:"PICTURE%20FRAME.jpg",
+  category:"PICTURE FRAMES"
+},
+
+{
+  id:"friendship-license-card",
+  name:"CUSTOMIZED FRIENDSHIP LICENSE CARD",
+  price:900,
+  image:"FRIENSHIP%20LICENSE%20CAED.jpeg",
+  category:"FRIENDSHIP LICENCE CARD"
+},
+
+{
+  id:"name-key-chain",
+  name:"CUSTOMIZED NAME KEY CHAIN",
+  price:800,
+  image:"NAME%20KEY.jpeg",
+  category:"NAME KEYCHAINS"
+},
+
+{
+  id:"picture-mug-colors",
+  name:"CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
+  price:1350,
+  image:"CUSTOMIZED%20MUG%20WITH%20COLORS.jpg",
+  category:"MUG COLLECTION"
+},
+
+{
+  id:"pubg-mobile-card",
+  name:"CUSTOMIZED PUBG MOBILE CARD",
+  price:800,
+  image:"PUBG%20CARD.jpeg",
+  category:"SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
+},
+
+{
+  id:"snapchat-tiktok-instagram-card",
+  name:"CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
+  price:800,
+  image:"SNAPCHAT%20CARD.jpeg",
+  category:"SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
+},
+
+{
+  id:"pvc-card",
+  name:"CUSTOMIZED PVC CARD",
+  price:850,
+  image:"PVC%20CARD.jpg",
+  category:"PVC CARD"
+}
+
+];
+
+
+/* =========================
+   PRICE
+========================= */
+
+function getProductPrice(product){
+
+  if(product.sale){
+
+    if(product.salePrice && product.salePrice > 0){
+      return product.salePrice;
     }
 
-
-    renderProducts();
-
-
-    /* =========================
-       CART
-    ========================= */
-
-    function getCart() {
-
-      return JSON.parse(
-        localStorage.getItem("craftioCart")
-      ) || [];
-
-    }
-
-
-    function saveCart(cart) {
-
-      localStorage.setItem(
-        "craftioCart",
-        JSON.stringify(cart)
+    if(product.discount && product.discount > 0){
+      return Math.round(
+        product.price * (1 - product.discount / 100)
       );
+    }
+
+  }
+
+  return product.price;
+}
+
+
+/* =========================
+   URL FILTERS
+========================= */
+
+const params = new URLSearchParams(
+  window.location.search
+);
+
+const categoryParam = params.get("category");
+const searchParam = params.get("search");
+
+
+/* =========================
+   RENDER PRODUCTS
+========================= */
+
+function renderProducts(){
+
+  const grid =
+    document.getElementById("productsGrid");
+
+  const noResults =
+    document.getElementById("noResults");
+
+  const filterInfo =
+    document.getElementById("filterInfo");
+
+  const filterText =
+    document.getElementById("filterText");
+
+  let filtered = [...products];
+
+  if(categoryParam){
+
+    filtered = filtered.filter(product =>
+      product.category.toLowerCase() ===
+      categoryParam.toLowerCase()
+    );
+
+    filterInfo.classList.add("active");
+    filterText.textContent = categoryParam;
+
+  }else if(searchParam){
+
+    const query =
+      searchParam.toLowerCase().trim();
+
+    filtered = filtered.filter(product =>
+      product.name.toLowerCase().includes(query) ||
+      product.category.toLowerCase().includes(query)
+    );
+
+    filterInfo.classList.add("active");
+    filterText.textContent =
+      `"${searchParam}"`;
+
+  }else{
+
+    filterInfo.classList.remove("active");
+
+  }
+
+
+  grid.innerHTML = "";
+
+
+  if(filtered.length === 0){
+
+    noResults.style.display = "block";
+
+    return;
+
+  }
+
+
+  noResults.style.display = "none";
+
+
+  filtered.forEach(product => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "product-card";
+
+
+    const currentPrice =
+      getProductPrice(product);
+
+
+    let priceHTML =
+      `Rs. ${currentPrice.toLocaleString()}`;
+
+
+    if(
+      product.sale &&
+      product.salePrice &&
+      product.salePrice < product.price
+    ){
+
+      priceHTML =
+      `<span style="text-decoration:line-through;color:#888;font-size:14px;margin-right:6px;">
+        Rs. ${product.price.toLocaleString()}
+      </span>
+      <span style="color:#00aef0;">
+        Rs. ${currentPrice.toLocaleString()}
+      </span>`;
 
     }
 
 
-    function addToCart(productId) {
+    card.innerHTML = `
 
-      const cart = getCart();
+      <img
+        src="${product.image}"
+        alt="${product.name}"
+        loading="lazy"
+      >
 
-      const existing =
-        cart.find(item => item.id === productId);
+      <div class="product-info">
+
+        <div class="category-label">
+          ${product.category}
+        </div>
+
+        <h3>${product.name}</h3>
+
+        <div class="price">
+          ${priceHTML}
+        </div>
+
+        <div class="product-actions">
+
+          <a
+            class="view-btn"
+            href="product.html?id=${product.id}"
+          >
+            View Product
+          </a>
+
+          <button
+            class="cart-add-btn"
+            onclick="addToCart('${product.id}')"
+          >
+            Add to Cart
+          </button>
+
+        </div>
+
+      </div>
+
+    `;
 
 
-      if (existing) {
+    grid.appendChild(card);
 
-        existing.quantity += 1;
+  });
 
-      } else {
-
-        cart.push({
-          id: productId,
-          quantity: 1
-        });
-
-      }
+}
 
 
-      saveCart(cart);
+/* =========================
+   SEARCH
+========================= */
 
-      updateCartCount();
+function searchProducts(event){
 
-      renderCart();
+  event.preventDefault();
 
-      openCart();
+  const input =
+    document.getElementById("searchInput");
+
+  const query =
+    input.value.trim();
+
+
+  if(query){
+
+    window.location.href =
+      "products.html?search=" +
+      encodeURIComponent(query);
+
+  }else{
+
+    window.location.href =
+      "products.html";
+
+  }
+
+}
+
+
+/* =========================
+   CATEGORY MENU
+========================= */
+
+function openCategories(){
+
+  document
+    .getElementById("categoryOverlay")
+    .classList.add("active");
+
+}
+
+
+function closeCategories(){
+
+  document
+    .getElementById("categoryOverlay")
+    .classList.remove("active");
+
+}
+
+
+/* =========================
+   CLEAR FILTER
+========================= */
+
+function clearFilters(){
+
+  window.location.href =
+    "products.html";
+
+}
+
+
+/* =========================
+   CART
+========================= */
+
+function getCart(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem("craftioCart")
+    ) || [];
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+function saveCart(cart){
+
+  localStorage.setItem(
+    "craftioCart",
+    JSON.stringify(cart)
+  );
+
+}
+
+
+function addToCart(productId){
+
+  const product =
+    products.find(
+      p => p.id === productId
+    );
+
+  if(!product) return;
+
+
+  let cart =
+    getCart();
+
+
+  const existing =
+    cart.find(
+      item => item.id === productId
+    );
+
+
+  if(existing){
+
+    existing.quantity =
+      (existing.quantity || 1) + 1;
+
+  }else{
+
+    cart.push({
+
+      id:product.id,
+
+      name:product.name,
+
+      price:getProductPrice(product),
+
+      originalPrice:product.price,
+
+      image:product.image,
+
+      quantity:1
+
+    });
+
+  }
+
+
+  saveCart(cart);
+
+  updateCartCount();
+
+  showCartToast();
+
+}
+
+
+/* =========================
+   CART COUNT
+========================= */
+
+function updateCartCount(){
+
+  const cart =
+    getCart();
+
+  const count =
+    cart.reduce(
+      (total,item) =>
+        total + (item.quantity || 1),
+      0
+    );
+
+  const cartCount =
+    document.getElementById("cartCount");
+
+  if(cartCount){
+
+    cartCount.textContent =
+      count;
+
+  }
+
+}
+
+
+/* =========================
+   TOAST
+========================= */
+
+let toastTimer;
+
+
+function showCartToast(){
+
+  const toast =
+    document.getElementById("cartToast");
+
+  toast.classList.add("show");
+
+
+  clearTimeout(toastTimer);
+
+
+  toastTimer =
+    setTimeout(() => {
+
+      toast.classList.remove("show");
+
+    },2500);
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+if(searchParam){
+
+  document.getElementById("searchInput").value =
+    searchParam;
+
+}
+
+
+renderProducts();
+
+updateCartCount();
+
+
+/* ESC CLOSE CATEGORY */
+
+document.addEventListener(
+  "keydown",
+  function(event){
+
+    if(event.key === "Escape"){
+
+      closeCategories();
 
     }
 
+  }
+);
 
-    /* =========================
-       MOBILE MENU
-    ========================= */
-
-    function openMobileMenu() {
-
-      document
-        .getElementById("mobileMenuOverlay")
-        .classList.add("active");
-
-    }
-
-
-    function closeMobileMenu() {
-
-      document
-        .getElementById("mobileMenuOverlay")
-        .classList.remove("active");
-
-    }
-
-
-    /* =========================
-       CART COUNT
-    ========================= */
-
-    function updateCartCount() {
-
-      const cart = getCart();
-
-      const count =
-        cart.reduce(
-          (total, item) =>
-            total + item.quantity,
-          0
-        );
-
-
-      document.getElementById(
-        "cartCount"
-      ).textContent = count;
-
-
-      const mobileCartCount =
-        document.getElementById(
-          "mobileCartCount"
-        );
-
-
-      if (mobileCartCount) {
-
-        mobileCartCount.textContent = count;
-
-      }
-
-    }
-
-
-    /* =========================
-       CHANGE QUANTITY
-    ========================= */
-
-    function changeQuantity(
-      productId,
-      change
-    ) {
-
-      const cart = getCart();
-
-      const item =
-        cart.find(
-          item => item.id === productId
-        );
-
-
-      if (!item) return;
-
-
-      item.quantity += change;
-
-
-      if (item.quantity <= 0) {
-
-        const index =
-          cart.findIndex(
-            item => item.id === productId
-          );
-
-        cart.splice(index, 1);
-
-      }
-
-
-      saveCart(cart);
-
-      updateCartCount();
-
-      renderCart();
-
-    }
-
-
-    /* =========================
-       REMOVE FROM CART
-    ========================= */
-
-    function removeFromCart(productId) {
-
-      let cart = getCart();
-
-      cart =
-        cart.filter(
-          item => item.id !== productId
-        );
-
-
-      saveCart(cart);
-
-      updateCartCount();
-
-      renderCart();
-
-    }
-
-
-    /* =========================
-       RENDER CART
-    ========================= */
-
-    function renderCart() {
-
-      const cart = getCart();
-
-      const cartItems =
-        document.getElementById("cartItems");
-
-      const cartTotal =
-        document.getElementById("cartTotal");
-
-
-      if (cart.length === 0) {
-
-        cartItems.innerHTML = `
-
-          <div class="empty-cart">
-            Your cart is empty.
-          </div>
-
-        `;
-
-        cartTotal.textContent =
-          "Rs. 0";
-
-        return;
-
-      }
-
-
-      let total = 0;
-
-
-      cartItems.innerHTML = "";
-
-
-      cart.forEach(item => {
-
-        const product =
-          products.find(
-            p => p.id === item.id
-          );
-
-
-        if (!product) return;
-
-
-        const itemTotal =
-          product.price * item.quantity;
-
-
-        total += itemTotal;
-
-
-        cartItems.innerHTML += `
-
-          <div class="cart-item">
-
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-            >
-
-            <div class="cart-item-details">
-
-              <h4>
-                ${product.name}
-              </h4>
-
-              <div class="cart-item-price">
-                Rs. ${itemTotal}
-              </div>
-
-              <div class="quantity-controls">
-
-                <button
-                  onclick="changeQuantity('${product.id}', -1)">
-                  −
-                </button>
-
-                <span>
-                  ${item.quantity}
-                </span>
-
-                <button
-                  onclick="changeQuantity('${product.id}', 1)">
-                  +
-                </button>
-
-              </div>
-
-              <button
-                class="remove-btn"
-                onclick="removeFromCart('${product.id}')">
-                Remove
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-      });
-
-
-      cartTotal.textContent =
-        "Rs. " + total;
-
-    }
-
-
-    /* =========================
-       OPEN CART
-    ========================= */
-
-    function openCart() {
-
-      document
-        .getElementById("cartOverlay")
-        .classList.add("active");
-
-      renderCart();
-
-    }
-
-
-    /* =========================
-       CLOSE CART
-    ========================= */
-
-    function closeCart() {
-
-      document
-        .getElementById("cartOverlay")
-        .classList.remove("active");
-
-    }
-
-
-    /* =========================
-       INITIAL LOAD
-    ========================= */
-
-    updateCartCount();
-
-    renderCart();
-
-  </script>
+</script>
 
 </body>
 </html>
