@@ -1,397 +1,1492 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Craftio Gifts | Personalized Gifts</title>
-<link rel="icon" type="image/png" href="favicon.png">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111;line-height:1.6;overflow-x:hidden}
+  <title>Craftio Gifts | Personalized Gifts</title>
 
-nav{
-width:100%;background:#080808;color:#fff;display:flex;justify-content:space-between;
-align-items:center;padding:17px 7%;position:sticky;top:0;z-index:1000;border-bottom:2px solid #00aef0
-}
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="favicon.png">
 
-.logo-link{text-decoration:none;color:inherit}
-.logo-text{font-size:24px;font-weight:800;letter-spacing:1.5px}
-.logo-text span{color:#00aef0}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{text-decoration:none;color:#fff;font-size:15px;font-weight:600;transition:.3s}
-.nav-links a:hover{color:#00aef0}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.nav-tools{display:flex;align-items:center;gap:10px}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #ffffff;
+      color: #111111;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-.search-box{
-display:flex;align-items:center;background:#fff;border-radius:8px;overflow:hidden;height:40px
-}
-.search-box input{
-width:190px;border:none;outline:none;padding:0 12px;font-size:14px;color:#111
-}
-.search-box button{
-height:40px;border:none;background:#00aef0;color:#fff;padding:0 13px;cursor:pointer;font-weight:700
-}
+    /* =========================
+       NAVBAR
+    ========================= */
 
-.category-btn{
-border:none;background:#00aef0;color:#fff;padding:10px 14px;border-radius:8px;
-cursor:pointer;font-weight:700;white-space:nowrap
-}
+    nav {
+      width: 100%;
+      background: #080808;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 7%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #00aef0;
+    }
 
-.hero{
-min-height:88vh;position:relative;overflow:hidden;
-background:
-radial-gradient(circle at 15% 20%,rgba(0,174,240,.30),transparent 25%),
-radial-gradient(circle at 85% 75%,rgba(0,174,240,.22),transparent 28%),
-linear-gradient(135deg,#fff 0%,#eefaff 45%,#dff6ff 100%);
-display:flex;justify-content:center;align-items:center;text-align:center;padding:70px 20px
-}
+    .logo-link {
+      text-decoration: none;
+      color: inherit;
+    }
 
-.hero:before{
-content:"";position:absolute;width:420px;height:420px;border:2px solid rgba(0,174,240,.14);
-border-radius:50%;top:-180px;left:-150px
-}
+    .logo-text {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
 
-.hero:after{
-content:"";position:absolute;width:500px;height:500px;border:2px solid rgba(0,174,240,.12);
-border-radius:50%;bottom:-260px;right:-180px
-}
+    .logo-text span {
+      color: #00aef0;
+    }
 
-.hero-content{max-width:900px;width:100%;position:relative;z-index:5}
-.main-logo{
-width:250px;height:250px;object-fit:contain;display:block;margin:0 auto 20px;
-filter:drop-shadow(0 12px 20px rgba(0,0,0,.15))
-}
+    /* =========================
+       DESKTOP NAV
+    ========================= */
 
-.ribbon-left,.ribbon-right{
-position:absolute;top:125px;width:100px;height:100px;border:5px solid #00aef0;
-opacity:.18;z-index:-1
-}
-.ribbon-left{left:8%;border-radius:50% 50% 10% 50%;transform:rotate(-25deg)}
-.ribbon-right{right:8%;border-radius:50% 50% 50% 10%;transform:rotate(25deg)}
+    .nav-links {
+      display: none;
+    }
 
-.sparkle{position:absolute;color:#00aef0;font-size:28px;font-weight:bold;opacity:.7}
-.sparkle.one{top:18%;left:23%}
-.sparkle.two{top:25%;right:22%;font-size:20px}
-.sparkle.three{bottom:18%;left:17%;font-size:18px}
-.sparkle.four{bottom:22%;right:17%}
+    .nav-tools {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 18px;
+      position: relative;
+    }
 
-.hero h1{color:#111;font-size:clamp(40px,6vw,68px);line-height:1.1;margin-bottom:18px;font-weight:800}
-.hero h1 span{color:#00aef0}
-.hero-subtitle{font-size:18px;color:#555;max-width:650px;margin:0 auto 30px}
+    .nav-home-link,
+    .nav-contact-link {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
 
-.gift-tag{
-display:inline-block;background:#111;color:#fff;padding:8px 20px;border-radius:30px;
-font-size:13px;font-weight:700;letter-spacing:1px;margin-bottom:20px
-}
-.gift-tag span{color:#00aef0}
+    .nav-home-link:hover,
+    .nav-contact-link:hover {
+      color: #00aef0;
+    }
 
-.hero-buttons{display:flex;justify-content:center;gap:15px;flex-wrap:wrap}
-.btn{
-display:inline-block;padding:14px 28px;border-radius:8px;text-decoration:none;
-font-weight:700;transition:.3s
-}
-.btn-secondary{background:#111;color:#fff}
-.btn-secondary:hover{background:#00aef0;transform:translateY(-3px)}
+    /* =========================
+       REAL SEARCH ICON
+    ========================= */
 
-.gift-message{background:#111;color:#fff;text-align:center;padding:18px 20px;font-size:15px}
-.gift-message span{color:#00aef0;font-weight:700}
+    .search-icon-btn {
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
 
-.section{padding:80px 7%}
-.section-title{text-align:center;margin-bottom:45px}
-.section-title h2{font-size:38px;margin-bottom:10px}
-.section-title span{color:#00aef0}
-.section-title p{color:#666;max-width:650px;margin:auto}
+    .search-icon-btn:hover {
+      background: rgba(0, 174, 240, 0.15);
+      color: #00aef0;
+    }
 
-.why-section{background:#f7f7f7}
-.why-grid{
-max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:25px
-}
-.why-card{
-background:#fff;border:1px solid #e4e4e4;border-radius:15px;padding:35px 25px;
-text-align:center;transition:.3s
-}
-.why-card:hover{
-transform:translateY(-6px);border-color:#00aef0;box-shadow:0 10px 25px rgba(0,0,0,.07)
-}
-.why-icon{
-width:65px;height:65px;margin:0 auto 20px;border-radius:50%;background:#00aef0;
-color:#fff;display:flex;justify-content:center;align-items:center;font-size:27px;font-weight:bold
-}
-.why-card h3{margin-bottom:10px;font-size:21px}
-.why-card p{color:#666}
+    .search-icon-btn svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+      stroke: currentColor;
+    }
 
-.social-section{background:#111;color:#fff;text-align:center}
-.social-section h2{font-size:35px;margin-bottom:12px}
-.social-section h2 span{color:#00aef0}
-.social-section p{color:#ccc;margin-bottom:30px}
-.social-links{display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap}
-.social-links a{
-text-decoration:none;color:#fff;background:#00aef0;padding:13px 24px;border-radius:8px;
-font-weight:700;transition:.3s
-}
-.social-links a:hover{background:#fff;color:#111;transform:translateY(-2px)}
+    /* =========================
+       PRODUCTS BUTTON
+    ========================= */
 
-.cta{
-padding:85px 7%;text-align:center;
-background:
-radial-gradient(circle at 20% 30%,rgba(255,255,255,.18),transparent 20%),
-radial-gradient(circle at 80% 70%,rgba(255,255,255,.18),transparent 20%),#00aef0;
-color:#fff
-}
-.cta h2{font-size:40px;margin-bottom:15px}
-.cta p{font-size:18px;margin-bottom:30px}
-.cta .btn{background:#111;color:#fff}
-.cta .btn:hover{background:#fff;color:#111;transform:translateY(-3px)}
+    .category-btn {
+      border: none;
+      background: #00aef0;
+      color: #ffffff;
+      padding: 9px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: 0.3s;
+    }
 
-footer{background:#080808;color:#aaa;text-align:center;padding:25px 15px;font-size:14px}
-footer strong{color:#00aef0}
+    .category-btn:hover {
+      background: #008dcc;
+    }
 
-/* CATEGORY POPUP */
-.category-overlay{
-position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;z-index:3000
-}
-.category-overlay.active{display:block}
+    /* =========================
+       MOBILE 3 LINES
+    ========================= */
 
-.category-panel{
-width:340px;max-width:88%;height:100%;background:#fff;padding:24px 20px;
-overflow-y:auto;box-shadow:8px 0 30px rgba(0,0,0,.2)
-}
+    .mobile-menu-btn {
+      display: none;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #ffffff;
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
 
-.category-header{
-display:flex;justify-content:space-between;align-items:center;margin-bottom:18px
-}
-.category-header h2{font-size:23px}
-.category-close{
-border:none;background:none;font-size:30px;cursor:pointer
-}
-.category-panel a{
-display:block;text-decoration:none;color:#111;font-size:14px;font-weight:700;
-padding:12px 9px;border-bottom:1px solid #eee
-}
-.category-panel a:hover{color:#00aef0;background:#f7f7f7}
+    .mobile-menu-btn:hover {
+      background: rgba(0, 174, 240, 0.15);
+      color: #00aef0;
+    }
 
-@media(max-width:800px){
-nav{flex-direction:column;gap:14px;padding:16px 5%}
-.nav-links{gap:18px;flex-wrap:wrap;justify-content:center}
-.nav-links a{font-size:14px}
-.nav-tools{width:100%;justify-content:center;flex-wrap:wrap}
-.search-box input{width:150px}
-.hero{min-height:82vh;padding:55px 20px}
-.main-logo{width:220px;height:220px}
-.ribbon-left,.ribbon-right{display:none}
-.sparkle.one{left:8%}.sparkle.two{right:8%}.sparkle.three{left:7%}.sparkle.four{right:7%}
-.section{padding:60px 5%}
-.section-title h2{font-size:31px}
-.why-grid{grid-template-columns:1fr}
-.cta{padding:60px 5%}
-.cta h2{font-size:31px}
-}
+    .mobile-menu-btn svg {
+      width: 23px;
+      height: 23px;
+      display: block;
+      stroke: currentColor;
+    }
 
-@media(max-width:500px){
-.logo-text{font-size:20px}
-.hero{padding:40px 18px 55px}
-.main-logo{width:175px;height:175px;margin-bottom:18px}
-.gift-tag{font-size:11px;padding:7px 15px}
-.hero h1{font-size:41px}
-.hero-subtitle{font-size:16px}
-.hero-buttons{flex-direction:column;width:100%}
-.hero-buttons .btn{width:100%}
-.sparkle{font-size:20px}
-.social-links{flex-direction:column}
-.social-links a{width:100%;max-width:300px}
-.search-box{width:100%}
-.search-box input{flex:1;width:auto}
-.category-btn{flex:1}
-}
-</style>
+    /* =========================
+       SEARCH POPUP
+    ========================= */
+
+    .search-popover {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 78px;
+      display: none;
+      background: #ffffff;
+      padding: 8px;
+      border-radius: 9px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      z-index: 2000;
+    }
+
+    .search-popover.active {
+      display: flex;
+    }
+
+    .search-popover form {
+      display: flex;
+      gap: 6px;
+    }
+
+    .search-popover input {
+      width: 220px;
+      height: 40px;
+      border: 1px solid #dddddd;
+      border-radius: 6px;
+      outline: none;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #111111;
+    }
+
+    .search-popover button {
+      height: 40px;
+      border: none;
+      border-radius: 6px;
+      background: #00aef0;
+      color: #ffffff;
+      padding: 0 12px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .search-popover button:hover {
+      background: #008dcc;
+    }
+
+    /* =========================
+       CATEGORY MENU
+    ========================= */
+
+    .category-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      z-index: 3000;
+    }
+
+    .category-overlay.active {
+      display: block;
+    }
+
+    .category-panel {
+      width: 340px;
+      max-width: 88%;
+      height: 100%;
+      background: #ffffff;
+      padding: 24px 20px;
+      overflow-y: auto;
+      box-shadow: 8px 0 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .category-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .category-header h2 {
+      font-size: 23px;
+    }
+
+    .category-close {
+      border: none;
+      background: none;
+      font-size: 30px;
+      cursor: pointer;
+      color: #111111;
+    }
+
+    .category-panel a {
+      display: block;
+      text-decoration: none;
+      color: #111111;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 12px 9px;
+      border-bottom: 1px solid #eeeeee;
+      transition: 0.2s;
+    }
+
+    .category-panel a:hover {
+      color: #00aef0;
+      background: #f7f7f7;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 88vh;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 15% 20%, rgba(0,174,240,0.30), transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(0,174,240,0.22), transparent 28%),
+        linear-gradient(135deg, #ffffff 0%, #eefaff 45%, #dff6ff 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    /* Decorative circles */
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border: 2px solid rgba(0,174,240,0.14);
+      border-radius: 50%;
+      top: -180px;
+      left: -150px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border: 2px solid rgba(0,174,240,0.12);
+      border-radius: 50%;
+      bottom: -260px;
+      right: -180px;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* MAIN LOGO */
+
+    .main-logo {
+      width: 250px;
+      height: 250px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px;
+      filter: drop-shadow(0 12px 20px rgba(0,0,0,0.15));
+    }
+
+    /* Gift ribbon behind logo */
+
+    .ribbon-left,
+    .ribbon-right {
+      position: absolute;
+      top: 125px;
+      width: 100px;
+      height: 100px;
+      border: 5px solid #00aef0;
+      opacity: 0.18;
+      z-index: -1;
+    }
+
+    .ribbon-left {
+      left: 8%;
+      border-radius: 50% 50% 10% 50%;
+      transform: rotate(-25deg);
+    }
+
+    .ribbon-right {
+      right: 8%;
+      border-radius: 50% 50% 50% 10%;
+      transform: rotate(25deg);
+    }
+
+    /* Sparkles */
+
+    .sparkle {
+      position: absolute;
+      color: #00aef0;
+      font-size: 28px;
+      font-weight: bold;
+      opacity: 0.7;
+    }
+
+    .sparkle.one {
+      top: 18%;
+      left: 23%;
+    }
+
+    .sparkle.two {
+      top: 25%;
+      right: 22%;
+      font-size: 20px;
+    }
+
+    .sparkle.three {
+      bottom: 18%;
+      left: 17%;
+      font-size: 18px;
+    }
+
+    .sparkle.four {
+      bottom: 22%;
+      right: 17%;
+    }
+
+    .hero h1 {
+      color: #111111;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      font-weight: 800;
+    }
+
+    .hero h1 span {
+      color: #00aef0;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: #555555;
+      max-width: 650px;
+      margin: 0 auto 30px;
+    }
+
+    .gift-tag {
+      display: inline-block;
+      background: #111111;
+      color: #ffffff;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .gift-tag span {
+      color: #00aef0;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #00aef0;
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(0,174,240,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #008dcc;
+      transform: translateY(-3px);
+    }
+
+    .btn-secondary {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .btn-secondary:hover {
+      background: #00aef0;
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       LITTLE GIFT MESSAGE
+    ========================= */
+
+    .gift-message {
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+      padding: 18px 20px;
+      font-size: 15px;
+    }
+
+    .gift-message span {
+      color: #00aef0;
+      font-weight: 700;
+    }
+
+    /* =========================
+       GENERAL SECTION
+    ========================= */
+
+    .section {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .section-title span {
+      color: #00aef0;
+    }
+
+    .section-title p {
+      color: #666666;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    /* =========================
+       WHY CRAFTIO
+    ========================= */
+
+    .why-section {
+      background: #f7f7f7;
+    }
+
+    .why-grid {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .why-card {
+      background: #ffffff;
+      border: 1px solid #e4e4e4;
+      border-radius: 15px;
+      padding: 35px 25px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .why-card:hover {
+      transform: translateY(-6px);
+      border-color: #00aef0;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+    }
+
+    .why-icon {
+      width: 65px;
+      height: 65px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #00aef0;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 27px;
+      font-weight: bold;
+    }
+
+    .why-card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .why-card p {
+      color: #666666;
+    }
+
+    /* =========================
+       SOCIAL
+    ========================= */
+
+    .social-section {
+      background: #111111;
+      color: #ffffff;
+      text-align: center;
+    }
+
+    .social-section h2 {
+      font-size: 35px;
+      margin-bottom: 12px;
+    }
+
+    .social-section h2 span {
+      color: #00aef0;
+    }
+
+    .social-section p {
+      color: #cccccc;
+      margin-bottom: 30px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #ffffff;
+      background: #00aef0;
+      padding: 13px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: 0.3s;
+    }
+
+    .social-links a:hover {
+      background: #ffffff;
+      color: #111111;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       CTA
+    ========================= */
+
+    .cta {
+      padding: 85px 7%;
+      text-align: center;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.18), transparent 20%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.18), transparent 20%),
+        #00aef0;
+      color: #ffffff;
+    }
+
+    .cta h2 {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .cta .btn {
+      background: #111111;
+      color: #ffffff;
+    }
+
+    .cta .btn:hover {
+      background: #ffffff;
+      color: #111111;
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #080808;
+      color: #aaaaaa;
+      text-align: center;
+      padding: 25px 15px;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: #00aef0;
+    }
+
+    /* =========================
+       TABLET
+    ========================= */
+
+    @media (max-width: 800px) {
+
+      nav {
+        padding: 15px 5%;
+      }
+
+      .nav-home-link,
+      .nav-contact-link,
+      .category-btn {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: flex;
+      }
+
+      .nav-tools {
+        gap: 6px;
+      }
+
+      .search-icon-btn {
+        width: 34px;
+        height: 34px;
+      }
+
+      .search-icon-btn svg {
+        width: 21px;
+        height: 21px;
+      }
+
+      .search-popover {
+        position: fixed;
+        top: 62px;
+        left: 10px;
+        right: 10px;
+      }
+
+      .search-popover form {
+        width: 100%;
+      }
+
+      .search-popover input {
+        width: 100%;
+        flex: 1;
+      }
+
+      .main-logo {
+        width: 220px;
+        height: 220px;
+      }
+
+      .ribbon-left,
+      .ribbon-right {
+        display: none;
+      }
+
+      .sparkle.one {
+        left: 8%;
+      }
+
+      .sparkle.two {
+        right: 8%;
+      }
+
+      .sparkle.three {
+        left: 7%;
+      }
+
+      .sparkle.four {
+        right: 7%;
+      }
+
+      .section {
+        padding: 60px 5%;
+      }
+
+      .section-title h2 {
+        font-size: 31px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta {
+        padding: 60px 5%;
+      }
+
+      .cta h2 {
+        font-size: 31px;
+      }
+
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 500px) {
+
+      nav {
+        padding: 12px 5%;
+      }
+
+      .logo-text {
+        font-size: 20px;
+      }
+
+      .nav-tools {
+        gap: 3px;
+      }
+
+      .search-icon-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .search-icon-btn svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .mobile-menu-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .mobile-menu-btn svg {
+        width: 23px;
+        height: 23px;
+      }
+
+      .hero {
+        padding: 40px 18px 55px;
+      }
+
+      .main-logo {
+        width: 175px;
+        height: 175px;
+        margin-bottom: 18px;
+      }
+
+      .gift-tag {
+        font-size: 11px;
+        padding: 7px 15px;
+      }
+
+      .hero h1 {
+        font-size: 41px;
+      }
+
+      .hero-subtitle {
+        font-size: 16px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-buttons .btn {
+        width: 100%;
+      }
+
+      .sparkle {
+        font-size: 20px;
+      }
+
+      .social-links {
+        flex-direction: column;
+      }
+
+      .social-links a {
+        width: 100%;
+        max-width: 300px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
-<a href="index.html" class="logo-link">
-<div class="logo-text">CRAFTIO <span>GIFTS</span></div>
-</a>
+  <nav>
 
-<div class="nav-tools">
+    <!-- LOGO -->
+    <a href="index.html" class="logo-link">
 
-<form class="search-box" onsubmit="searchProducts(event)">
-<input id="homeSearch" type="search" placeholder="Search products...">
-<button type="submit">🔎</button>
-</form>
+      <div class="logo-text">
+        CRAFTIO <span>GIFTS</span>
+      </div>
 
-<button class="category-btn" onclick="openCategories()">☰ Categories</button>
+    </a>
 
-</div>
 
-<div class="nav-links">
-<a href="index.html">Home</a>
-<a href="products.html">Products</a>
-<a href="#contact">Contact</a>
-</div>
+    <!-- RIGHT SIDE -->
+    <div class="nav-tools">
 
-</nav>
+      <!-- DESKTOP HOME -->
+      <a
+        href="index.html"
+        class="nav-home-link">
+        Home
+      </a>
 
-<!-- CATEGORIES -->
 
-<div class="category-overlay" id="categoryOverlay" onclick="closeCategories()">
+      <!-- REAL SEARCH ICON -->
+      <button
+        class="search-icon-btn"
+        type="button"
+        onclick="toggleSearch()"
+        aria-label="Search">
 
-<div class="category-panel" onclick="event.stopPropagation()">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true">
 
-<div class="category-header">
-<h2>Categories</h2>
-<button class="category-close" onclick="closeCategories()">×</button>
-</div>
+          <circle
+            cx="11"
+            cy="11"
+            r="7">
+          </circle>
 
-<a href="products.html">ALL PRODUCTS</a>
-<a href="products.html?category=ISLAMIC%20COLLECTION">ISLAMIC COLLECTION</a>
-<a href="products.html?category=LED%20PICTURE%20FRAME">LED PICTURE FRAME</a>
-<a href="products.html?category=ANNIVERSARY%20FRAMES">ANNIVERSARY FRAMES</a>
-<a href="products.html?category=NIKKAH%20FRAMES">NIKKAH FRAMES</a>
-<a href="products.html?category=BIRTHDAY%20FRAMES">BIRTHDAY FRAMES</a>
-<a href="products.html?category=PICTURE%20FRAMES">PICTURE FRAMES</a>
-<a href="products.html?category=MUG%20COLLECTION">MUG COLLECTION</a>
-<a href="products.html?category=MAGIC%20MUGS">MAGIC MUGS</a>
-<a href="products.html?category=NEW%20BORN%20FRAMES">NEW BORN FRAMES</a>
-<a href="products.html?category=SNAPCHAT%20%2F%20TIKTOK%20%2F%20INSTAGRAM%20PVC%20CARDS">SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS</a>
-<a href="products.html?category=FRIENDSHIP%20LICENCE%20CARD">FRIENDSHIP LICENCE CARD</a>
-<a href="products.html?category=EYE%20NECKLACE">EYE NECKLACE</a>
-<a href="products.html?category=WEDDING%20RING%20PLATES">WEDDING RING PLATES</a>
-<a href="products.html?category=TRENDY%20CHARTS">TRENDY CHARTS</a>
-<a href="products.html?category=NAME%20KEYCHAINS">NAME KEYCHAINS</a>
-<a href="products.html?category=PVC%20CARD">PVC CARD</a>
+          <line
+            x1="16.5"
+            y1="16.5"
+            x2="21"
+            y2="21">
+          </line>
 
-</div>
-</div>
+        </svg>
 
-<section class="hero">
+      </button>
 
-<div class="sparkle one">✦</div>
-<div class="sparkle two">✧</div>
-<div class="sparkle three">✧</div>
-<div class="sparkle four">✦</div>
 
-<div class="ribbon-left"></div>
-<div class="ribbon-right"></div>
+      <!-- MOBILE 3 LINES -->
+      <button
+        class="mobile-menu-btn"
+        type="button"
+        onclick="openCategories()"
+        aria-label="Open categories">
 
-<div class="hero-content">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true">
 
-<div class="gift-tag">✦ <span>PERSONALIZED</span> WITH LOVE ✦</div>
+          <line
+            x1="4"
+            y1="6"
+            x2="20"
+            y2="6">
+          </line>
 
-<img src="logo.png" alt="Craftio Gifts Logo" class="main-logo">
+          <line
+            x1="4"
+            y1="12"
+            x2="20"
+            y2="12">
+          </line>
 
-<h1>Gifts Made <span>Just For You.</span></h1>
+          <line
+            x1="4"
+            y1="18"
+            x2="20"
+            y2="18">
+          </line>
 
-<p class="hero-subtitle">
-Turn your special moments into beautiful memories with
-personalized gifts made especially for you.
-</p>
+        </svg>
 
-<div class="hero-buttons">
-<a href="products.html" class="btn btn-secondary">Explore Products</a>
-</div>
+      </button>
 
-</div>
-</section>
 
-<div class="gift-message">
-✨ Make every occasion special with a gift that feels
-<span>truly personal.</span> ✨
-</div>
+      <!-- DESKTOP PRODUCTS = CATEGORIES -->
+      <button
+        class="category-btn"
+        onclick="openCategories()">
 
-<section class="section why-section">
+        Products
 
-<div class="section-title">
-<h2>Why <span>Craftio?</span></h2>
-<p>Because the best gifts are the ones made especially for someone.</p>
-</div>
+      </button>
 
-<div class="why-grid">
 
-<div class="why-card">
-<div class="why-icon">🎁</div>
-<h3>Personalized</h3>
-<p>Make your gift unique with your own photos, names and ideas.</p>
-</div>
+      <!-- DESKTOP CONTACT -->
+      <a
+        href="#contact"
+        class="nav-contact-link">
 
-<div class="why-card">
-<div class="why-icon">✦</div>
-<h3>Premium Quality</h3>
-<p>Every creation is prepared with care and attention to detail.</p>
-</div>
+        Contact
 
-<div class="why-card">
-<div class="why-icon">♥</div>
-<h3>Made With Love</h3>
-<p>We create every order specially for your memorable moments.</p>
-</div>
+      </a>
 
-</div>
-</section>
 
-<section class="section social-section">
+      <!-- SEARCH POPUP -->
+      <div
+        class="search-popover"
+        id="searchPopover">
 
-<h2>Follow <span>Craftio Gifts</span></h2>
-<p>Stay connected and discover our latest customized creations.</p>
+        <form
+          onsubmit="searchProducts(event)">
 
-<div class="social-links">
+          <input
+            id="homeSearch"
+            type="search"
+            placeholder="Search products...">
 
-<a href="https://www.instagram.com/craftiogifts.pkk?stkn=OGZjMmR1eWtzaXpk&utm_source=qr" target="_blank">Instagram</a>
+          <button
+            type="submit">
 
-<a href="https://www.tiktok.com/@craftive.pkk?_r=1&_t=ZT-99mVtjMxaHu" target="_blank">TikTok</a>
+            Search
 
-<a href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank">WhatsApp</a>
+          </button>
 
-</div>
-</section>
+        </form>
 
-<section class="cta" id="contact">
+      </div>
 
-<h2>Have Something Special In Mind?</h2>
+    </div>
 
-<p>
-Tell us your idea and let's turn it into a beautiful
-customized gift.
-</p>
+  </nav>
 
-<a href="https://wa.me/qr/PLP2HGEKDYKJE1" target="_blank" class="btn">
-🎁 Order Now on WhatsApp
-</a>
 
-</section>
+  <!-- =========================
+       CATEGORIES
+  ========================= -->
 
-<footer>
-© 2026 <strong>Craftio Gifts</strong>. All Rights Reserved.
-</footer>
+  <div
+    class="category-overlay"
+    id="categoryOverlay"
+    onclick="closeCategories()">
 
-<script>
+    <div
+      class="category-panel"
+      onclick="event.stopPropagation()">
 
-function openCategories(){
-document.getElementById("categoryOverlay").classList.add("active");
-}
+      <div class="category-header">
 
-function closeCategories(){
-document.getElementById("categoryOverlay").classList.remove("active");
-}
+        <h2>
+          Categories
+        </h2>
 
-function searchProducts(event){
-event.preventDefault();
+        <button
+          class="category-close"
+          onclick="closeCategories()">
 
-const q=document.getElementById("homeSearch").value.trim();
+          ×
 
-if(q){
-window.location.href="products.html?search="+encodeURIComponent(q);
-}else{
-window.location.href="products.html";
-}
-}
+        </button>
 
-</script>
+      </div>
+
+
+      <a href="products.html">
+        ALL PRODUCTS
+      </a>
+
+      <a href="products.html?category=ISLAMIC%20COLLECTION">
+        ISLAMIC COLLECTION
+      </a>
+
+      <a href="products.html?category=LED%20PICTURE%20FRAME">
+        LED PICTURE FRAME
+      </a>
+
+      <a href="products.html?category=ANNIVERSARY%20FRAMES">
+        ANNIVERSARY FRAMES
+      </a>
+
+      <a href="products.html?category=NIKKAH%20FRAMES">
+        NIKKAH FRAMES
+      </a>
+
+      <a href="products.html?category=BIRTHDAY%20FRAMES">
+        BIRTHDAY FRAMES
+      </a>
+
+      <a href="products.html?category=PICTURE%20FRAMES">
+        PICTURE FRAMES
+      </a>
+
+      <a href="products.html?category=MUG%20COLLECTION">
+        MUG COLLECTION
+      </a>
+
+      <a href="products.html?category=MAGIC%20MUGS">
+        MAGIC MUGS
+      </a>
+
+      <a href="products.html?category=NEW%20BORN%20FRAMES">
+        NEW BORN FRAMES
+      </a>
+
+      <a href="products.html?category=SNAPCHAT%20%2F%20TIKTOK%20%2F%20INSTAGRAM%20PVC%20CARDS">
+        SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS
+      </a>
+
+      <a href="products.html?category=FRIENDSHIP%20LICENCE%20CARD">
+        FRIENDSHIP LICENCE CARD
+      </a>
+
+      <a href="products.html?category=EYE%20NECKLACE">
+        EYE NECKLACE
+      </a>
+
+      <a href="products.html?category=WEDDING%20RING%20PLATES">
+        WEDDING RING PLATES
+      </a>
+
+      <a href="products.html?category=TRENDY%20CHARTS">
+        TRENDY CHARTS
+      </a>
+
+      <a href="products.html?category=NAME%20KEYCHAINS">
+        NAME KEYCHAINS
+      </a>
+
+      <a href="products.html?category=PVC%20CARD">
+        PVC CARD
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       HERO / HOME
+  ========================= -->
+
+  <section class="hero">
+
+    <div class="sparkle one">
+      ✦
+    </div>
+
+    <div class="sparkle two">
+      ✧
+    </div>
+
+    <div class="sparkle three">
+      ✧
+    </div>
+
+    <div class="sparkle four">
+      ✦
+    </div>
+
+
+    <div class="ribbon-left"></div>
+
+    <div class="ribbon-right"></div>
+
+
+    <div class="hero-content">
+
+      <div class="gift-tag">
+        ✦ <span>PERSONALIZED</span> WITH LOVE ✦
+      </div>
+
+
+      <img
+        src="logo.png"
+        alt="Craftio Gifts Logo"
+        class="main-logo"
+      >
+
+
+      <h1>
+        Gifts Made <span>Just For You.</span>
+      </h1>
+
+
+      <p class="hero-subtitle">
+
+        Turn your special moments into beautiful memories with
+        personalized gifts made especially for you.
+
+      </p>
+
+
+      <div class="hero-buttons">
+
+        <a
+          href="products.html"
+          class="btn btn-secondary">
+
+          Explore Products
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       GIFT MESSAGE
+  ========================= -->
+
+  <div class="gift-message">
+
+    ✨ Make every occasion special with a gift that feels
+    <span>truly personal.</span> ✨
+
+  </div>
+
+
+  <!-- =========================
+       WHY CRAFTIO
+  ========================= -->
+
+  <section class="section why-section">
+
+    <div class="section-title">
+
+      <h2>
+        Why <span>Craftio?</span>
+      </h2>
+
+      <p>
+        Because the best gifts are the ones made especially for someone.
+      </p>
+
+    </div>
+
+
+    <div class="why-grid">
+
+
+      <div class="why-card">
+
+        <div class="why-icon">
+          🎁
+        </div>
+
+        <h3>
+          Personalized
+        </h3>
+
+        <p>
+          Make your gift unique with your own photos, names and ideas.
+        </p>
+
+      </div>
+
+
+      <div class="why-card">
+
+        <div class="why-icon">
+          ✦
+        </div>
+
+        <h3>
+          Premium Quality
+        </h3>
+
+        <p>
+          Every creation is prepared with care and attention to detail.
+        </p>
+
+      </div>
+
+
+      <div class="why-card">
+
+        <div class="why-icon">
+          ♥
+        </div>
+
+        <h3>
+          Made With Love
+        </h3>
+
+        <p>
+          We create every order specially for your memorable moments.
+        </p>
+
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       SOCIAL
+  ========================= -->
+
+  <section class="section social-section">
+
+    <h2>
+      Follow <span>Craftio Gifts</span>
+    </h2>
+
+    <p>
+      Stay connected and discover our latest customized creations.
+    </p>
+
+
+    <div class="social-links">
+
+      <a
+        href="https://www.instagram.com/craftiogifts.pkk?stkn=OGZjMmR1eWtzaXpk&utm_source=qr"
+        target="_blank">
+
+        Instagram
+
+      </a>
+
+
+      <a
+        href="https://www.tiktok.com/@craftive.pkk?_r=1&_t=ZT-99mVtjMxaHu"
+        target="_blank">
+
+        TikTok
+
+      </a>
+
+
+      <a
+        href="https://wa.me/qr/PLP2HGEKDYKJE1"
+        target="_blank">
+
+        WhatsApp
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       CONTACT / CTA
+  ========================= -->
+
+  <section
+    class="cta"
+    id="contact">
+
+    <h2>
+      Have Something Special In Mind?
+    </h2>
+
+    <p>
+      Tell us your idea and let's turn it into a beautiful
+      customized gift.
+    </p>
+
+
+    <a
+      href="https://wa.me/qr/PLP2HGEKDYKJE1"
+      target="_blank"
+      class="btn">
+
+      🎁 Order Now on WhatsApp
+
+    </a>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    © 2026 <strong>Craftio Gifts</strong>.
+    All Rights Reserved.
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    /* =========================
+       OPEN CATEGORIES
+    ========================= */
+
+    function openCategories() {
+
+      document
+        .getElementById("categoryOverlay")
+        .classList
+        .add("active");
+
+    }
+
+
+    /* =========================
+       CLOSE CATEGORIES
+    ========================= */
+
+    function closeCategories() {
+
+      document
+        .getElementById("categoryOverlay")
+        .classList
+        .remove("active");
+
+    }
+
+
+    /* =========================
+       TOGGLE SEARCH
+    ========================= */
+
+    function toggleSearch() {
+
+      const searchPopover =
+        document.getElementById("searchPopover");
+
+      searchPopover
+        .classList
+        .toggle("active");
+
+
+      if (
+        searchPopover
+          .classList
+          .contains("active")
+      ) {
+
+        setTimeout(function() {
+
+          document
+            .getElementById("homeSearch")
+            .focus();
+
+        }, 50);
+
+      }
+
+    }
+
+
+    /* =========================
+       SEARCH PRODUCTS
+    ========================= */
+
+    function searchProducts(event) {
+
+      event.preventDefault();
+
+      const query =
+        document
+          .getElementById("homeSearch")
+          .value
+          .trim();
+
+
+      if (query) {
+
+        window.location.href =
+          "products.html?search=" +
+          encodeURIComponent(query);
+
+      } else {
+
+        window.location.href =
+          "products.html";
+
+      }
+
+    }
+
+
+    /* =========================
+       ESC KEY
+    ========================= */
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Escape") {
+
+          closeCategories();
+
+          document
+            .getElementById("searchPopover")
+            .classList
+            .remove("active");
+
+        }
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
