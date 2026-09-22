@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -39,13 +41,12 @@
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 1200;
-      gap: 20px;
+      z-index: 2000;
     }
 
     .logo-link {
-      display: inline-block;
       color: #fff;
+      display: inline-block;
     }
 
     .logo-text {
@@ -62,7 +63,7 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
     }
 
     .nav-links {
@@ -76,8 +77,8 @@
       color: #fff;
       font-size: 15px;
       font-weight: 700;
-      background: none;
-      border: 0;
+      background: transparent;
+      border: none;
       cursor: pointer;
     }
 
@@ -87,26 +88,40 @@
     }
 
     /* =========================
-       DESKTOP CATEGORY MENU
+       CART
     ========================= */
 
-    .products-menu {
-      position: relative;
+    .cart-button {
+      background: #00aef0 !important;
+      color: #fff !important;
+      padding: 9px 14px;
+      border-radius: 8px;
     }
 
+    .cart-button:hover {
+      background: #008fc5 !important;
+    }
+
+    /* =========================
+       CATEGORY DROPDOWN
+       IMPORTANT:
+       OUTSIDE NAV
+    ========================= */
+
     .category-dropdown {
-      position: absolute;
-      right: 0;
-      top: 38px;
-      width: 310px;
+      position: fixed;
+      top: 78px;
+      right: 6%;
+      width: 320px;
       max-height: 70vh;
       overflow-y: auto;
       background: #fff;
+      border: 1px solid #e9e9e9;
       border-radius: 12px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.18);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.20);
       padding: 10px;
       display: none;
-      border: 1px solid #eee;
+      z-index: 5000;
     }
 
     .category-dropdown.active {
@@ -115,16 +130,18 @@
 
     .category-dropdown a {
       display: block;
+      width: 100%;
+      color: #111;
       padding: 11px 12px;
       border-radius: 8px;
-      color: #111;
       font-size: 13px;
       font-weight: 700;
+      line-height: 1.25;
     }
 
     .category-dropdown a:hover {
       background: #eefaff;
-      color: #0099d4;
+      color: #008fc5;
     }
 
     /* =========================
@@ -138,8 +155,8 @@
     .search-btn {
       width: 38px;
       height: 38px;
-      border: 1px solid rgba(255,255,255,0.28);
       border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
       background: #181818;
       color: #fff;
       display: flex;
@@ -151,20 +168,20 @@
     .search-btn svg {
       width: 18px;
       height: 18px;
-      display: block;
     }
 
     .search-panel {
       position: absolute;
-      right: 0;
       top: 47px;
-      width: 330px;
+      right: 0;
+      width: 340px;
       background: #fff;
       border-radius: 12px;
-      padding: 12px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.18);
-      display: none;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.20);
       border: 1px solid #eee;
+      padding: 12px;
+      display: none;
+      z-index: 5000;
     }
 
     .search-panel.active {
@@ -173,9 +190,9 @@
 
     .search-input {
       width: 100%;
-      padding: 12px 13px;
       border: 1px solid #ddd;
       border-radius: 9px;
+      padding: 12px;
       outline: none;
       font-size: 14px;
     }
@@ -192,16 +209,16 @@
 
     .search-result {
       width: 100%;
-      text-align: left;
-      border: 0;
+      border: none;
       background: #fff;
-      padding: 10px;
+      text-align: left;
       border-radius: 8px;
-      cursor: pointer;
+      padding: 10px;
       display: flex;
       justify-content: space-between;
-      gap: 10px;
       align-items: center;
+      gap: 8px;
+      cursor: pointer;
     }
 
     .search-result:hover {
@@ -209,15 +226,15 @@
     }
 
     .search-result-name {
+      color: #111;
       font-size: 13px;
       font-weight: 700;
-      color: #111;
     }
 
     .search-result-cat {
-      font-size: 11px;
       color: #777;
-      white-space: nowrap;
+      font-size: 10px;
+      text-align: right;
     }
 
     .no-results {
@@ -227,25 +244,24 @@
     }
 
     /* =========================
-       CART BUTTON
-    ========================= */
-
-    .cart-button {
-      background: #00aef0 !important;
-      padding: 9px 13px;
-      border-radius: 8px;
-    }
-
-    .cart-button:hover {
-      color: #fff !important;
-      background: #008fc5 !important;
-    }
-
-    /* =========================
-       MOBILE MENU BUTTON
+       MOBILE MENU
     ========================= */
 
     .mobile-menu-btn {
+      display: none;
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: #181818;
+      color: #fff;
+      font-size: 23px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .mobile-category-menu {
       display: none;
     }
 
@@ -266,12 +282,13 @@
     .page-header p {
       color: #666;
       font-size: 17px;
+      line-height: 1.5;
     }
 
     .active-category {
       display: inline-block;
       margin-top: 15px;
-      padding: 8px 13px;
+      padding: 8px 14px;
       border-radius: 999px;
       background: #e9f8ff;
       color: #008fc5;
@@ -307,14 +324,22 @@
       transform: translateY(-5px);
     }
 
-    .product-card img {
+    .product-image-wrap {
       width: 100%;
       height: 260px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100%;
       object-fit: contain;
       display: block;
-      background: #fff;
       padding: 8px;
-      flex-shrink: 0;
     }
 
     .product-info {
@@ -322,41 +347,41 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      min-height: 178px;
+      min-height: 175px;
     }
 
     .product-info h3 {
       font-size: 17px;
       line-height: 1.4;
       font-weight: 700;
-      margin-bottom: 11px;
+      margin-bottom: 12px;
     }
 
     .product-price {
       color: #00aef0;
-      font-size: 20px;
+      font-size: 17px;
       font-weight: 800;
       margin-bottom: 15px;
     }
 
     .price-note {
       color: #777;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
     }
 
     .product-actions {
+      margin-top: auto;
       display: flex;
       gap: 8px;
-      margin-top: auto;
     }
 
     .view-btn,
     .cart-btn {
       flex: 1;
-      padding: 11px 8px;
-      border: 0;
+      border: none;
       border-radius: 7px;
+      padding: 11px 7px;
       cursor: pointer;
       font-size: 12px;
       font-weight: 800;
@@ -382,16 +407,16 @@
 
     .empty-category {
       grid-column: 1 / -1;
-      text-align: center;
       background: #fff;
       border-radius: 15px;
       padding: 60px 20px;
+      text-align: center;
       color: #777;
       box-shadow: 0 8px 25px rgba(0,0,0,0.05);
     }
 
     /* =========================
-       CART
+       CART OVERLAY
     ========================= */
 
     .cart-overlay {
@@ -400,7 +425,7 @@
       background: rgba(0,0,0,0.55);
       display: none;
       justify-content: flex-end;
-      z-index: 3000;
+      z-index: 7000;
     }
 
     .cart-overlay.active {
@@ -418,8 +443,8 @@
 
     .cart-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 25px;
     }
 
@@ -428,8 +453,8 @@
     }
 
     .close-cart {
-      border: 0;
-      background: none;
+      background: transparent;
+      border: none;
       font-size: 30px;
       cursor: pointer;
     }
@@ -446,8 +471,8 @@
       height: 75px;
       object-fit: contain;
       background: #fff;
-      border-radius: 8px;
       border: 1px solid #eee;
+      border-radius: 8px;
       flex-shrink: 0;
     }
 
@@ -457,15 +482,15 @@
 
     .cart-item-details h4 {
       font-size: 13px;
-      margin-bottom: 7px;
       line-height: 1.35;
+      margin-bottom: 8px;
     }
 
     .cart-item-price {
       color: #00aef0;
+      font-size: 13px;
       font-weight: 700;
       margin-bottom: 8px;
-      font-size: 14px;
     }
 
     .quantity-controls {
@@ -484,32 +509,32 @@
     }
 
     .remove-btn {
-      margin-top: 7px;
-      border: 0;
+      border: none;
       background: none;
       color: #e33;
       cursor: pointer;
+      margin-top: 7px;
       font-size: 12px;
     }
 
     .cart-total {
       margin-top: 25px;
-      font-size: 21px;
-      font-weight: 800;
       display: flex;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 800;
     }
 
     .checkout-btn {
       width: 100%;
       margin-top: 20px;
-      padding: 15px;
-      border: 0;
+      border: none;
       border-radius: 8px;
+      padding: 15px;
       background: #00aef0;
       color: #fff;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
     }
@@ -541,7 +566,7 @@
     }
 
     /* =========================
-       RESPONSIVE
+       TABLET
     ========================= */
 
     @media (max-width: 1000px) {
@@ -551,6 +576,10 @@
       }
 
     }
+
+    /* =========================
+       MOBILE
+    ========================= */
 
     @media (max-width: 750px) {
 
@@ -564,34 +593,32 @@
 
       .mobile-menu-btn {
         display: flex;
-        width: 38px;
-        height: 38px;
-        border: 1px solid rgba(255,255,255,0.22);
-        border-radius: 9px;
-        background: #181818;
-        color: #fff;
-        align-items: center;
-        justify-content: center;
-        font-size: 23px;
-        cursor: pointer;
       }
 
       .nav-right {
         gap: 8px;
       }
 
+      /* DESKTOP CATEGORY MENU HIDDEN */
+
+      .category-dropdown {
+        display: none !important;
+      }
+
+      /* MOBILE CATEGORY MENU */
+
       .mobile-category-menu {
-        position: absolute;
+        position: fixed;
+        top: 62px;
         right: 18px;
-        top: 59px;
         width: 300px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 15px 45px rgba(0,0,0,0.18);
-        padding: 10px;
-        display: none;
         max-height: 75vh;
         overflow-y: auto;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 18px 45px rgba(0,0,0,0.20);
+        padding: 10px;
+        z-index: 6000;
       }
 
       .mobile-category-menu.active {
@@ -600,20 +627,16 @@
 
       .mobile-category-menu a {
         display: block;
+        color: #111;
         padding: 11px 12px;
         border-radius: 8px;
-        color: #111;
         font-size: 13px;
         font-weight: 700;
       }
 
       .mobile-category-menu a:hover {
         background: #eefaff;
-        color: #0099d4;
-      }
-
-      .category-dropdown {
-        display: none !important;
+        color: #008fc5;
       }
 
       .products-grid {
@@ -622,7 +645,7 @@
         padding: 0 14px;
       }
 
-      .product-card img {
+      .product-image-wrap {
         height: 230px;
       }
 
@@ -635,13 +658,11 @@
         font-size: 15px;
       }
 
-      .view-btn,
-      .cart-btn {
-        font-size: 11px;
-        padding: 10px 6px;
-      }
-
     }
+
+    /* =========================
+       SMALL MOBILE
+    ========================= */
 
     @media (max-width: 500px) {
 
@@ -650,7 +671,7 @@
       }
 
       .page-header {
-        padding: 40px 15px 24px;
+        padding: 40px 15px 25px;
       }
 
       .page-header h1 {
@@ -659,38 +680,33 @@
 
       .page-header p {
         font-size: 15px;
-        line-height: 1.5;
       }
 
       .products-grid {
         grid-template-columns: repeat(2, 1fr);
-        padding: 0 10px;
         gap: 10px;
+        padding: 0 10px;
+      }
+
+      .product-image-wrap {
+        height: 185px;
       }
 
       .product-card img {
-        height: 185px;
         padding: 5px;
       }
 
       .product-info {
-        padding: 11px;
+        padding: 10px;
         min-height: 155px;
       }
 
       .product-info h3 {
         font-size: 13px;
-        line-height: 1.35;
-        margin-bottom: 8px;
       }
 
       .product-price {
-        font-size: 16px;
-        margin-bottom: 10px;
-      }
-
-      .product-actions {
-        gap: 5px;
+        font-size: 15px;
       }
 
       .view-btn,
@@ -703,12 +719,13 @@
         position: fixed;
         left: 10px;
         right: 10px;
-        top: 66px;
+        top: 65px;
         width: auto;
       }
 
-      .cart-panel {
-        padding: 18px;
+      .mobile-category-menu {
+        right: 10px;
+        width: calc(100vw - 20px);
       }
 
     }
@@ -717,7 +734,9 @@
 
 </head>
 
+
 <body>
+
 
   <!-- =========================
        NAVBAR
@@ -725,7 +744,9 @@
 
   <nav>
 
-    <a href="index.html" class="logo-link" aria-label="Go to homepage">
+    <a
+      href="index.html"
+      class="logo-link">
 
       <div class="logo-text">
         CRAFTIO <span>GIFTS</span>
@@ -733,9 +754,11 @@
 
     </a>
 
+
     <div class="nav-right">
 
-      <!-- DESKTOP NAV -->
+
+      <!-- DESKTOP -->
 
       <div class="nav-links">
 
@@ -743,25 +766,21 @@
           Home
         </a>
 
-        <div class="products-menu">
 
-          <button
-            class="products-menu-btn"
-            id="productsMenuBtn"
-            type="button">
-            Products ▾
-          </button>
+        <button
+          type="button"
+          class="products-menu-btn"
+          id="productsMenuBtn">
 
-          <div
-            class="category-dropdown"
-            id="categoryDropdown">
-          </div>
+          Products ▾
 
-        </div>
+        </button>
+
 
         <a href="index.html#contact">
           Contact
         </a>
+
 
         <a
           href="#"
@@ -775,15 +794,16 @@
 
       </div>
 
+
       <!-- SEARCH -->
 
       <div class="search-wrap">
 
         <button
+          type="button"
           class="search-btn"
           id="searchBtn"
-          type="button"
-          aria-label="Search products">
+          aria-label="Search">
 
           <svg
             viewBox="0 0 24 24"
@@ -791,8 +811,7 @@
             stroke="currentColor"
             stroke-width="2.2"
             stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true">
+            stroke-linejoin="round">
 
             <circle
               cx="11"
@@ -811,14 +830,15 @@
 
         </button>
 
+
         <div
           class="search-panel"
           id="searchPanel">
 
           <input
+            type="search"
             id="searchInput"
             class="search-input"
-            type="search"
             placeholder="Search products..."
             autocomplete="off">
 
@@ -831,28 +851,49 @@
 
       </div>
 
-      <!-- MOBILE MENU -->
+
+      <!-- MOBILE -->
 
       <button
+        type="button"
         class="mobile-menu-btn"
         id="mobileMenuBtn"
-        type="button"
         aria-label="Open categories">
+
         ☰
+
       </button>
 
-    </div>
 
-    <div
-      class="mobile-category-menu"
-      id="mobileCategoryMenu">
     </div>
 
   </nav>
 
 
   <!-- =========================
-       PAGE HEADER
+       DESKTOP CATEGORY BOX
+       IMPORTANT:
+       THIS IS OUTSIDE NAV
+  ========================= -->
+
+  <div
+    class="category-dropdown"
+    id="categoryDropdown">
+  </div>
+
+
+  <!-- =========================
+       MOBILE CATEGORY BOX
+  ========================= -->
+
+  <div
+    class="mobile-category-menu"
+    id="mobileCategoryMenu">
+  </div>
+
+
+  <!-- =========================
+       HEADER
   ========================= -->
 
   <section class="page-header">
@@ -868,7 +909,9 @@
     <div
       class="active-category"
       id="activeCategoryLabel">
+
       ALL PRODUCTS
+
     </div>
 
   </section>
@@ -897,6 +940,7 @@
       class="cart-panel"
       onclick="event.stopPropagation()">
 
+
       <div class="cart-header">
 
         <h2>
@@ -904,15 +948,19 @@
         </h2>
 
         <button
-          class="close-cart"
           type="button"
+          class="close-cart"
           onclick="closeCart()">
+
           ×
+
         </button>
 
       </div>
 
+
       <div id="cartItems"></div>
+
 
       <div class="cart-total">
 
@@ -926,14 +974,16 @@
 
       </div>
 
+
       <button
-        class="checkout-btn"
         type="button"
+        class="checkout-btn"
         onclick="window.location.href='checkout.html'">
 
         PROCEED TO CHECKOUT
 
       </button>
+
 
     </div>
 
@@ -1000,12 +1050,14 @@
 
     /* =========================
        PRODUCTS
-       NEW UPLOADED IMAGES ONLY
+       49 NEW IMAGES
     ========================= */
 
     const products = [
 
-      /* ISLAMIC COLLECTION */
+      /* =========================
+         ISLAMIC
+      ========================= */
 
       {
         id: "islamic-1",
@@ -1050,7 +1102,9 @@
       },
 
 
-      /* LED PICTURE FRAME */
+      /* =========================
+         LED PICTURE FRAME
+      ========================= */
 
       {
         id: "led-birthday-frame-1",
@@ -1074,7 +1128,9 @@
       },
 
 
-      /* NIKKAH FRAMES */
+      /* =========================
+         NIKKAH
+      ========================= */
 
       {
         id: "nikkah-1",
@@ -1126,7 +1182,9 @@
       },
 
 
-      /* BIRTHDAY FRAMES */
+      /* =========================
+         BIRTHDAY
+      ========================= */
 
       {
         id: "birthday-frame-1",
@@ -1185,7 +1243,9 @@
       },
 
 
-      /* PICTURE FRAMES */
+      /* =========================
+         PICTURE FRAMES
+      ========================= */
 
       {
         id: "picture-frame-1",
@@ -1202,7 +1262,9 @@
       },
 
 
-      /* MUG COLLECTION */
+      /* =========================
+         MUG COLLECTION
+      ========================= */
 
       {
         id: "mug-1",
@@ -1233,7 +1295,9 @@
       },
 
 
-      /* MAGIC MUGS */
+      /* =========================
+         MAGIC MUGS
+      ========================= */
 
       {
         id: "magic-mug-1",
@@ -1250,7 +1314,9 @@
       },
 
 
-      /* SOCIAL PVC CARDS */
+      /* =========================
+         SOCIAL PVC CARDS
+      ========================= */
 
       {
         id: "social-card-1",
@@ -1260,7 +1326,9 @@
       },
 
 
-      /* FRIENDSHIP LICENSE CARD */
+      /* =========================
+         FRIENDSHIP
+      ========================= */
 
       {
         id: "friendship-card-1",
@@ -1277,7 +1345,9 @@
       },
 
 
-      /* EYE NECKLACE */
+      /* =========================
+         EYE NECKLACE
+      ========================= */
 
       {
         id: "necklace-1",
@@ -1329,7 +1399,9 @@
       },
 
 
-      /* WEDDING RING PLATES */
+      /* =========================
+         WEDDING RING PLATES
+      ========================= */
 
       {
         id: "nikkah-plaque-1",
@@ -1346,17 +1418,31 @@
       },
 
 
-      /* TRENDY CHARTS */
+      /* =========================
+         TRENDY CHARTS
+      ========================= */
 
       {
         id: "trendy-chart-1",
         name: "CUSTOMIZED TRENDY CHART 1",
         category: "TRENDY CHARTS",
-        image: "trendy chart 1.jpg"
+        image: "trendy chart 1.jpg",
+
+        /* FALLBACK FILE NAMES */
+        fallbackImages: [
+          "trendy chart 1.jpg",
+          "trendy chart 1.jpeg",
+          "Trendy chart 1.jpg",
+          "TRENDY CHART 1.jpg",
+          "TRENDY CHARTS.jpeg"
+        ]
+
       },
 
 
-      /* NAME KEYCHAINS */
+      /* =========================
+         NAME KEYCHAINS
+      ========================= */
 
       {
         id: "name-keychain-1",
@@ -1366,7 +1452,9 @@
       },
 
 
-      /* PVC CARD */
+      /* =========================
+         PVC CARD
+      ========================= */
 
       {
         id: "pvc-card-1",
@@ -1376,7 +1464,9 @@
       },
 
 
-      /* MAGIC LAMPS */
+      /* =========================
+         MAGIC LAMPS
+      ========================= */
 
       {
         id: "moon-lamp-1",
@@ -1396,7 +1486,7 @@
 
 
     /* =========================
-       IMAGE URL
+       IMAGE PATH
     ========================= */
 
     function imageSrc(fileName) {
@@ -1407,28 +1497,80 @@
 
 
     /* =========================
-       CATEGORY URL
+       IMAGE FALLBACK
     ========================= */
 
-    function categoryUrl(category) {
+    function setImageFallback(img, product) {
 
-      return "products.html?category=" +
-        encodeURIComponent(category);
+      if (
+        !product.fallbackImages ||
+        product.fallbackImages.length === 0
+      ) {
+        return;
+      }
+
+
+      let currentIndex =
+        Number(
+          img.dataset.fallbackIndex || 0
+        );
+
+
+      currentIndex++;
+
+
+      if (
+        currentIndex >=
+        product.fallbackImages.length
+      ) {
+        return;
+      }
+
+
+      img.dataset.fallbackIndex =
+        currentIndex;
+
+
+      img.src =
+        imageSrc(
+          product.fallbackImages[
+            currentIndex
+          ]
+        );
 
     }
 
 
     /* =========================
-       GET SELECTED CATEGORY
+       CATEGORY URL
+    ========================= */
+
+    function categoryUrl(category) {
+
+      return (
+        "products.html?category=" +
+        encodeURIComponent(category)
+      );
+
+    }
+
+
+    /* =========================
+       SELECTED CATEGORY
     ========================= */
 
     function getSelectedCategory() {
 
-      const value =
-        new URLSearchParams(window.location.search)
-          .get("category");
+      const params =
+        new URLSearchParams(
+          window.location.search
+        );
 
-      return value || "ALL";
+
+      return (
+        params.get("category") ||
+        "ALL"
+      );
 
     }
 
@@ -1440,26 +1582,40 @@
     function populateCategoryMenus() {
 
       const desktop =
-        document.getElementById("categoryDropdown");
+        document.getElementById(
+          "categoryDropdown"
+        );
+
 
       const mobile =
-        document.getElementById("mobileCategoryMenu");
+        document.getElementById(
+          "mobileCategoryMenu"
+        );
 
-      const allLink =
-        `<a href="${categoryUrl("ALL")}">ALL PRODUCTS</a>`;
+
+      const all =
+        `<a href="${categoryUrl("ALL")}">
+          ALL PRODUCTS
+        </a>`;
+
 
       const links =
         categories
-          .map(category =>
-            `<a href="${categoryUrl(category)}">${category}</a>`
+          .map(
+            category =>
+              `<a href="${categoryUrl(category)}">
+                ${category}
+              </a>`
           )
           .join("");
 
+
       desktop.innerHTML =
-        allLink + links;
+        all + links;
+
 
       mobile.innerHTML =
-        allLink + links;
+        all + links;
 
     }
 
@@ -1473,33 +1629,51 @@
       const selected =
         getSelectedCategory();
 
+
       const grid =
-        document.getElementById("productsGrid");
+        document.getElementById(
+          "productsGrid"
+        );
+
 
       const label =
-        document.getElementById("activeCategoryLabel");
+        document.getElementById(
+          "activeCategoryLabel"
+        );
 
-      const visible =
+
+      const visibleProducts =
         selected === "ALL"
+
           ? products
+
           : products.filter(
               product =>
-                product.category === selected
+                product.category ===
+                selected
             );
+
 
       label.textContent =
         selected === "ALL"
           ? "ALL PRODUCTS"
           : selected;
 
-      if (!visible.length) {
+
+      if (
+        visibleProducts.length === 0
+      ) {
 
         grid.innerHTML = `
+
           <div class="empty-category">
+
             No products have been added in
             <strong>${selected}</strong>
             yet.
+
           </div>
+
         `;
 
         return;
@@ -1508,56 +1682,69 @@
 
 
       grid.innerHTML =
-        visible
-          .map(product => `
+        visibleProducts
+          .map(
+            product => `
 
-            <div class="product-card">
+              <div class="product-card">
 
-              <img
-                src="${imageSrc(product.image)}"
-                alt="${product.name}"
-                loading="lazy"
-              >
+                <div class="product-image-wrap">
 
-              <div class="product-info">
+                  <img
+                    src="${imageSrc(product.image)}"
+                    alt="${product.name}"
+                    loading="lazy"
+                    onerror="setImageFallback(this, ${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                  >
 
-                <h3>
-                  ${product.name}
-                </h3>
-
-                <div class="product-price">
-                  <span class="price-note">
-                    Price will be updated
-                  </span>
                 </div>
 
-                <div class="product-actions">
 
-                  <button
-                    class="view-btn"
-                    type="button"
-                    onclick="openProduct('${product.id}')">
+                <div class="product-info">
 
-                    VIEW PRODUCT
+                  <h3>
+                    ${product.name}
+                  </h3>
 
-                  </button>
 
-                  <button
-                    class="cart-btn"
-                    type="button"
-                    onclick="addToCart('${product.id}')">
+                  <div class="product-price">
 
-                    🛒 ADD
+                    <span class="price-note">
+                      Price will be updated
+                    </span>
 
-                  </button>
+                  </div>
+
+
+                  <div class="product-actions">
+
+                    <button
+                      type="button"
+                      class="view-btn"
+                      onclick="openProduct('${product.id}')">
+
+                      VIEW PRODUCT
+
+                    </button>
+
+
+                    <button
+                      type="button"
+                      class="cart-btn"
+                      onclick="addToCart('${product.id}')">
+
+                      🛒 ADD
+
+                    </button>
+
+                  </div>
 
                 </div>
 
               </div>
 
-            </div>
-
-          `)
+            `
+          )
           .join("");
 
     }
@@ -1571,7 +1758,9 @@
 
       window.location.href =
         "product.html?product=" +
-        encodeURIComponent(productId);
+        encodeURIComponent(
+          productId
+        );
 
     }
 
@@ -1581,26 +1770,43 @@
     ========================= */
 
     const searchBtn =
-      document.getElementById("searchBtn");
+      document.getElementById(
+        "searchBtn"
+      );
+
 
     const searchPanel =
-      document.getElementById("searchPanel");
+      document.getElementById(
+        "searchPanel"
+      );
+
 
     const searchInput =
-      document.getElementById("searchInput");
+      document.getElementById(
+        "searchInput"
+      );
+
 
     const searchResults =
-      document.getElementById("searchResults");
+      document.getElementById(
+        "searchResults"
+      );
 
 
-    function renderSearchResults(query) {
+    function renderSearchResults(
+      query
+    ) {
 
       const q =
-        query.trim().toLowerCase();
+        query
+          .trim()
+          .toLowerCase();
+
 
       if (!q) {
 
-        searchResults.innerHTML = "";
+        searchResults.innerHTML =
+          "";
 
         return;
 
@@ -1609,28 +1815,34 @@
 
       const matches =
         products
-          .filter(product =>
+          .filter(
+            product =>
 
-            product.name
-              .toLowerCase()
-              .includes(q)
+              product.name
+                .toLowerCase()
+                .includes(q)
 
-            ||
+              ||
 
-            product.category
-              .toLowerCase()
-              .includes(q)
+              product.category
+                .toLowerCase()
+                .includes(q)
 
           )
           .slice(0, 8);
 
 
-      if (!matches.length) {
+      if (
+        matches.length === 0
+      ) {
 
-        searchResults.innerHTML =
-          `<div class="no-results">
+        searchResults.innerHTML = `
+
+          <div class="no-results">
             No matching product found.
-          </div>`;
+          </div>
+
+        `;
 
         return;
 
@@ -1639,24 +1851,26 @@
 
       searchResults.innerHTML =
         matches
-          .map(product => `
+          .map(
+            product => `
 
-            <button
-              class="search-result"
-              type="button"
-              onclick="openProduct('${product.id}')">
+              <button
+                type="button"
+                class="search-result"
+                onclick="openProduct('${product.id}')">
 
-              <span class="search-result-name">
-                ${product.name}
-              </span>
+                <span class="search-result-name">
+                  ${product.name}
+                </span>
 
-              <span class="search-result-cat">
-                ${product.category}
-              </span>
+                <span class="search-result-cat">
+                  ${product.category}
+                </span>
 
-            </button>
+              </button>
 
-          `)
+            `
+          )
           .join("");
 
     }
@@ -1664,18 +1878,31 @@
 
     searchBtn.addEventListener(
       "click",
-      event => {
+      function(event) {
 
         event.stopPropagation();
+
 
         searchPanel
           .classList
           .toggle("active");
 
+
         document
-          .getElementById("categoryDropdown")
+          .getElementById(
+            "categoryDropdown"
+          )
           .classList
           .remove("active");
+
+
+        document
+          .getElementById(
+            "mobileCategoryMenu"
+          )
+          .classList
+          .remove("active");
+
 
         if (
           searchPanel
@@ -1693,44 +1920,28 @@
 
     searchInput.addEventListener(
       "input",
-      () =>
+      function() {
+
         renderSearchResults(
           searchInput.value
-        )
+        );
+
+      }
     );
 
 
     searchPanel.addEventListener(
       "click",
-      event =>
-        event.stopPropagation()
-    );
+      function(event) {
 
-
-    document.addEventListener(
-      "click",
-      () => {
-
-        searchPanel
-          .classList
-          .remove("active");
-
-        document
-          .getElementById("categoryDropdown")
-          .classList
-          .remove("active");
-
-        document
-          .getElementById("mobileCategoryMenu")
-          .classList
-          .remove("active");
+        event.stopPropagation();
 
       }
     );
 
 
     /* =========================
-       DESKTOP CATEGORY BUTTON
+       DESKTOP PRODUCTS MENU
     ========================= */
 
     const productsMenuBtn =
@@ -1741,14 +1952,26 @@
 
     productsMenuBtn.addEventListener(
       "click",
-      event => {
+      function(event) {
 
         event.stopPropagation();
 
+
         document
-          .getElementById("categoryDropdown")
+          .getElementById(
+            "categoryDropdown"
+          )
           .classList
           .toggle("active");
+
+
+        document
+          .getElementById(
+            "mobileCategoryMenu"
+          )
+          .classList
+          .remove("active");
+
 
         searchPanel
           .classList
@@ -1759,7 +1982,7 @@
 
 
     /* =========================
-       MOBILE CATEGORY BUTTON
+       MOBILE MENU
     ========================= */
 
     const mobileMenuBtn =
@@ -1770,14 +1993,26 @@
 
     mobileMenuBtn.addEventListener(
       "click",
-      event => {
+      function(event) {
 
         event.stopPropagation();
 
+
         document
-          .getElementById("mobileCategoryMenu")
+          .getElementById(
+            "mobileCategoryMenu"
+          )
           .classList
           .toggle("active");
+
+
+        document
+          .getElementById(
+            "categoryDropdown"
+          )
+          .classList
+          .remove("active");
+
 
         searchPanel
           .classList
@@ -1789,13 +2024,62 @@
 
     document
       .getElementById(
+        "categoryDropdown"
+      )
+      .addEventListener(
+        "click",
+        function(event) {
+
+          event.stopPropagation();
+
+        }
+      );
+
+
+    document
+      .getElementById(
         "mobileCategoryMenu"
       )
       .addEventListener(
         "click",
-        event =>
-          event.stopPropagation()
+        function(event) {
+
+          event.stopPropagation();
+
+        }
       );
+
+
+    /* =========================
+       CLOSE MENUS
+    ========================= */
+
+    document.addEventListener(
+      "click",
+      function() {
+
+        document
+          .getElementById(
+            "categoryDropdown"
+          )
+          .classList
+          .remove("active");
+
+
+        document
+          .getElementById(
+            "mobileCategoryMenu"
+          )
+          .classList
+          .remove("active");
+
+
+        searchPanel
+          .classList
+          .remove("active");
+
+      }
+    );
 
 
     /* =========================
@@ -1806,11 +2090,13 @@
 
       try {
 
-        return JSON.parse(
-          localStorage.getItem(
-            "craftioCart"
-          )
-        ) || [];
+        return (
+          JSON.parse(
+            localStorage.getItem(
+              "craftioCart"
+            )
+          ) || []
+        );
 
       } catch (error) {
 
@@ -1836,10 +2122,12 @@
       const cart =
         getCart();
 
+
       const existing =
         cart.find(
           item =>
-            item.id === productId
+            item.id ===
+            productId
         );
 
 
@@ -1872,15 +2160,26 @@
 
       const count =
         getCart().reduce(
-          (sum, item) =>
-            sum +
-            (Number(item.quantity) || 0),
+          function(total, item) {
+
+            return (
+              total +
+              (
+                Number(
+                  item.quantity
+                ) || 0
+              )
+            );
+
+          },
           0
         );
 
 
       document
-        .getElementById("cartCount")
+        .getElementById(
+          "cartCount"
+        )
         .textContent = count;
 
     }
@@ -1894,26 +2193,33 @@
       const cart =
         getCart();
 
+
       const item =
         cart.find(
           i =>
-            i.id === productId
+            i.id ===
+            productId
         );
 
 
       if (!item) return;
 
 
-      item.quantity += change;
+      item.quantity +=
+        change;
 
 
-      if (item.quantity <= 0) {
+      if (
+        item.quantity <= 0
+      ) {
 
         const index =
           cart.findIndex(
             i =>
-              i.id === productId
+              i.id ===
+              productId
           );
+
 
         cart.splice(
           index,
@@ -1939,7 +2245,8 @@
       const cart =
         getCart().filter(
           item =>
-            item.id !== productId
+            item.id !==
+            productId
         );
 
 
@@ -1957,112 +2264,139 @@
       const cart =
         getCart();
 
-      const itemsBox =
+
+      const cartItems =
         document.getElementById(
           "cartItems"
         );
 
-      const totalBox =
+
+      const cartTotal =
         document.getElementById(
           "cartTotal"
         );
 
 
-      if (!cart.length) {
+      if (
+        cart.length === 0
+      ) {
 
-        itemsBox.innerHTML = `
+        cartItems.innerHTML = `
+
           <div class="empty-cart">
             Your cart is empty.
           </div>
+
         `;
 
-        totalBox.textContent =
+
+        cartTotal.textContent =
           "Rs. 0";
+
 
         return;
 
       }
 
 
-      itemsBox.innerHTML = "";
-
-      let hasUnpriced = false;
-
-
-      cart.forEach(item => {
-
-        const product =
-          products.find(
-            p =>
-              p.id === item.id
-          );
+      cartItems.innerHTML =
+        "";
 
 
-        if (!product) return;
+      let count =
+        0;
 
 
-        hasUnpriced = true;
+      cart.forEach(
+        function(item) {
+
+          const product =
+            products.find(
+              p =>
+                p.id ===
+                item.id
+            );
 
 
-        itemsBox.innerHTML += `
+          if (!product) {
+            return;
+          }
 
-          <div class="cart-item">
 
-            <img
-              src="${imageSrc(product.image)}"
-              alt="${product.name}"
-            >
+          count++;
 
-            <div class="cart-item-details">
 
-              <h4>
-                ${product.name}
-              </h4>
+          cartItems.innerHTML += `
 
-              <div class="cart-item-price">
-                Price will be updated
-              </div>
+            <div class="cart-item">
 
-              <div class="quantity-controls">
+              <img
+                src="${imageSrc(product.image)}"
+                alt="${product.name}"
+                onerror="setImageFallback(this, ${JSON.stringify(product).replace(/"/g, '&quot;')})"
+              >
+
+
+              <div class="cart-item-details">
+
+                <h4>
+                  ${product.name}
+                </h4>
+
+
+                <div class="cart-item-price">
+                  Price will be updated
+                </div>
+
+
+                <div class="quantity-controls">
+
+                  <button
+                    type="button"
+                    onclick="changeQuantity('${product.id}', -1)">
+
+                    −
+
+                  </button>
+
+
+                  <span>
+                    ${item.quantity}
+                  </span>
+
+
+                  <button
+                    type="button"
+                    onclick="changeQuantity('${product.id}', 1)">
+
+                    +
+
+                  </button>
+
+                </div>
+
 
                 <button
                   type="button"
-                  onclick="changeQuantity('${product.id}', -1)">
-                  −
-                </button>
+                  class="remove-btn"
+                  onclick="removeFromCart('${product.id}')">
 
-                <span>
-                  ${item.quantity}
-                </span>
+                  Remove
 
-                <button
-                  type="button"
-                  onclick="changeQuantity('${product.id}', 1)">
-                  +
                 </button>
 
               </div>
-
-              <button
-                class="remove-btn"
-                type="button"
-                onclick="removeFromCart('${product.id}')">
-                Remove
-              </button>
 
             </div>
 
-          </div>
+          `;
 
-        `;
+        }
+      );
 
-      });
 
-
-      totalBox.textContent =
-        hasUnpriced
-          ? "Price to be confirmed"
-          : "Rs. 0";
+      cartTotal.textContent =
+        "Price to be confirmed";
 
     }
 
@@ -2070,9 +2404,12 @@
     function openCart() {
 
       document
-        .getElementById("cartOverlay")
+        .getElementById(
+          "cartOverlay"
+        )
         .classList
         .add("active");
+
 
       renderCart();
 
@@ -2082,7 +2419,9 @@
     function closeCart() {
 
       document
-        .getElementById("cartOverlay")
+        .getElementById(
+          "cartOverlay"
+        )
         .classList
         .remove("active");
 
@@ -2104,4 +2443,5 @@
   </script>
 
 </body>
+
 </html>
