@@ -11,691 +11,710 @@
 
   <style>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #111;
+    body{
+      font-family:Arial,Helvetica,sans-serif;
+      background:#f7f7f7;
+      color:#111;
+      overflow-x:hidden;
     }
 
     /* =========================
        NAVBAR
     ========================= */
 
-    nav {
-      background: #111;
-      color: #fff;
-      padding: 16px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 2px solid #00aef0;
+    nav{
+      width:100%;
+      background:#111;
+      color:#fff;
+      padding:16px 7%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      border-bottom:2px solid #00aef0;
     }
 
-    .logo-link {
-      text-decoration: none;
-      color: inherit;
+    .logo-link{
+      text-decoration:none;
+      color:#fff;
     }
 
-    .logo-text {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: 1px;
+    .logo-text{
+      font-size:25px;
+      font-weight:800;
+      letter-spacing:1px;
     }
 
-    .logo-text span {
-      color: #00aef0;
+    .logo-text span{
+      color:#00aef0;
     }
 
-    .nav-tools {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      position: relative;
+    .nav-tools{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      position:relative;
     }
 
-    /* =========================
-       MOBILE MENU BUTTON
-       HIDDEN ON DESKTOP
-    ========================= */
+    /* SEARCH ICON */
 
-    .mobile-category-left {
-      display: none !important;
+    .search-icon{
+      width:34px;
+      height:34px;
+      padding:0;
+      border:none;
+      background:transparent;
+      color:#fff;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:6px;
     }
 
-    /* =========================
-       SEARCH ICON
-    ========================= */
-
-    .search-icon {
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      color: #ffffff;
+    .search-icon:hover{
+      background:rgba(0,174,240,.15);
+      color:#00aef0;
     }
 
-    .search-icon:hover {
-      background: rgba(0,174,240,.15);
-      color: #00aef0;
+    .search-icon svg{
+      width:20px;
+      height:20px;
+      display:block;
+      stroke:currentColor;
     }
 
-    .search-icon svg {
-      width: 20px;
-      height: 20px;
-      display: block;
-      stroke: currentColor;
+    /* PRODUCTS */
+
+    .category-btn{
+      height:42px;
+      border:none;
+      border-radius:8px;
+      background:#00aef0;
+      color:#fff;
+      padding:0 15px;
+      cursor:pointer;
+      font-size:15px;
+      font-weight:700;
     }
 
-    /* =========================
-       PRODUCTS BUTTON
-    ========================= */
-
-    .category-btn {
-      width: auto;
-      height: 42px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 15px;
-      background: #00aef0;
-      color: #ffffff;
-      font-size: 15px;
-      font-weight: 700;
+    .category-btn:hover{
+      background:#008dcc;
     }
 
-    .category-btn:hover {
-      background: #008dcc;
+    /* MOBILE MENU BUTTON */
+
+    .mobile-category-left{
+      display:none !important;
     }
 
-    .category-btn .mobile-menu-icon {
-      display: none;
+    /* CART */
+
+    .cart-button{
+      background:#00aef0;
+      color:#fff;
+      text-decoration:none;
+      padding:10px 15px;
+      border-radius:8px;
+      white-space:nowrap;
+      font-weight:600;
     }
 
-    /* =========================
-       CART
-    ========================= */
-
-    .cart-button {
-      background: #00aef0;
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 15px;
-      border-radius: 8px;
-      white-space: nowrap;
-      font-weight: 600;
-    }
-
-    .cart-button:hover {
-      background: #008fc5;
+    .cart-button:hover{
+      background:#008fc5;
     }
 
     /* =========================
        SEARCH POPUP
     ========================= */
 
-    .search-popover {
-      position: absolute;
-      top: 52px;
-      right: 0;
-      display: none;
-      background: #ffffff;
-      padding: 8px;
-      border-radius: 9px;
-      box-shadow: 0 8px 25px rgba(0,0,0,.25);
-      z-index: 2000;
-      min-width: 240px;
+    .search-popover{
+      position:absolute;
+      top:52px;
+      right:0;
+      display:none;
+      background:#fff;
+      padding:8px;
+      border-radius:9px;
+      box-shadow:0 8px 25px rgba(0,0,0,.25);
+      z-index:2000;
+      min-width:250px;
     }
 
-    .search-popover.active {
-      display: block;
+    .search-popover.active{
+      display:block;
     }
 
-    .search-popover form {
-      display: flex;
-      gap: 6px;
+    .search-popover form{
+      display:flex;
+      gap:6px;
     }
 
-    .search-popover input {
-      width: 220px;
-      height: 40px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      outline: none;
-      padding: 0 10px;
-      color: #111;
-      font-size: 14px;
+    .search-popover input{
+      width:220px;
+      height:40px;
+      border:1px solid #ddd;
+      border-radius:6px;
+      outline:none;
+      padding:0 10px;
+      font-size:14px;
     }
 
-    .search-popover button {
-      height: 40px;
-      border: none;
-      border-radius: 6px;
-      background: #00aef0;
-      color: #fff;
-      padding: 0 12px;
-      cursor: pointer;
-      font-weight: 700;
+    .search-popover button{
+      height:40px;
+      border:none;
+      border-radius:6px;
+      background:#00aef0;
+      color:#fff;
+      padding:0 12px;
+      cursor:pointer;
+      font-weight:700;
     }
 
-    /* =========================
-       SEARCH SUGGESTIONS
-    ========================= */
-
-    .search-suggestions {
-      display: none;
-      margin-top: 6px;
-      background: #ffffff;
-      border: 1px solid #e6e6e6;
-      border-radius: 7px;
-      overflow: hidden;
-      max-height: 280px;
-      overflow-y: auto;
+    .search-suggestions{
+      display:none;
+      margin-top:6px;
+      background:#fff;
+      border:1px solid #e6e6e6;
+      border-radius:7px;
+      overflow:hidden;
+      max-height:280px;
+      overflow-y:auto;
     }
 
-    .search-suggestions.active {
-      display: block;
+    .search-suggestions.active{
+      display:block;
     }
 
-    .search-suggestion {
-      display: block;
-      width: 100%;
-      border: none;
-      background: #ffffff;
-      color: #111111;
-      text-align: left;
-      padding: 10px 11px;
-      font-size: 13px;
-      line-height: 1.35;
-      cursor: pointer;
+    .search-suggestion{
+      width:100%;
+      display:block;
+      border:none;
+      background:#fff;
+      color:#111;
+      text-align:left;
+      padding:10px 11px;
+      font-size:13px;
+      cursor:pointer;
     }
 
-    .search-suggestion:hover {
-      background: #f1fbff;
-      color: #008dcc;
+    .search-suggestion:hover{
+      background:#f1fbff;
+      color:#008dcc;
     }
 
     /* =========================
        CATEGORY OVERLAY
     ========================= */
 
-    .category-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      display: none;
-      z-index: 3000;
+    .category-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      z-index:3000;
     }
 
-    .category-overlay.active {
-      display: block;
+    .category-overlay.active{
+      display:block;
     }
 
-    .category-panel {
-      width: 350px;
-      max-width: 88%;
-      height: 100%;
-      background: #fff;
-      padding: 24px 20px;
-      overflow-y: auto;
-      box-shadow: 8px 0 30px rgba(0,0,0,.2);
+    .category-panel{
+      width:350px;
+      max-width:88%;
+      height:100%;
+      background:#fff;
+      padding:24px 20px;
+      overflow-y:auto;
+      box-shadow:8px 0 30px rgba(0,0,0,.2);
     }
 
-    .category-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
+    .category-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:18px;
     }
 
-    .category-header h2 {
-      font-size: 23px;
+    .category-header h2{
+      font-size:23px;
     }
 
-    .category-close {
-      border: none;
-      background: none;
-      font-size: 30px;
-      cursor: pointer;
+    .category-close{
+      border:none;
+      background:none;
+      font-size:30px;
+      cursor:pointer;
     }
 
-    .category-panel a {
-      display: block;
-      text-decoration: none;
-      color: #111;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 12px 9px;
-      border-bottom: 1px solid #eee;
+    .category-panel a{
+      display:block;
+      text-decoration:none;
+      color:#111;
+      font-size:14px;
+      font-weight:700;
+      padding:12px 9px;
+      border-bottom:1px solid #eee;
     }
 
-    .category-panel a:hover {
-      color: #00aef0;
-      background: #f7f7f7;
+    .category-panel a:hover{
+      color:#00aef0;
+      background:#f7f7f7;
     }
 
     /* =========================
        PAGE HEADER
     ========================= */
 
-    .page-header {
-      text-align: center;
-      padding: 60px 20px 30px;
+    .page-header{
+      text-align:center;
+      background:#fff;
+      padding:55px 20px 35px;
     }
 
-    .page-header h1 {
-      font-size: 42px;
-      margin-bottom: 12px;
+    .page-header h1{
+      font-size:42px;
+      margin-bottom:10px;
     }
 
-    .page-header p {
-      color: #666;
-      font-size: 17px;
+    .page-header h1 span{
+      color:#00aef0;
+    }
+
+    .page-header p{
+      color:#666;
+      font-size:17px;
     }
 
     /* =========================
        PRODUCTS GRID
     ========================= */
 
-    .products-grid {
-      max-width: 1200px;
-      margin: 20px auto 70px;
-      padding: 0 25px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 25px;
-      align-items: stretch;
+    .products-grid{
+      max-width:1250px;
+      margin:0 auto;
+      padding:20px 25px 70px;
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
     }
 
-    .product-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0,0,0,.06);
-      transition: .3s;
-      display: flex;
-      flex-direction: column;
+    .product-card{
+      background:#fff;
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 8px 25px rgba(0,0,0,.07);
+      border:1px solid #eee;
+      display:flex;
+      flex-direction:column;
+      transition:.3s;
+      min-width:0;
     }
 
-    .product-card:hover {
-      transform: translateY(-5px);
+    .product-card:hover{
+      transform:translateY(-5px);
+      box-shadow:0 13px 30px rgba(0,0,0,.11);
     }
 
-    /* =========================
-       PRODUCT IMAGE
-       DO NOT CHANGE
-    ========================= */
+    /* IMPORTANT:
+       IMAGE FULLY VISIBLE
+       NO CROPPING
+    */
 
-    .product-card img {
-      width: 100%;
-      height: 260px;
-      object-fit: contain;
-      display: block;
-      background: white;
-      padding: 8px;
-      flex-shrink: 0;
+    .product-card img{
+      width:100%;
+      height:260px;
+      object-fit:contain;
+      object-position:center;
+      background:#fff;
+      display:block;
+      padding:8px;
     }
 
-    /* =========================
-       PRODUCT INFO
-    ========================= */
-
-    .product-info {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 190px;
+    .product-info{
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+      flex:1;
     }
 
-    .product-info h3 {
-      font-size: 18px;
-      line-height: 1.35;
-      font-weight: 700;
-      margin: 0 0 12px 0;
-      min-height: 73px;
+    .product-info h3{
+      font-size:17px;
+      line-height:1.35;
+      margin-bottom:12px;
+      min-height:47px;
     }
 
-    .product-price {
-      color: #00aef0;
-      font-size: 21px;
-      font-weight: 800;
-      margin-bottom: 15px;
+    .product-category{
+      color:#00aef0;
+      font-size:11px;
+      font-weight:700;
+      margin-bottom:7px;
+      text-transform:uppercase;
+      display:none;
     }
 
-    .product-actions {
-      display: flex;
-      gap: 8px;
-      margin-top: auto;
+    .product-price{
+      color:#00aef0;
+      font-size:19px;
+      font-weight:800;
+      margin-top:auto;
+      margin-bottom:13px;
+    }
+
+    .product-price.contact-price{
+      font-size:15px;
+      color:#777;
+      font-weight:700;
+    }
+
+    .product-actions{
+      display:flex;
+      gap:8px;
     }
 
     .view-btn,
-    .cart-btn {
-      flex: 1;
-      padding: 11px 8px;
-      border: none;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 700;
+    .cart-btn{
+      flex:1;
+      border:none;
+      border-radius:7px;
+      padding:11px 8px;
+      cursor:pointer;
+      font-size:12px;
+      font-weight:700;
     }
 
-    .view-btn {
-      background: #111;
-      color: #fff;
+    .view-btn{
+      background:#111;
+      color:#fff;
     }
 
-    .view-btn:hover {
-      background: #333;
+    .view-btn:hover{
+      background:#333;
     }
 
-    .cart-btn {
-      background: #00aef0;
-      color: #fff;
+    .cart-btn{
+      background:#00aef0;
+      color:#fff;
     }
 
-    .cart-btn:hover {
-      background: #008fc5;
+    .cart-btn:hover{
+      background:#008fc5;
     }
 
     /* =========================
-       CART OVERLAY
+       NO PRODUCTS
     ========================= */
 
-    .cart-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-      display: none;
-      justify-content: flex-end;
-      z-index: 4000;
+    .no-products{
+      grid-column:1/-1;
+      background:#fff;
+      border-radius:15px;
+      padding:60px 20px;
+      text-align:center;
     }
 
-    .cart-overlay.active {
-      display: flex;
+    .no-products h2{
+      margin-bottom:10px;
     }
 
-    .cart-panel {
-      width: 420px;
-      max-width: 100%;
-      height: 100%;
-      background: #fff;
-      padding: 25px;
-      overflow-y: auto;
+    .no-products p{
+      color:#777;
     }
 
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 25px;
+    /* =========================
+       CART
+    ========================= */
+
+    .cart-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      justify-content:flex-end;
+      z-index:4000;
     }
 
-    .cart-header h2 {
-      font-size: 27px;
+    .cart-overlay.active{
+      display:flex;
     }
 
-    .close-cart {
-      border: none;
-      background: none;
-      font-size: 30px;
-      cursor: pointer;
+    .cart-panel{
+      width:420px;
+      max-width:100%;
+      height:100%;
+      background:#fff;
+      padding:25px;
+      overflow-y:auto;
     }
 
-    .cart-item {
-      display: flex;
-      gap: 15px;
-      padding: 15px 0;
-      border-bottom: 1px solid #eee;
+    .cart-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
     }
 
-    .cart-item img {
-      width: 75px;
-      height: 75px;
-      object-fit: contain;
-      border-radius: 8px;
+    .cart-header h2{
+      font-size:27px;
     }
 
-    .cart-item-details {
-      flex: 1;
+    .close-cart{
+      border:none;
+      background:none;
+      font-size:30px;
+      cursor:pointer;
     }
 
-    .cart-item-details h4 {
-      font-size: 14px;
-      margin-bottom: 7px;
+    .cart-item{
+      display:flex;
+      gap:15px;
+      padding:15px 0;
+      border-bottom:1px solid #eee;
     }
 
-    .cart-item-price {
-      color: #00aef0;
-      font-weight: 700;
-      margin-bottom: 8px;
+    .cart-item img{
+      width:75px;
+      height:75px;
+      object-fit:contain;
+      background:#fff;
+      border-radius:8px;
     }
 
-    .quantity-controls {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .cart-item-details{
+      flex:1;
     }
 
-    .quantity-controls button {
-      width: 28px;
-      height: 28px;
-      border: 1px solid #ccc;
-      background: white;
-      border-radius: 5px;
-      cursor: pointer;
+    .cart-item-details h4{
+      font-size:14px;
+      margin-bottom:7px;
     }
 
-    .remove-btn {
-      margin-top: 7px;
-      border: none;
-      background: none;
-      color: #e33;
-      cursor: pointer;
-      font-size: 12px;
+    .cart-item-price{
+      color:#00aef0;
+      font-weight:700;
+      margin-bottom:8px;
     }
 
-    .cart-total {
-      margin-top: 25px;
-      font-size: 21px;
-      font-weight: 800;
-      display: flex;
-      justify-content: space-between;
+    .quantity-controls{
+      display:flex;
+      align-items:center;
+      gap:8px;
     }
 
-    .checkout-btn {
-      width: 100%;
-      margin-top: 20px;
-      padding: 15px;
-      border: none;
-      border-radius: 8px;
-      background: #00aef0;
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
+    .quantity-controls button{
+      width:28px;
+      height:28px;
+      border:1px solid #ccc;
+      background:#fff;
+      border-radius:5px;
+      cursor:pointer;
     }
 
-    .checkout-btn:hover {
-      background: #008fc5;
+    .remove-btn{
+      margin-top:7px;
+      border:none;
+      background:none;
+      color:#e33;
+      cursor:pointer;
+      font-size:12px;
     }
 
-    .empty-cart {
-      text-align: center;
-      color: #777;
-      padding: 50px 10px;
+    .cart-total{
+      margin-top:25px;
+      font-size:21px;
+      font-weight:800;
+      display:flex;
+      justify-content:space-between;
+    }
+
+    .checkout-btn{
+      width:100%;
+      margin-top:20px;
+      padding:15px;
+      border:none;
+      border-radius:8px;
+      background:#00aef0;
+      color:#fff;
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .empty-cart{
+      text-align:center;
+      color:#777;
+      padding:50px 10px;
     }
 
     /* =========================
        FOOTER
     ========================= */
 
-    footer {
-      background: #111;
-      color: white;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
+    footer{
+      background:#080808;
+      color:#aaa;
+      text-align:center;
+      padding:25px 15px;
+      font-size:14px;
     }
 
-    footer strong {
-      color: #00aef0;
+    footer strong{
+      color:#00aef0;
     }
 
     /* =========================
-       RESPONSIVE
+       TABLET
     ========================= */
 
-    @media (max-width: 1000px) {
+    @media(max-width:1000px){
 
-      .products-grid {
-        grid-template-columns: repeat(3, 1fr);
+      .products-grid{
+        grid-template-columns:repeat(3,1fr);
       }
 
     }
 
-    @media (max-width: 500px) {
+    /* =========================
+       MOBILE
+    ========================= */
 
-      nav {
-        display: grid;
-        grid-template-columns: 42px 1fr auto;
-        gap: 8px;
-        padding: 12px 10px;
+    @media(max-width:500px){
+
+      nav{
+        display:grid;
+        grid-template-columns:42px 1fr auto;
+        gap:8px;
+        padding:12px 10px;
       }
 
-      /* ONLY 3 LINES ON MOBILE */
-
-      .mobile-category-left {
-        display: flex !important;
-        width: 32px;
-        height: 32px;
-        align-items: center;
-        justify-content: center;
-        border: none;
-        padding: 0;
-        background: transparent;
-        color: #ffffff;
+      .mobile-category-left{
+        display:flex !important;
+        width:32px;
+        height:32px;
+        padding:0;
+        align-items:center;
+        justify-content:center;
+        border:none;
+        background:transparent;
+        color:#fff;
+        font-size:0;
       }
 
-      .category-btn .mobile-menu-icon {
-        display: inline;
+      .mobile-category-left::after{
+        content:"☰";
+        font-size:23px;
+        line-height:1;
       }
 
-      .mobile-category-left::after {
-        content: "☰";
-        font-size: 22px;
-        line-height: 1;
+      .logo-text{
+        font-size:19px;
+        text-align:center;
       }
 
-      .mobile-category-left .mobile-menu-icon {
-        display: none;
+      .nav-tools{
+        gap:3px;
       }
 
-      .logo-text {
-        font-size: 19px;
-        text-align: center;
+      .nav-tools > .category-btn{
+        display:none;
       }
 
-      .nav-tools {
-        gap: 3px;
+      .search-icon{
+        width:38px;
+        height:38px;
       }
 
-      /* DESKTOP PRODUCTS BUTTON HIDDEN */
-
-      .nav-tools > .category-btn {
-        display: none;
+      .search-icon svg{
+        width:20px;
+        height:20px;
       }
 
-      .search-icon {
-        width: 38px;
-        height: 38px;
+      .cart-button{
+        font-size:0;
+        padding:9px;
       }
 
-      .search-icon svg {
-        width: 20px;
-        height: 20px;
+      .cart-button::first-letter{
+        font-size:18px;
       }
 
-      .cart-button {
-        font-size: 0;
-        padding: 9px;
+      .search-popover{
+        position:fixed;
+        top:64px;
+        left:10px;
+        right:10px;
+        min-width:0;
       }
 
-      .cart-button::first-letter {
-        font-size: 18px;
+      .search-popover form{
+        width:100%;
       }
 
-      .search-popover {
-        position: fixed;
-        top: 64px;
-        right: 10px;
-        left: 10px;
-        min-width: 0;
+      .search-popover input{
+        width:100%;
+        flex:1;
       }
 
-      .search-popover input {
-        width: 100%;
-        flex: 1;
+      .page-header{
+        padding:40px 15px 25px;
       }
 
-      .search-popover form {
-        width: 100%;
+      .page-header h1{
+        font-size:32px;
       }
 
-      .search-suggestions {
-        max-height: 240px;
+      .products-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
+        padding:0 12px 50px;
       }
 
-      .page-header {
-        padding-top: 40px;
+      .product-card{
+        border-radius:10px;
       }
 
-      .page-header h1 {
-        font-size: 32px;
+      .product-card img{
+        height:190px;
+        padding:5px;
       }
 
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 0 12px;
+      .product-info{
+        padding:11px;
       }
 
-      .product-card img {
-        height: 220px;
+      .product-info h3{
+        font-size:13px;
+        min-height:53px;
       }
 
-      .product-info {
-        padding: 12px;
+      .product-price{
+        font-size:16px;
+        margin-bottom:10px;
       }
 
-      .product-info h3 {
-        font-size: 14px;
-        min-height: 58px;
+      .product-actions{
+        flex-direction:column;
+        gap:5px;
       }
 
-      .product-actions {
-        flex-direction: column;
+      .view-btn,
+      .cart-btn{
+        width:100%;
+        padding:9px 5px;
+        font-size:10px;
       }
 
-      .cart-panel {
-        width: 100%;
+      .cart-panel{
+        width:100%;
       }
 
     }
@@ -720,7 +739,6 @@
       class="category-btn mobile-category-left"
       onclick="openCategories()"
       aria-label="Open categories">
-
     </button>
 
 
@@ -742,7 +760,7 @@
     <div class="nav-tools">
 
 
-      <!-- REAL SEARCH ICON -->
+      <!-- SEARCH ICON -->
 
       <button
         class="search-icon"
@@ -776,7 +794,7 @@
       </button>
 
 
-      <!-- SEARCH -->
+      <!-- SEARCH POPUP -->
 
       <div
         class="search-popover"
@@ -790,10 +808,14 @@
             type="search"
             autocomplete="off"
             placeholder="Search products..."
-            oninput="showSearchSuggestions(this.value)">
+            oninput="showSearchSuggestions(this.value)"
+          >
 
-          <button type="submit">
+          <button
+            type="submit">
+
             Search
+
           </button>
 
         </form>
@@ -807,7 +829,7 @@
       </div>
 
 
-      <!-- DESKTOP PRODUCTS BUTTON -->
+      <!-- DESKTOP PRODUCTS -->
 
       <button
         class="category-btn"
@@ -821,7 +843,7 @@
       <!-- CART -->
 
       <a
-        href="#contact"
+        href="#"
         class="cart-button"
         onclick="openCart(); return false;">
 
@@ -934,6 +956,10 @@
         PVC CARD
       </a>
 
+      <a href="products.html?category=MAGIC%20LAMPS">
+        MAGIC LAMPS
+      </a>
+
     </div>
 
   </div>
@@ -943,21 +969,22 @@
        PAGE HEADER
   ========================= -->
 
-  <section class="page-header">
+  <section
+    class="page-header">
 
-    <h1 id="pageTitle">
-      Our Products
+    <h1>
+      Our <span>Products</span>
     </h1>
 
-    <p id="pageSubtitle">
-      Personalized gifts made specially for your special moments.
+    <p>
+      Explore our personalized gifts and beautiful custom creations.
     </p>
 
   </section>
 
 
   <!-- =========================
-       PRODUCTS
+       PRODUCTS GRID
   ========================= -->
 
   <section
@@ -979,6 +1006,7 @@
       class="cart-panel"
       onclick="event.stopPropagation()">
 
+
       <div class="cart-header">
 
         <h2>
@@ -996,7 +1024,8 @@
       </div>
 
 
-      <div id="cartItems"></div>
+      <div id="cartItems">
+      </div>
 
 
       <div class="cart-total">
@@ -1014,7 +1043,9 @@
 
       <button
         class="checkout-btn"
-        onclick="window.location.href='checkout.html'">
+        onclick="
+          window.location.href='checkout.html'
+        ">
 
         PROCEED TO CHECKOUT
 
@@ -1025,9 +1056,7 @@
   </div>
 
 
-  <!-- =========================
-       FOOTER
-  ========================= -->
+  <!-- FOOTER -->
 
   <footer>
 
@@ -1040,144 +1069,406 @@
   <script>
 
     /* =========================
-       PRODUCTS
+       NEW IMAGE PRODUCTS
     ========================= */
 
     const products = [
 
+      /* BIRTHDAY FRAMES */
+
       {
-        id: "led-photo-frame",
-        category: "LED PICTURE FRAME",
-        name: "CUSTOMIZED LED PHOTO FRAME",
-        price: 2000,
-        image: "Light%20frame.jpeg"
+        id:"birthday-frame-1",
+        name:"BIRTHDAY FRAME 1",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%201.jpeg"
       },
 
       {
-        id: "birthday-frame",
-        category: "BIRTHDAY FRAMES",
-        name: "CUSTOMIZED BIRTHDAY FRAME",
-        price: 999,
-        image: "Birthday%20Frame.jpeg"
+        id:"birthday-frame-2",
+        name:"BIRTHDAY FRAME 2",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%202.jpeg"
       },
 
       {
-        id: "birthday-mug",
-        category: "MUG COLLECTION",
-        name: "CUSTOMIZED BIRTHDAY MUG",
-        price: 999,
-        image: "birthday%20mug.jpeg"
+        id:"birthday-frame-3",
+        name:"BIRTHDAY FRAME 3",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%203.jpeg"
       },
 
       {
-        id: "led-heart-lamp",
-        category: "LED PICTURE FRAME",
-        name: "CUSTOMIZED LED HEART LAMP",
-        price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg"
+        id:"birthday-frame-4",
+        name:"BIRTHDAY FRAME 4",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%204.jpeg"
       },
 
       {
-        id: "nikkah-signature-frame",
-        category: "NIKKAH FRAMES",
-        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
-        price: 999,
-        image: "nikkah%20frame.jpeg"
+        id:"birthday-frame-5",
+        name:"BIRTHDAY FRAME 5",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%205.jpeg"
       },
 
       {
-        id: "magic-mug",
-        category: "MAGIC MUGS",
-        name: "CUSTOMIZED MAGIC MUG",
-        price: 1400,
-        image: "magic%20mug.jpeg"
+        id:"birthday-frame-6",
+        name:"BIRTHDAY FRAME 6",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%206.jpeg"
       },
 
       {
-        id: "wedding-ring-plaque",
-        category: "WEDDING RING PLATES",
-        name: "CUSTOMIZED WEDDING RING PLAQUE",
-        price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg"
+        id:"birthday-frame-7",
+        name:"BIRTHDAY FRAME 7",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%207.jpeg"
       },
 
       {
-        id: "trendy-charts",
-        category: "TRENDY CHARTS",
-        name: "CUSTOMIZED TRENDY CHARTS",
-        price: 1350,
-        image: "TRENDY%20CHARTS.jpeg"
+        id:"birthday-frame-8",
+        name:"BIRTHDAY FRAME 8",
+        category:"BIRTHDAY FRAMES",
+        image:"birthday%20frame%208.jpeg"
+      },
+
+
+      /* LED PICTURE FRAME */
+
+      {
+        id:"led-birthday-frame-1",
+        name:"LED BIRTHDAY FRAME 1",
+        category:"LED PICTURE FRAME",
+        image:"LED%20birthday%20frame%201.jpeg"
       },
 
       {
-        id: "eye-pendant-necklace",
-        category: "EYE NECKLACE",
-        name: "CUSTOMIZED EYE PENDANT NECKLACE",
-        price: 1300,
-        image: "EYE%20NECKLACE.jpeg"
+        id:"led-birthday-frame-2",
+        name:"LED BIRTHDAY FRAME 2",
+        category:"LED PICTURE FRAME",
+        image:"LED%20birthday%20frame%202.jpeg"
       },
 
       {
-        id: "picture-frame",
-        category: "PICTURE FRAMES",
-        name: "CUSTOMIZED PICTURE FRAME",
-        price: 900,
-        image: "PICTURE%20FRAME.jpg"
+        id:"led-birthday-frame-3",
+        name:"LED BIRTHDAY FRAME 3",
+        category:"LED PICTURE FRAME",
+        image:"LED%20birthday%20frame%203.jpeg"
+      },
+
+
+      /* BIRTHDAY MUGS */
+
+      {
+        id:"birthday-mug-2",
+        name:"BIRTHDAY MUG 2",
+        category:"MUG COLLECTION",
+        image:"birthday%20mug%202.jpg"
       },
 
       {
-        id: "friendship-license-card",
-        category: "FRIENDSHIP LICENCE CARD",
-        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
-        price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
+        id:"birthday-mug-3",
+        name:"BIRTHDAY MUG 3",
+        category:"MUG COLLECTION",
+        image:"birthday%20mug%203.jpg"
+      },
+
+
+      /* FRIENDSHIP */
+
+      {
+        id:"friendship-card-1",
+        name:"FRIENDSHIP CARD 1",
+        category:"FRIENDSHIP LICENCE CARD",
+        image:"friendship%20card%201.jpg"
       },
 
       {
-        id: "name-key-chain",
-        category: "NAME KEYCHAINS",
-        name: "CUSTOMIZED NAME KEY CHAIN",
-        price: 800,
-        image: "NAME%20KEY.jpeg"
+        id:"friendship-card-2",
+        name:"FRIENDSHIP CARD 2",
+        category:"FRIENDSHIP LICENCE CARD",
+        image:"friendship%20card%202.jpg"
+      },
+
+
+      /* ISLAMIC */
+
+      {
+        id:"islamic-1",
+        name:"ISLAMIC 1",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%201.jpeg"
       },
 
       {
-        id: "picture-mug-colors",
-        category: "MUG COLLECTION",
-        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
-        price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
+        id:"islamic-2",
+        name:"ISLAMIC 2",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%202.jpeg"
       },
 
       {
-        id: "pubg-mobile-card",
-        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
-        name: "CUSTOMIZED PUBG MOBILE CARD",
-        price: 800,
-        image: "PUBG%20CARD.jpeg"
+        id:"islamic-3",
+        name:"ISLAMIC 3",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%203.jpeg"
       },
 
       {
-        id: "snapchat-tiktok-instagram-card",
-        category: "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
-        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
-        price: 800,
-        image: "SNAPCHAT%20CARD.jpeg"
+        id:"islamic-4",
+        name:"ISLAMIC 4",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%204.jpeg"
       },
 
       {
-        id: "pvc-card",
-        category: "PVC CARD",
-        name: "CUSTOMIZED PVC CARD",
-        price: 850,
-        image: "PVC%20CARD.jpg"
+        id:"islamic-5",
+        name:"ISLAMIC 5",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%205.jpg"
+      },
+
+      {
+        id:"islamic-6",
+        name:"ISLAMIC 6",
+        category:"ISLAMIC COLLECTION",
+        image:"islamic%206.jpeg"
+      },
+
+
+      /* MAGIC MUGS */
+
+      {
+        id:"magic-mug-1",
+        name:"MAGIC MUG 1",
+        category:"MAGIC MUGS",
+        image:"magic%20mug%201.jpg"
+      },
+
+      {
+        id:"magic-mug-2",
+        name:"MAGIC MUG 2",
+        category:"MAGIC MUGS",
+        image:"magic%20mug%202.jpg"
+      },
+
+
+      /* MAGIC LAMPS */
+
+      {
+        id:"moon-lamp-1",
+        name:"MOON LAMP 1",
+        category:"MAGIC LAMPS",
+        image:"moon%20lamp%201.jpg"
+      },
+
+      {
+        id:"moon-lamp-2",
+        name:"MOON LAMP 2",
+        category:"MAGIC LAMPS",
+        image:"moon%20lamp%202.jpg"
+      },
+
+
+      /* MUG COLLECTION */
+
+      {
+        id:"mug-1",
+        name:"MUG 1",
+        category:"MUG COLLECTION",
+        image:"mug%201.jpg"
+      },
+
+      {
+        id:"mug-2",
+        name:"MUG 2",
+        category:"MUG COLLECTION",
+        image:"mug%202.jpg"
+      },
+
+
+      /* NAME KEYCHAINS */
+
+      {
+        id:"name-keychain-1",
+        name:"NAME KEYCHAIN 1",
+        category:"NAME KEYCHAINS",
+        image:"name%20keychain%201.jpg"
+      },
+
+
+      /* EYE NECKLACE */
+
+      {
+        id:"necklace-1",
+        name:"NECKLACE 1",
+        category:"EYE NECKLACE",
+        image:"necklace%201.jpeg"
+      },
+
+      {
+        id:"necklace-2",
+        name:"NECKLACE 2",
+        category:"EYE NECKLACE",
+        image:"necklace%202.jpeg"
+      },
+
+      {
+        id:"necklace-3",
+        name:"NECKLACE 3",
+        category:"EYE NECKLACE",
+        image:"necklace%203.jpeg"
+      },
+
+      {
+        id:"necklace-4",
+        name:"NECKLACE 4",
+        category:"EYE NECKLACE",
+        image:"necklace%204.jpeg"
+      },
+
+      {
+        id:"necklace-5",
+        name:"NECKLACE 5",
+        category:"EYE NECKLACE",
+        image:"necklace%205.jpeg"
+      },
+
+      {
+        id:"necklace-6",
+        name:"NECKLACE 6",
+        category:"EYE NECKLACE",
+        image:"necklace%206.jpeg"
+      },
+
+      {
+        id:"necklace-7",
+        name:"NECKLACE 7",
+        category:"EYE NECKLACE",
+        image:"necklace%207.jpeg"
+      },
+
+
+      /* NIKKAH FRAMES */
+
+      {
+        id:"nikkah-1",
+        name:"NIKKAH FRAME 1",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%201.jpeg"
+      },
+
+      {
+        id:"nikkah-2",
+        name:"NIKKAH FRAME 2",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%202.jpeg"
+      },
+
+      {
+        id:"nikkah-3",
+        name:"NIKKAH FRAME 3",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%203.jpeg"
+      },
+
+      {
+        id:"nikkah-4",
+        name:"NIKKAH FRAME 4",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%204.jpeg"
+      },
+
+      {
+        id:"nikkah-5",
+        name:"NIKKAH FRAME 5",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%205.jpeg"
+      },
+
+      {
+        id:"nikkah-6",
+        name:"NIKKAH FRAME 6",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%206.jpeg"
+      },
+
+      {
+        id:"nikkah-7",
+        name:"NIKKAH FRAME 7",
+        category:"NIKKAH FRAMES",
+        image:"nikkah%207.jpeg"
+      },
+
+
+      /* WEDDING RING PLATES */
+
+      {
+        id:"nikkah-plaque-1",
+        name:"NIKKAH PLAQUE 1",
+        category:"WEDDING RING PLATES",
+        image:"nikkah%20plaque%201.jpg"
+      },
+
+      {
+        id:"nikkah-plaque-2",
+        name:"NIKKAH PLAQUE 2",
+        category:"WEDDING RING PLATES",
+        image:"nikkah%20plaque%202.jpg"
+      },
+
+
+      /* PICTURE FRAMES */
+
+      {
+        id:"picture-frame-1",
+        name:"PICTURE FRAME 1",
+        category:"PICTURE FRAMES",
+        image:"picture%20frame%201.jpg"
+      },
+
+      {
+        id:"picture-frame-2",
+        name:"PICTURE FRAME 2",
+        category:"PICTURE FRAMES",
+        image:"picture%20frame%202.jpg"
+      },
+
+
+      /* PVC CARD */
+
+      {
+        id:"pvc-card-1",
+        name:"PVC CARD 1",
+        category:"PVC CARD",
+        image:"pvc%20card%201.jpg"
+      },
+
+
+      /* SOCIAL CARDS */
+
+      {
+        id:"snapchat-card-1",
+        name:"SNAPCHAT CARD 1",
+        category:"SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
+        image:"snapchat%20card%201.jpg"
+      },
+
+
+      /* TRENDY CHART */
+
+      {
+        id:"trendy-chart-1",
+        name:"TRENDY CHART 1",
+        category:"TRENDY CHARTS",
+        image:"trendy%20chart%201.jpg"
       }
 
     ];
 
 
     /* =========================
-       URL FILTER
+       URL PARAMETERS
     ========================= */
 
     const urlParams =
@@ -1202,93 +1493,91 @@
       );
 
 
-    const pageTitle =
-      document.getElementById(
-        "pageTitle"
-      );
-
-
-    const pageSubtitle =
-      document.getElementById(
-        "pageSubtitle"
-      );
-
-
     /* =========================
        RENDER PRODUCTS
     ========================= */
 
-    function renderProducts() {
+    function renderProducts(){
 
-      let filteredProducts =
-        products;
+      let list =
+        products.slice();
 
 
-      if (selectedCategory) {
+      if(selectedCategory){
 
-        filteredProducts =
-          filteredProducts.filter(
+        list =
+          list.filter(
             product =>
-              product.category ===
+              product.category
+              .toLowerCase() ===
               selectedCategory
+              .toLowerCase()
           );
 
-
-        pageTitle.textContent =
+        document.getElementById(
+          "pageTitle"
+        ).textContent =
           selectedCategory;
 
       }
 
 
-      if (searchQuery) {
+      if(searchQuery){
 
-        filteredProducts =
-          filteredProducts.filter(
-            product =>
-              product.name
-                .toLowerCase()
-                .includes(searchQuery)
+        list =
+          list.filter(
+            product => {
 
-              ||
+              const name =
+                product.name
+                .toLowerCase();
 
-              product.category
-                .toLowerCase()
-                .includes(searchQuery)
+              const category =
+                product.category
+                .toLowerCase();
+
+              return(
+                name.includes(
+                  searchQuery
+                )
+
+                ||
+
+                category.includes(
+                  searchQuery
+                )
+              );
+
+            }
           );
 
 
-        pageTitle.textContent =
+        document.getElementById(
+          "pageTitle"
+        ).textContent =
           "Search Results";
 
 
-        pageSubtitle.textContent =
+        document.getElementById(
+          "pageSubtitle"
+        ).textContent =
           `Results for "${urlParams.get("search")}"`;
 
       }
 
 
-      if (
-        filteredProducts.length ===
-        0
-      ) {
+      if(!list.length){
 
         productsGrid.innerHTML = `
 
-          <div
-            style="
-              grid-column:1/-1;
-              text-align:center;
-              background:#fff;
-              padding:50px 20px;
-              border-radius:15px;
-            ">
+          <div class="no-products">
 
             <h2>
               No Products Found
             </h2>
 
             <p>
-              We couldn't find any product matching your search or category.
+              Products for this category will be added soon.
             </p>
 
           </div>
@@ -1304,7 +1593,7 @@
         "";
 
 
-      filteredProducts.forEach(
+      list.forEach(
         product => {
 
           productsGrid.innerHTML += `
@@ -1315,6 +1604,7 @@
               <img
                 src="${product.image}"
                 alt="${product.name}"
+                loading="lazy"
               >
 
               <div
@@ -1325,9 +1615,9 @@
                 </h3>
 
                 <div
-                  class="product-price">
+                  class="product-price contact-price">
 
-                  Rs. ${product.price}
+                  Price will be updated
 
                 </div>
 
@@ -1373,91 +1663,29 @@
 
 
     /* =========================
-       PRODUCT SEARCH CATALOG
+       PRODUCT OPEN
     ========================= */
 
-    const searchCatalog =
-      products.map(
-        product => ({
-          id: product.id,
-          name: product.name
-        })
-      );
+    function openProduct(
+      productId
+    ){
 
-
-    function normalizeSearchText(
-      value
-    ) {
-
-      return value
-        .toLowerCase()
-        .replace(
-          /customized/g,
-          ""
-        )
-        .replace(
-          /[^a-z0-9]+/g,
-          " "
-        )
-        .trim();
-
-    }
-
-
-    function getSuggestionMatches(
-      query
-    ) {
-
-      const cleanQuery =
-        normalizeSearchText(
-          query
+      window.location.href =
+        "product.html?id=" +
+        encodeURIComponent(
+          productId
         );
-
-
-      if (!cleanQuery) {
-
-        return [];
-
-      }
-
-
-      const words =
-        cleanQuery
-          .split(/\s+/)
-          .filter(Boolean);
-
-
-      return searchCatalog
-
-        .filter(product => {
-
-          const cleanName =
-            normalizeSearchText(
-              product.name
-            );
-
-
-          return words.every(
-            word =>
-              cleanName.includes(
-                word
-              )
-          );
-
-        })
-
-        .slice(0, 8);
 
     }
 
 
     /* =========================
-       SHOW SEARCH SUGGESTIONS
+       SEARCH SUGGESTIONS
     ========================= */
 
     function showSearchSuggestions(
       query
-    ) {
+    ){
 
       const box =
         document.getElementById(
@@ -1465,7 +1693,20 @@
         );
 
 
-      if (!box) {
+      const q =
+        query
+          .toLowerCase()
+          .trim();
+
+
+      if(!q){
+
+        box.innerHTML =
+          "";
+
+        box.classList.remove(
+          "active"
+        );
 
         return;
 
@@ -1473,17 +1714,31 @@
 
 
       const matches =
-        getSuggestionMatches(
-          query
-        );
+        products.filter(
+          product => {
+
+            const name =
+              product.name
+              .toLowerCase();
+
+            const category =
+              product.category
+              .toLowerCase();
+
+            return(
+              name.includes(q) ||
+              category.includes(q)
+            );
+
+          }
+        )
+        .slice(0,8);
 
 
-      if (
-        !query.trim() ||
-        matches.length === 0
-      ) {
+      if(!matches.length){
 
-        box.innerHTML = "";
+        box.innerHTML =
+          "";
 
         box.classList.remove(
           "active"
@@ -1512,7 +1767,8 @@
             </button>
 
           `
-        ).join("");
+        )
+        .join("");
 
 
       box.classList.add(
@@ -1523,27 +1779,10 @@
 
 
     /* =========================
-       OPEN SELECTED PRODUCT
+       SEARCH ICON
     ========================= */
 
-    function openProduct(
-      productId
-    ) {
-
-      window.location.href =
-        "product.html?id=" +
-        encodeURIComponent(
-          productId
-        );
-
-    }
-
-
-    /* =========================
-       SEARCH
-    ========================= */
-
-    function toggleSearch() {
+    function toggleSearch(){
 
       const popover =
         document.getElementById(
@@ -1556,14 +1795,14 @@
         .toggle("active");
 
 
-      if (
+      if(
         popover
           .classList
           .contains("active")
-      ) {
+      ){
 
         setTimeout(
-          function() {
+          function(){
 
             document
               .getElementById(
@@ -1580,9 +1819,13 @@
     }
 
 
+    /* =========================
+       SEARCH FORM
+    ========================= */
+
     function searchProducts(
       event
-    ) {
+    ){
 
       event.preventDefault();
 
@@ -1596,7 +1839,7 @@
           .trim();
 
 
-      if (query) {
+      if(query){
 
         window.location.href =
           "products.html?search=" +
@@ -1604,7 +1847,7 @@
             query
           );
 
-      } else {
+      }else{
 
         window.location.href =
           "products.html";
@@ -1615,10 +1858,10 @@
 
 
     /* =========================
-       CATEGORIES
+       CATEGORY MENU
     ========================= */
 
-    function openCategories() {
+    function openCategories(){
 
       document
         .getElementById(
@@ -1630,7 +1873,7 @@
     }
 
 
-    function closeCategories() {
+    function closeCategories(){
 
       document
         .getElementById(
@@ -1646,9 +1889,9 @@
        CART
     ========================= */
 
-    function getCart() {
+    function getCart(){
 
-      try {
+      try{
 
         return JSON.parse(
           localStorage.getItem(
@@ -1656,7 +1899,7 @@
           )
         ) || [];
 
-      } catch (error) {
+      }catch(error){
 
         return [];
 
@@ -1667,11 +1910,13 @@
 
     function saveCart(
       cart
-    ) {
+    ){
 
       localStorage.setItem(
         "craftioCart",
-        JSON.stringify(cart)
+        JSON.stringify(
+          cart
+        )
       );
 
     }
@@ -1679,7 +1924,7 @@
 
     function addToCart(
       productId
-    ) {
+    ){
 
       const cart =
         getCart();
@@ -1693,18 +1938,18 @@
         );
 
 
-      if (existing) {
+      if(existing){
 
         existing.quantity =
           (existing.quantity || 1) + 1;
 
-      } else {
+      }else{
 
         cart.push({
 
-          id: productId,
+          id:productId,
 
-          quantity: 1
+          quantity:1
 
         });
 
@@ -1722,7 +1967,7 @@
     }
 
 
-    function updateCartCount() {
+    function updateCartCount(){
 
       const cart =
         getCart();
@@ -1751,7 +1996,7 @@
     function changeQuantity(
       productId,
       change
-    ) {
+    ){
 
       const cart =
         getCart();
@@ -1765,7 +2010,7 @@
         );
 
 
-      if (!item) {
+      if(!item){
 
         return;
 
@@ -1777,9 +2022,10 @@
         change;
 
 
-      if (
-        item.quantity <= 0
-      ) {
+      if(
+        item.quantity <=
+        0
+      ){
 
         const index =
           cart.findIndex(
@@ -1808,7 +2054,7 @@
 
     function removeFromCart(
       productId
-    ) {
+    ){
 
       let cart =
         getCart();
@@ -1831,7 +2077,7 @@
     }
 
 
-    function renderCart() {
+    function renderCart(){
 
       const cart =
         getCart();
@@ -1849,14 +2095,17 @@
         );
 
 
-      if (
-        cart.length === 0
-      ) {
+      if(
+        cart.length ===
+        0
+      ){
 
         cartItems.innerHTML = `
 
           <div class="empty-cart">
+
             Your cart is empty.
+
           </div>
 
         `;
@@ -1869,9 +2118,6 @@
         return;
 
       }
-
-
-      let total = 0;
 
 
       cartItems.innerHTML =
@@ -1889,24 +2135,11 @@
             );
 
 
-          if (!product) {
+          if(!product){
 
             return;
 
           }
-
-
-          const quantity =
-            item.quantity || 1;
-
-
-          const itemTotal =
-            product.price *
-            quantity;
-
-
-          total +=
-            itemTotal;
 
 
           cartItems.innerHTML += `
@@ -1929,7 +2162,7 @@
                 <div
                   class="cart-item-price">
 
-                  Rs. ${itemTotal}
+                  Price to be updated
 
                 </div>
 
@@ -1949,7 +2182,7 @@
                   </button>
 
                   <span>
-                    ${quantity}
+                    ${item.quantity || 1}
                   </span>
 
                   <button
@@ -1989,13 +2222,12 @@
 
 
       cartTotal.textContent =
-        "Rs. " +
-        total;
+        "Price to be updated";
 
     }
 
 
-    function openCart() {
+    function openCart(){
 
       document
         .getElementById(
@@ -2010,7 +2242,7 @@
     }
 
 
-    function closeCart() {
+    function closeCart(){
 
       document
         .getElementById(
@@ -2018,24 +2250,6 @@
         )
         .classList
         .remove("active");
-
-    }
-
-
-    /* =========================
-       LOAD SEARCH
-    ========================= */
-
-    if (searchQuery) {
-
-      document
-        .getElementById(
-          "productSearch"
-        )
-        .value =
-          urlParams.get(
-            "search"
-          ) || "";
 
     }
 
@@ -2052,17 +2266,17 @@
 
 
     /* =========================
-       ESC
+       ESCAPE
     ========================= */
 
     document.addEventListener(
       "keydown",
-      function(event) {
+      function(event){
 
-        if (
+        if(
           event.key ===
           "Escape"
-        ) {
+        ){
 
           closeCategories();
 
@@ -2072,57 +2286,6 @@
             .getElementById(
               "searchPopover"
             )
-            .classList
-            .remove(
-              "active"
-            );
-
-          document
-            .getElementById(
-              "productSearchSuggestions"
-            )
-            .classList
-            .remove(
-              "active"
-            );
-
-        }
-
-      }
-    );
-
-
-    /* =========================
-       CLICK OUTSIDE SEARCH
-    ========================= */
-
-    document.addEventListener(
-      "click",
-      function(event) {
-
-        const popover =
-          document.getElementById(
-            "searchPopover"
-          );
-
-        const button =
-          document.querySelector(
-            ".search-icon"
-          );
-
-
-        if (
-          popover &&
-          button &&
-          !popover.contains(
-            event.target
-          ) &&
-          !button.contains(
-            event.target
-          )
-        ) {
-
-          popover
             .classList
             .remove(
               "active"
