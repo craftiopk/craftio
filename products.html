@@ -1618,69 +1618,71 @@
 
     function populateCategoryMenus() {
 
-     function populateCategoryMenus() {
-
-  const desktop =
-    document.getElementById(
-      "categoryDropdown"
-    );
+      const desktop =
+        document.getElementById(
+          "categoryDropdown"
+        );
 
 
-  const mobile =
-    document.getElementById(
-      "mobileCategoryMenu"
-    );
+      const mobile =
+        document.getElementById(
+          "mobileCategoryMenu"
+        );
 
 
-  let html = `
+      let html = `
 
-    <a href="${categoryUrl("ALL")}">
+        <a href="${categoryUrl("ALL")}">
 
-      ALL PRODUCTS
-
-    </a>
-
-  `;
-
-
-  categories.forEach(
-    function(category) {
-
-      html += `
-
-        <a
-          href="${categoryUrl(category)}">
-
-          ${category}
+          ALL PRODUCTS
 
         </a>
 
       `;
 
+
+      categories.forEach(
+        function(category) {
+
+          html += `
+
+            <a
+              href="${categoryUrl(category)}">
+
+              ${escapeHtml(category)}
+
+            </a>
+
+          `;
+
+        }
+      );
+
+
+      /* =========================
+         CONTACT US
+      ========================= */
+
+      html += `
+
+        <a
+          href="index.html#follow-craftio">
+
+          CONTACT US
+
+        </a>
+
+      `;
+
+
+      desktop.innerHTML =
+        html;
+
+
+      mobile.innerHTML =
+        html;
+
     }
-  );
-
-
-  html += `
-
-    <a
-      href="index.html#follow-craftio">
-
-      CONTACT US
-
-    </a>
-
-  `;
-
-
-  desktop.innerHTML =
-    html;
-
-
-  mobile.innerHTML =
-    html;
-
-}
 
 
     /* =====================================
@@ -1946,7 +1948,7 @@
 
             No products found in
             <strong>
-              ${selected}
+              ${escapeHtml(selected)}
             </strong>.
 
           </div>
@@ -3044,6 +3046,26 @@
       .replace(
         /'/g,
         "\\'"
+      )
+
+      .replace(
+        /\r/g,
+        "\\r"
+      )
+
+      .replace(
+        /\n/g,
+        "\\n"
+      )
+
+      .replace(
+        /\u2028/g,
+        "\\u2028"
+      )
+
+      .replace(
+        /\u2029/g,
+        "\\u2029"
       );
 
     }
@@ -3055,33 +3077,77 @@
 
     async function loadCategories() {
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
+      try {
 
-          .from("categories")
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
 
-          .select("name")
+            .from("categories")
 
-          .eq(
-            "active",
-            true
-          )
+            .select("name")
 
-          .order(
-            "created_at",
-            {
-              ascending: true
-            }
+            .eq(
+              "active",
+              true
+            )
+
+            .order(
+              "created_at",
+              {
+                ascending: true
+              }
+            );
+
+
+        if (error) {
+
+          console.error(
+            "Categories load error:",
+            error
           );
 
+          categories = [
+            ...defaultCategories
+          ];
 
-      if (error) {
+        } else {
+
+          const loadedCategories =
+            (data || [])
+              .map(
+                function(item) {
+
+                  return String(
+                    item.name ||
+                    ""
+                  ).trim();
+
+                }
+              )
+              .filter(
+                function(name) {
+
+                  return !!name;
+
+                }
+              );
+
+
+          categories =
+            loadedCategories.length > 0
+              ? loadedCategories
+              : [...defaultCategories];
+
+        }
+
+
+      } catch (error) {
 
         console.error(
-          "Categories load error:",
+          "Categories error:",
           error
         );
 
@@ -3089,40 +3155,12 @@
           ...defaultCategories
         ];
 
-      } else {
-
-        const loadedCategories =
-          (data || [])
-            .map(
-              function(item) {
-
-                return String(
-                  item.name ||
-                  ""
-                ).trim();
-
-              }
-            )
-            .filter(
-              function(name) {
-
-                return !!name;
-
-              }
-            );
-
-
-        categories =
-          loadedCategories.length > 0
-            ? loadedCategories
-            : [...defaultCategories];
-
       }
 
 
       populateCategoryMenus();
 
-      loadProducts();
+      renderProducts();
 
     }
 
@@ -3131,7 +3169,12 @@
        START
     ===================================== */
 
+    populateCategoryMenus();
+
+    loadProducts();
+
     loadCategories();
+
 
   </script>
 
