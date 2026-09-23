@@ -3,7 +3,6 @@
 <head>
 
   <meta charset="UTF-8">
-
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0">
@@ -109,8 +108,8 @@
     }
 
     .order-item img{
-      width:85px;
-      height:85px;
+      width:100px;
+      height:100px;
       object-fit:contain;
       border-radius:8px;
       background:#f7f7f7;
@@ -141,12 +140,12 @@
 
     .custom-summary{
       margin-top:12px;
-      padding:10px;
+      padding:11px;
       background:#f8fcfe;
       border:1px solid #d8eef7;
       border-radius:7px;
       font-size:13px;
-      line-height:1.6;
+      line-height:1.7;
     }
 
     .custom-summary strong{
@@ -155,12 +154,12 @@
 
     .whatsapp-note{
       margin-top:10px;
-      padding:10px;
+      padding:10px 12px;
       background:white;
       border-left:4px solid #00aef0;
       color:#444;
-      line-height:1.5;
       font-size:13px;
+      line-height:1.5;
       border-radius:5px;
     }
 
@@ -168,7 +167,8 @@
       display:flex;
       align-items:center;
       gap:8px;
-      margin-top:8px;
+      margin-top:10px;
+      flex-wrap:wrap;
     }
 
     .quantity-controls button{
@@ -183,7 +183,7 @@
 
     .remove-btn{
       width:auto !important;
-      padding:0 8px;
+      padding:0 8px !important;
       color:#d00;
     }
 
@@ -368,6 +368,19 @@
 
     }
 
+    @media(max-width:500px){
+
+      .order-item{
+        align-items:flex-start;
+      }
+
+      .order-item img{
+        width:80px;
+        height:80px;
+      }
+
+    }
+
   </style>
 
 </head>
@@ -412,6 +425,11 @@
 
   <div class="checkout-grid">
 
+
+    <!-- =========================
+         ORDER
+    ========================== -->
+
     <div class="box">
 
       <h2>
@@ -424,12 +442,17 @@
 
       <a
         href="products.html"
-        class="back-products">
+        class="back-products"
+      >
         ← Continue Shopping
       </a>
 
     </div>
 
+
+    <!-- =========================
+         DELIVERY
+    ========================== -->
 
     <div class="box">
 
@@ -437,7 +460,9 @@
         Delivery Details
       </h2>
 
+
       <form id="checkoutForm">
+
 
         <div class="form-group">
 
@@ -449,7 +474,8 @@
             type="text"
             id="fullName"
             placeholder="Enter your full name"
-            required>
+            required
+          >
 
         </div>
 
@@ -464,7 +490,8 @@
             type="tel"
             id="phone"
             placeholder="03XXXXXXXXX"
-            required>
+            required
+          >
 
         </div>
 
@@ -478,7 +505,8 @@
           <textarea
             id="address"
             placeholder="House no, street, area..."
-            required></textarea>
+            required
+          ></textarea>
 
         </div>
 
@@ -493,7 +521,8 @@
             type="text"
             id="city"
             placeholder="Enter your city"
-            required>
+            required
+          >
 
         </div>
 
@@ -509,7 +538,8 @@
             <input
               type="radio"
               checked
-              disabled>
+              disabled
+            >
 
             Cash on Delivery
 
@@ -520,10 +550,9 @@
 
         <button
           type="submit"
-          class="place-order">
-
+          class="place-order"
+        >
           PLACE ORDER ON WHATSAPP
-
         </button>
 
       </form>
@@ -535,15 +564,21 @@
 </main>
 
 
+<!-- =========================
+     IMAGE ZOOM
+========================== -->
+
 <div
   class="image-modal"
   id="imageModal"
-  onclick="closeImageZoom(event)">
+  onclick="closeImageZoom(event)"
+>
 
   <button
     class="image-modal-close"
     type="button"
-    onclick="closeImageZoom(event)">
+    onclick="closeImageZoom(event)"
+  >
     ×
   </button>
 
@@ -551,7 +586,8 @@
     id="zoomedImage"
     src=""
     alt=""
-    onclick="toggleImageZoom(event)">
+    onclick="toggleImageZoom(event)"
+  >
 
 </div>
 
@@ -566,8 +602,12 @@
 
 <script>
 
+/* =========================
+   SUPABASE
+========================= */
+
 const SUPABASE_URL =
-  "https://hujwsdixdxhofwhibffj.supabase.co";
+  "https://hujwsdixdxhofwhibjff.supabase.co";
 
 const SUPABASE_PUBLISHABLE_KEY =
   "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
@@ -579,9 +619,17 @@ const supabaseClient =
   );
 
 
+/* =========================
+   WHATSAPP
+========================= */
+
 const WHATSAPP_NUMBER =
   "923360763055";
 
+
+/* =========================
+   BUY NOW?
+========================= */
 
 const urlParams =
   new URLSearchParams(
@@ -603,13 +651,13 @@ let products = [];
 
 const GROUPS = {
 
-  led: [
+  led:[
     "led-picture-frame-1",
     "led-picture-frame-2",
     "led-picture-frame-3"
   ],
 
-  birthdayFrame: [
+  birthdayFrame:[
     "birthday-frame-1",
     "birthday-frame-2",
     "birthday-frame-3",
@@ -620,36 +668,36 @@ const GROUPS = {
     "birthday-frame-8"
   ],
 
-  pictureFrame: [
+  pictureFrame:[
     "picture-frame-1",
     "picture-frame-2"
   ],
 
-  mug: [
+  mug:[
     "mug-1",
     "mug-2"
   ],
 
-  birthdayMug: [
+  birthdayMug:[
     "birthday-mug-2",
     "birthday-mug-3"
   ],
 
-  magicMug: [
+  magicMug:[
     "magic-mug-1",
     "magic-mug-2"
   ],
 
-  social: [
+  social:[
     "social-card-1"
   ],
 
-  friendship: [
+  friendship:[
     "friendship-card-1",
     "friendship-card-2"
   ],
 
-  eye: [
+  eye:[
     "necklace-1",
     "necklace-2",
     "necklace-3",
@@ -659,24 +707,24 @@ const GROUPS = {
     "necklace-7"
   ],
 
-  plate: [
+  plate:[
     "nikkah-plaque-1",
     "nikkah-plaque-2"
   ],
 
-  trendy: [
+  trendy:[
     "trendy-chart-1"
   ],
 
-  keychain: [
+  keychain:[
     "name-keychain-1"
   ],
 
-  pvc: [
+  pvc:[
     "pvc-card-1"
   ],
 
-  lamp: [
+  lamp:[
     "moon-lamp-1",
     "moon-lamp-2"
   ]
@@ -684,11 +732,22 @@ const GROUPS = {
 };
 
 
+/* =========================
+   PRODUCT TYPE
+========================= */
+
 function getProductType(product){
 
-  for(const type in GROUPS){
+  for(
+    const type in GROUPS
+  ){
 
-    if(GROUPS[type].includes(product.id)){
+    if(
+      GROUPS[type].includes(
+        product.id
+      )
+    ){
+
       return type;
     }
 
@@ -699,13 +758,16 @@ function getProductType(product){
 
 
 /* =========================
-   WHATSAPP INSTRUCTION
+   WHATSAPP NOTE
 ========================= */
 
-function getWhatsAppInstruction(product){
+function getWhatsAppInstruction(
+  product
+){
 
   const type =
     getProductType(product);
+
 
   if(
     type === "led" ||
@@ -717,32 +779,60 @@ function getWhatsAppInstruction(product){
     type === "friendship" ||
     type === "lamp"
   ){
-    return "Please send your picture on WhatsApp after placing your order.";
+
+    return
+      "Please send your picture on WhatsApp after placing your order.";
+
   }
+
 
   if(type === "eye"){
-    return "Please send your eye picture on WhatsApp after placing your order.";
+
+    return
+      "Please send your eye picture on WhatsApp after placing your order.";
+
   }
+
 
   if(type === "social"){
-    return "Please send your profile information on WhatsApp after placing your order.";
+
+    return
+      "Please send your profile information on WhatsApp after placing your order.";
+
   }
+
 
   if(type === "trendy"){
-    return "Please send your pictures on WhatsApp after placing your order.";
+
+    return
+      "Please send your pictures on WhatsApp after placing your order.";
+
   }
+
 
   if(type === "pvc"){
-    return "Please send your picture and details on WhatsApp after placing your order.";
+
+    return
+      "Please send your picture and details on WhatsApp after placing your order.";
+
   }
+
 
   if(type === "plate"){
-    return "Your wedding details will be sent on WhatsApp with your order.";
+
+    return
+      "Your wedding details will be sent on WhatsApp with your order.";
+
   }
 
+
   if(type === "keychain"){
-    return "Your keychain name will be sent on WhatsApp with your order.";
+
+    return
+      "Your keychain name will be sent on WhatsApp with your order.";
+
   }
+
 
   return "";
 }
@@ -752,21 +842,29 @@ function getWhatsAppInstruction(product){
    PRICE
 ========================= */
 
-function getProductPrice(product){
+function getProductPrice(
+  product
+){
 
   if(
     product.sale === true &&
     Number(product.sale_price) > 0
   ){
-    return Number(product.sale_price);
+
+    return Number(
+      product.sale_price
+    );
+
   }
 
-  return Number(product.price) || 0;
+  return Number(
+    product.price
+  ) || 0;
 }
 
 
 /* =========================
-   GET CART
+   STORED CART
 ========================= */
 
 function getStoredCart(){
@@ -775,6 +873,7 @@ function getStoredCart(){
     isBuyNow
       ? "craftioBuyNow"
       : "craftioCart";
+
 
   return JSON.parse(
     localStorage.getItem(key)
@@ -788,20 +887,27 @@ function getStoredCart(){
 
 async function loadProducts(){
 
-  cart = getStoredCart();
+  cart =
+    getStoredCart();
+
 
   if(!cart.length){
 
     renderOrder();
+
     return;
   }
+
 
   const ids =
     [
       ...new Set(
-        cart.map(item => item.id)
+        cart.map(
+          item => item.id
+        )
       )
     ];
+
 
   const {
     data,
@@ -810,7 +916,8 @@ async function loadProducts(){
     await supabaseClient
       .from("products")
       .select("*")
-      .in("id", ids);
+      .in("id",ids);
+
 
   if(error){
 
@@ -818,15 +925,19 @@ async function loadProducts(){
 
     document.getElementById(
       "orderItems"
-    ).innerHTML =
-      `<div class="empty-message">
+    ).innerHTML = `
+      <div class="empty-message">
         Unable to load your order.
-      </div>`;
+      </div>
+    `;
 
     return;
   }
 
-  products = data || [];
+
+  products =
+    data || [];
+
 
   renderOrder();
 }
@@ -836,36 +947,40 @@ async function loadProducts(){
    ESCAPE HTML
 ========================= */
 
-function escapeHtml(value){
+function escapeHtml(
+  value
+){
 
-  return String(value || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+  return String(
+    value || ""
+  )
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
 }
 
 
 /* =========================
-   CUSTOMIZATION LABELS
+   LABELS
 ========================= */
 
 const CUSTOM_LABELS = {
 
-  name: "Name",
+  name:"Name",
 
-  date: "Date",
+  date:"Date",
 
-  profileInfo: "Profile Information",
+  profileInfo:"Profile Information",
 
-  groomName: "Groom Name",
+  groomName:"Groom Name",
 
-  brideName: "Bride Name",
+  brideName:"Bride Name",
 
-  nikahDate: "Nikkah Date",
+  nikahDate:"Nikkah Date",
 
-  otherDetails: "Other Details"
+  otherDetails:"Other Details"
 
 };
 
@@ -874,25 +989,34 @@ const CUSTOM_LABELS = {
    CUSTOMIZATION HTML
 ========================= */
 
-function getCustomizationHtml(customization){
+function getCustomizationHtml(
+  customization
+){
 
   if(
     !customization ||
     Object.keys(customization).length === 0
   ){
+
     return "";
   }
 
+
   let html =
     `<div class="custom-summary">
-       <strong>Customization:</strong><br>`;
+      <strong>Customization:</strong><br>`;
 
-  for(const key in customization){
+
+  for(
+    const key in customization
+  ){
 
     const value =
       customization[key];
 
+
     if(!value) continue;
+
 
     html += `
       ${CUSTOM_LABELS[key] || key}:
@@ -902,7 +1026,10 @@ function getCustomizationHtml(customization){
 
   }
 
-  html += `</div>`;
+
+  html +=
+    `</div>`;
+
 
   return html;
 }
@@ -919,10 +1046,12 @@ function renderOrder(){
       "orderItems"
     );
 
+
   const totalBox =
     document.getElementById(
       "totalBox"
     );
+
 
   if(!cart.length){
 
@@ -940,53 +1069,73 @@ function renderOrder(){
       </div>
     `;
 
-    totalBox.innerHTML = "";
+
+    totalBox.innerHTML =
+      "";
+
 
     return;
   }
 
+
   let total = 0;
 
-  orderItems.innerHTML = "";
+
+  orderItems.innerHTML =
+    "";
+
 
   cart.forEach(
     (item,index) => {
 
       const product =
         products.find(
-          p => p.id === item.id
+          p =>
+            p.id === item.id
         );
+
 
       if(!product) return;
 
+
       const price =
         getProductPrice(product);
+
 
       const itemTotal =
         price *
         Number(item.quantity);
 
-      total += itemTotal;
+
+      total +=
+        itemTotal;
+
 
       const customHtml =
         getCustomizationHtml(
           item.customization
         );
 
+
       const note =
         getWhatsAppInstruction(
           product
         );
+
+
+      const imageUrl =
+        product.image_url || "";
+
 
       orderItems.innerHTML += `
 
         <div class="order-item">
 
           <img
-            src="${escapeHtml(product.image_url || "")}"
+            src="${escapeHtml(imageUrl)}"
             alt="${escapeHtml(product.name)}"
             onclick="openImageZoom(
-              '${escapeHtml(product.image_url || "")}',
+              '${escapeHtml(imageUrl)}',
               '${escapeHtml(product.name)}'
             )"
           >
@@ -998,21 +1147,24 @@ function renderOrder(){
             </h3>
 
             <p>
-              Rs. ${
+              ${
                 price > 0
-                  ? price.toLocaleString("en-PK")
+                  ? "Rs. " +
+                    price.toLocaleString("en-PK")
                   : "Price will be updated"
               }
               × ${item.quantity}
             </p>
 
             <div class="order-item-price">
+
               ${
                 itemTotal > 0
                   ? "Rs. " +
                     itemTotal.toLocaleString("en-PK")
                   : "Price will be updated"
               }
+
             </div>
 
             ${customHtml}
@@ -1020,12 +1172,13 @@ function renderOrder(){
             ${
               note
                 ? `
-                <div class="whatsapp-note">
-                  ${note}
-                </div>
+                  <div class="whatsapp-note">
+                    ${note}
+                  </div>
                 `
                 : ""
             }
+
 
             <div class="quantity-controls">
 
@@ -1033,27 +1186,33 @@ function renderOrder(){
                 onclick="changeQuantity(
                   '${product.id}',
                   -1
-                )">
+                )"
+              >
                 −
               </button>
+
 
               <strong>
                 ${item.quantity}
               </strong>
 
+
               <button
                 onclick="changeQuantity(
                   '${product.id}',
                   1
-                )">
+                )"
+              >
                 +
               </button>
+
 
               <button
                 class="remove-btn"
                 onclick="removeItem(
                   '${product.id}'
-                )">
+                )"
+              >
                 Remove
               </button>
 
@@ -1096,46 +1255,71 @@ function renderOrder(){
    IMAGE ZOOM
 ========================= */
 
-function openImageZoom(src,alt){
+function openImageZoom(
+  src,
+  alt
+){
 
   const modal =
     document.getElementById(
       "imageModal"
     );
+
 
   const image =
     document.getElementById(
       "zoomedImage"
     );
 
-  image.src = src;
-  image.alt = alt || "";
 
-  image.classList.remove("zoomed");
+  image.src =
+    src;
 
-  modal.classList.add("active");
+  image.alt =
+    alt || "";
+
+
+  image.classList.remove(
+    "zoomed"
+  );
+
+
+  modal.classList.add(
+    "active"
+  );
+
 
   document.body.style.overflow =
     "hidden";
 }
 
 
-function toggleImageZoom(event){
+function toggleImageZoom(
+  event
+){
 
   event.stopPropagation();
 
+
   document
-    .getElementById("zoomedImage")
-    .classList.toggle("zoomed");
+    .getElementById(
+      "zoomedImage"
+    )
+    .classList.toggle(
+      "zoomed"
+    );
 }
 
 
-function closeImageZoom(event){
+function closeImageZoom(
+  event
+){
 
   const modal =
     document.getElementById(
       "imageModal"
     );
+
 
   if(
     event &&
@@ -1144,16 +1328,27 @@ function closeImageZoom(event){
       "image-modal-close"
     )
   ){
+
     return;
   }
 
-  modal.classList.remove("active");
+
+  modal.classList.remove(
+    "active"
+  );
+
 
   document
-    .getElementById("zoomedImage")
-    .classList.remove("zoomed");
+    .getElementById(
+      "zoomedImage"
+    )
+    .classList.remove(
+      "zoomed"
+    );
 
-  document.body.style.overflow = "";
+
+  document.body.style.overflow =
+    "";
 }
 
 
@@ -1161,22 +1356,38 @@ document.addEventListener(
   "keydown",
   function(event){
 
-    if(event.key === "Escape"){
+    if(
+      event.key === "Escape"
+    ){
 
       const modal =
         document.getElementById(
           "imageModal"
         );
 
-      if(modal.classList.contains("active")){
 
-        modal.classList.remove("active");
+      if(
+        modal.classList.contains(
+          "active"
+        )
+      ){
+
+        modal.classList.remove(
+          "active"
+        );
+
 
         document
-          .getElementById("zoomedImage")
-          .classList.remove("zoomed");
+          .getElementById(
+            "zoomedImage"
+          )
+          .classList.remove(
+            "zoomed"
+          );
 
-        document.body.style.overflow = "";
+
+        document.body.style.overflow =
+          "";
       }
 
     }
@@ -1200,19 +1411,25 @@ function changeQuantity(
         item.id === productId
     );
 
+
   if(!item) return;
 
-  item.quantity += amount;
 
-  if(item.quantity <= 0){
+  item.quantity +=
+    amount;
+
+
+  if(
+    item.quantity <= 0
+  ){
 
     cart =
       cart.filter(
         item =>
           item.id !== productId
       );
-
   }
+
 
   saveCurrentCart();
 
@@ -1224,13 +1441,16 @@ function changeQuantity(
    REMOVE ITEM
 ========================= */
 
-function removeItem(productId){
+function removeItem(
+  productId
+){
 
   cart =
     cart.filter(
       item =>
         item.id !== productId
     );
+
 
   saveCurrentCart();
 
@@ -1249,6 +1469,7 @@ function saveCurrentCart(){
       ? "craftioBuyNow"
       : "craftioCart";
 
+
   localStorage.setItem(
     key,
     JSON.stringify(cart)
@@ -1264,23 +1485,27 @@ function getTotal(){
 
   let total = 0;
 
-  cart.forEach(item => {
 
-    const product =
-      products.find(
-        p => p.id === item.id
-      );
+  cart.forEach(
+    item => {
 
-    if(!product) return;
+      const product =
+        products.find(
+          p =>
+            p.id === item.id
+        );
 
-    const price =
-      getProductPrice(product);
 
-    total +=
-      price *
-      Number(item.quantity);
+      if(!product) return;
 
-  });
+
+      total +=
+        getProductPrice(product) *
+        Number(item.quantity);
+
+    }
+  );
+
 
   return total;
 }
@@ -1298,6 +1523,7 @@ document.getElementById(
 
     event.preventDefault();
 
+
     if(!cart.length){
 
       alert(
@@ -1309,28 +1535,27 @@ document.getElementById(
 
 
     const fullName =
-      document
-        .getElementById("fullName")
-        .value
-        .trim();
+      document.getElementById(
+        "fullName"
+      ).value.trim();
+
 
     const phone =
-      document
-        .getElementById("phone")
-        .value
-        .trim();
+      document.getElementById(
+        "phone"
+      ).value.trim();
+
 
     const address =
-      document
-        .getElementById("address")
-        .value
-        .trim();
+      document.getElementById(
+        "address"
+      ).value.trim();
+
 
     const city =
-      document
-        .getElementById("city")
-        .value
-        .trim();
+      document.getElementById(
+        "city"
+      ).value.trim();
 
 
     const total =
@@ -1339,33 +1564,46 @@ document.getElementById(
 
     const lines = [];
 
+
     lines.push(
       "🛍️ NEW ORDER - CRAFTIO GIFTS"
     );
 
+
     lines.push("");
+
 
     lines.push(
       "CUSTOMER DETAILS"
     );
 
-    lines.push(
-      "Name: " + fullName
-    );
 
     lines.push(
-      "Phone: " + phone
+      "Name: " +
+      fullName
     );
 
-    lines.push(
-      "Address: " + address
-    );
 
     lines.push(
-      "City: " + city
+      "Phone: " +
+      phone
     );
+
+
+    lines.push(
+      "Address: " +
+      address
+    );
+
+
+    lines.push(
+      "City: " +
+      city
+    );
+
 
     lines.push("");
+
 
     lines.push(
       "ORDER DETAILS"
@@ -1377,19 +1615,25 @@ document.getElementById(
 
         const product =
           products.find(
-            p => p.id === item.id
+            p =>
+              p.id === item.id
           );
+
 
         if(!product) return;
 
+
         const price =
           getProductPrice(product);
+
 
         const itemTotal =
           price *
           Number(item.quantity);
 
+
         lines.push("");
+
 
         lines.push(
           (index + 1) +
@@ -1397,10 +1641,12 @@ document.getElementById(
           product.name
         );
 
+
         lines.push(
           "Qty: " +
           item.quantity
         );
+
 
         lines.push(
           "Price: " +
@@ -1416,6 +1662,7 @@ document.getElementById(
         const custom =
           item.customization || {};
 
+
         if(
           Object.keys(custom).length
         ){
@@ -1424,11 +1671,17 @@ document.getElementById(
             "Customization:"
           );
 
+
           for(
             const key in custom
           ){
 
-            if(!custom[key]) continue;
+            if(
+              !custom[key]
+            ){
+              continue;
+            }
+
 
             lines.push(
               (CUSTOM_LABELS[key] || key) +
@@ -1446,6 +1699,7 @@ document.getElementById(
             product
           );
 
+
         if(note){
 
           lines.push(
@@ -1461,6 +1715,7 @@ document.getElementById(
 
     lines.push("");
 
+
     lines.push(
       "TOTAL: " +
       (
@@ -1471,7 +1726,9 @@ document.getElementById(
       )
     );
 
+
     lines.push("");
+
 
     lines.push(
       "Payment: Cash on Delivery"
