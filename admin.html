@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Admin Panel | Craftio Gifts</title>
+  <title>Craftio Gifts - Admin Login</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
 
@@ -23,20 +23,6 @@
     body {
       font-family: Arial, sans-serif;
       background: #f5f7f9;
-      color: #111;
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    /* =========================
-       LOGIN
-    ========================= */
-
-    .login-screen {
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -46,66 +32,66 @@
 
     .login-box {
       width: 100%;
-      max-width: 420px;
-      background: #fff;
+      max-width: 400px;
+      background: white;
       padding: 35px;
       border-radius: 18px;
       box-shadow: 0 15px 45px rgba(0,0,0,0.10);
     }
 
-    .login-logo {
+    .logo {
       text-align: center;
       margin-bottom: 28px;
     }
 
-    .login-logo h1 {
+    .logo h1 {
       font-size: 28px;
+      font-weight: 800;
       letter-spacing: 1px;
     }
 
-    .login-logo span {
+    .logo span {
       color: #00aef0;
     }
 
-    .login-logo p {
+    .logo p {
       color: #777;
-      margin-top: 8px;
       font-size: 14px;
+      margin-top: 8px;
     }
 
     .field {
-      margin-bottom: 15px;
+      margin-bottom: 16px;
     }
 
     .field label {
       display: block;
-      margin-bottom: 7px;
       font-size: 13px;
       font-weight: 700;
+      margin-bottom: 7px;
     }
 
-    .field input,
-    .field select {
+    .field input {
       width: 100%;
       padding: 12px;
       border: 1px solid #ddd;
       border-radius: 9px;
       outline: none;
-      background: #fff;
+      font-size: 14px;
     }
 
-    .field input:focus,
-    .field select:focus {
+    .field input:focus {
       border-color: #00aef0;
     }
 
     .login-btn {
       width: 100%;
+      padding: 13px;
       border: none;
       border-radius: 9px;
-      padding: 13px;
       background: #00aef0;
       color: white;
+      font-size: 15px;
       font-weight: 800;
       cursor: pointer;
     }
@@ -114,752 +100,82 @@
       background: #008fc5;
     }
 
-    .login-message {
+    #message {
       text-align: center;
-      margin-top: 12px;
-      min-height: 18px;
+      margin-top: 15px;
+      min-height: 20px;
       font-size: 13px;
-      color: #d33;
-    }
-
-
-    /* =========================
-       ADMIN APP
-    ========================= */
-
-    .admin-app {
-      display: none;
-      min-height: 100vh;
-    }
-
-    .admin-app.active {
-      display: block;
-    }
-
-    .topbar {
-      background: #111;
-      color: white;
-      padding: 16px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .brand {
-      font-size: 23px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .brand span {
-      color: #00aef0;
-    }
-
-    .top-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .top-btn {
-      border: none;
-      border-radius: 8px;
-      padding: 9px 13px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    .website-btn {
-      background: #00aef0;
-      color: white;
-      text-decoration: none;
-    }
-
-    .logout-btn {
-      background: white;
-      color: #111;
-    }
-
-    .container {
-      max-width: 1250px;
-      margin: auto;
-      padding: 35px 20px 60px;
-    }
-
-    .page-title {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
-
-    .page-title h1 {
-      font-size: 30px;
-    }
-
-    .add-btn {
-      border: none;
-      border-radius: 9px;
-      padding: 12px 16px;
-      background: #00aef0;
-      color: white;
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    .add-btn:hover {
-      background: #008fc5;
-    }
-
-
-    /* =========================
-       TOOLBAR
-    ========================= */
-
-    .toolbar {
-      background: white;
-      padding: 15px;
-      border-radius: 13px;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .toolbar input,
-    .toolbar select {
-      padding: 11px 12px;
-      border: 1px solid #ddd;
-      border-radius: 9px;
-      outline: none;
-      background: white;
-    }
-
-    .toolbar input {
-      flex: 1;
-    }
-
-    .toolbar select {
-      min-width: 240px;
-    }
-
-
-    /* =========================
-       STATUS
-    ========================= */
-
-    .status {
-      display: none;
-      background: #eaf9ff;
-      color: #008fc5;
-      padding: 12px;
-      border-radius: 9px;
-      margin-bottom: 15px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .status.show {
-      display: block;
-    }
-
-
-    /* =========================
-       PRODUCT LIST
-    ========================= */
-
-    .products-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 20px;
-    }
-
-    .product-card {
-      background: white;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
-    }
-
-    .product-image {
-      height: 220px;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-bottom: 1px solid #eee;
-    }
-
-    .product-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      padding: 10px;
-    }
-
-    .no-image {
-      color: #999;
-      font-size: 13px;
-    }
-
-    .product-body {
-      padding: 17px;
-    }
-
-    .product-body h3 {
-      font-size: 16px;
-      line-height: 1.4;
-      margin-bottom: 6px;
-    }
-
-    .category-name {
-      color: #008fc5;
-      font-size: 11px;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .edit-field {
-      margin-bottom: 10px;
-    }
-
-    .edit-field label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .edit-field input,
-    .edit-field select {
-      width: 100%;
-      padding: 9px;
-      border: 1px solid #ddd;
-      border-radius: 7px;
-      outline: none;
-      background: white;
-      font-size: 12px;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .sale-row {
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      margin: 5px 0 12px;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .save-btn,
-    .delete-btn {
-      flex: 1;
-      border: none;
-      border-radius: 7px;
-      padding: 10px;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 800;
-    }
-
-    .save-btn {
-      background: #111;
-      color: white;
-    }
-
-    .save-btn:hover {
-      background: #333;
-    }
-
-    .delete-btn {
-      background: #ffecec;
-      color: #d33;
-    }
-
-
-    /* =========================
-       IMAGE UPLOAD
-    ========================= */
-
-    .upload-label {
-      display: block;
-      margin-bottom: 10px;
-      padding: 9px;
-      text-align: center;
-      border: 1px dashed #aaa;
-      border-radius: 7px;
-      color: #666;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .upload-label:hover {
-      border-color: #00aef0;
-      color: #00aef0;
-    }
-
-    .upload-input {
-      display: none;
-    }
-
-    .no-products {
-      grid-column: 1 / -1;
-      background: white;
-      padding: 50px;
-      border-radius: 15px;
-      text-align: center;
-      color: #777;
-    }
-
-
-    /* =========================
-       MODAL
-    ========================= */
-
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      z-index: 5000;
-    }
-
-    .modal.active {
-      display: flex;
-    }
-
-    .modal-box {
-      width: 100%;
-      max-width: 500px;
-      max-height: 90vh;
-      overflow-y: auto;
-      background: white;
-      border-radius: 15px;
-      padding: 25px;
-    }
-
-    .modal-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .modal-head h2 {
-      font-size: 22px;
-    }
-
-    .close-modal {
-      border: none;
-      background: none;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    .create-btn {
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-      padding: 13px;
-      background: #00aef0;
-      color: white;
-      font-weight: 800;
-      cursor: pointer;
-      margin-top: 5px;
-    }
-
-    .create-btn:hover {
-      background: #008fc5;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 700px) {
-
-      .topbar {
-        padding: 13px 15px;
-      }
-
-      .brand {
-        font-size: 19px;
-      }
-
-      .top-btn {
-        padding: 8px;
-        font-size: 10px;
-      }
-
-      .container {
-        padding: 25px 12px 50px;
-      }
-
-      .page-title {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .toolbar {
-        flex-direction: column;
-      }
-
-      .toolbar select {
-        min-width: 0;
-        width: 100%;
-      }
-
-      .products-list {
-        grid-template-columns: 1fr;
-      }
-
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-
     }
 
   </style>
 
 </head>
 
-
 <body>
 
+  <div class="login-box">
 
-  <!-- =========================
-       LOGIN SCREEN
-  ========================= -->
+    <div class="logo">
 
-  <div
-    class="login-screen"
-    id="loginScreen">
+      <h1>
+        CRAFTIO <span>GIFTS</span>
+      </h1>
 
-    <div class="login-box">
-
-      <div class="login-logo">
-
-        <h1>
-          CRAFTIO <span>GIFTS</span>
-        </h1>
-
-        <p>
-          Admin Panel
-        </p>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Email
-        </label>
-
-        <input
-          type="email"
-          id="loginEmail"
-          placeholder="Admin email">
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Password
-        </label>
-
-        <input
-          type="password"
-          id="loginPassword"
-          placeholder="Password">
-
-      </div>
-
-
-      <button
-        class="login-btn"
-        onclick="login()">
-
-        LOGIN
-
-      </button>
-
-
-      <div
-        class="login-message"
-        id="loginMessage">
-      </div>
-
-    </div>
-
-  </div>
-
-
-  <!-- =========================
-       ADMIN APP
-  ========================= -->
-
-  <div
-    class="admin-app"
-    id="adminApp">
-
-
-    <div class="topbar">
-
-      <div class="brand">
-
-        CRAFTIO
-        <span>GIFTS</span>
-
-      </div>
-
-
-      <div class="top-actions">
-
-        <a
-          href="index.html"
-          class="top-btn website-btn">
-
-          WEBSITE
-
-        </a>
-
-
-        <button
-          class="top-btn logout-btn"
-          onclick="logout()">
-
-          LOGOUT
-
-        </button>
-
-      </div>
+      <p>
+        Admin Login
+      </p>
 
     </div>
 
 
-    <main class="container">
-
-
-      <div class="page-title">
-
-        <h1>
-          Products
-        </h1>
-
-
-        <button
-          class="add-btn"
-          onclick="openCreateModal()">
-
-          + ADD PRODUCT
-
-        </button>
-
-      </div>
-
-
-      <div
-        class="status"
-        id="statusBox">
-      </div>
-
-
-      <div class="toolbar">
-
-        <input
-          type="search"
-          id="searchProducts"
-          placeholder="Search product..."
-          oninput="renderProducts()">
-
-
-        <select
-          id="categoryFilter"
-          onchange="renderProducts()">
-
-          <option value="ALL">
-            ALL CATEGORIES
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div
-        class="products-list"
-        id="productsList">
-
-      </div>
-
-
-    </main>
-
-  </div>
-
-
-  <!-- =========================
-       ADD PRODUCT MODAL
-  ========================= -->
-
-  <div
-    class="modal"
-    id="createModal"
-    onclick="closeModalOutside(event)">
-
-
-    <div class="modal-box">
-
-
-      <div class="modal-head">
-
-        <h2>
-          Add Product
-        </h2>
-
-
-        <button
-          class="close-modal"
-          onclick="closeCreateModal()">
-
-          ×
-
-        </button>
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Product ID
-        </label>
-
-        <input
-          type="text"
-          id="newId"
-          placeholder="example-product-1">
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Product Name
-        </label>
-
-        <input
-          type="text"
-          id="newName"
-          placeholder="Product name">
-
-      </div>
-
-
-      <div class="field">
-
-        <label>
-          Category
-        </label>
-
-        <select
-          id="newCategory">
-        </select>
-
-      </div>
-
-
-      <div class="two-col">
-
-        <div class="field">
-
-          <label>
-            Price
-          </label>
-
-          <input
-            type="number"
-            min="0"
-            id="newPrice"
-            value="0">
-
-        </div>
-
-
-        <div class="field">
-
-          <label>
-            Sale Price
-          </label>
-
-          <input
-            type="number"
-            min="0"
-            id="newSalePrice"
-            placeholder="Optional">
-
-        </div>
-
-      </div>
-
-
-      <div class="sale-row">
-
-        <input
-          type="checkbox"
-          id="newSale">
-
-        <label for="newSale">
-          Sale Active
-        </label>
-
-      </div>
-
-
-      <button
-        class="create-btn"
-        onclick="createProduct()">
-
-        CREATE PRODUCT
-
-      </button>
-
+    <div class="field">
+
+      <label>
+        Email
+      </label>
+
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email">
 
     </div>
+
+
+    <div class="field">
+
+      <label>
+        Password
+      </label>
+
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password">
+
+    </div>
+
+
+    <button
+      class="login-btn"
+      id="loginBtn"
+      onclick="login()">
+
+      LOGIN
+
+    </button>
+
+
+    <div id="message"></div>
 
   </div>
 
 
   <script>
 
-    /* =====================================
-       SUPABASE CONNECTION
-    ===================================== */
-
     const SUPABASE_URL =
-  "sb_publishable_uxvucsvP7SDhLMqCEhCIpA_B684g00i";
+      "https://juguwyfvgogqkucbcrcx.supabase.co";
+
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_uxvucsvP7SDhLMqCEhCIpA_B684g00i";
@@ -872,120 +188,34 @@
       );
 
 
-    /* =====================================
-       CATEGORIES
-    ===================================== */
-
-    const categories = [
-
-      "ISLAMIC COLLECTION",
-
-      "LED PICTURE FRAME",
-
-      "ANNIVERSARY FRAMES",
-
-      "NIKKAH FRAMES",
-
-      "BIRTHDAY FRAMES",
-
-      "PICTURE FRAMES",
-
-      "MUG COLLECTION",
-
-      "MAGIC MUGS",
-
-      "NEW BORN FRAMES",
-
-      "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
-
-      "FRIENDSHIP LICENCE CARD",
-
-      "EYE NECKLACE",
-
-      "WEDDING RING PLATES",
-
-      "TRENDY CHARTS",
-
-      "NAME KEYCHAINS",
-
-      "PVC CARD",
-
-      "MAGIC LAMPS"
-
-    ];
-
-
-    let products = [];
-
-
-    /* =====================================
-       SETUP CATEGORIES
-    ===================================== */
-
-    function setupCategories() {
-
-      const filter =
-        document.getElementById(
-          "categoryFilter"
-        );
-
-
-      const newCategory =
-        document.getElementById(
-          "newCategory"
-        );
-
-
-      categories.forEach(
-        function(category) {
-
-          filter.innerHTML += `
-            <option value="${escapeHtml(category)}">
-              ${escapeHtml(category)}
-            </option>
-          `;
-
-
-          newCategory.innerHTML += `
-            <option value="${escapeHtml(category)}">
-              ${escapeHtml(category)}
-            </option>
-          `;
-
-        }
-      );
-
-    }
-
-
-    /* =====================================
-       LOGIN
-    ===================================== */
-
     async function login() {
 
       const email =
-        document.getElementById(
-          "loginEmail"
-        ).value.trim();
+        document
+          .getElementById("email")
+          .value
+          .trim();
 
 
       const password =
-        document.getElementById(
-          "loginPassword"
-        ).value;
+        document
+          .getElementById("password")
+          .value;
 
 
       const message =
-        document.getElementById(
-          "loginMessage"
-        );
+        document
+          .getElementById("message");
 
 
-      if (
-        !email ||
-        !password
-      ) {
+      const button =
+        document
+          .getElementById("loginBtn");
+
+
+      if (!email || !password) {
+
+        message.style.color = "#d33";
 
         message.textContent =
           "Email and password required.";
@@ -995,1219 +225,158 @@
       }
 
 
+      button.disabled = true;
+
+      button.textContent =
+        "LOGGING IN...";
+
+      message.style.color =
+        "#777";
+
       message.textContent =
-        "Logging in...";
+        "Please wait...";
 
 
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
+      try {
 
-            email:
-              email,
+        const {
+          data,
+          error
+        } =
+          await supabaseClient
+            .auth
+            .signInWithPassword({
 
-            password:
-              password
+              email:
+                email,
 
-          });
+              password:
+                password
+
+            });
 
 
-      if (error) {
+        if (error) {
+
+          message.style.color =
+            "#d33";
+
+          message.textContent =
+            error.message;
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "LOGIN";
+
+          return;
+
+        }
+
+
+        const user =
+          data.user;
+
+
+        const {
+          data: admin,
+          error: adminError
+        } =
+          await supabaseClient
+
+            .from("admin_users")
+
+            .select(
+              "user_id, role"
+            )
+
+            .eq(
+              "user_id",
+              user.id
+            )
+
+            .maybeSingle();
+
+
+        if (adminError) {
+
+          message.style.color =
+            "#d33";
+
+          message.textContent =
+            adminError.message;
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "LOGIN";
+
+          return;
+
+        }
+
+
+        if (
+          !admin ||
+          admin.role !== "admin"
+        ) {
+
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          message.style.color =
+            "#d33";
+
+          message.textContent =
+            "This account is not an admin.";
+
+          button.disabled =
+            false;
+
+          button.textContent =
+            "LOGIN";
+
+          return;
+
+        }
+
+
+        message.style.color =
+          "#079455";
 
         message.textContent =
+          "Login successful!";
+
+
+        button.textContent =
+          "SUCCESS";
+
+
+      } catch (error) {
+
+        message.style.color =
+          "#d33";
+
+        message.textContent =
+          "Connection error: " +
           error.message;
 
-        return;
 
-      }
+        button.disabled =
+          false;
 
-
-      const user =
-        data.user;
-
-
-      const {
-        data: admin,
-        error: adminError
-      } =
-        await supabaseClient
-
-          .from("admin_users")
-
-          .select(
-            "user_id, role"
-          )
-
-          .eq(
-            "user_id",
-            user.id
-          )
-
-          .maybeSingle();
-
-
-      if (
-        adminError ||
-        !admin ||
-        admin.role !== "admin"
-      ) {
-
-        await supabaseClient
-          .auth
-          .signOut();
-
-
-        message.textContent =
-          "This account is not an admin.";
-
-        return;
-
-      }
-
-
-      await showAdmin();
-
-    }
-
-
-    /* =====================================
-       CHECK SESSION
-    ===================================== */
-
-    async function checkSession() {
-
-      const {
-        data
-      } =
-        await supabaseClient
-          .auth
-          .getSession();
-
-
-      if (!data.session) {
-        return;
-      }
-
-
-      const user =
-        data.session.user;
-
-
-      const {
-        data: admin
-      } =
-        await supabaseClient
-
-          .from("admin_users")
-
-          .select(
-            "user_id, role"
-          )
-
-          .eq(
-            "user_id",
-            user.id
-          )
-
-          .maybeSingle();
-
-
-      if (
-        admin &&
-        admin.role === "admin"
-      ) {
-
-        await showAdmin();
+        button.textContent =
+          "LOGIN";
 
       }
 
     }
-
-
-    /* =====================================
-       SHOW ADMIN
-    ===================================== */
-
-    async function showAdmin() {
-
-      document.getElementById(
-        "loginScreen"
-      ).style.display = "none";
-
-
-      document.getElementById(
-        "adminApp"
-      ).classList.add(
-        "active"
-      );
-
-
-      await loadProducts();
-
-    }
-
-
-    /* =====================================
-       LOGOUT
-    ===================================== */
-
-    async function logout() {
-
-      await supabaseClient
-        .auth
-        .signOut();
-
-
-      location.reload();
-
-    }
-
-
-    /* =====================================
-       LOAD PRODUCTS
-    ===================================== */
-
-    async function loadProducts() {
-
-      showStatus(
-        "Loading products..."
-      );
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-
-          .from("products")
-
-          .select("*")
-
-          .order(
-            "created_at",
-            {
-              ascending: false
-            }
-          );
-
-
-      if (error) {
-
-        showStatus(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      products =
-        data || [];
-
-
-      renderProducts();
-
-
-      showStatus(
-        products.length +
-        " products loaded."
-      );
-
-    }
-
-
-    /* =====================================
-       RENDER PRODUCTS
-    ===================================== */
-
-    function renderProducts() {
-
-      const list =
-        document.getElementById(
-          "productsList"
-        );
-
-
-      const search =
-        document.getElementById(
-          "searchProducts"
-        ).value
-          .trim()
-          .toLowerCase();
-
-
-      const category =
-        document.getElementById(
-          "categoryFilter"
-        ).value;
-
-
-      const filtered =
-        products.filter(
-          function(product) {
-
-            const productName =
-              String(
-                product.name || ""
-              )
-              .toLowerCase();
-
-
-            const productId =
-              String(
-                product.id || ""
-              )
-              .toLowerCase();
-
-
-            const searchMatch =
-
-              !search
-
-              ||
-
-              productName.includes(
-                search
-              )
-
-              ||
-
-              productId.includes(
-                search
-              );
-
-
-            const categoryMatch =
-
-              category === "ALL"
-
-              ||
-
-              product.category ===
-                category;
-
-
-            return (
-              searchMatch &&
-              categoryMatch
-            );
-
-          }
-        );
-
-
-      if (
-        !filtered.length
-      ) {
-
-        list.innerHTML = `
-
-          <div class="no-products">
-
-            No products found.
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      list.innerHTML =
-        filtered
-          .map(
-            function(product) {
-
-              return createProductCard(
-                product
-              );
-
-            }
-          )
-          .join("");
-
-    }
-
-
-    /* =====================================
-       PRODUCT CARD
-    ===================================== */
-
-    function createProductCard(
-      product
-    ) {
-
-      const id =
-        escapeHtml(
-          product.id
-        );
-
-
-      const jsId =
-        escapeJs(
-          product.id
-        );
-
-
-      const name =
-        escapeHtml(
-          product.name
-        );
-
-
-      const category =
-        escapeHtml(
-          product.category
-        );
-
-
-      const image =
-        escapeHtml(
-          product.image_url || ""
-        );
-
-
-      const price =
-        Number(
-          product.price || 0
-        );
-
-
-      const salePrice =
-        product.sale_price !== null &&
-        product.sale_price !== undefined
-
-          ?
-
-          Number(
-            product.sale_price
-          )
-
-          :
-
-          "";
-
-
-      const sale =
-        product.sale === true;
-
-
-      return `
-
-        <div class="product-card">
-
-
-          <div class="product-image">
-
-            ${
-              image
-
-              ?
-
-              `
-                <img
-                  src="${image}"
-                  alt="${name}">
-              `
-
-              :
-
-              `
-                <span class="no-image">
-                  No image
-                </span>
-              `
-
-            }
-
-          </div>
-
-
-          <div class="product-body">
-
-
-            <h3>
-              ${name}
-            </h3>
-
-
-            <div class="category-name">
-              ${category}
-            </div>
-
-
-            <div class="edit-field">
-
-              <label>
-                Product Name
-              </label>
-
-              <input
-                id="name-${id}"
-                type="text"
-                value="${name}">
-
-            </div>
-
-
-            <div class="two-col">
-
-
-              <div class="edit-field">
-
-                <label>
-                  Price
-                </label>
-
-                <input
-                  id="price-${id}"
-                  type="number"
-                  min="0"
-                  value="${price}">
-
-              </div>
-
-
-              <div class="edit-field">
-
-                <label>
-                  Sale Price
-                </label>
-
-                <input
-                  id="saleprice-${id}"
-                  type="number"
-                  min="0"
-                  value="${salePrice}">
-
-              </div>
-
-            </div>
-
-
-            <div class="edit-field">
-
-              <label>
-                Category
-              </label>
-
-              <select
-                id="category-${id}">
-
-                ${
-                  categories
-                    .map(
-                      function(cat) {
-
-                        return `
-
-                          <option
-                            value="${escapeHtml(cat)}"
-                            ${
-                              cat ===
-                              product.category
-                                ? "selected"
-                                : ""
-                            }>
-
-                            ${escapeHtml(cat)}
-
-                          </option>
-
-                        `;
-
-                      }
-                    )
-                    .join("")
-                }
-
-              </select>
-
-            </div>
-
-
-            <div class="sale-row">
-
-              <input
-                type="checkbox"
-                id="sale-${id}"
-                ${
-                  sale
-                    ? "checked"
-                    : ""
-                }>
-
-              <label>
-                Sale Active
-              </label>
-
-            </div>
-
-
-            <label class="upload-label">
-
-              CHANGE IMAGE
-
-              <input
-                class="upload-input"
-                type="file"
-                accept="image/*"
-                onchange="uploadImage('${jsId}', this.files[0])">
-
-            </label>
-
-
-            <div class="actions">
-
-
-              <button
-                class="save-btn"
-                onclick="saveProduct('${jsId}')">
-
-                SAVE
-
-              </button>
-
-
-              <button
-                class="delete-btn"
-                onclick="deleteProduct('${jsId}')">
-
-                DELETE
-
-              </button>
-
-
-            </div>
-
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-
-
-    /* =====================================
-       SAVE PRODUCT
-    ===================================== */
-
-    async function saveProduct(
-      id
-    ) {
-
-      const name =
-        document.getElementById(
-          "name-" + id
-        ).value.trim();
-
-
-      const price =
-        Number(
-          document.getElementById(
-            "price-" + id
-          ).value
-        );
-
-
-      const salePriceText =
-        document.getElementById(
-          "saleprice-" + id
-        ).value;
-
-
-      const salePrice =
-        salePriceText
-          ? Number(
-              salePriceText
-            )
-          : null;
-
-
-      const category =
-        document.getElementById(
-          "category-" + id
-        ).value;
-
-
-      const sale =
-        document.getElementById(
-          "sale-" + id
-        ).checked;
-
-
-      if (!name) {
-
-        alert(
-          "Product name is required."
-        );
-
-        return;
-
-      }
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-
-          .from("products")
-
-          .update({
-
-            name:
-              name,
-
-            price:
-              price,
-
-            sale:
-              sale,
-
-            sale_price:
-              sale
-                ? salePrice
-                : null,
-
-            category:
-              category,
-
-            updated_at:
-              new Date()
-                .toISOString()
-
-          })
-
-          .eq(
-            "id",
-            id
-          );
-
-
-      if (error) {
-
-        alert(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      showStatus(
-        "Product saved successfully."
-      );
-
-
-      await loadProducts();
-
-    }
-
-
-    /* =====================================
-       DELETE PRODUCT
-    ===================================== */
-
-    async function deleteProduct(
-      id
-    ) {
-
-      const confirmed =
-        confirm(
-          "Delete this product?"
-        );
-
-
-      if (!confirmed) {
-        return;
-      }
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-
-          .from("products")
-
-          .delete()
-
-          .eq(
-            "id",
-            id
-          );
-
-
-      if (error) {
-
-        alert(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      showStatus(
-        "Product deleted."
-      );
-
-
-      await loadProducts();
-
-    }
-
-
-    /* =====================================
-       UPLOAD IMAGE
-    ===================================== */
-
-    async function uploadImage(
-      productId,
-      file
-    ) {
-
-      if (!file) {
-        return;
-      }
-
-
-      showStatus(
-        "Uploading image..."
-      );
-
-
-      const safeName =
-        file.name.replace(
-          /[^a-zA-Z0-9._-]/g,
-          "-"
-        );
-
-
-      const filePath =
-        "products/" +
-        crypto.randomUUID() +
-        "-" +
-        safeName;
-
-
-      const {
-        error:
-          uploadError
-      } =
-        await supabaseClient
-
-          .storage
-
-          .from(
-            "product-images"
-          )
-
-          .upload(
-            filePath,
-            file,
-            {
-              cacheControl:
-                "3600",
-
-              upsert:
-                false
-            }
-          );
-
-
-      if (uploadError) {
-
-        alert(
-          uploadError.message
-        );
-
-        return;
-
-      }
-
-
-      const {
-        data:
-          publicData
-      } =
-        supabaseClient
-
-          .storage
-
-          .from(
-            "product-images"
-          )
-
-          .getPublicUrl(
-            filePath
-          );
-
-
-      const imageUrl =
-        publicData.publicUrl;
-
-
-      const {
-        error:
-          updateError
-      } =
-        await supabaseClient
-
-          .from("products")
-
-          .update({
-
-            image_url:
-              imageUrl,
-
-            updated_at:
-              new Date()
-                .toISOString()
-
-          })
-
-          .eq(
-            "id",
-            productId
-          );
-
-
-      if (updateError) {
-
-        alert(
-          updateError.message
-        );
-
-        return;
-
-      }
-
-
-      showStatus(
-        "Image updated successfully."
-      );
-
-
-      await loadProducts();
-
-    }
-
-
-    /* =====================================
-       CREATE PRODUCT
-    ===================================== */
-
-    async function createProduct() {
-
-      const id =
-        document.getElementById(
-          "newId"
-        ).value.trim();
-
-
-      const name =
-        document.getElementById(
-          "newName"
-        ).value.trim();
-
-
-      const category =
-        document.getElementById(
-          "newCategory"
-        ).value;
-
-
-      const price =
-        Number(
-          document.getElementById(
-            "newPrice"
-          ).value
-        );
-
-
-      const salePriceText =
-        document.getElementById(
-          "newSalePrice"
-        ).value;
-
-
-      const salePrice =
-        salePriceText
-          ? Number(
-              salePriceText
-            )
-          : null;
-
-
-      const sale =
-        document.getElementById(
-          "newSale"
-        ).checked;
-
-
-      if (
-        !id ||
-        !name
-      ) {
-
-        alert(
-          "Product ID and name are required."
-        );
-
-        return;
-
-      }
-
-
-      const {
-        error
-      } =
-        await supabaseClient
-
-          .from("products")
-
-          .insert({
-
-            id:
-              id,
-
-            name:
-              name,
-
-            category:
-              category,
-
-            price:
-              price || 0,
-
-            sale:
-              sale,
-
-            sale_price:
-              sale
-                ? salePrice
-                : null,
-
-            active:
-              true
-
-          });
-
-
-      if (error) {
-
-        alert(
-          error.message
-        );
-
-        return;
-
-      }
-
-
-      closeCreateModal();
-
-
-      showStatus(
-        "Product created successfully."
-      );
-
-
-      await loadProducts();
-
-    }
-
-
-    /* =====================================
-       MODAL
-    ===================================== */
-
-    function openCreateModal() {
-
-      document
-        .getElementById(
-          "createModal"
-        )
-        .classList
-        .add("active");
-
-    }
-
-
-    function closeCreateModal() {
-
-      document
-        .getElementById(
-          "createModal"
-        )
-        .classList
-        .remove("active");
-
-
-      document.getElementById(
-        "newId"
-      ).value = "";
-
-
-      document.getElementById(
-        "newName"
-      ).value = "";
-
-
-      document.getElementById(
-        "newPrice"
-      ).value = "0";
-
-
-      document.getElementById(
-        "newSalePrice"
-      ).value = "";
-
-
-      document.getElementById(
-        "newSale"
-      ).checked = false;
-
-    }
-
-
-    function closeModalOutside(
-      event
-    ) {
-
-      if (
-        event.target.id ===
-        "createModal"
-      ) {
-
-        closeCreateModal();
-
-      }
-
-    }
-
-
-    /* =====================================
-       STATUS
-    ===================================== */
-
-    function showStatus(
-      message
-    ) {
-
-      const box =
-        document.getElementById(
-          "statusBox"
-        );
-
-
-      box.textContent =
-        message;
-
-
-      box.classList.add(
-        "show"
-      );
-
-
-      clearTimeout(
-        window.statusTimer
-      );
-
-
-      window.statusTimer =
-        setTimeout(
-          function() {
-
-            box.classList.remove(
-              "show"
-            );
-
-          },
-          2500
-        );
-
-    }
-
-
-    /* =====================================
-       ESCAPE HTML
-    ===================================== */
-
-    function escapeHtml(
-      value
-    ) {
-
-      return String(
-        value ?? ""
-      )
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-
-    }
-
-
-    function escapeJs(
-      value
-    ) {
-
-      return String(
-        value ?? ""
-      )
-      .replace(
-        /\\/g,
-        "\\\\"
-      )
-      .replace(
-        /'/g,
-        "\\'"
-      );
-
-    }
-
-
-    /* =====================================
-       START
-    ===================================== */
-
-    setupCategories();
-
-    checkSession();
 
   </script>
-
 
 </body>
 
