@@ -10,47 +10,83 @@
 
   <title>Checkout | Craftio Gifts</title>
 
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  </script>
+
 
   <style>
 
     * {
       box-sizing: border-box;
+
       margin: 0;
+
       padding: 0;
     }
 
     body {
       font-family: "Poppins", Arial, sans-serif;
+
       background: #f7f7f7;
+
       color: #111;
     }
 
     button,
     input,
-    textarea,
-    select {
+    textarea {
       font-family: inherit;
     }
 
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
     nav {
       background: #111;
-      color: white;
-      padding: 18px 7%;
+
+      color: #fff;
+
+      padding: 17px 6%;
+
       display: flex;
-      justify-content: space-between;
+
       align-items: center;
+
+      justify-content: space-between;
+    }
+
+    .logo-link {
+      color: #fff;
+
+      text-decoration: none;
     }
 
     .logo-text {
       font-size: 25px;
+
       font-weight: 800;
+
       letter-spacing: 1px;
     }
 
@@ -60,33 +96,46 @@
 
     .nav-links {
       display: flex;
-      gap: 25px;
+
+      gap: 24px;
     }
 
     .nav-links a {
-      color: white;
+      color: #fff;
+
       text-decoration: none;
+
       font-size: 15px;
-      font-weight: 600;
+
+      font-weight: 700;
     }
 
     .nav-links a:hover {
       color: #00aef0;
     }
 
+
+    /* =========================
+       CHECKOUT
+    ========================= */
+
     .checkout-page {
       max-width: 1100px;
+
       margin: 50px auto;
+
       padding: 0 20px;
     }
 
     .page-title {
       text-align: center;
+
       margin-bottom: 35px;
     }
 
     .page-title h1 {
       font-size: 38px;
+
       margin-bottom: 8px;
     }
 
@@ -94,43 +143,69 @@
       color: #00aef0;
     }
 
+    .page-title p {
+      color: #666;
+
+      font-size: 15px;
+    }
+
     .checkout-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 30px;
     }
 
     .box {
-      background: white;
+      background: #fff;
+
       border-radius: 15px;
+
       padding: 30px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,0.05);
     }
 
     .box h2 {
       margin-bottom: 25px;
+
       font-size: 23px;
     }
 
+
     /* =========================
-       ORDER ITEMS
+       ORDER ITEM
     ========================= */
 
     .order-item {
       display: flex;
+
       gap: 15px;
+
       padding: 15px 0;
-      border-bottom: 1px solid #eee;
+
+      border-bottom:
+        1px solid #eee;
     }
 
     .order-item img {
-      width: 85px;
-      height: 85px;
+      width: 90px;
+
+      height: 90px;
+
       object-fit: contain;
-      border-radius: 8px;
+
       background: #f7f7f7;
+
+      border-radius: 8px;
+
       padding: 5px;
+
       cursor: zoom-in;
+
       flex-shrink: 0;
     }
 
@@ -140,52 +215,113 @@
 
     .order-item-info h3 {
       font-size: 15px;
+
       line-height: 1.35;
-      margin-bottom: 8px;
+
+      margin-bottom: 6px;
     }
 
     .order-item-info p {
       color: #666;
+
+      font-size: 13px;
+
       margin-bottom: 5px;
     }
 
     .order-item-price {
       color: #00aef0;
+
       font-weight: 800;
+
+      font-size: 14px;
     }
+
+    .custom-details {
+      margin-top: 9px;
+
+      padding: 9px 10px;
+
+      background: #f7fbfd;
+
+      border:
+        1px solid #e1eef3;
+
+      border-radius: 7px;
+
+      font-size: 12px;
+
+      line-height: 1.55;
+    }
+
+    .custom-details strong {
+      font-weight: 700;
+    }
+
+
+    /* =========================
+       QUANTITY
+    ========================= */
 
     .quantity-controls {
       display: flex;
+
       align-items: center;
+
       gap: 8px;
-      margin-top: 8px;
+
+      margin-top: 9px;
+
+      flex-wrap: wrap;
     }
 
     .quantity-controls button {
       width: 28px;
+
       height: 28px;
-      border: 1px solid #ccc;
-      background: white;
+
+      border:
+        1px solid #ccc;
+
+      background: #fff;
+
       border-radius: 5px;
+
       cursor: pointer;
+
       font-weight: bold;
     }
 
     .remove-btn {
       width: auto !important;
-      padding: 0 8px;
+
+      padding: 0 9px;
+
       color: #d00;
     }
 
+
+    /* =========================
+       TOTAL
+    ========================= */
+
     .total-box {
       margin-top: 25px;
-      border-top: 2px solid #111;
+
+      border-top:
+        2px solid #111;
+
       padding-top: 18px;
+
       display: flex;
+
       justify-content: space-between;
+
       font-size: 21px;
+
       font-weight: 800;
     }
+
 
     /* =========================
        FORM
@@ -197,60 +333,101 @@
 
     .form-group label {
       display: block;
+
       margin-bottom: 7px;
+
       font-weight: 700;
+
+      font-size: 14px;
     }
 
     .form-group input,
-    .form-group textarea,
-    .form-group select {
+    .form-group textarea {
       width: 100%;
+
       padding: 13px;
-      border: 1px solid #ccc;
+
+      border:
+        1px solid #ccc;
+
       border-radius: 8px;
-      font-size: 15px;
+
+      font-size: 14px;
+
       outline: none;
+
+      background: #fff;
     }
 
     .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
+    .form-group textarea:focus {
       border-color: #00aef0;
     }
 
     .form-group textarea {
-      height: 110px;
+      min-height: 110px;
+
       resize: vertical;
     }
 
+
+    /* =========================
+       PAYMENT
+    ========================= */
+
     .payment-box {
       margin-top: 25px;
+
       padding: 18px;
+
       background: #f5fbfe;
-      border: 1px solid #d8eef7;
+
+      border:
+        1px solid #d8eef7;
+
       border-radius: 10px;
     }
 
     .payment-box h3 {
       margin-bottom: 10px;
+
+      font-size: 17px;
     }
 
     .payment-option {
       display: flex;
+
       gap: 8px;
+
       align-items: center;
+
+      font-size: 14px;
     }
+
+
+    /* =========================
+       ORDER BUTTON
+    ========================= */
 
     .place-order {
       width: 100%;
+
       border: none;
+
       background: #111;
-      color: white;
+
+      color: #fff;
+
       padding: 16px;
+
       border-radius: 9px;
-      font-size: 16px;
+
+      font-size: 15px;
+
       font-weight: 800;
+
       cursor: pointer;
+
       margin-top: 25px;
     }
 
@@ -258,11 +435,20 @@
       background: #333;
     }
 
+
+    /* =========================
+       LINKS
+    ========================= */
+
     .back-products {
       display: inline-block;
+
       margin-top: 20px;
+
       color: #555;
+
       text-decoration: none;
+
       font-weight: 600;
     }
 
@@ -270,25 +456,50 @@
       color: #00aef0;
     }
 
+
+    /* =========================
+       EMPTY / LOADING
+    ========================= */
+
     .empty-message {
       text-align: center;
+
       padding: 30px 10px;
+
       color: #777;
     }
 
+    .loading-message {
+      text-align: center;
+
+      padding: 35px 10px;
+
+      color: #777;
+    }
+
+
     /* =========================
-       IMAGE ZOOM MODAL
+       IMAGE MODAL
     ========================= */
 
     .image-modal {
       position: fixed;
+
       inset: 0;
-      background: rgba(0, 0, 0, 0.88);
+
+      background:
+        rgba(0,0,0,0.88);
+
       display: none;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 25px;
+
       z-index: 3000;
+
       overflow: auto;
     }
 
@@ -298,51 +509,78 @@
 
     .image-modal img {
       max-width: 92vw;
+
       max-height: 90vh;
+
       width: auto;
+
       height: auto;
+
       object-fit: contain;
+
       border-radius: 10px;
+
       cursor: zoom-in;
-      transition: transform 0.25s ease;
-      touch-action: pinch-zoom;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+      transition:
+        transform 0.25s ease;
     }
 
     .image-modal img.zoomed {
-      transform: scale(1.7);
+      transform:
+        scale(1.7);
+
       cursor: zoom-out;
     }
 
     .image-modal-close {
       position: fixed;
+
       top: 18px;
+
       right: 22px;
+
       width: 45px;
+
       height: 45px;
+
       border: none;
+
       border-radius: 50%;
-      background: white;
+
+      background: #fff;
+
       color: #111;
+
       font-size: 32px;
-      line-height: 1;
+
       cursor: pointer;
+
       z-index: 3001;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
-    .image-modal-close:hover {
-      background: #eee;
-    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #111;
-      color: white;
+
+      color: #fff;
+
       text-align: center;
+
       padding: 25px;
+
       font-size: 14px;
+
       margin-top: 60px;
     }
 
@@ -350,28 +588,46 @@
       color: #00aef0;
     }
 
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 800px) {
 
       nav {
         flex-direction: column;
-        gap: 15px;
+
+        gap: 14px;
       }
 
       .checkout-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns:
+          1fr;
       }
 
-      .image-modal {
-        padding: 15px;
+      .box {
+        padding: 22px;
       }
 
-      .image-modal img {
-        max-width: 94vw;
-        max-height: 85vh;
+    }
+
+    @media (max-width: 500px) {
+
+      .checkout-page {
+        margin: 30px auto;
+
+        padding: 0 12px;
       }
 
-      .image-modal img.zoomed {
-        transform: scale(1.45);
+      .page-title h1 {
+        font-size: 30px;
+      }
+
+      .order-item img {
+        width: 75px;
+
+        height: 75px;
       }
 
     }
@@ -380,13 +636,24 @@
 
 </head>
 
+
 <body>
 
   <nav>
 
-    <div class="logo-text">
-      CRAFTIO <span>GIFTS</span>
-    </div>
+    <a
+      href="index.html"
+      class="logo-link">
+
+      <div class="logo-text">
+
+        CRAFTIO
+        <span>GIFTS</span>
+
+      </div>
+
+    </a>
+
 
     <div class="nav-links">
 
@@ -402,12 +669,14 @@
 
   </nav>
 
+
   <main class="checkout-page">
 
     <div class="page-title">
 
       <h1>
-        Complete Your <span>Order</span>
+        Complete Your
+        <span>Order</span>
       </h1>
 
       <p>
@@ -416,7 +685,13 @@
 
     </div>
 
+
     <div class="checkout-grid">
+
+
+      <!-- =========================
+           ORDER
+      ========================= -->
 
       <div class="box">
 
@@ -424,17 +699,37 @@
           🛒 Your Order
         </h2>
 
-        <div id="orderItems"></div>
+        <div
+          id="orderItems">
 
-        <div id="totalBox"></div>
+          <div class="loading-message">
+
+            Loading order...
+
+          </div>
+
+        </div>
+
+        <div
+          id="totalBox">
+
+        </div>
+
 
         <a
           href="products.html"
           class="back-products">
+
           ← Continue Shopping
+
         </a>
 
       </div>
+
+
+      <!-- =========================
+           CUSTOMER DETAILS
+      ========================= -->
 
       <div class="box">
 
@@ -442,12 +737,17 @@
           Delivery Details
         </h2>
 
+
         <form id="checkoutForm">
+
 
           <div class="form-group">
 
-            <label>
+            <label
+              for="fullName">
+
               Full Name
+
             </label>
 
             <input
@@ -458,10 +758,14 @@
 
           </div>
 
+
           <div class="form-group">
 
-            <label>
+            <label
+              for="phone">
+
               Phone Number
+
             </label>
 
             <input
@@ -472,10 +776,14 @@
 
           </div>
 
+
           <div class="form-group">
 
-            <label>
+            <label
+              for="address">
+
               Complete Delivery Address
+
             </label>
 
             <textarea
@@ -485,10 +793,14 @@
 
           </div>
 
+
           <div class="form-group">
 
-            <label>
+            <label
+              for="city">
+
               City
+
             </label>
 
             <input
@@ -499,13 +811,15 @@
 
           </div>
 
+
           <div class="payment-box">
 
             <h3>
               Payment Method
             </h3>
 
-            <label class="payment-option">
+            <label
+              class="payment-option">
 
               <input
                 type="radio"
@@ -518,6 +832,7 @@
 
           </div>
 
+
           <button
             type="submit"
             class="place-order">
@@ -526,6 +841,7 @@
 
           </button>
 
+
         </form>
 
       </div>
@@ -533,6 +849,9 @@
     </div>
 
   </main>
+
+
+  <!-- IMAGE MODAL -->
 
   <div
     class="image-modal"
@@ -543,7 +862,9 @@
       class="image-modal-close"
       type="button"
       onclick="closeImageZoom(event)">
+
       ×
+
     </button>
 
     <img
@@ -554,133 +875,48 @@
 
   </div>
 
+
   <footer>
 
-    © 2026 <strong>Craftio Gifts</strong>.
+    © 2026
+    <strong>Craftio Gifts</strong>.
+
     All Rights Reserved.
 
   </footer>
 
+
   <script>
 
-    const products = [
 
-      {
-        id: "led-photo-frame",
-        name: "CUSTOMIZED LED PHOTO FRAME",
-        price: 2000,
-        image: "Light%20frame.jpeg"
-      },
+    /* =========================
+       SUPABASE
+    ========================= */
 
-      {
-        id: "birthday-frame",
-        name: "CUSTOMIZED BIRTHDAY FRAME",
-        price: 999,
-        image: "Birthday%20Frame.jpeg"
-      },
+    const SUPABASE_URL =
+      "https://hujwsdixdxhofwhibjff.supabase.co";
 
-      {
-        id: "birthday-mug",
-        name: "CUSTOMIZED BIRTHDAY MUG",
-        price: 999,
-        image: "birthday%20mug.jpeg"
-      },
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
 
-      {
-        id: "led-heart-lamp",
-        name: "CUSTOMIZED LED HEART LAMP",
-        price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg"
-      },
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
 
-      {
-        id: "nikkah-signature-frame",
-        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
-        price: 999,
-        image: "nikkah%20frame.jpeg"
-      },
 
-      {
-        id: "magic-mug",
-        name: "CUSTOMIZED MAGIC MUG",
-        price: 1400,
-        image: "magic%20mug.jpeg"
-      },
-
-      {
-        id: "wedding-ring-plaque",
-        name: "CUSTOMIZED WEDDING RING PLAQUE",
-        price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg"
-      },
-
-      {
-        id: "trendy-charts",
-        name: "CUSTOMIZED TRENDY CHARTS",
-        price: 1350,
-        image: "TRENDY%20CHARTS.jpeg"
-      },
-
-      {
-        id: "eye-pendant-necklace",
-        name: "CUSTOMIZED EYE PENDANT NECKLACE",
-        price: 1300,
-        image: "EYE%20NECKLACE.jpeg"
-      },
-
-      {
-        id: "picture-frame",
-        name: "CUSTOMIZED PICTURE FRAME",
-        price: 900,
-        image: "PICTURE%20FRAME.jpg"
-      },
-
-      {
-        id: "friendship-license-card",
-        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
-        price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
-      },
-
-      {
-        id: "name-key-chain",
-        name: "CUSTOMIZED NAME KEY CHAIN",
-        price: 800,
-        image: "NAME%20KEY.jpeg"
-      },
-
-      {
-        id: "picture-mug-colors",
-        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
-        price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
-      },
-
-      {
-        id: "pubg-mobile-card",
-        name: "CUSTOMIZED PUBG MOBILE CARD",
-        price: 800,
-        image: "PUBG%20CARD.jpeg"
-      },
-
-      {
-        id: "snapchat-tiktok-instagram-card",
-        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
-        price: 800,
-        image: "SNAPCHAT%20CARD.jpeg"
-      },
-
-      {
-        id: "pvc-card",
-        name: "CUSTOMIZED PVC CARD",
-        price: 850,
-        image: "PVC%20CARD.jpg"
-      }
-
-    ];
+    /* =========================
+       WHATSAPP
+    ========================= */
 
     const WHATSAPP_NUMBER =
       "923360763055";
+
+
+    /* =========================
+       URL
+    ========================= */
 
     const urlParams =
       new URLSearchParams(
@@ -688,31 +924,239 @@
       );
 
     const isBuyNow =
-      urlParams.get("buyNow") === "true";
+      urlParams.get(
+        "buyNow"
+      ) === "true";
 
-    function getCart() {
 
-      if (isBuyNow) {
+    /* =========================
+       CART
+    ========================= */
 
-        return JSON.parse(
-          localStorage.getItem(
-            "craftioBuyNow"
-          )
-        ) || [];
+    let cart = [];
+
+
+    function getStoredCart() {
+
+      try {
+
+        const key =
+          isBuyNow
+            ? "craftioBuyNow"
+            : "craftioCart";
+
+        return (
+          JSON.parse(
+            localStorage.getItem(
+              key
+            )
+          ) || []
+        );
+
+      } catch (error) {
+
+        return [];
 
       }
 
-      return JSON.parse(
-        localStorage.getItem(
-          "craftioCart"
+    }
+
+
+    function saveStoredCart() {
+
+      const key =
+        isBuyNow
+          ? "craftioBuyNow"
+          : "craftioCart";
+
+
+      localStorage.setItem(
+        key,
+        JSON.stringify(
+          cart
         )
-      ) || [];
+      );
 
     }
 
-    let cart = getCart();
 
-    function renderOrder() {
+    /* =========================
+       HELPERS
+    ========================= */
+
+    function escapeHtml(value) {
+
+      return String(
+        value ?? ""
+      )
+
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+    }
+
+
+    function getActualPrice(
+      product
+    ) {
+
+      const regularPrice =
+        Number(
+          product.price || 0
+        );
+
+      const salePrice =
+        Number(
+          product.sale_price || 0
+        );
+
+
+      if (
+        product.sale === true &&
+        salePrice > 0
+      ) {
+
+        return salePrice;
+
+      }
+
+
+      return regularPrice;
+
+    }
+
+
+    function getCustomizationHtml(
+      customization
+    ) {
+
+      if (
+        !customization ||
+        typeof customization !== "object"
+      ) {
+
+        return "";
+
+      }
+
+
+      const labels = {
+
+        name:
+          "Name",
+
+        date:
+          "Date",
+
+        profile:
+          "Profile Information",
+
+        groomName:
+          "Groom Name",
+
+        brideName:
+          "Bride Name",
+
+        nikkahDate:
+          "Nikkah Date",
+
+        details:
+          "Other Details"
+
+      };
+
+
+      let html = "";
+
+      Object.keys(
+        customization
+      ).forEach(
+        function(key) {
+
+          const value =
+            String(
+              customization[key] ??
+              ""
+            ).trim();
+
+
+          if (!value) {
+            return;
+          }
+
+
+          const label =
+            labels[key] ||
+            key;
+
+
+          html += `
+
+            <div>
+
+              <strong>
+                ${escapeHtml(
+                  label
+                )}:
+              </strong>
+
+              ${escapeHtml(
+                value
+              )}
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      if (!html) {
+        return "";
+      }
+
+
+      return `
+
+        <div class="custom-details">
+
+          ${html}
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================
+       LOAD PRODUCTS
+    ========================= */
+
+    async function loadProducts() {
 
       const orderItems =
         document.getElementById(
@@ -724,7 +1168,14 @@
           "totalBox"
         );
 
-      if (cart.length === 0) {
+
+      cart =
+        getStoredCart();
+
+
+      if (
+        cart.length === 0
+      ) {
 
         orderItems.innerHTML = `
 
@@ -748,81 +1199,301 @@
 
       }
 
-      let total = 0;
 
-      orderItems.innerHTML = "";
+      const ids =
+        [
+          ...new Set(
+            cart.map(
+              item =>
+                item.id
+            )
+          )
+        ];
 
-      cart.forEach(item => {
 
-        const product =
-          products.find(
-            p => p.id === item.id
+      const {
+        data,
+        error
+      } =
+
+        await supabaseClient
+
+          .from("products")
+
+          .select("*")
+
+          .in(
+            "id",
+            ids
+          )
+
+          .eq(
+            "active",
+            true
           );
 
-        if (!product) return;
 
-        const itemTotal =
-          product.price *
-          item.quantity;
+      if (
+        error
+      ) {
 
-        total += itemTotal;
+        console.error(
+          error
+        );
 
-        orderItems.innerHTML += `
+        orderItems.innerHTML = `
 
-          <div class="order-item">
+          <div class="empty-message">
 
-            <img
-              src="${product.image}"
-              alt="${product.name}"
-              onclick="openImageZoom(this.src, this.alt)"
-            >
+            <h3>
+              Unable to load your order.
+            </h3>
 
-            <div class="order-item-info">
-
-              <h3>
-                ${product.name}
-              </h3>
-
-              <p>
-                Rs. ${product.price} ×
-                ${item.quantity}
-              </p>
-
-              <div class="order-item-price">
-                Rs. ${itemTotal}
-              </div>
-
-              <div class="quantity-controls">
-
-                <button
-                  onclick="changeQuantity('${product.id}', -1)">
-                  −
-                </button>
-
-                <strong>
-                  ${item.quantity}
-                </strong>
-
-                <button
-                  onclick="changeQuantity('${product.id}', 1)">
-                  +
-                </button>
-
-                <button
-                  class="remove-btn"
-                  onclick="removeItem('${product.id}')">
-                  Remove
-                </button>
-
-              </div>
-
-            </div>
+            <p>
+              Please refresh the page.
+            </p>
 
           </div>
 
         `;
 
-      });
+        totalBox.innerHTML = "";
+
+        return;
+
+      }
+
+
+      const products =
+        data || [];
+
+
+      renderOrder(
+        products
+      );
+
+    }
+
+
+    /* =========================
+       RENDER ORDER
+    ========================= */
+
+    function renderOrder(
+      products
+    ) {
+
+      const orderItems =
+        document.getElementById(
+          "orderItems"
+        );
+
+      const totalBox =
+        document.getElementById(
+          "totalBox"
+        );
+
+
+      orderItems.innerHTML =
+        "";
+
+
+      let total =
+        0;
+
+      let validItems =
+        0;
+
+
+      cart.forEach(
+        function(item) {
+
+          const product =
+            products.find(
+              function(p) {
+
+                return (
+                  p.id ===
+                  item.id
+                );
+
+              }
+            );
+
+
+          if (!product) {
+            return;
+          }
+
+
+          validItems++;
+
+
+          const quantity =
+            Number(
+              item.quantity || 1
+            );
+
+
+          const actualPrice =
+            getActualPrice(
+              product
+            );
+
+
+          const itemTotal =
+            actualPrice *
+            quantity;
+
+
+          total +=
+            itemTotal;
+
+
+          orderItems.innerHTML += `
+
+            <div class="order-item">
+
+              <img
+                src="${escapeHtml(
+                  product.image_url || ""
+                )}"
+                alt="${escapeHtml(
+                  product.name || ""
+                )}"
+                onclick="openImageZoom(
+                  this.src,
+                  this.alt
+                )">
+
+
+              <div class="order-item-info">
+
+                <h3>
+
+                  ${escapeHtml(
+                    product.name || ""
+                  )}
+
+                </h3>
+
+
+                <p>
+
+                  Rs.
+                  ${actualPrice.toLocaleString()}
+                  ×
+                  ${quantity}
+
+                </p>
+
+
+                <div
+                  class="order-item-price">
+
+                  Rs.
+                  ${itemTotal.toLocaleString()}
+
+                </div>
+
+
+                ${
+                  getCustomizationHtml(
+                    item.customization
+                  )
+                }
+
+
+                ${
+                  !isBuyNow
+                  ? `
+
+                    <div
+                      class="quantity-controls">
+
+                      <button
+                        type="button"
+                        onclick="changeQuantity(
+                          '${escapeJs(item.id)}',
+                          -1
+                        )">
+
+                        −
+
+                      </button>
+
+
+                      <strong>
+                        ${quantity}
+                      </strong>
+
+
+                      <button
+                        type="button"
+                        onclick="changeQuantity(
+                          '${escapeJs(item.id)}',
+                          1
+                        )">
+
+                        +
+
+                      </button>
+
+
+                      <button
+                        type="button"
+                        class="remove-btn"
+                        onclick="removeItem(
+                          '${escapeJs(item.id)}'
+                        )">
+
+                        Remove
+
+                      </button>
+
+                    </div>
+
+                  `
+                  : ""
+                }
+
+              </div>
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      if (
+        validItems === 0
+      ) {
+
+        cart = [];
+
+        saveStoredCart();
+
+
+        orderItems.innerHTML = `
+
+          <div class="empty-message">
+
+            <h3>
+              Your cart is empty.
+            </h3>
+
+          </div>
+
+        `;
+
+        totalBox.innerHTML = "";
+
+        return;
+
+      }
+
 
       totalBox.innerHTML = `
 
@@ -833,7 +1504,8 @@
           </span>
 
           <span>
-            Rs. ${total}
+            Rs.
+            ${total.toLocaleString()}
           </span>
 
         </div>
@@ -842,7 +1514,430 @@
 
     }
 
-    function openImageZoom(src, alt) {
+
+    /* =========================
+       CHANGE QUANTITY
+    ========================= */
+
+    async function changeQuantity(
+      productId,
+      amount
+    ) {
+
+      const item =
+        cart.find(
+          function(entry) {
+
+            return (
+              entry.id ===
+              productId
+            );
+
+          }
+        );
+
+
+      if (!item) {
+        return;
+      }
+
+
+      item.quantity =
+        Number(
+          item.quantity || 1
+        ) + amount;
+
+
+      if (
+        item.quantity <= 0
+      ) {
+
+        cart =
+          cart.filter(
+            function(entry) {
+
+              return (
+                entry.id !==
+                productId
+              );
+
+            }
+          );
+
+      }
+
+
+      saveStoredCart();
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =========================
+       REMOVE ITEM
+    ========================= */
+
+    async function removeItem(
+      productId
+    ) {
+
+      cart =
+        cart.filter(
+          function(item) {
+
+            return (
+              item.id !==
+              productId
+            );
+
+          }
+        );
+
+
+      saveStoredCart();
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =========================
+       PLACE ORDER
+    ========================= */
+
+    document
+      .getElementById(
+        "checkoutForm"
+      )
+      .addEventListener(
+        "submit",
+        async function(event) {
+
+          event.preventDefault();
+
+
+          if (
+            cart.length === 0
+          ) {
+
+            alert(
+              "Your cart is empty. Please select a product first."
+            );
+
+            return;
+
+          }
+
+
+          const fullName =
+            document.getElementById(
+              "fullName"
+            ).value.trim();
+
+
+          const phone =
+            document.getElementById(
+              "phone"
+            ).value.trim();
+
+
+          const address =
+            document.getElementById(
+              "address"
+            ).value.trim();
+
+
+          const city =
+            document.getElementById(
+              "city"
+            ).value.trim();
+
+
+          const ids =
+            [
+              ...new Set(
+                cart.map(
+                  item =>
+                    item.id
+                )
+              )
+            ];
+
+
+          const {
+            data,
+            error
+          } =
+
+            await supabaseClient
+
+              .from("products")
+
+              .select("*")
+
+              .in(
+                "id",
+                ids
+              )
+
+              .eq(
+                "active",
+                true
+              );
+
+
+          if (
+            error ||
+            !data
+          ) {
+
+            alert(
+              "Unable to load products. Please refresh and try again."
+            );
+
+            return;
+
+          }
+
+
+          let total =
+            0;
+
+
+          let message =
+            "🛍️ *NEW ORDER - CRAFTIO GIFTS*\n\n";
+
+
+          message +=
+            "*Customer Details*\n";
+
+          message +=
+            "Name: " +
+            fullName +
+            "\n";
+
+          message +=
+            "Phone: " +
+            phone +
+            "\n";
+
+          message +=
+            "Address: " +
+            address +
+            "\n";
+
+          message +=
+            "City: " +
+            city +
+            "\n\n";
+
+
+          message +=
+            "*Order Details*\n";
+
+
+          cart.forEach(
+            function(item, index) {
+
+              const product =
+                data.find(
+                  function(p) {
+
+                    return (
+                      p.id ===
+                      item.id
+                    );
+
+                  }
+                );
+
+
+              if (!product) {
+                return;
+              }
+
+
+              const quantity =
+                Number(
+                  item.quantity || 1
+                );
+
+
+              const actualPrice =
+                getActualPrice(
+                  product
+                );
+
+
+              const itemTotal =
+                actualPrice *
+                quantity;
+
+
+              total +=
+                itemTotal;
+
+
+              message +=
+                (index + 1) +
+                ". " +
+                product.name +
+                "\n";
+
+
+              message +=
+                "Category: " +
+                (
+                  product.category ||
+                  ""
+                ) +
+                "\n";
+
+
+              message +=
+                "Qty: " +
+                quantity +
+                "\n";
+
+
+              message +=
+                "Price: Rs. " +
+                itemTotal +
+                "\n";
+
+
+              const customization =
+                item.customization;
+
+
+              if (
+                customization &&
+                typeof customization ===
+                "object"
+              ) {
+
+                const labels = {
+
+                  name:
+                    "Name",
+
+                  date:
+                    "Date",
+
+                  profile:
+                    "Profile Information",
+
+                  groomName:
+                    "Groom Name",
+
+                  brideName:
+                    "Bride Name",
+
+                  nikkahDate:
+                    "Nikkah Date",
+
+                  details:
+                    "Other Details"
+
+                };
+
+
+                Object.keys(
+                  customization
+                ).forEach(
+                  function(key) {
+
+                    const value =
+                      String(
+                        customization[key] ??
+                        ""
+                      ).trim();
+
+
+                    if (!value) {
+                      return;
+                    }
+
+
+                    message +=
+                      (
+                        labels[key] ||
+                        key
+                      ) +
+                      ": " +
+                      value +
+                      "\n";
+
+                  }
+                );
+
+              }
+
+
+              message +=
+                "\n";
+
+            }
+          );
+
+
+          message +=
+            "*TOTAL: Rs. " +
+            total +
+            "*\n\n";
+
+
+          message +=
+            "Payment: Cash on Delivery";
+
+
+          const whatsappURL =
+            "https://wa.me/" +
+            WHATSAPP_NUMBER +
+            "?text=" +
+            encodeURIComponent(
+              message
+            );
+
+
+          if (isBuyNow) {
+
+            localStorage.removeItem(
+              "craftioBuyNow"
+            );
+
+          } else {
+
+            localStorage.removeItem(
+              "craftioCart"
+            );
+
+          }
+
+
+          /*
+            Direct navigation avoids
+            popup-blocker problems.
+          */
+
+          window.location.href =
+            whatsappURL;
+
+        }
+      );
+
+
+    /* =========================
+       IMAGE ZOOM
+    ========================= */
+
+    function openImageZoom(
+      src,
+      alt
+    ) {
 
       const modal =
         document.getElementById(
@@ -854,41 +1949,58 @@
           "zoomedImage"
         );
 
-      zoomedImage.src = src;
-      zoomedImage.alt = alt || "";
+
+      zoomedImage.src =
+        src;
+
+      zoomedImage.alt =
+        alt || "";
+
 
       zoomedImage.classList.remove(
         "zoomed"
       );
 
-      modal.classList.add("active");
+
+      modal.classList.add(
+        "active"
+      );
+
 
       document.body.style.overflow =
         "hidden";
 
     }
 
-    function toggleImageZoom(event) {
+
+    function toggleImageZoom(
+      event
+    ) {
 
       event.stopPropagation();
 
-      const image =
-        document.getElementById(
-          "zoomedImage"
-        );
 
-      image.classList.toggle(
-        "zoomed"
-      );
+      document
+        .getElementById(
+          "zoomedImage"
+        )
+        .classList
+        .toggle(
+          "zoomed"
+        );
 
     }
 
-    function closeImageZoom(event) {
+
+    function closeImageZoom(
+      event
+    ) {
 
       const modal =
         document.getElementById(
           "imageModal"
         );
+
 
       if (
         event &&
@@ -897,290 +2009,74 @@
           "image-modal-close"
         )
       ) {
+
         return;
+
       }
+
 
       modal.classList.remove(
         "active"
       );
 
-      document.getElementById(
-        "zoomedImage"
-      ).classList.remove(
-        "zoomed"
-      );
+
+      document
+        .getElementById(
+          "zoomedImage"
+        )
+        .classList
+        .remove(
+          "zoomed"
+        );
+
 
       document.body.style.overflow =
         "";
 
     }
 
+
     document.addEventListener(
       "keydown",
       function(event) {
 
-        if (event.key === "Escape") {
+        if (
+          event.key ===
+          "Escape"
+        ) {
 
-          const modal =
-            document.getElementById(
+          document
+            .getElementById(
               "imageModal"
-            );
-
-          if (
-            modal.classList.contains(
-              "active"
             )
-          ) {
-
-            modal.classList.remove(
+            .classList
+            .remove(
               "active"
             );
 
-            document.getElementById(
+          document
+            .getElementById(
               "zoomedImage"
-            ).classList.remove(
+            )
+            .classList
+            .remove(
               "zoomed"
             );
 
-            document.body.style.overflow =
-              "";
-
-          }
+          document.body.style.overflow =
+            "";
 
         }
 
       }
     );
 
-    function changeQuantity(
-      productId,
-      amount
-    ) {
 
-      const item =
-        cart.find(
-          item => item.id === productId
-        );
+    /* =========================
+       START
+    ========================= */
 
-      if (!item) return;
-
-      item.quantity += amount;
-
-      if (item.quantity <= 0) {
-
-        cart =
-          cart.filter(
-            item =>
-              item.id !== productId
-          );
-
-      }
-
-      saveCurrentCart();
-      renderOrder();
-
-    }
-
-    function removeItem(productId) {
-
-      cart =
-        cart.filter(
-          item =>
-            item.id !== productId
-        );
-
-      saveCurrentCart();
-      renderOrder();
-
-    }
-
-    function saveCurrentCart() {
-
-      if (isBuyNow) {
-
-        localStorage.setItem(
-          "craftioBuyNow",
-          JSON.stringify(cart)
-        );
-
-      } else {
-
-        localStorage.setItem(
-          "craftioCart",
-          JSON.stringify(cart)
-        );
-
-      }
-
-    }
-
-    function getTotal() {
-
-      let total = 0;
-
-      cart.forEach(item => {
-
-        const product =
-          products.find(
-            p => p.id === item.id
-          );
-
-        if (product) {
-
-          total +=
-            product.price *
-            item.quantity;
-
-        }
-
-      });
-
-      return total;
-
-    }
-
-    document.getElementById(
-      "checkoutForm"
-    ).addEventListener(
-      "submit",
-      function(event) {
-
-        event.preventDefault();
-
-        if (cart.length === 0) {
-
-          alert(
-            "Your cart is empty. Please select a product first."
-          );
-
-          return;
-
-        }
-
-        const fullName =
-          document.getElementById(
-            "fullName"
-          ).value.trim();
-
-        const phone =
-          document.getElementById(
-            "phone"
-          ).value.trim();
-
-        const address =
-          document.getElementById(
-            "address"
-          ).value.trim();
-
-        const city =
-          document.getElementById(
-            "city"
-          ).value.trim();
-
-        const total =
-          getTotal();
-
-        let message =
-          "🛍️ *NEW ORDER - CRAFTIO GIFTS*%0A%0A";
-
-        message +=
-          "*Customer Details*%0A";
-
-        message +=
-          "Name: " +
-          encodeURIComponent(fullName) +
-          "%0A";
-
-        message +=
-          "Phone: " +
-          encodeURIComponent(phone) +
-          "%0A";
-
-        message +=
-          "Address: " +
-          encodeURIComponent(address) +
-          "%0A";
-
-        message +=
-          "City: " +
-          encodeURIComponent(city) +
-          "%0A%0A";
-
-        message +=
-          "*Order Details*%0A";
-
-        cart.forEach(
-          (item, index) => {
-
-            const product =
-              products.find(
-                p => p.id === item.id
-              );
-
-            if (!product) return;
-
-            const itemTotal =
-              product.price *
-              item.quantity;
-
-            message +=
-              (index + 1) +
-              ". " +
-              encodeURIComponent(
-                product.name
-              ) +
-              "%0A";
-
-            message +=
-              "Qty: " +
-              item.quantity +
-              "%0A";
-
-            message +=
-              "Price: Rs. " +
-              itemTotal +
-              "%0A%0A";
-
-          }
-        );
-
-        message +=
-          "*TOTAL: Rs. " +
-          total +
-          "*%0A%0A";
-
-        message +=
-          "Payment: Cash on Delivery";
-
-        const whatsappURL =
-          "https://wa.me/" +
-          WHATSAPP_NUMBER +
-          "?text=" +
-          message;
-
-        if (isBuyNow) {
-
-          localStorage.removeItem(
-            "craftioBuyNow"
-          );
-
-        } else {
-
-          localStorage.removeItem(
-            "craftioCart"
-          );
-
-        }
-
-        window.open(
-          whatsappURL,
-          "_blank"
-        );
-
-      }
-    );
-
-    renderOrder();
+    loadProducts();
 
   </script>
 
