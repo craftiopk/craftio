@@ -3,11 +3,12 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Product | Craftio Gifts</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
-  <link rel="icon" type="image/png" href="favicon.png">
+  <title>Checkout | Craftio Gifts</title>
 
   <style>
 
@@ -30,9 +31,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
 
     .logo-text {
@@ -48,7 +46,6 @@
     .nav-links {
       display: flex;
       gap: 25px;
-      align-items: center;
     }
 
     .nav-links a {
@@ -62,143 +59,206 @@
       color: #00aef0;
     }
 
-    .cart-link {
-      background: #00aef0;
-      padding: 9px 15px;
-      border-radius: 8px;
+    .checkout-page {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
-    .product-page {
-      max-width: 1150px;
-      margin: 60px auto;
-      padding: 0 25px;
+    .page-title {
+      text-align: center;
+      margin-bottom: 35px;
     }
 
-    .product-box {
-      background: white;
-      border-radius: 18px;
-      overflow: hidden;
+    .page-title h1 {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .page-title h1 span {
+      color: #00aef0;
+    }
+
+    .checkout-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      padding: 35px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+      gap: 30px;
+    }
+
+    .box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    }
+
+    .box h2 {
+      margin-bottom: 25px;
+      font-size: 23px;
     }
 
     /* =========================
-       PRODUCT IMAGE
+       ORDER ITEMS
     ========================= */
 
-    .product-image {
-      width: 100%;
-      height: 500px;
-      object-fit: contain;
-      border-radius: 14px;
-      background: #f7f7f7;
-      padding: 10px;
-      cursor: zoom-in;
-      display: block;
-    }
-
-    .product-details {
-      padding: 20px 10px;
+    .order-item {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
     }
 
-    .product-details h1 {
-      font-size: 38px;
-      line-height: 1.15;
+    .order-item img {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f7f7f7;
+      padding: 5px;
+      cursor: zoom-in;
+      flex-shrink: 0;
+    }
+
+    .order-item-info {
+      flex: 1;
+    }
+
+    .order-item-info h3 {
+      font-size: 15px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .order-item-info p {
+      color: #666;
+      margin-bottom: 5px;
+    }
+
+    .order-item-price {
+      color: #00aef0;
+      font-weight: 800;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .quantity-controls button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .remove-btn {
+      width: auto !important;
+      padding: 0 8px;
+      color: #d00;
+    }
+
+    .total-box {
+      margin-top: 25px;
+      border-top: 2px solid #111;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
       margin-bottom: 18px;
     }
 
-    .price {
-      color: #00aef0;
-      font-size: 29px;
-      font-weight: 800;
-      margin-bottom: 25px;
-    }
-
-    .description {
-      font-size: 17px;
-      line-height: 1.7;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .quantity-label {
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
       font-weight: 700;
-      font-size: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #00aef0;
+    }
+
+    .form-group textarea {
+      height: 110px;
+      resize: vertical;
+    }
+
+    .payment-box {
+      margin-top: 25px;
+      padding: 18px;
+      background: #f5fbfe;
+      border: 1px solid #d8eef7;
+      border-radius: 10px;
+    }
+
+    .payment-box h3 {
       margin-bottom: 10px;
     }
 
-    .quantity-box {
+    .payment-option {
       display: flex;
+      gap: 8px;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 25px;
     }
 
-    .quantity-box button {
-      width: 42px;
-      height: 42px;
-      border: 1px solid #ccc;
-      background: white;
-      border-radius: 7px;
-      cursor: pointer;
-      font-size: 22px;
-    }
-
-    .quantity-box input {
-      width: 75px;
-      height: 42px;
-      border: 1px solid #ccc;
-      border-radius: 7px;
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .buy-btn,
-    .add-cart-btn {
+    .place-order {
       width: 100%;
-      padding: 16px;
       border: none;
-      border-radius: 9px;
-      cursor: pointer;
-      font-size: 17px;
-      font-weight: 800;
-      margin-bottom: 12px;
-    }
-
-    .buy-btn {
       background: #111;
       color: white;
+      padding: 16px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 25px;
     }
 
-    .buy-btn:hover {
+    .place-order:hover {
       background: #333;
     }
 
-    .add-cart-btn {
-      background: #00aef0;
-      color: white;
-    }
-
-    .add-cart-btn:hover {
-      background: #008fc5;
-    }
-
-    .back-link {
+    .back-products {
       display: inline-block;
-      margin-top: 25px;
+      margin-top: 20px;
       color: #555;
       text-decoration: none;
       font-weight: 600;
     }
 
-    .back-link:hover {
+    .back-products:hover {
       color: #00aef0;
+    }
+
+    .empty-message {
+      text-align: center;
+      padding: 30px 10px;
+      color: #777;
     }
 
     /* =========================
@@ -208,12 +268,12 @@
     .image-modal {
       position: fixed;
       inset: 0;
-      background: rgba(0, 0, 0, 0.90);
+      background: rgba(0, 0, 0, 0.88);
       display: none;
       align-items: center;
       justify-content: center;
       padding: 25px;
-      z-index: 5000;
+      z-index: 3000;
       overflow: auto;
     }
 
@@ -231,7 +291,7 @@
       cursor: zoom-in;
       transition: transform 0.25s ease;
       touch-action: pinch-zoom;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
     .image-modal img.zoomed {
@@ -252,7 +312,7 @@
       font-size: 32px;
       line-height: 1;
       cursor: pointer;
-      z-index: 5001;
+      z-index: 3001;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -282,18 +342,8 @@
         gap: 15px;
       }
 
-      .product-box {
+      .checkout-grid {
         grid-template-columns: 1fr;
-        gap: 25px;
-        padding: 20px;
-      }
-
-      .product-image {
-        height: 400px;
-      }
-
-      .product-details h1 {
-        font-size: 30px;
       }
 
       .image-modal {
@@ -307,23 +357,6 @@
 
       .image-modal img.zoomed {
         transform: scale(1.45);
-      }
-
-    }
-
-    @media (max-width: 500px) {
-
-      .product-page {
-        margin: 30px auto;
-        padding: 0 15px;
-      }
-
-      .product-image {
-        height: 330px;
-      }
-
-      .product-details {
-        padding: 10px 5px;
       }
 
     }
@@ -355,93 +388,159 @@
         Products
       </a>
 
-      <a
-        href="products.html"
-        class="cart-link">
-        🛒 Cart (<span id="cartCount">0</span>)
-      </a>
-
     </div>
 
   </nav>
 
 
   <!-- =========================
-       PRODUCT
+       CHECKOUT
   ========================= -->
 
-  <main class="product-page">
+  <main class="checkout-page">
 
-    <div class="product-box">
+    <div class="page-title">
 
-      <img
-        id="productImage"
-        class="product-image"
-        src=""
-        alt=""
-        onclick="openImageZoom()"
-      >
+      <h1>
+        Complete Your <span>Order</span>
+      </h1>
 
-      <div class="product-details">
+      <p>
+        Please enter your delivery details below.
+      </p>
 
-        <h1 id="productName">
-          Product
-        </h1>
-
-        <div
-          class="price"
-          id="productPrice">
-          Rs. 0
-        </div>
-
-        <p
-          class="description"
-          id="productDescription">
-        </p>
+    </div>
 
 
-        <div class="quantity-label">
-          Quantity:
-        </div>
-
-        <div class="quantity-box">
-
-          <button onclick="decreaseQuantity()">
-            −
-          </button>
-
-          <input
-            type="number"
-            id="quantity"
-            value="1"
-            min="1"
-          >
-
-          <button onclick="increaseQuantity()">
-            +
-          </button>
-
-        </div>
+    <div class="checkout-grid">
 
 
-        <button
-          class="buy-btn"
-          onclick="buyNow()">
-          BUY NOW
-        </button>
+      <!-- =========================
+           ORDER SUMMARY
+      ========================= -->
 
-        <button
-          class="add-cart-btn"
-          onclick="addProductToCart()">
-          🛒 ADD TO CART
-        </button>
+      <div class="box">
 
+        <h2>
+          🛒 Your Order
+        </h2>
+
+        <div id="orderItems"></div>
+
+        <div id="totalBox"></div>
 
         <a
           href="products.html"
-          class="back-link">
-          ← Back to Products
+          class="back-products">
+          ← Continue Shopping
         </a>
+
+      </div>
+
+
+      <!-- =========================
+           CUSTOMER DETAILS
+      ========================= -->
+
+      <div class="box">
+
+        <h2>
+          Delivery Details
+        </h2>
+
+
+        <form id="checkoutForm">
+
+
+          <div class="form-group">
+
+            <label>
+              Full Name
+            </label>
+
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Phone Number
+            </label>
+
+            <input
+              type="tel"
+              id="phone"
+              placeholder="03XXXXXXXXX"
+              required>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              Complete Delivery Address
+            </label>
+
+            <textarea
+              id="address"
+              placeholder="House no, street, area..."
+              required></textarea>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              City
+            </label>
+
+            <input
+              type="text"
+              id="city"
+              placeholder="Enter your city"
+              required>
+
+          </div>
+
+
+          <div class="payment-box">
+
+            <h3>
+              Payment Method
+            </h3>
+
+            <label class="payment-option">
+
+              <input
+                type="radio"
+                checked
+                disabled>
+
+              Cash on Delivery
+
+            </label>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="place-order">
+
+            PLACE ORDER ON WHATSAPP
+
+          </button>
+
+
+        </form>
 
       </div>
 
@@ -470,8 +569,7 @@
       id="zoomedImage"
       src=""
       alt=""
-      onclick="toggleImageZoom(event)"
-    >
+      onclick="toggleImageZoom(event)">
 
   </div>
 
@@ -486,192 +584,312 @@
 
   <script>
 
+    /* =========================
+       PRODUCT DATABASE
+    ========================= */
+
     const products = [
 
       {
         id: "led-photo-frame",
         name: "CUSTOMIZED LED PHOTO FRAME",
         price: 2000,
-        image: "Light%20frame.jpeg",
-        description:
-          "Turn your favorite memories into a beautiful glowing keepsake. A personalized LED frame made to brighten up your special moments and your room."
+        image: "Light%20frame.jpeg"
       },
 
       {
         id: "birthday-frame",
         name: "CUSTOMIZED BIRTHDAY FRAME",
         price: 999,
-        image: "Birthday%20Frame.jpeg",
-        description:
-          "Celebrate a special birthday with a personalized frame featuring your favorite memories. A thoughtful keepsake made especially for someone you love."
+        image: "Birthday%20Frame.jpeg"
       },
 
       {
         id: "birthday-mug",
         name: "CUSTOMIZED BIRTHDAY MUG",
         price: 999,
-        image: "birthday%20mug.jpeg",
-        description:
-          "Make their birthday extra special with a customized mug designed just for them. Add a favorite photo or personal touch for a memorable gift."
+        image: "birthday%20mug.jpeg"
       },
 
       {
         id: "led-heart-lamp",
         name: "CUSTOMIZED LED HEART LAMP",
         price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg",
-        description:
-          "A beautiful heart-shaped LED lamp made to turn special memories into a glowing display. Perfect for romantic occasions, anniversaries and meaningful gifts."
+        image: "MOON%20PICTURE%20FRAME.jpeg"
       },
 
       {
         id: "nikkah-signature-frame",
         name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
         price: 999,
-        image: "nikkah%20frame.jpeg",
-        description:
-          "Preserve the beautiful memories of your Nikkah with a personalized signature frame. A meaningful keepsake for couples and their special day."
+        image: "nikkah%20frame.jpeg"
       },
 
       {
         id: "magic-mug",
         name: "CUSTOMIZED MAGIC MUG",
         price: 1400,
-        image: "magic%20mug.jpeg",
-        description:
-          "Surprise someone special with a magical customized mug that reveals your design with heat. A fun and memorable gift for every occasion."
+        image: "magic%20mug.jpeg"
       },
 
       {
         id: "wedding-ring-plaque",
         name: "CUSTOMIZED WEDDING RING PLAQUE",
         price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg",
-        description:
-          "Keep your wedding memories beautifully displayed with a customized ring plaque. Designed as a special keepsake for couples and their unforgettable day."
+        image: "NIKKAH%20PLAQUE.jpeg"
       },
 
       {
         id: "trendy-charts",
         name: "CUSTOMIZED TRENDY CHARTS",
         price: 1350,
-        image: "TRENDY%20CHARTS.jpeg",
-        description:
-          "Add personality to your space with a trendy customized chart made around your favorite memories or ideas. Stylish, personal and made especially for you."
+        image: "TRENDY%20CHARTS.jpeg"
       },
 
       {
         id: "eye-pendant-necklace",
         name: "CUSTOMIZED EYE PENDANT NECKLACE",
         price: 1300,
-        image: "EYE%20NECKLACE.jpeg",
-        description:
-          "A stylish personalized eye pendant designed to make your gift truly meaningful. A beautiful accessory for someone special."
+        image: "EYE%20NECKLACE.jpeg"
       },
 
       {
         id: "picture-frame",
         name: "CUSTOMIZED PICTURE FRAME",
         price: 900,
-        image: "PICTURE%20FRAME.jpg",
-        description:
-          "Turn your favorite photo into a beautiful personalized frame. A simple and elegant way to keep a special memory close forever."
+        image: "PICTURE%20FRAME.jpg"
       },
 
       {
         id: "friendship-license-card",
         name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
         price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg",
-        description:
-          "Celebrate your friendship with a fun personalized license card. Add names and special details to create a unique gift for your best friend."
+        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
       },
 
       {
         id: "name-key-chain",
         name: "CUSTOMIZED NAME KEY CHAIN",
         price: 800,
-        image: "NAME%20KEY.jpeg",
-        description:
-          "Carry your name or a special name wherever you go with a personalized key chain. A small, stylish and meaningful everyday gift."
+        image: "NAME%20KEY.jpeg"
       },
 
       {
         id: "picture-mug-colors",
         name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
         price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg",
-        description:
-          "Choose your favorite color and personalize your mug with a special picture. A colorful everyday gift made to bring a smile with every cup."
+        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
       },
 
       {
         id: "pubg-mobile-card",
         name: "CUSTOMIZED PUBG MOBILE CARD",
         price: 800,
-        image: "PUBG%20CARD.jpeg",
-        description:
-          "A personalized PUBG Mobile card made specially for gaming lovers. Turn a favorite gaming profile or memory into a unique gift."
+        image: "PUBG%20CARD.jpeg"
       },
 
       {
         id: "snapchat-tiktok-instagram-card",
         name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
         price: 800,
-        image: "SNAPCHAT%20CARD.jpeg",
-        description:
-          "Showcase your favorite social profile in a stylish personalized card. Perfect for creators, friends and anyone who loves social media."
+        image: "SNAPCHAT%20CARD.jpeg"
       },
 
       {
         id: "pvc-card",
         name: "CUSTOMIZED PVC CARD",
         price: 850,
-        image: "PVC%20CARD.jpg",
-        description:
-          "A durable customized PVC card designed around your own idea. Personalize it with names, pictures or details for a unique everyday card."
+        image: "PVC%20CARD.jpg"
       }
 
     ];
 
 
     /* =========================
-       GET PRODUCT
+       WHATSAPP NUMBER
     ========================= */
 
-    const params =
-      new URLSearchParams(window.location.search);
-
-    const productId =
-      params.get("product");
-
-    const product =
-      products.find(p => p.id === productId);
+    const WHATSAPP_NUMBER =
+      "923360763055";
 
 
-    if (product) {
+    /* =========================
+       GET CART
+    ========================= */
 
-      document.getElementById(
-        "productImage"
-      ).src = product.image;
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
 
-      document.getElementById(
-        "productImage"
-      ).alt = product.name;
+    const isBuyNow =
+      urlParams.get("buyNow") === "true";
 
-      document.getElementById(
-        "productName"
-      ).textContent = product.name;
 
-      document.getElementById(
-        "productPrice"
-      ).textContent =
-        "Rs. " + product.price;
+    function getCart() {
 
-      document.getElementById(
-        "productDescription"
-      ).textContent =
-        product.description;
+      if (isBuyNow) {
+
+        return JSON.parse(
+          localStorage.getItem(
+            "craftioBuyNow"
+          )
+        ) || [];
+
+      }
+
+      return JSON.parse(
+        localStorage.getItem(
+          "craftioCart"
+        )
+      ) || [];
+
+    }
+
+
+    let cart = getCart();
+
+
+    /* =========================
+       DISPLAY ORDER
+    ========================= */
+
+    function renderOrder() {
+
+      const orderItems =
+        document.getElementById(
+          "orderItems"
+        );
+
+      const totalBox =
+        document.getElementById(
+          "totalBox"
+        );
+
+
+      if (cart.length === 0) {
+
+        orderItems.innerHTML = `
+
+          <div class="empty-message">
+
+            <h3>
+              Your cart is empty.
+            </h3>
+
+            <p>
+              Please select a product first.
+            </p>
+
+          </div>
+
+        `;
+
+        totalBox.innerHTML = "";
+
+        return;
+
+      }
+
+
+      let total = 0;
+
+      orderItems.innerHTML = "";
+
+
+      cart.forEach(item => {
+
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
+
+
+        if (!product) return;
+
+
+        const itemTotal =
+          product.price *
+          item.quantity;
+
+
+        total += itemTotal;
+
+
+        orderItems.innerHTML += `
+
+          <div class="order-item">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              onclick="openImageZoom(this.src, this.alt)"
+            >
+
+            <div class="order-item-info">
+
+              <h3>
+                ${product.name}
+              </h3>
+
+              <p>
+                Rs. ${product.price} ×
+                ${item.quantity}
+              </p>
+
+              <div class="order-item-price">
+                Rs. ${itemTotal}
+              </div>
+
+
+              <div class="quantity-controls">
+
+                <button
+                  onclick="changeQuantity('${product.id}', -1)">
+                  −
+                </button>
+
+                <strong>
+                  ${item.quantity}
+                </strong>
+
+                <button
+                  onclick="changeQuantity('${product.id}', 1)">
+                  +
+                </button>
+
+                <button
+                  class="remove-btn"
+                  onclick="removeItem('${product.id}')">
+                  Remove
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+
+      totalBox.innerHTML = `
+
+        <div class="total-box">
+
+          <span>
+            Total
+          </span>
+
+          <span>
+            Rs. ${total}
+          </span>
+
+        </div>
+
+      `;
 
     }
 
@@ -680,12 +898,7 @@
        IMAGE ZOOM
     ========================= */
 
-    function openImageZoom() {
-
-      const mainImage =
-        document.getElementById(
-          "productImage"
-        );
+    function openImageZoom(src, alt) {
 
       const modal =
         document.getElementById(
@@ -698,24 +911,14 @@
         );
 
 
-      if (!mainImage.src) {
-        return;
-      }
-
-
-      zoomedImage.src =
-        mainImage.src;
-
-      zoomedImage.alt =
-        mainImage.alt;
+      zoomedImage.src = src;
+      zoomedImage.alt = alt || "";
 
       zoomedImage.classList.remove(
         "zoomed"
       );
 
-      modal.classList.add(
-        "active"
-      );
+      modal.classList.add("active");
 
       document.body.style.overflow =
         "hidden";
@@ -774,10 +977,6 @@
     }
 
 
-    /* =========================
-       ESC TO CLOSE IMAGE
-    ========================= */
-
     document.addEventListener(
       "keydown",
       function(event) {
@@ -818,198 +1017,298 @@
 
 
     /* =========================
-       QUANTITY
+       CHANGE QUANTITY
     ========================= */
 
-    function increaseQuantity() {
+    function changeQuantity(
+      productId,
+      amount
+    ) {
 
-      const input =
-        document.getElementById(
-          "quantity"
+      const item =
+        cart.find(
+          item => item.id === productId
         );
 
-      input.value =
-        parseInt(input.value) + 1;
 
-    }
+      if (!item) return;
 
 
-    function decreaseQuantity() {
-
-      const input =
-        document.getElementById(
-          "quantity"
-        );
-
-      let value =
-        parseInt(input.value);
+      item.quantity += amount;
 
 
-      if (value > 1) {
+      if (item.quantity <= 0) {
 
-        input.value =
-          value - 1;
+        cart =
+          cart.filter(
+            item =>
+              item.id !== productId
+          );
 
       }
+
+
+      saveCurrentCart();
+
+      renderOrder();
 
     }
 
 
     /* =========================
-       CART
+       REMOVE ITEM
     ========================= */
 
-    function getCart() {
+    function removeItem(productId) {
 
-      return JSON.parse(
-        localStorage.getItem(
-          "craftioCart"
-        )
-      ) || [];
-
-    }
-
-
-    function saveCart(cart) {
-
-      localStorage.setItem(
-        "craftioCart",
-        JSON.stringify(cart)
-      );
-
-    }
-
-
-    function addProductToCart() {
-
-      if (!product) return;
-
-
-      const quantity =
-        parseInt(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
-
-
-      const cart =
-        getCart();
-
-
-      const existing =
-        cart.find(
+      cart =
+        cart.filter(
           item =>
-            item.id === product.id
+            item.id !== productId
         );
 
 
-      if (existing) {
+      saveCurrentCart();
 
-        existing.quantity +=
-          quantity;
+      renderOrder();
+
+    }
+
+
+    /* =========================
+       SAVE CART
+    ========================= */
+
+    function saveCurrentCart() {
+
+      if (isBuyNow) {
+
+        localStorage.setItem(
+          "craftioBuyNow",
+          JSON.stringify(cart)
+        );
 
       } else {
 
-        cart.push({
-
-          id: product.id,
-
-          quantity: quantity
-
-        });
+        localStorage.setItem(
+          "craftioCart",
+          JSON.stringify(cart)
+        );
 
       }
 
-
-      saveCart(cart);
-
-      updateCartCount();
-
-
-      alert(
-        product.name +
-        " added to your cart!"
-      );
-
-
-      window.location.href =
-        "products.html";
-
     }
 
 
     /* =========================
-       BUY NOW
+       GET TOTAL
     ========================= */
 
-    function buyNow() {
+    function getTotal() {
 
-      if (!product) return;
-
-
-      const quantity =
-        parseInt(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
+      let total = 0;
 
 
-      const buyNowCart = [
+      cart.forEach(item => {
 
-        {
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
 
-          id: product.id,
 
-          quantity: quantity
+        if (product) {
+
+          total +=
+            product.price *
+            item.quantity;
 
         }
 
-      ];
+      });
 
 
-      localStorage.setItem(
-        "craftioBuyNow",
-        JSON.stringify(
-          buyNowCart
-        )
-      );
-
-
-      window.location.href =
-        "checkout.html?buyNow=true";
+      return total;
 
     }
 
 
     /* =========================
-       CART COUNT
+       PLACE ORDER
     ========================= */
 
-    function updateCartCount() {
+    document.getElementById(
+      "checkoutForm"
+    ).addEventListener(
+      "submit",
+      function(event) {
 
-      const cart =
-        getCart();
+        event.preventDefault();
 
 
-      const count =
-        cart.reduce(
-          (total, item) =>
-            total + item.quantity,
-          0
+        if (cart.length === 0) {
+
+          alert(
+            "Your cart is empty. Please select a product first."
+          );
+
+          return;
+
+        }
+
+
+        const fullName =
+          document.getElementById(
+            "fullName"
+          ).value.trim();
+
+
+        const phone =
+          document.getElementById(
+            "phone"
+          ).value.trim();
+
+
+        const address =
+          document.getElementById(
+            "address"
+          ).value.trim();
+
+
+        const city =
+          document.getElementById(
+            "city"
+          ).value.trim();
+
+
+        const total =
+          getTotal();
+
+
+        let message =
+          "🛍️ *NEW ORDER - CRAFTIO GIFTS*%0A%0A";
+
+
+        message +=
+          "*Customer Details*%0A";
+
+
+        message +=
+          "Name: " +
+          encodeURIComponent(fullName) +
+          "%0A";
+
+
+        message +=
+          "Phone: " +
+          encodeURIComponent(phone) +
+          "%0A";
+
+
+        message +=
+          "Address: " +
+          encodeURIComponent(address) +
+          "%0A";
+
+
+        message +=
+          "City: " +
+          encodeURIComponent(city) +
+          "%0A%0A";
+
+
+        message +=
+          "*Order Details*%0A";
+
+
+        cart.forEach(
+          (item, index) => {
+
+            const product =
+              products.find(
+                p => p.id === item.id
+              );
+
+
+            if (!product) return;
+
+
+            const itemTotal =
+              product.price *
+              item.quantity;
+
+
+            message +=
+              (index + 1) +
+              ". " +
+              encodeURIComponent(
+                product.name
+              ) +
+              "%0A";
+
+
+            message +=
+              "Qty: " +
+              item.quantity +
+              "%0A";
+
+
+            message +=
+              "Price: Rs. " +
+              itemTotal +
+              "%0A%0A";
+
+          }
         );
 
 
-      document.getElementById(
-        "cartCount"
-      ).textContent =
-        count;
-
-    }
+        message +=
+          "*TOTAL: Rs. " +
+          total +
+          "*%0A%0A";
 
 
-    updateCartCount();
+        message +=
+          "Payment: Cash on Delivery";
+
+
+        const whatsappURL =
+          "https://wa.me/" +
+          WHATSAPP_NUMBER +
+          "?text=" +
+          message;
+
+
+        /*
+          After successful order,
+          clear the cart.
+        */
+
+        if (isBuyNow) {
+
+          localStorage.removeItem(
+            "craftioBuyNow"
+          );
+
+        } else {
+
+          localStorage.removeItem(
+            "craftioCart"
+          );
+
+        }
+
+
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
+      }
+    );
+
+
+    renderOrder();
 
   </script>
 
