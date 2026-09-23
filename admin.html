@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
   <meta charset="UTF-8">
@@ -16,79 +15,68 @@
 
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f7f9;
+      margin: 0;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      background: #f5f7f9;
+      font-family: Arial, sans-serif;
     }
 
     .login-box {
-      width: 100%;
-      max-width: 400px;
+      width: 90%;
+      max-width: 380px;
       background: white;
-      padding: 35px;
-      border-radius: 18px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.10);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
     }
 
-    .logo {
+    h1 {
       text-align: center;
-      margin-bottom: 28px;
+      margin: 0 0 8px;
+      font-size: 27px;
     }
 
-    .logo h1 {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: 1px;
-    }
-
-    .logo span {
+    h1 span {
       color: #00aef0;
     }
 
-    .logo p {
+    .subtitle {
+      text-align: center;
       color: #777;
-      font-size: 14px;
-      margin-top: 8px;
+      margin-bottom: 25px;
     }
 
-    .field {
-      margin-bottom: 16px;
-    }
-
-    .field label {
+    label {
       display: block;
+      margin-bottom: 6px;
       font-size: 13px;
       font-weight: 700;
-      margin-bottom: 7px;
     }
 
-    .field input {
+    input {
       width: 100%;
       padding: 12px;
+      margin-bottom: 15px;
       border: 1px solid #ddd;
-      border-radius: 9px;
+      border-radius: 8px;
       outline: none;
-      font-size: 14px;
     }
 
-    .field input:focus {
+    input:focus {
       border-color: #00aef0;
     }
 
-    .login-btn {
+    button {
       width: 100%;
       padding: 13px;
-      border: none;
-      border-radius: 9px;
+      border: 0;
+      border-radius: 8px;
       background: #00aef0;
       color: white;
       font-size: 15px;
@@ -96,8 +84,13 @@
       cursor: pointer;
     }
 
-    .login-btn:hover {
+    button:hover {
       background: #008fc5;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     #message {
@@ -115,49 +108,36 @@
 
   <div class="login-box">
 
-    <div class="logo">
+    <h1>
+      CRAFTIO <span>GIFTS</span>
+    </h1>
 
-      <h1>
-        CRAFTIO <span>GIFTS</span>
-      </h1>
-
-      <p>
-        Admin Login
-      </p>
-
+    <div class="subtitle">
+      Admin Login
     </div>
 
 
-    <div class="field">
+    <label for="email">
+      Email
+    </label>
 
-      <label>
-        Email
-      </label>
-
-      <input
-        type="email"
-        id="email"
-        placeholder="Enter your email">
-
-    </div>
+    <input
+      type="email"
+      id="email"
+      placeholder="Enter admin email">
 
 
-    <div class="field">
+    <label for="password">
+      Password
+    </label>
 
-      <label>
-        Password
-      </label>
-
-      <input
-        type="password"
-        id="password"
-        placeholder="Enter your password">
-
-    </div>
+    <input
+      type="password"
+      id="password"
+      placeholder="Enter password">
 
 
     <button
-      class="login-btn"
       id="loginBtn"
       onclick="login()">
 
@@ -173,12 +153,15 @@
 
   <script>
 
-    const SUPABASE_URL =
-      "https://juguwyfvgogqkucbcrcx.supabase.co";
+    /* =========================
+       SUPABASE
+    ========================= */
 
+    const SUPABASE_URL =
+      "https://hujwsdixdxhofwhibjff.supabase.co";
 
     const SUPABASE_PUBLISHABLE_KEY =
-      "sb_publishable_uxvucsvP7SDhLMqCEhCIpA_B684g00i";
+      "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
 
 
     const supabaseClient =
@@ -188,29 +171,23 @@
       );
 
 
+    /* =========================
+       LOGIN
+    ========================= */
+
     async function login() {
 
       const email =
-        document
-          .getElementById("email")
-          .value
-          .trim();
-
+        document.getElementById("email").value.trim();
 
       const password =
-        document
-          .getElementById("password")
-          .value;
-
-
-      const message =
-        document
-          .getElementById("message");
-
+        document.getElementById("password").value;
 
       const button =
-        document
-          .getElementById("loginBtn");
+        document.getElementById("loginBtn");
+
+      const message =
+        document.getElementById("message");
 
 
       if (!email || !password) {
@@ -218,7 +195,7 @@
         message.style.color = "#d33";
 
         message.textContent =
-          "Email and password required.";
+          "Please enter email and password.";
 
         return;
 
@@ -230,8 +207,7 @@
       button.textContent =
         "LOGGING IN...";
 
-      message.style.color =
-        "#777";
+      message.style.color = "#777";
 
       message.textContent =
         "Please wait...";
@@ -239,118 +215,86 @@
 
       try {
 
-        const {
-          data,
-          error
-        } =
+        const { data, error } =
           await supabaseClient
             .auth
             .signInWithPassword({
 
-              email:
-                email,
+              email: email,
 
-              password:
-                password
+              password: password
 
             });
 
 
         if (error) {
 
-          message.style.color =
-            "#d33";
+          message.style.color = "#d33";
 
           message.textContent =
             error.message;
 
-          button.disabled =
-            false;
+          button.disabled = false;
 
-          button.textContent =
-            "LOGIN";
+          button.textContent = "LOGIN";
 
           return;
 
         }
 
 
-        const user =
-          data.user;
+        /* =========================
+           CHECK ADMIN
+        ========================= */
 
-
-        const {
-          data: admin,
-          error: adminError
-        } =
+        const { data: admin, error: adminError } =
           await supabaseClient
-
             .from("admin_users")
-
-            .select(
-              "user_id, role"
-            )
-
-            .eq(
-              "user_id",
-              user.id
-            )
-
+            .select("user_id, role")
+            .eq("user_id", data.user.id)
             .maybeSingle();
 
 
         if (adminError) {
 
-          message.style.color =
-            "#d33";
+          message.style.color = "#d33";
 
           message.textContent =
             adminError.message;
 
-          button.disabled =
-            false;
+          button.disabled = false;
 
-          button.textContent =
-            "LOGIN";
+          button.textContent = "LOGIN";
 
           return;
 
         }
 
 
-        if (
-          !admin ||
-          admin.role !== "admin"
-        ) {
+        if (!admin || admin.role !== "admin") {
 
           await supabaseClient
             .auth
             .signOut();
 
-
-          message.style.color =
-            "#d33";
+          message.style.color = "#d33";
 
           message.textContent =
             "This account is not an admin.";
 
-          button.disabled =
-            false;
+          button.disabled = false;
 
-          button.textContent =
-            "LOGIN";
+          button.textContent = "LOGIN";
 
           return;
 
         }
 
 
-        message.style.color =
-          "#079455";
+        message.style.color = "#079455";
 
         message.textContent =
-          "Login successful!";
-
+          "LOGIN SUCCESSFUL ✅";
 
         button.textContent =
           "SUCCESS";
@@ -358,16 +302,13 @@
 
       } catch (error) {
 
-        message.style.color =
-          "#d33";
+        message.style.color = "#d33";
 
         message.textContent =
           "Connection error: " +
           error.message;
 
-
-        button.disabled =
-          false;
+        button.disabled = false;
 
         button.textContent =
           "LOGIN";
@@ -379,5 +320,4 @@
   </script>
 
 </body>
-
 </html>
