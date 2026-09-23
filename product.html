@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
@@ -10,11 +11,13 @@
 
   <title>Product | Craftio Gifts</title>
 
+  <!-- FAVICON -->
   <link
     rel="icon"
     type="image/png"
     href="favicon.png">
 
+  <!-- POPPINS -->
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com">
@@ -28,6 +31,7 @@
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
+  <!-- SUPABASE -->
   <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
   </script>
@@ -41,11 +45,26 @@
       padding: 0;
     }
 
-    body {
-      font-family: "Poppins", Arial, sans-serif;
-      background: #f7f7f7;
-      color: #111;
+
+    html {
+      scroll-behavior: smooth;
     }
+
+
+    body {
+      font-family:
+        "Poppins",
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      background: #f7f7f7;
+
+      color: #111;
+
+      overflow-x: hidden;
+    }
+
 
     button,
     input,
@@ -53,6 +72,7 @@
     select {
       font-family: inherit;
     }
+
 
     a {
       text-decoration: none;
@@ -64,58 +84,105 @@
     ========================= */
 
     nav {
+
       background: #111;
+
       color: #fff;
 
       padding: 17px 6%;
 
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
 
       position: sticky;
+
       top: 0;
 
       z-index: 2000;
+
     }
+
 
     .logo-link {
+
       color: #fff;
+
+      text-decoration: none;
+
       display: inline-block;
+
     }
+
 
     .logo-text {
+
       font-size: 25px;
+
       font-weight: 800;
+
       letter-spacing: 1px;
+
       white-space: nowrap;
+
     }
+
 
     .logo-text span {
+
       color: #00aef0;
+
     }
+
 
     .nav-links {
+
       display: flex;
+
       align-items: center;
+
       gap: 24px;
+
     }
+
 
     .nav-links a {
+
       color: #fff;
+
       font-size: 15px;
+
       font-weight: 700;
+
     }
+
 
     .nav-links a:hover {
+
       color: #00aef0;
+
     }
 
+
     .cart-link {
+
       background: #00aef0;
+
       color: #fff !important;
+
       padding: 9px 14px;
+
       border-radius: 8px;
+
+    }
+
+
+    .cart-link:hover {
+
+      background: #008fc5;
+
     }
 
 
@@ -124,27 +191,33 @@
     ========================= */
 
     .product-page {
-      max-width: 1150px;
-      margin: 60px auto;
+
+      max-width: 1200px;
+
+      margin: 55px auto;
+
       padding: 0 25px;
+
     }
 
+
     .product-box {
+
       background: #fff;
 
       border-radius: 18px;
 
       display: grid;
 
-      grid-template-columns:
-        1fr 1fr;
+      grid-template-columns: 1fr 1fr;
 
-      gap: 50px;
+      gap: 45px;
 
       padding: 35px;
 
       box-shadow:
         0 10px 35px rgba(0,0,0,0.06);
+
     }
 
 
@@ -152,8 +225,15 @@
        IMAGE
     ========================= */
 
-    .product-image-box {
+    .product-image-wrap {
+
       width: 100%;
+
+      min-height: 520px;
+
+      border-radius: 14px;
+
+      background: #f7f7f7;
 
       display: flex;
 
@@ -161,26 +241,25 @@
 
       justify-content: center;
 
-      background: #f7f7f7;
-
-      border-radius: 14px;
-
       overflow: hidden;
 
-      min-height: 500px;
     }
 
+
     .product-image {
+
       width: 100%;
-      height: 500px;
+
+      height: 520px;
 
       object-fit: contain;
+
+      padding: 10px;
 
       display: block;
 
       cursor: zoom-in;
 
-      padding: 10px;
     }
 
 
@@ -189,23 +268,27 @@
     ========================= */
 
     .product-details {
-      padding: 15px 5px;
+
+      padding: 10px;
 
       display: flex;
 
       flex-direction: column;
 
       justify-content: center;
+
     }
 
+
     .category-label {
+
       display: inline-block;
 
       width: fit-content;
 
-      margin-bottom: 14px;
+      padding: 7px 11px;
 
-      padding: 6px 10px;
+      margin-bottom: 14px;
 
       border-radius: 999px;
 
@@ -216,17 +299,27 @@
       font-size: 11px;
 
       font-weight: 800;
+
+      line-height: 1.3;
+
     }
+
 
     .product-details h1 {
-      font-size: 38px;
 
-      line-height: 1.2;
+      font-size: 39px;
 
-      margin-bottom: 18px;
+      line-height: 1.18;
+
+      margin-bottom: 17px;
+
+      font-weight: 800;
+
     }
 
+
     .price {
+
       color: #00aef0;
 
       font-size: 29px;
@@ -234,9 +327,12 @@
       font-weight: 800;
 
       margin-bottom: 20px;
+
     }
 
+
     .old-price {
+
       color: #999;
 
       text-decoration: line-through;
@@ -246,24 +342,42 @@
       margin-right: 8px;
 
       font-weight: 600;
+
     }
 
+
     .sale-price {
+
       color: #00aef0;
 
       font-size: 29px;
 
       font-weight: 800;
+
     }
 
-    .description {
+
+    .price-note {
+
+      color: #777;
+
       font-size: 16px;
 
-      line-height: 1.7;
+      font-weight: 700;
+
+    }
+
+
+    .description {
 
       color: #555;
 
+      font-size: 16px;
+
+      line-height: 1.75;
+
       margin-bottom: 25px;
+
     }
 
 
@@ -272,6 +386,7 @@
     ========================= */
 
     .customization-box {
+
       background: #f8fcfe;
 
       border: 1px solid #dceff7;
@@ -281,76 +396,92 @@
       padding: 18px;
 
       margin-bottom: 22px;
+
     }
 
+
     .customization-box h3 {
+
       font-size: 18px;
 
       margin-bottom: 15px;
+
     }
+
 
     .custom-field {
+
       margin-bottom: 14px;
+
     }
+
 
     .custom-field:last-child {
+
       margin-bottom: 0;
+
     }
 
+
     .custom-field label {
+
       display: block;
+
+      margin-bottom: 6px;
 
       font-size: 13px;
 
       font-weight: 700;
 
-      margin-bottom: 6px;
     }
 
-    .custom-field input,
-    .custom-field textarea {
+
+    .custom-field input {
+
       width: 100%;
+
+      padding: 11px 12px;
 
       border: 1px solid #ccc;
 
       border-radius: 8px;
 
-      padding: 11px 12px;
+      background: #fff;
 
-      outline: none;
+      color: #111;
 
       font-size: 14px;
 
-      background: #fff;
+      outline: none;
+
     }
 
-    .custom-field textarea {
-      min-height: 90px;
 
-      resize: vertical;
-    }
+    .custom-field input:focus {
 
-    .custom-field input:focus,
-    .custom-field textarea:focus {
       border-color: #00aef0;
+
     }
+
 
     .whatsapp-note {
+
       margin-top: 14px;
 
       padding: 11px 12px;
 
-      border-radius: 8px;
-
       background: #fff;
+
+      border: 1px solid #e3e3e3;
+
+      border-radius: 8px;
 
       color: #555;
 
       font-size: 12px;
 
-      line-height: 1.5;
+      line-height: 1.55;
 
-      border: 1px solid #e4e4e4;
     }
 
 
@@ -359,25 +490,33 @@
     ========================= */
 
     .quantity-label {
-      font-weight: 700;
 
       font-size: 17px;
 
+      font-weight: 700;
+
       margin-bottom: 9px;
+
     }
 
+
     .quantity-box {
+
       display: flex;
 
       align-items: center;
 
       gap: 10px;
 
-      margin-bottom: 22px;
+      margin-bottom: 23px;
+
     }
 
+
     .quantity-box button {
+
       width: 42px;
+
       height: 42px;
 
       border: 1px solid #ccc;
@@ -389,10 +528,24 @@
       cursor: pointer;
 
       font-size: 22px;
+
+      line-height: 1;
+
     }
 
+
+    .quantity-box button:hover {
+
+      border-color: #00aef0;
+
+      color: #00aef0;
+
+    }
+
+
     .quantity-box input {
-      width: 75px;
+
+      width: 78px;
 
       height: 42px;
 
@@ -405,6 +558,7 @@
       font-size: 18px;
 
       outline: none;
+
     }
 
 
@@ -414,6 +568,7 @@
 
     .buy-btn,
     .add-cart-btn {
+
       width: 100%;
 
       padding: 16px;
@@ -429,40 +584,67 @@
       font-weight: 800;
 
       margin-bottom: 12px;
+
+      transition: .25s;
+
     }
 
+
     .buy-btn {
+
       background: #111;
 
       color: #fff;
+
     }
+
 
     .buy-btn:hover {
+
       background: #333;
+
+      transform: translateY(-1px);
+
     }
 
+
     .add-cart-btn {
+
       background: #00aef0;
 
       color: #fff;
+
     }
+
 
     .add-cart-btn:hover {
+
       background: #008fc5;
+
+      transform: translateY(-1px);
+
     }
 
+
     .back-link {
+
       display: inline-block;
 
-      margin-top: 18px;
+      margin-top: 15px;
 
       color: #555;
 
+      font-size: 14px;
+
       font-weight: 600;
+
     }
 
+
     .back-link:hover {
+
       color: #00aef0;
+
     }
 
 
@@ -471,7 +653,8 @@
     ========================= */
 
     .loading-page {
-      min-height: 60vh;
+
+      min-height: 70vh;
 
       display: flex;
 
@@ -479,11 +662,14 @@
 
       justify-content: center;
 
+      padding: 40px 20px;
+
       text-align: center;
 
       color: #777;
 
-      padding: 40px;
+      font-size: 16px;
+
     }
 
 
@@ -492,11 +678,12 @@
     ========================= */
 
     .error-page {
+
       max-width: 700px;
 
       margin: 80px auto;
 
-      padding: 40px 25px;
+      padding: 45px 25px;
 
       text-align: center;
 
@@ -506,30 +693,49 @@
 
       box-shadow:
         0 8px 25px rgba(0,0,0,0.06);
+
     }
+
 
     .error-page h2 {
+
+      font-size: 28px;
+
       margin-bottom: 10px;
+
     }
+
 
     .error-page p {
+
       color: #777;
 
-      margin-bottom: 20px;
+      margin-bottom: 22px;
+
     }
 
-    .error-page a {
-      display: inline-block;
 
-      padding: 12px 20px;
+    .error-page a {
+
+      display: inline-block;
 
       background: #00aef0;
 
       color: #fff;
 
+      padding: 12px 20px;
+
       border-radius: 8px;
 
       font-weight: 700;
+
+    }
+
+
+    .error-page a:hover {
+
+      background: #008fc5;
+
     }
 
 
@@ -538,12 +744,13 @@
     ========================= */
 
     .image-modal {
+
       position: fixed;
 
       inset: 0;
 
       background:
-        rgba(0,0,0,0.90);
+        rgba(0,0,0,.90);
 
       display: none;
 
@@ -556,13 +763,19 @@
       z-index: 5000;
 
       overflow: auto;
+
     }
+
 
     .image-modal.active {
+
       display: flex;
+
     }
 
+
     .image-modal img {
+
       max-width: 92vw;
 
       max-height: 90vh;
@@ -578,19 +791,25 @@
       cursor: zoom-in;
 
       transition:
-        transform 0.25s ease;
+        transform .25s ease;
 
       box-shadow:
-        0 10px 40px rgba(0,0,0,0.5);
+        0 10px 40px rgba(0,0,0,.5);
+
     }
 
+
     .image-modal img.zoomed {
+
       transform: scale(1.7);
 
       cursor: zoom-out;
+
     }
 
+
     .image-modal-close {
+
       position: fixed;
 
       top: 18px;
@@ -611,6 +830,8 @@
 
       font-size: 32px;
 
+      line-height: 1;
+
       cursor: pointer;
 
       z-index: 5001;
@@ -620,6 +841,14 @@
       align-items: center;
 
       justify-content: center;
+
+    }
+
+
+    .image-modal-close:hover {
+
+      background: #eee;
+
     }
 
 
@@ -628,6 +857,7 @@
     ========================= */
 
     footer {
+
       background: #111;
 
       color: #fff;
@@ -639,10 +869,14 @@
       font-size: 14px;
 
       margin-top: 60px;
+
     }
 
+
     footer strong {
+
       color: #00aef0;
+
     }
 
 
@@ -653,29 +887,73 @@
     @media (max-width: 800px) {
 
       nav {
+
+        padding:
+          14px 18px;
+
         flex-direction: column;
 
-        gap: 14px;
+        gap: 13px;
+
       }
 
+
+      .product-page {
+
+        margin:
+          30px auto;
+
+        padding:
+          0 15px;
+
+      }
+
+
       .product-box {
-        grid-template-columns: 1fr;
+
+        grid-template-columns:
+          1fr;
 
         gap: 25px;
 
         padding: 20px;
+
       }
 
-      .product-image-box {
+
+      .product-image-wrap {
+
         min-height: 400px;
+
       }
+
 
       .product-image {
+
         height: 400px;
+
       }
 
+
+      .product-details {
+
+        padding:
+          5px;
+
+      }
+
+
       .product-details h1 {
+
         font-size: 30px;
+
+      }
+
+
+      .description {
+
+        font-size: 15px;
+
       }
 
     }
@@ -683,31 +961,78 @@
 
     @media (max-width: 500px) {
 
-      .product-page {
-        margin: 30px auto;
+      .logo-text {
 
-        padding: 0 15px;
+        font-size: 21px;
+
       }
 
-      .product-image-box {
+
+      .nav-links {
+
+        gap: 10px;
+
+        width: 100%;
+
+        justify-content: center;
+
+      }
+
+
+      .nav-links a {
+
+        font-size: 12px;
+
+      }
+
+
+      .cart-link {
+
+        padding:
+          8px 10px;
+
+      }
+
+
+      .product-image-wrap {
+
         min-height: 330px;
+
       }
+
 
       .product-image {
+
         height: 330px;
+
       }
 
-      .product-details {
-        padding: 5px;
-      }
 
       .product-details h1 {
+
         font-size: 25px;
+
       }
 
-      .price,
-      .sale-price {
+
+      .price {
+
         font-size: 24px;
+
+      }
+
+
+      .sale-price {
+
+        font-size: 24px;
+
+      }
+
+
+      .old-price {
+
+        font-size: 14px;
+
       }
 
     }
@@ -718,6 +1043,11 @@
 
 
 <body>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
 
   <nav>
 
@@ -738,12 +1068,18 @@
     <div class="nav-links">
 
       <a href="index.html">
+
         Home
+
       </a>
 
+
       <a href="products.html">
+
         Products
+
       </a>
+
 
       <a
         href="products.html"
@@ -759,6 +1095,10 @@
   </nav>
 
 
+  <!-- =========================
+       PRODUCT CONTENT
+  ========================= -->
+
   <main
     id="mainContent"
     class="loading-page">
@@ -768,7 +1108,9 @@
   </main>
 
 
-  <!-- IMAGE MODAL -->
+  <!-- =========================
+       IMAGE MODAL
+  ========================= -->
 
   <div
     class="image-modal"
@@ -784,6 +1126,7 @@
 
     </button>
 
+
     <img
       id="zoomedImage"
       src=""
@@ -792,6 +1135,10 @@
 
   </div>
 
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
 
   <footer>
 
@@ -813,13 +1160,18 @@
     const SUPABASE_URL =
       "https://hujwsdixdxhofwhibjff.supabase.co";
 
+
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
 
+
     const supabaseClient =
       window.supabase.createClient(
+
         SUPABASE_URL,
+
         SUPABASE_PUBLISHABLE_KEY
+
       );
 
 
@@ -835,91 +1187,106 @@
        URL
     ========================= */
 
-    const params =
+    const urlParams =
       new URLSearchParams(
         window.location.search
       );
 
+
     const productId =
-      params.get("product");
+      urlParams.get("product");
 
 
     let product = null;
 
 
     /* =========================
-       HELPERS
+       ESCAPE HTML
     ========================= */
 
-    function escapeHtml(value) {
+    function escapeHtml(
+      value
+    ) {
 
       return String(
         value ?? ""
       )
 
-      .replace(
-        /&/g,
-        "&amp;"
-      )
+        .replace(
+          /&/g,
+          "&amp;"
+        )
 
-      .replace(
-        /</g,
-        "&lt;"
-      )
+        .replace(
+          /</g,
+          "&lt;"
+        )
 
-      .replace(
-        />/g,
-        "&gt;"
-      )
+        .replace(
+          />/g,
+          "&gt;"
+        )
 
-      .replace(
-        /"/g,
-        "&quot;"
-      )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
 
-      .replace(
-        /'/g,
-        "&#039;"
-      );
+        .replace(
+          /'/g,
+          "&#039;"
+        );
 
     }
 
 
-    function escapeJs(value) {
+    /* =========================
+       ESCAPE JS
+    ========================= */
+
+    function escapeJs(
+      value
+    ) {
 
       return String(
         value ?? ""
       )
 
-      .replace(
-        /\\/g,
-        "\\\\"
-      )
+        .replace(
+          /\\/g,
+          "\\\\"
+        )
 
-      .replace(
-        /'/g,
-        "\\'"
-      );
+        .replace(
+          /'/g,
+          "\\'"
+        );
 
     }
 
+
+    /* =========================
+       ACTUAL PRICE
+    ========================= */
 
     function getActualPrice(
-      item
+      product
     ) {
 
       const regularPrice =
         Number(
-          item.price || 0
+          product.price || 0
         );
+
 
       const salePrice =
         Number(
-          item.sale_price || 0
+          product.sale_price || 0
         );
 
+
       if (
-        item.sale === true &&
+        product.sale === true &&
         salePrice > 0
       ) {
 
@@ -927,27 +1294,34 @@
 
       }
 
+
       return regularPrice;
 
     }
 
 
+    /* =========================
+       PRICE HTML
+    ========================= */
+
     function getPriceHtml(
-      item
+      product
     ) {
 
       const regularPrice =
         Number(
-          item.price || 0
+          product.price || 0
         );
+
 
       const salePrice =
         Number(
-          item.sale_price || 0
+          product.sale_price || 0
         );
 
+
       if (
-        item.sale === true &&
+        product.sale === true &&
         salePrice > 0 &&
         regularPrice > 0 &&
         salePrice < regularPrice
@@ -955,15 +1329,20 @@
 
         return `
 
-          <span class="old-price">
+          <span
+            class="old-price">
 
-            Rs. ${regularPrice.toLocaleString()}
+            Rs.
+            ${regularPrice.toLocaleString()}
 
           </span>
 
-          <span class="sale-price">
 
-            Rs. ${salePrice.toLocaleString()}
+          <span
+            class="sale-price">
+
+            Rs.
+            ${salePrice.toLocaleString()}
 
           </span>
 
@@ -971,23 +1350,422 @@
 
       }
 
-      if (regularPrice > 0) {
+
+      if (
+        regularPrice > 0
+      ) {
 
         return `
-          Rs. ${regularPrice.toLocaleString()}
+
+          Rs.
+          ${regularPrice.toLocaleString()}
+
         `;
 
       }
 
+
       return `
-        Price will be updated
+
+        <span
+          class="price-note">
+
+          Price will be updated
+
+        </span>
+
       `;
 
     }
 
 
     /* =========================
-       CUSTOMIZATION CONFIG
+       DEFAULT DESCRIPTION
+    ========================= */
+
+    function getProductDescription(
+      product
+    ) {
+
+      const name =
+        String(
+          product.name || "This product"
+        ).trim();
+
+
+      const category =
+        String(
+          product.category || ""
+        ).trim()
+        .toUpperCase();
+
+
+      /*
+        These descriptions are used only
+        when Supabase description is empty.
+        The product name is included so
+        different products don't show
+        the same generic sentence.
+      */
+
+
+      if (
+        category ===
+        "ISLAMIC COLLECTION"
+      ) {
+
+        return (
+
+          name +
+
+          " is a beautiful customized Islamic " +
+
+          "frame designed to add a meaningful " +
+
+          "and elegant touch to your space."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "LED PICTURE FRAME"
+      ) {
+
+        return (
+
+          name +
+
+          " is a glowing personalized picture frame " +
+
+          "made to turn your favorite memory into " +
+
+          "a beautiful display."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "ANNIVERSARY FRAMES"
+      ) {
+
+        return (
+
+          name +
+
+          " is a personalized anniversary keepsake " +
+
+          "created to celebrate your love and " +
+
+          "beautiful memories together."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "NIKKAH FRAMES"
+      ) {
+
+        return (
+
+          name +
+
+          " is a personalized Nikkah keepsake " +
+
+          "designed to preserve the beautiful memories " +
+
+          "of your special day."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "BIRTHDAY FRAMES"
+      ) {
+
+        return (
+
+          name +
+
+          " is a personalized birthday frame " +
+
+          "created to make a special birthday memory " +
+
+          "even more meaningful."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "PICTURE FRAMES"
+      ) {
+
+        return (
+
+          name +
+
+          " turns your favorite photograph into " +
+
+          "a beautiful personalized frame that keeps " +
+
+          "your special memory close."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "MUG COLLECTION"
+      ) {
+
+        return (
+
+          name +
+
+          " is a customized mug made to add " +
+
+          "a personal touch to your everyday moments " +
+
+          "and make every cup more special."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "MAGIC MUGS"
+      ) {
+
+        return (
+
+          name +
+
+          " is a fun customized magic mug " +
+
+          "that reveals your special design when " +
+
+          "it comes in contact with heat."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "NEW BORN FRAMES"
+      ) {
+
+        return (
+
+          name +
+
+          " is a beautiful personalized newborn " +
+
+          "frame made to preserve a precious little " +
+
+          "memory for years to come."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
+      ) {
+
+        return (
+
+          name +
+
+          " is a stylish personalized PVC card " +
+
+          "designed to showcase your social profile " +
+
+          "in a unique way."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "FRIENDSHIP LICENCE CARD"
+      ) {
+
+        return (
+
+          name +
+
+          " is a fun personalized friendship card " +
+
+          "made specially to celebrate a meaningful " +
+
+          "friendship."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "EYE NECKLACE"
+      ) {
+
+        return (
+
+          name +
+
+          " is a meaningful personalized eye necklace " +
+
+          "designed to make your special gift more " +
+
+          "memorable."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "WEDDING RING PLATES"
+      ) {
+
+        return (
+
+          name +
+
+          " is a customized wedding ring plate " +
+
+          "created to beautifully preserve a special " +
+
+          "moment from your wedding day."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "TRENDY CHARTS"
+      ) {
+
+        return (
+
+          name +
+
+          " is a stylish customized chart created " +
+
+          "around your favorite memories, ideas and " +
+
+          "personal moments."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "NAME KEYCHAINS"
+      ) {
+
+        return (
+
+          name +
+
+          " is a personalized name keychain " +
+
+          "made to carry a special name with you " +
+
+          "wherever you go."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "PVC CARD"
+      ) {
+
+        return (
+
+          name +
+
+          " is a durable customized PVC card " +
+
+          "designed around your own picture, style " +
+
+          "and personal details."
+
+        );
+
+      }
+
+
+      if (
+        category ===
+        "MAGIC LAMPS"
+      ) {
+
+        return (
+
+          name +
+
+          " is a customized magic lamp made " +
+
+          "to turn a favorite memory into a beautiful " +
+
+          "glowing keepsake."
+
+        );
+
+      }
+
+
+      return (
+
+        name +
+
+        " is a specially customized gift " +
+
+        "created around your personal idea and " +
+
+        "made for your special moments."
+
+      );
+
+    }
+
+
+    /* =========================
+       CUSTOMIZATION SETTINGS
     ========================= */
 
     function getCustomizationConfig(
@@ -997,7 +1775,9 @@
       const c =
         String(
           category || ""
-        ).toUpperCase();
+        )
+        .trim()
+        .toUpperCase();
 
 
       if (
@@ -1009,15 +1789,28 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             },
 
+
             {
-              id: "date",
-              label: "Date (DD/MM/YYYY)",
-              placeholder: "DD/MM/YYYY"
+              id:
+                "date",
+
+              label:
+                "Date (DD/MM/YYYY)",
+
+              placeholder:
+                "DD/MM/YYYY"
+
             }
 
           ],
@@ -1039,15 +1832,28 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             },
 
+
             {
-              id: "date",
-              label: "Date (DD/MM/YYYY)",
-              placeholder: "DD/MM/YYYY"
+              id:
+                "date",
+
+              label:
+                "Date (DD/MM/YYYY)",
+
+              placeholder:
+                "DD/MM/YYYY"
+
             }
 
           ],
@@ -1085,9 +1891,15 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             }
 
           ],
@@ -1109,9 +1921,15 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             }
 
           ],
@@ -1125,7 +1943,8 @@
 
 
       if (
-        c === "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
+        c ===
+        "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
       ) {
 
         return {
@@ -1133,9 +1952,15 @@
           fields: [
 
             {
-              id: "profile",
-              label: "Profile Information",
-              placeholder: "Enter profile information"
+              id:
+                "profile",
+
+              label:
+                "Profile Information",
+
+              placeholder:
+                "Enter profile information"
+
             }
 
           ],
@@ -1157,9 +1982,15 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             }
 
           ],
@@ -1198,21 +2029,41 @@
           fields: [
 
             {
-              id: "groomName",
-              label: "Groom Name",
-              placeholder: "Enter groom name"
+              id:
+                "groomName",
+
+              label:
+                "Groom Name",
+
+              placeholder:
+                "Enter groom name"
+
             },
 
-            {
-              id: "brideName",
-              label: "Bride Name",
-              placeholder: "Enter bride name"
-            },
 
             {
-              id: "nikkahDate",
-              label: "Nikkah Date (DD/MM/YYYY)",
-              placeholder: "DD/MM/YYYY"
+              id:
+                "brideName",
+
+              label:
+                "Bride Name",
+
+              placeholder:
+                "Enter bride name"
+
+            },
+
+
+            {
+              id:
+                "nikkahDate",
+
+              label:
+                "Nikkah Date (DD/MM/YYYY)",
+
+              placeholder:
+                "DD/MM/YYYY"
+
             }
 
           ],
@@ -1234,9 +2085,15 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             }
 
           ],
@@ -1258,9 +2115,15 @@
           fields: [
 
             {
-              id: "name",
-              label: "Name",
-              placeholder: "Enter name"
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
             }
 
           ],
@@ -1282,9 +2145,15 @@
           fields: [
 
             {
-              id: "details",
-              label: "Other Details",
-              placeholder: "Enter other details"
+              id:
+                "details",
+
+              label:
+                "Other Details",
+
+              placeholder:
+                "Enter other details"
+
             }
 
           ],
@@ -1313,6 +2182,59 @@
       }
 
 
+      /*
+        Also handle individual products
+        where category is not set exactly.
+      */
+
+      if (
+        nameIncludes(
+          product.name,
+          [
+            "LED",
+            "PHOTO FRAME"
+          ]
+        )
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id:
+                "name",
+
+              label:
+                "Name",
+
+              placeholder:
+                "Enter name"
+
+            },
+
+            {
+              id:
+                "date",
+
+              label:
+                "Date (DD/MM/YYYY)",
+
+              placeholder:
+                "DD/MM/YYYY"
+
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
       return {
 
         fields: [],
@@ -1324,8 +2246,33 @@
     }
 
 
+    function nameIncludes(
+      value,
+      words
+    ) {
+
+      const text =
+        String(
+          value || ""
+        )
+        .toUpperCase();
+
+
+      return words.some(
+        function(word) {
+
+          return text.includes(
+            word
+          );
+
+        }
+      );
+
+    }
+
+
     /* =========================
-       RENDER CUSTOMIZATION
+       CUSTOMIZATION HTML
     ========================= */
 
     function renderCustomization() {
@@ -1369,14 +2316,18 @@
               <label
                 for="${field.id}">
 
-                ${field.label}
+                ${escapeHtml(
+                  field.label
+                )}
 
               </label>
 
               <input
                 type="text"
                 id="${field.id}"
-                placeholder="${field.placeholder}">
+                placeholder="${escapeHtml(
+                  field.placeholder
+                )}">
 
             </div>
 
@@ -1386,13 +2337,18 @@
       );
 
 
-      if (config.note) {
+      if (
+        config.note
+      ) {
 
         html += `
 
-          <div class="whatsapp-note">
+          <div
+            class="whatsapp-note">
 
-            ${config.note}
+            ${escapeHtml(
+              config.note
+            )}
 
           </div>
 
@@ -1414,7 +2370,7 @@
 
 
     /* =========================
-       GET CUSTOMIZATION
+       CUSTOMIZATION VALUES
     ========================= */
 
     function getCustomization() {
@@ -1424,21 +2380,23 @@
           product.category
         );
 
+
       const values = {};
 
 
       config.fields.forEach(
         function(field) {
 
-          const element =
+          const input =
             document.getElementById(
               field.id
             );
 
-          if (element) {
+
+          if (input) {
 
             values[field.id] =
-              element.value.trim();
+              input.value.trim();
 
           }
 
@@ -1452,7 +2410,7 @@
 
 
     /* =========================
-       LOAD PRODUCT
+       LOAD PRODUCT FROM SUPABASE
     ========================= */
 
     async function loadProduct() {
@@ -1468,6 +2426,7 @@
         main.className =
           "error-page";
 
+
         main.innerHTML = `
 
           <h2>
@@ -1479,218 +2438,310 @@
           </p>
 
           <a href="products.html">
+
             Back to Products
+
           </a>
 
         `;
+
 
         return;
 
       }
 
 
-      const {
-        data,
-        error
-      } =
+      main.innerHTML = `
 
-        await supabaseClient
+        Loading product...
 
-          .from("products")
-
-          .select("*")
-
-          .eq(
-            "id",
-            productId
-          )
-
-          .eq(
-            "active",
-            true
-          )
-
-          .single();
+      `;
 
 
-      if (error || !data) {
+      try {
+
+        const {
+          data,
+          error
+        } =
+
+          await supabaseClient
+
+            .from("products")
+
+            .select("*")
+
+            .eq(
+              "id",
+              productId
+            )
+
+            .eq(
+              "active",
+              true
+            )
+
+            .single();
+
+
+        if (
+          error ||
+          !data
+        ) {
+
+          console.error(
+            error
+          );
+
+
+          main.className =
+            "error-page";
+
+
+          main.innerHTML = `
+
+            <h2>
+              Product not found
+            </h2>
+
+            <p>
+              This product could not be loaded.
+            </p>
+
+            <a href="products.html">
+
+              Back to Products
+
+            </a>
+
+          `;
+
+
+          return;
+
+        }
+
+
+        product =
+          data;
+
+
+        const description =
+          String(
+            product.description || ""
+          ).trim()
+          ||
+          getProductDescription(
+            product
+          );
+
+
+        const category =
+          String(
+            product.category || ""
+          ).trim();
+
+
+        main.className =
+          "product-page";
+
+
+        main.innerHTML = `
+
+          <div
+            class="product-box">
+
+
+            <div
+              class="product-image-wrap">
+
+
+              <img
+                id="productImage"
+                class="product-image"
+                src="${escapeHtml(
+                  product.image_url || ""
+                )}"
+                alt="${escapeHtml(
+                  product.name || ""
+                )}"
+                onclick="openImageZoom()">
+
+
+            </div>
+
+
+            <div
+              class="product-details">
+
+
+              ${
+                category
+
+                  ?
+
+                  `
+
+                    <div
+                      class="category-label">
+
+                      ${escapeHtml(
+                        category
+                      )}
+
+                    </div>
+
+                  `
+
+                  :
+
+                  ""
+              }
+
+
+              <h1>
+
+                ${escapeHtml(
+                  product.name ||
+                  "Product"
+                )}
+
+              </h1>
+
+
+              <div
+                class="price">
+
+                ${getPriceHtml(
+                  product
+                )}
+
+              </div>
+
+
+              <p
+                class="description">
+
+                ${escapeHtml(
+                  description
+                )}
+
+              </p>
+
+
+              ${renderCustomization()}
+
+
+              <div
+                class="quantity-label">
+
+                Quantity:
+
+              </div>
+
+
+              <div
+                class="quantity-box">
+
+
+                <button
+                  type="button"
+                  onclick="decreaseQuantity()">
+
+                  −
+
+                </button>
+
+
+                <input
+                  type="number"
+                  id="quantity"
+                  value="1"
+                  min="1">
+
+
+                <button
+                  type="button"
+                  onclick="increaseQuantity()">
+
+                  +
+
+                </button>
+
+
+              </div>
+
+
+              <button
+                type="button"
+                class="buy-btn"
+                onclick="buyNow()">
+
+                BUY NOW
+
+              </button>
+
+
+              <button
+                type="button"
+                class="add-cart-btn"
+                onclick="addProductToCart()">
+
+                🛒 ADD TO CART
+
+              </button>
+
+
+              <a
+                href="products.html"
+                class="back-link">
+
+                ← Back to Products
+
+              </a>
+
+
+            </div>
+
+
+          </div>
+
+        `;
+
+
+        updateCartCount();
+
+
+      } catch (error) {
 
         console.error(
           error
         );
 
+
         main.className =
           "error-page";
+
 
         main.innerHTML = `
 
           <h2>
-            Product not found
+            Unable to load product
           </h2>
 
           <p>
-            This product could not be loaded.
+            Please refresh the page and try again.
           </p>
 
           <a href="products.html">
+
             Back to Products
+
           </a>
 
         `;
 
-        return;
-
       }
-
-
-      product = data;
-
-
-      const description =
-        product.description
-        ||
-        "A personalized gift made specially for your special moments.";
-
-
-      main.className =
-        "product-page";
-
-
-      main.innerHTML = `
-
-        <div class="product-box">
-
-          <div
-            class="product-image-box">
-
-            <img
-              id="productImage"
-              class="product-image"
-              src="${escapeHtml(
-                product.image_url || ""
-              )}"
-              alt="${escapeHtml(
-                product.name || ""
-              )}"
-              onclick="openImageZoom()">
-
-          </div>
-
-
-          <div class="product-details">
-
-            <div
-              class="category-label">
-
-              ${escapeHtml(
-                product.category || ""
-              )}
-
-            </div>
-
-
-            <h1>
-
-              ${escapeHtml(
-                product.name || "Product"
-              )}
-
-            </h1>
-
-
-            <div class="price">
-
-              ${getPriceHtml(
-                product
-              )}
-
-            </div>
-
-
-            <p class="description">
-
-              ${escapeHtml(
-                description
-              )}
-
-            </p>
-
-
-            ${renderCustomization()}
-
-
-            <div class="quantity-label">
-
-              Quantity:
-
-            </div>
-
-
-            <div class="quantity-box">
-
-              <button
-                type="button"
-                onclick="decreaseQuantity()">
-
-                −
-
-              </button>
-
-
-              <input
-                type="number"
-                id="quantity"
-                value="1"
-                min="1">
-
-
-              <button
-                type="button"
-                onclick="increaseQuantity()">
-
-                +
-
-              </button>
-
-            </div>
-
-
-            <button
-              class="buy-btn"
-              type="button"
-              onclick="buyNow()">
-
-              BUY NOW
-
-            </button>
-
-
-            <button
-              class="add-cart-btn"
-              type="button"
-              onclick="addProductToCart()">
-
-              🛒 ADD TO CART
-
-            </button>
-
-
-            <a
-              href="products.html"
-              class="back-link">
-
-              ← Back to Products
-
-            </a>
-
-          </div>
-
-        </div>
-
-      `;
-
-
-      updateCartCount();
 
     }
 
@@ -1705,6 +2756,12 @@
         document.getElementById(
           "quantity"
         );
+
+
+      if (!input) {
+        return;
+      }
+
 
       input.value =
         Number(
@@ -1721,13 +2778,21 @@
           "quantity"
         );
 
+
+      if (!input) {
+        return;
+      }
+
+
       let value =
         Number(
           input.value || 1
         );
 
 
-      if (value > 1) {
+      if (
+        value > 1
+      ) {
 
         value--;
 
@@ -1748,11 +2813,13 @@
 
       try {
 
-        return JSON.parse(
-          localStorage.getItem(
-            "craftioCart"
-          )
-        ) || [];
+        return (
+          JSON.parse(
+            localStorage.getItem(
+              "craftioCart"
+            )
+          ) || []
+        );
 
       } catch (error) {
 
@@ -1784,12 +2851,19 @@
       }
 
 
+      const input =
+        document.getElementById(
+          "quantity"
+        );
+
+
       const quantity =
-        Number(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
+        Math.max(
+          1,
+          Number(
+            input?.value || 1
+          )
+        );
 
 
       const customization =
@@ -1869,12 +2943,19 @@
       }
 
 
+      const input =
+        document.getElementById(
+          "quantity"
+        );
+
+
       const quantity =
-        Number(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
+        Math.max(
+          1,
+          Number(
+            input?.value || 1
+          )
+        );
 
 
       const customization =
@@ -1919,17 +3000,24 @@
 
     function updateCartCount() {
 
+      const cart =
+        getCart();
+
+
       const count =
-        getCart().reduce(
+        cart.reduce(
           function(total, item) {
 
             return (
+
               total +
+
               (
                 Number(
                   item.quantity || 0
                 )
               )
+
             );
 
           },
@@ -1964,10 +3052,12 @@
           "productImage"
         );
 
+
       const modal =
         document.getElementById(
           "imageModal"
         );
+
 
       const zoomedImage =
         document.getElementById(
@@ -1987,6 +3077,7 @@
 
       zoomedImage.src =
         mainImage.src;
+
 
       zoomedImage.alt =
         mainImage.alt;
@@ -2080,26 +3171,38 @@
           "Escape"
         ) {
 
-          document
-            .getElementById(
+          const modal =
+            document.getElementById(
               "imageModal"
+            );
+
+
+          if (
+            modal &&
+            modal.classList.contains(
+              "active"
             )
-            .classList
-            .remove(
+          ) {
+
+            modal.classList.remove(
               "active"
             );
 
-          document
-            .getElementById(
-              "zoomedImage"
-            )
-            .classList
-            .remove(
-              "zoomed"
-            );
 
-          document.body.style.overflow =
-            "";
+            document
+              .getElementById(
+                "zoomedImage"
+              )
+              .classList
+              .remove(
+                "zoomed"
+              );
+
+
+            document.body.style.overflow =
+              "";
+
+          }
 
         }
 
@@ -2116,4 +3219,5 @@
   </script>
 
 </body>
+
 </html>
