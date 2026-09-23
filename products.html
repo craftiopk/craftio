@@ -181,7 +181,13 @@
 
       padding: 11px 12px;
 
-      border-radius: 8px;
+      margin: 6px 0;
+
+      border: 1px solid #e7f4fa;
+
+      border-radius: 9px;
+
+      background: #f5fbfe;
 
       color: #111 !important;
 
@@ -1025,7 +1031,13 @@
 
         padding: 11px 12px;
 
-        border-radius: 8px;
+        margin: 6px 0;
+
+        border: 1px solid #e7f4fa;
+
+        border-radius: 9px;
+
+        background: #f5fbfe;
 
         font-size: 13px;
 
@@ -1659,10 +1671,6 @@
       );
 
 
-      /* =========================
-         CONTACT US
-      ========================= */
-
       html += `
 
         <a
@@ -1681,6 +1689,101 @@
 
       mobile.innerHTML =
         html;
+
+    }
+
+
+    /* =====================================
+       LOAD CATEGORIES FROM SUPABASE
+    ===================================== */
+
+    async function loadCategories() {
+
+      try {
+
+        const {
+          data,
+          error
+        }
+        =
+          await supabaseClient
+
+            .from("categories")
+
+            .select("name")
+
+            .eq(
+              "active",
+              true
+            )
+
+            .order(
+              "created_at",
+              {
+                ascending: true
+              }
+            );
+
+
+        if (error) {
+
+          console.error(
+            "Categories load error:",
+            error
+          );
+
+          categories = [
+            ...defaultCategories
+          ];
+
+        } else {
+
+          const loadedCategories =
+            (data || [])
+              .map(
+                function(item) {
+
+                  return String(
+                    item.name ||
+                    ""
+                  ).trim();
+
+                }
+              )
+              .filter(
+                function(name) {
+
+                  return !!name;
+
+                }
+              );
+
+
+          categories =
+            loadedCategories.length > 0
+              ? loadedCategories
+              : [...defaultCategories];
+
+        }
+
+
+      } catch (error) {
+
+        console.error(
+          "Categories error:",
+          error
+        );
+
+        categories = [
+          ...defaultCategories
+        ];
+
+      }
+
+
+      populateCategoryMenus();
+
+      renderProducts();
 
     }
 
@@ -2237,6 +2340,50 @@
 
 
     /* =====================================
+       REFRESH PRODUCTS FOR SEARCH
+    ===================================== */
+
+    async function refreshProductsForSearch() {
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("products")
+
+          .select("*")
+
+          .eq(
+            "active",
+            true
+          )
+
+          .order(
+            "created_at",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (!error && data) {
+
+        products =
+          data;
+
+      }
+
+
+      renderSearchResults(
+        searchInput.value
+      );
+
+    }
+
+
+    /* =====================================
        SEARCH ELEMENTS
     ===================================== */
 
@@ -2293,6 +2440,8 @@
         ) {
 
           searchInput.focus();
+
+          refreshProductsForSearch();
 
         }
 
@@ -3046,121 +3195,7 @@
       .replace(
         /'/g,
         "\\'"
-      )
-
-      .replace(
-        /\r/g,
-        "\\r"
-      )
-
-      .replace(
-        /\n/g,
-        "\\n"
-      )
-
-      .replace(
-        /\u2028/g,
-        "\\u2028"
-      )
-
-      .replace(
-        /\u2029/g,
-        "\\u2029"
       );
-
-    }
-
-
-    /* =====================================
-       LOAD CATEGORIES FROM SUPABASE
-    ===================================== */
-
-    async function loadCategories() {
-
-      try {
-
-        const {
-          data,
-          error
-        } =
-          await supabaseClient
-
-            .from("categories")
-
-            .select("name")
-
-            .eq(
-              "active",
-              true
-            )
-
-            .order(
-              "created_at",
-              {
-                ascending: true
-              }
-            );
-
-
-        if (error) {
-
-          console.error(
-            "Categories load error:",
-            error
-          );
-
-          categories = [
-            ...defaultCategories
-          ];
-
-        } else {
-
-          const loadedCategories =
-            (data || [])
-              .map(
-                function(item) {
-
-                  return String(
-                    item.name ||
-                    ""
-                  ).trim();
-
-                }
-              )
-              .filter(
-                function(name) {
-
-                  return !!name;
-
-                }
-              );
-
-
-          categories =
-            loadedCategories.length > 0
-              ? loadedCategories
-              : [...defaultCategories];
-
-        }
-
-
-      } catch (error) {
-
-        console.error(
-          "Categories error:",
-          error
-        );
-
-        categories = [
-          ...defaultCategories
-        ];
-
-      }
-
-
-      populateCategoryMenus();
-
-      renderProducts();
 
     }
 
