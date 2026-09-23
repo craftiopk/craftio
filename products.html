@@ -1618,55 +1618,69 @@
 
     function populateCategoryMenus() {
 
-      const desktop =
-        document.getElementById(
-          "categoryDropdown"
-        );
+     function populateCategoryMenus() {
+
+  const desktop =
+    document.getElementById(
+      "categoryDropdown"
+    );
 
 
-      const mobile =
-        document.getElementById(
-          "mobileCategoryMenu"
-        );
+  const mobile =
+    document.getElementById(
+      "mobileCategoryMenu"
+    );
 
 
-      let html = `
+  let html = `
 
-        <a href="${categoryUrl("ALL")}">
+    <a href="${categoryUrl("ALL")}">
 
-          ALL PRODUCTS
+      ALL PRODUCTS
+
+    </a>
+
+  `;
+
+
+  categories.forEach(
+    function(category) {
+
+      html += `
+
+        <a
+          href="${categoryUrl(category)}">
+
+          ${category}
 
         </a>
 
       `;
 
-
-      categories.forEach(
-        function(category) {
-
-          html += `
-
-            <a
-              href="${categoryUrl(category)}">
-
-              ${category}
-
-            </a>
-
-          `;
-
-        }
-      );
-
-
-      desktop.innerHTML =
-        html;
-
-
-      mobile.innerHTML =
-        html;
-
     }
+  );
+
+
+  html += `
+
+    <a
+      href="index.html#follow-craftio">
+
+      CONTACT US
+
+    </a>
+
+  `;
+
+
+  desktop.innerHTML =
+    html;
+
+
+  mobile.innerHTML =
+    html;
+
+}
 
 
     /* =====================================
