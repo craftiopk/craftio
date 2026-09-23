@@ -3,17 +3,35 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
   <title>Product | Craftio Gifts</title>
 
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com">
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+  </script>
+
 
   <style>
 
@@ -36,22 +54,41 @@
       font-family: inherit;
     }
 
+    a {
+      text-decoration: none;
+    }
+
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
     nav {
       background: #111;
-      color: white;
-      padding: 18px 7%;
+      color: #fff;
+
+      padding: 17px 6%;
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+
       position: sticky;
       top: 0;
-      z-index: 1000;
+
+      z-index: 2000;
+    }
+
+    .logo-link {
+      color: #fff;
+      display: inline-block;
     }
 
     .logo-text {
       font-size: 25px;
       font-weight: 800;
       letter-spacing: 1px;
+      white-space: nowrap;
     }
 
     .logo-text span {
@@ -60,15 +97,14 @@
 
     .nav-links {
       display: flex;
-      gap: 25px;
       align-items: center;
+      gap: 24px;
     }
 
     .nav-links a {
-      color: white;
-      text-decoration: none;
+      color: #fff;
       font-size: 15px;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .nav-links a:hover {
@@ -77,9 +113,15 @@
 
     .cart-link {
       background: #00aef0;
-      padding: 9px 15px;
+      color: #fff !important;
+      padding: 9px 14px;
       border-radius: 8px;
     }
+
+
+    /* =========================
+       PRODUCT PAGE
+    ========================= */
 
     .product-page {
       max-width: 1150px;
@@ -88,101 +130,311 @@
     }
 
     .product-box {
-      background: white;
+      background: #fff;
+
       border-radius: 18px;
-      overflow: hidden;
+
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 50px;
+
       padding: 35px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+
+      box-shadow:
+        0 10px 35px rgba(0,0,0,0.06);
+    }
+
+
+    /* =========================
+       IMAGE
+    ========================= */
+
+    .product-image-box {
+      width: 100%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #f7f7f7;
+
+      border-radius: 14px;
+
+      overflow: hidden;
+
+      min-height: 500px;
     }
 
     .product-image {
       width: 100%;
       height: 500px;
+
       object-fit: contain;
-      border-radius: 14px;
-      background: #f7f7f7;
-      padding: 10px;
-      cursor: zoom-in;
+
       display: block;
+
+      cursor: zoom-in;
+
+      padding: 10px;
     }
 
+
+    /* =========================
+       DETAILS
+    ========================= */
+
     .product-details {
-      padding: 20px 10px;
+      padding: 15px 5px;
+
       display: flex;
+
       flex-direction: column;
+
       justify-content: center;
+    }
+
+    .category-label {
+      display: inline-block;
+
+      width: fit-content;
+
+      margin-bottom: 14px;
+
+      padding: 6px 10px;
+
+      border-radius: 999px;
+
+      background: #e9f8ff;
+
+      color: #008fc5;
+
+      font-size: 11px;
+
+      font-weight: 800;
     }
 
     .product-details h1 {
       font-size: 38px;
-      line-height: 1.15;
+
+      line-height: 1.2;
+
       margin-bottom: 18px;
     }
 
     .price {
       color: #00aef0;
+
       font-size: 29px;
+
       font-weight: 800;
-      margin-bottom: 25px;
+
+      margin-bottom: 20px;
+    }
+
+    .old-price {
+      color: #999;
+
+      text-decoration: line-through;
+
+      font-size: 17px;
+
+      margin-right: 8px;
+
+      font-weight: 600;
+    }
+
+    .sale-price {
+      color: #00aef0;
+
+      font-size: 29px;
+
+      font-weight: 800;
     }
 
     .description {
-      font-size: 17px;
+      font-size: 16px;
+
       line-height: 1.7;
+
       color: #555;
-      margin-bottom: 30px;
+
+      margin-bottom: 25px;
     }
+
+
+    /* =========================
+       CUSTOMIZATION
+    ========================= */
+
+    .customization-box {
+      background: #f8fcfe;
+
+      border: 1px solid #dceff7;
+
+      border-radius: 12px;
+
+      padding: 18px;
+
+      margin-bottom: 22px;
+    }
+
+    .customization-box h3 {
+      font-size: 18px;
+
+      margin-bottom: 15px;
+    }
+
+    .custom-field {
+      margin-bottom: 14px;
+    }
+
+    .custom-field:last-child {
+      margin-bottom: 0;
+    }
+
+    .custom-field label {
+      display: block;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      margin-bottom: 6px;
+    }
+
+    .custom-field input,
+    .custom-field textarea {
+      width: 100%;
+
+      border: 1px solid #ccc;
+
+      border-radius: 8px;
+
+      padding: 11px 12px;
+
+      outline: none;
+
+      font-size: 14px;
+
+      background: #fff;
+    }
+
+    .custom-field textarea {
+      min-height: 90px;
+
+      resize: vertical;
+    }
+
+    .custom-field input:focus,
+    .custom-field textarea:focus {
+      border-color: #00aef0;
+    }
+
+    .whatsapp-note {
+      margin-top: 14px;
+
+      padding: 11px 12px;
+
+      border-radius: 8px;
+
+      background: #fff;
+
+      color: #555;
+
+      font-size: 12px;
+
+      line-height: 1.5;
+
+      border: 1px solid #e4e4e4;
+    }
+
+
+    /* =========================
+       QUANTITY
+    ========================= */
 
     .quantity-label {
       font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 10px;
+
+      font-size: 17px;
+
+      margin-bottom: 9px;
     }
 
     .quantity-box {
       display: flex;
+
       align-items: center;
+
       gap: 10px;
-      margin-bottom: 25px;
+
+      margin-bottom: 22px;
     }
 
     .quantity-box button {
       width: 42px;
       height: 42px;
+
       border: 1px solid #ccc;
-      background: white;
+
+      background: #fff;
+
       border-radius: 7px;
+
       cursor: pointer;
+
       font-size: 22px;
     }
 
     .quantity-box input {
       width: 75px;
+
       height: 42px;
+
       border: 1px solid #ccc;
+
       border-radius: 7px;
+
       text-align: center;
+
       font-size: 18px;
+
+      outline: none;
     }
+
+
+    /* =========================
+       BUTTONS
+    ========================= */
 
     .buy-btn,
     .add-cart-btn {
       width: 100%;
+
       padding: 16px;
+
       border: none;
+
       border-radius: 9px;
+
       cursor: pointer;
-      font-size: 17px;
+
+      font-size: 16px;
+
       font-weight: 800;
+
       margin-bottom: 12px;
     }
 
     .buy-btn {
       background: #111;
-      color: white;
+
+      color: #fff;
     }
 
     .buy-btn:hover {
@@ -191,7 +443,8 @@
 
     .add-cart-btn {
       background: #00aef0;
-      color: white;
+
+      color: #fff;
     }
 
     .add-cart-btn:hover {
@@ -200,9 +453,11 @@
 
     .back-link {
       display: inline-block;
-      margin-top: 25px;
+
+      margin-top: 18px;
+
       color: #555;
-      text-decoration: none;
+
       font-weight: 600;
     }
 
@@ -210,15 +465,96 @@
       color: #00aef0;
     }
 
+
+    /* =========================
+       LOADING
+    ========================= */
+
+    .loading-page {
+      min-height: 60vh;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      text-align: center;
+
+      color: #777;
+
+      padding: 40px;
+    }
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error-page {
+      max-width: 700px;
+
+      margin: 80px auto;
+
+      padding: 40px 25px;
+
+      text-align: center;
+
+      background: #fff;
+
+      border-radius: 15px;
+
+      box-shadow:
+        0 8px 25px rgba(0,0,0,0.06);
+    }
+
+    .error-page h2 {
+      margin-bottom: 10px;
+    }
+
+    .error-page p {
+      color: #777;
+
+      margin-bottom: 20px;
+    }
+
+    .error-page a {
+      display: inline-block;
+
+      padding: 12px 20px;
+
+      background: #00aef0;
+
+      color: #fff;
+
+      border-radius: 8px;
+
+      font-weight: 700;
+    }
+
+
+    /* =========================
+       IMAGE MODAL
+    ========================= */
+
     .image-modal {
       position: fixed;
+
       inset: 0;
-      background: rgba(0, 0, 0, 0.90);
+
+      background:
+        rgba(0,0,0,0.90);
+
       display: none;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 25px;
+
       z-index: 5000;
+
       overflow: auto;
     }
 
@@ -228,51 +564,80 @@
 
     .image-modal img {
       max-width: 92vw;
+
       max-height: 90vh;
+
       width: auto;
+
       height: auto;
+
       object-fit: contain;
+
       border-radius: 10px;
+
       cursor: zoom-in;
-      transition: transform 0.25s ease;
-      touch-action: pinch-zoom;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+
+      transition:
+        transform 0.25s ease;
+
+      box-shadow:
+        0 10px 40px rgba(0,0,0,0.5);
     }
 
     .image-modal img.zoomed {
       transform: scale(1.7);
+
       cursor: zoom-out;
     }
 
     .image-modal-close {
       position: fixed;
+
       top: 18px;
+
       right: 22px;
+
       width: 45px;
+
       height: 45px;
+
       border: none;
+
       border-radius: 50%;
-      background: white;
+
+      background: #fff;
+
       color: #111;
+
       font-size: 32px;
-      line-height: 1;
+
       cursor: pointer;
+
       z-index: 5001;
+
       display: flex;
+
       align-items: center;
+
       justify-content: center;
     }
 
-    .image-modal-close:hover {
-      background: #eee;
-    }
+
+    /* =========================
+       FOOTER
+    ========================= */
 
     footer {
       background: #111;
-      color: white;
+
+      color: #fff;
+
       text-align: center;
+
       padding: 25px;
+
       font-size: 14px;
+
       margin-top: 60px;
     }
 
@@ -280,17 +645,29 @@
       color: #00aef0;
     }
 
+
+    /* =========================
+       MOBILE
+    ========================= */
+
     @media (max-width: 800px) {
 
       nav {
         flex-direction: column;
-        gap: 15px;
+
+        gap: 14px;
       }
 
       .product-box {
         grid-template-columns: 1fr;
+
         gap: 25px;
+
         padding: 20px;
+      }
+
+      .product-image-box {
+        min-height: 400px;
       }
 
       .product-image {
@@ -301,26 +678,19 @@
         font-size: 30px;
       }
 
-      .image-modal {
-        padding: 15px;
-      }
-
-      .image-modal img {
-        max-width: 94vw;
-        max-height: 85vh;
-      }
-
-      .image-modal img.zoomed {
-        transform: scale(1.45);
-      }
-
     }
+
 
     @media (max-width: 500px) {
 
       .product-page {
         margin: 30px auto;
+
         padding: 0 15px;
+      }
+
+      .product-image-box {
+        min-height: 330px;
       }
 
       .product-image {
@@ -328,7 +698,16 @@
       }
 
       .product-details {
-        padding: 10px 5px;
+        padding: 5px;
+      }
+
+      .product-details h1 {
+        font-size: 25px;
+      }
+
+      .price,
+      .sale-price {
+        font-size: 24px;
       }
 
     }
@@ -337,13 +716,24 @@
 
 </head>
 
+
 <body>
 
   <nav>
 
-    <div class="logo-text">
-      CRAFTIO <span>GIFTS</span>
-    </div>
+    <a
+      href="index.html"
+      class="logo-link">
+
+      <div class="logo-text">
+
+        CRAFTIO
+        <span>GIFTS</span>
+
+      </div>
+
+    </a>
+
 
     <div class="nav-links">
 
@@ -358,88 +748,27 @@
       <a
         href="products.html"
         class="cart-link">
-        🛒 Cart (<span id="cartCount">0</span>)
+
+        🛒 Cart
+        (<span id="cartCount">0</span>)
+
       </a>
 
     </div>
 
   </nav>
 
-  <main class="product-page">
 
-    <div class="product-box">
+  <main
+    id="mainContent"
+    class="loading-page">
 
-      <img
-        id="productImage"
-        class="product-image"
-        src=""
-        alt=""
-        onclick="openImageZoom()"
-      >
-
-      <div class="product-details">
-
-        <h1 id="productName">
-          Product
-        </h1>
-
-        <div
-          class="price"
-          id="productPrice">
-          Rs. 0
-        </div>
-
-        <p
-          class="description"
-          id="productDescription">
-        </p>
-
-        <div class="quantity-label">
-          Quantity:
-        </div>
-
-        <div class="quantity-box">
-
-          <button onclick="decreaseQuantity()">
-            −
-          </button>
-
-          <input
-            type="number"
-            id="quantity"
-            value="1"
-            min="1"
-          >
-
-          <button onclick="increaseQuantity()">
-            +
-          </button>
-
-        </div>
-
-        <button
-          class="buy-btn"
-          onclick="buyNow()">
-          BUY NOW
-        </button>
-
-        <button
-          class="add-cart-btn"
-          onclick="addProductToCart()">
-          🛒 ADD TO CART
-        </button>
-
-        <a
-          href="products.html"
-          class="back-link">
-          ← Back to Products
-        </a>
-
-      </div>
-
-    </div>
+    Loading product...
 
   </main>
+
+
+  <!-- IMAGE MODAL -->
 
   <div
     class="image-modal"
@@ -450,209 +779,1183 @@
       class="image-modal-close"
       type="button"
       onclick="closeImageZoom(event)">
+
       ×
+
     </button>
 
     <img
       id="zoomedImage"
       src=""
       alt=""
-      onclick="toggleImageZoom(event)"
-    >
+      onclick="toggleImageZoom(event)">
 
   </div>
 
+
   <footer>
 
-    © 2026 <strong>Craftio Gifts</strong>.
+    © 2026
+    <strong>Craftio Gifts</strong>.
+
     All Rights Reserved.
 
   </footer>
 
+
   <script>
 
-    const products = [
 
-      {
-        id: "led-photo-frame",
-        name: "CUSTOMIZED LED PHOTO FRAME",
-        price: 2000,
-        image: "Light%20frame.jpeg",
-        description:
-          "Turn your favorite memories into a beautiful glowing keepsake. A personalized LED frame made to brighten up your special moments and your room."
-      },
+    /* =========================
+       SUPABASE
+    ========================= */
 
-      {
-        id: "birthday-frame",
-        name: "CUSTOMIZED BIRTHDAY FRAME",
-        price: 999,
-        image: "Birthday%20Frame.jpeg",
-        description:
-          "Celebrate a special birthday with a personalized frame featuring your favorite memories. A thoughtful keepsake made especially for someone you love."
-      },
+    const SUPABASE_URL =
+      "https://hujwsdixdxhofwhibjff.supabase.co";
 
-      {
-        id: "birthday-mug",
-        name: "CUSTOMIZED BIRTHDAY MUG",
-        price: 999,
-        image: "birthday%20mug.jpeg",
-        description:
-          "Make their birthday extra special with a customized mug designed just for them. Add a favorite photo or personal touch for a memorable gift."
-      },
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
 
-      {
-        id: "led-heart-lamp",
-        name: "CUSTOMIZED LED HEART LAMP",
-        price: 2500,
-        image: "MOON%20PICTURE%20FRAME.jpeg",
-        description:
-          "A beautiful heart-shaped LED lamp made to turn special memories into a glowing display. Perfect for romantic occasions, anniversaries and meaningful gifts."
-      },
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
 
-      {
-        id: "nikkah-signature-frame",
-        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
-        price: 999,
-        image: "nikkah%20frame.jpeg",
-        description:
-          "Preserve the beautiful memories of your Nikkah with a personalized signature frame. A meaningful keepsake for couples and their special day."
-      },
 
-      {
-        id: "magic-mug",
-        name: "CUSTOMIZED MAGIC MUG",
-        price: 1400,
-        image: "magic%20mug.jpeg",
-        description:
-          "Surprise someone special with a magical customized mug that reveals your design with heat. A fun and memorable gift for every occasion."
-      },
+    /* =========================
+       WHATSAPP
+    ========================= */
 
-      {
-        id: "wedding-ring-plaque",
-        name: "CUSTOMIZED WEDDING RING PLAQUE",
-        price: 2500,
-        image: "NIKKAH%20PLAQUE.jpeg",
-        description:
-          "Keep your wedding memories beautifully displayed with a customized ring plaque. Designed as a special keepsake for couples and their unforgettable day."
-      },
+    const WHATSAPP_NUMBER =
+      "923360763055";
 
-      {
-        id: "trendy-charts",
-        name: "CUSTOMIZED TRENDY CHARTS",
-        price: 1350,
-        image: "TRENDY%20CHARTS.jpeg",
-        description:
-          "Add personality to your space with a trendy customized chart made around your favorite memories or ideas. Stylish, personal and made especially for you."
-      },
 
-      {
-        id: "eye-pendant-necklace",
-        name: "CUSTOMIZED EYE PENDANT NECKLACE",
-        price: 1300,
-        image: "EYE%20NECKLACE.jpeg",
-        description:
-          "A stylish personalized eye pendant designed to make your gift truly meaningful. A beautiful accessory for someone special."
-      },
-
-      {
-        id: "picture-frame",
-        name: "CUSTOMIZED PICTURE FRAME",
-        price: 900,
-        image: "PICTURE%20FRAME.jpg",
-        description:
-          "Turn your favorite photo into a beautiful personalized frame. A simple and elegant way to keep a special memory close forever."
-      },
-
-      {
-        id: "friendship-license-card",
-        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
-        price: 900,
-        image: "FRIENSHIP%20LICENSE%20CAED.jpeg",
-        description:
-          "Celebrate your friendship with a fun personalized license card. Add names and special details to create a unique gift for your best friend."
-      },
-
-      {
-        id: "name-key-chain",
-        name: "CUSTOMIZED NAME KEY CHAIN",
-        price: 800,
-        image: "NAME%20KEY.jpeg",
-        description:
-          "Carry your name or a special name wherever you go with a personalized key chain. A small, stylish and meaningful everyday gift."
-      },
-
-      {
-        id: "picture-mug-colors",
-        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
-        price: 1350,
-        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg",
-        description:
-          "Choose your favorite color and personalize your mug with a special picture. A colorful everyday gift made to bring a smile with every cup."
-      },
-
-      {
-        id: "pubg-mobile-card",
-        name: "CUSTOMIZED PUBG MOBILE CARD",
-        price: 800,
-        image: "PUBG%20CARD.jpeg",
-        description:
-          "A personalized PUBG Mobile card made specially for gaming lovers. Turn a favorite gaming profile or memory into a unique gift."
-      },
-
-      {
-        id: "snapchat-tiktok-instagram-card",
-        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
-        price: 800,
-        image: "SNAPCHAT%20CARD.jpeg",
-        description:
-          "Showcase your favorite social profile in a stylish personalized card. Perfect for creators, friends and anyone who loves social media."
-      },
-
-      {
-        id: "pvc-card",
-        name: "CUSTOMIZED PVC CARD",
-        price: 850,
-        image: "PVC%20CARD.jpg",
-        description:
-          "A durable customized PVC card designed around your own idea. Personalize it with names, pictures or details for a unique everyday card."
-      }
-
-    ];
+    /* =========================
+       URL
+    ========================= */
 
     const params =
-      new URLSearchParams(window.location.search);
+      new URLSearchParams(
+        window.location.search
+      );
 
     const productId =
       params.get("product");
 
-    const product =
-      products.find(p => p.id === productId);
 
-    if (product) {
+    let product = null;
 
-      document.getElementById(
-        "productImage"
-      ).src = product.image;
 
-      document.getElementById(
-        "productImage"
-      ).alt = product.name;
+    /* =========================
+       HELPERS
+    ========================= */
 
-      document.getElementById(
-        "productName"
-      ).textContent = product.name;
+    function escapeHtml(value) {
 
-      document.getElementById(
-        "productPrice"
-      ).textContent =
-        "Rs. " + product.price;
+      return String(
+        value ?? ""
+      )
 
-      document.getElementById(
-        "productDescription"
-      ).textContent =
-        product.description;
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
 
     }
+
+
+    function escapeJs(value) {
+
+      return String(
+        value ?? ""
+      )
+
+      .replace(
+        /\\/g,
+        "\\\\"
+      )
+
+      .replace(
+        /'/g,
+        "\\'"
+      );
+
+    }
+
+
+    function getActualPrice(
+      item
+    ) {
+
+      const regularPrice =
+        Number(
+          item.price || 0
+        );
+
+      const salePrice =
+        Number(
+          item.sale_price || 0
+        );
+
+      if (
+        item.sale === true &&
+        salePrice > 0
+      ) {
+
+        return salePrice;
+
+      }
+
+      return regularPrice;
+
+    }
+
+
+    function getPriceHtml(
+      item
+    ) {
+
+      const regularPrice =
+        Number(
+          item.price || 0
+        );
+
+      const salePrice =
+        Number(
+          item.sale_price || 0
+        );
+
+      if (
+        item.sale === true &&
+        salePrice > 0 &&
+        regularPrice > 0 &&
+        salePrice < regularPrice
+      ) {
+
+        return `
+
+          <span class="old-price">
+
+            Rs. ${regularPrice.toLocaleString()}
+
+          </span>
+
+          <span class="sale-price">
+
+            Rs. ${salePrice.toLocaleString()}
+
+          </span>
+
+        `;
+
+      }
+
+      if (regularPrice > 0) {
+
+        return `
+          Rs. ${regularPrice.toLocaleString()}
+        `;
+
+      }
+
+      return `
+        Price will be updated
+      `;
+
+    }
+
+
+    /* =========================
+       CUSTOMIZATION CONFIG
+    ========================= */
+
+    function getCustomizationConfig(
+      category
+    ) {
+
+      const c =
+        String(
+          category || ""
+        ).toUpperCase();
+
+
+      if (
+        c === "LED PICTURE FRAME"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            },
+
+            {
+              id: "date",
+              label: "Date (DD/MM/YYYY)",
+              placeholder: "DD/MM/YYYY"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "BIRTHDAY FRAMES"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            },
+
+            {
+              id: "date",
+              label: "Date (DD/MM/YYYY)",
+              placeholder: "DD/MM/YYYY"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "PICTURE FRAMES"
+      ) {
+
+        return {
+
+          fields: [],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "MUG COLLECTION"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "MAGIC MUGS"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "profile",
+              label: "Profile Information",
+              placeholder: "Enter profile information"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "FRIENDSHIP LICENCE CARD"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            }
+
+          ],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "EYE NECKLACE"
+      ) {
+
+        return {
+
+          fields: [],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "NIKKAH FRAMES" ||
+        c === "WEDDING RING PLATES"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "groomName",
+              label: "Groom Name",
+              placeholder: "Enter groom name"
+            },
+
+            {
+              id: "brideName",
+              label: "Bride Name",
+              placeholder: "Enter bride name"
+            },
+
+            {
+              id: "nikkahDate",
+              label: "Nikkah Date (DD/MM/YYYY)",
+              placeholder: "DD/MM/YYYY"
+            }
+
+          ],
+
+          note:
+            "Your names and date will be included in the WhatsApp order details."
+
+        };
+
+      }
+
+
+      if (
+        c === "TRENDY CHARTS"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            }
+
+          ],
+
+          note:
+            "Please send your pictures on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "NAME KEYCHAINS"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "name",
+              label: "Name",
+              placeholder: "Enter name"
+            }
+
+          ],
+
+          note:
+            "The name will be included in your WhatsApp order."
+
+        };
+
+      }
+
+
+      if (
+        c === "PVC CARD"
+      ) {
+
+        return {
+
+          fields: [
+
+            {
+              id: "details",
+              label: "Other Details",
+              placeholder: "Enter other details"
+            }
+
+          ],
+
+          note:
+            "Please send your picture and details on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      if (
+        c === "MAGIC LAMPS"
+      ) {
+
+        return {
+
+          fields: [],
+
+          note:
+            "Please send your picture on WhatsApp after placing your order."
+
+        };
+
+      }
+
+
+      return {
+
+        fields: [],
+
+        note: ""
+
+      };
+
+    }
+
+
+    /* =========================
+       RENDER CUSTOMIZATION
+    ========================= */
+
+    function renderCustomization() {
+
+      const config =
+        getCustomizationConfig(
+          product.category
+        );
+
+
+      if (
+        config.fields.length === 0 &&
+        !config.note
+      ) {
+
+        return "";
+
+      }
+
+
+      let html = `
+
+        <div
+          class="customization-box">
+
+          <h3>
+            Personalization
+          </h3>
+
+      `;
+
+
+      config.fields.forEach(
+        function(field) {
+
+          html += `
+
+            <div
+              class="custom-field">
+
+              <label
+                for="${field.id}">
+
+                ${field.label}
+
+              </label>
+
+              <input
+                type="text"
+                id="${field.id}"
+                placeholder="${field.placeholder}">
+
+            </div>
+
+          `;
+
+        }
+      );
+
+
+      if (config.note) {
+
+        html += `
+
+          <div class="whatsapp-note">
+
+            ${config.note}
+
+          </div>
+
+        `;
+
+      }
+
+
+      html += `
+
+        </div>
+
+      `;
+
+
+      return html;
+
+    }
+
+
+    /* =========================
+       GET CUSTOMIZATION
+    ========================= */
+
+    function getCustomization() {
+
+      const config =
+        getCustomizationConfig(
+          product.category
+        );
+
+      const values = {};
+
+
+      config.fields.forEach(
+        function(field) {
+
+          const element =
+            document.getElementById(
+              field.id
+            );
+
+          if (element) {
+
+            values[field.id] =
+              element.value.trim();
+
+          }
+
+        }
+      );
+
+
+      return values;
+
+    }
+
+
+    /* =========================
+       LOAD PRODUCT
+    ========================= */
+
+    async function loadProduct() {
+
+      const main =
+        document.getElementById(
+          "mainContent"
+        );
+
+
+      if (!productId) {
+
+        main.className =
+          "error-page";
+
+        main.innerHTML = `
+
+          <h2>
+            Product not found
+          </h2>
+
+          <p>
+            No product was selected.
+          </p>
+
+          <a href="products.html">
+            Back to Products
+          </a>
+
+        `;
+
+        return;
+
+      }
+
+
+      const {
+        data,
+        error
+      } =
+
+        await supabaseClient
+
+          .from("products")
+
+          .select("*")
+
+          .eq(
+            "id",
+            productId
+          )
+
+          .eq(
+            "active",
+            true
+          )
+
+          .single();
+
+
+      if (error || !data) {
+
+        console.error(
+          error
+        );
+
+        main.className =
+          "error-page";
+
+        main.innerHTML = `
+
+          <h2>
+            Product not found
+          </h2>
+
+          <p>
+            This product could not be loaded.
+          </p>
+
+          <a href="products.html">
+            Back to Products
+          </a>
+
+        `;
+
+        return;
+
+      }
+
+
+      product = data;
+
+
+      const description =
+        product.description
+        ||
+        "A personalized gift made specially for your special moments.";
+
+
+      main.className =
+        "product-page";
+
+
+      main.innerHTML = `
+
+        <div class="product-box">
+
+          <div
+            class="product-image-box">
+
+            <img
+              id="productImage"
+              class="product-image"
+              src="${escapeHtml(
+                product.image_url || ""
+              )}"
+              alt="${escapeHtml(
+                product.name || ""
+              )}"
+              onclick="openImageZoom()">
+
+          </div>
+
+
+          <div class="product-details">
+
+            <div
+              class="category-label">
+
+              ${escapeHtml(
+                product.category || ""
+              )}
+
+            </div>
+
+
+            <h1>
+
+              ${escapeHtml(
+                product.name || "Product"
+              )}
+
+            </h1>
+
+
+            <div class="price">
+
+              ${getPriceHtml(
+                product
+              )}
+
+            </div>
+
+
+            <p class="description">
+
+              ${escapeHtml(
+                description
+              )}
+
+            </p>
+
+
+            ${renderCustomization()}
+
+
+            <div class="quantity-label">
+
+              Quantity:
+
+            </div>
+
+
+            <div class="quantity-box">
+
+              <button
+                type="button"
+                onclick="decreaseQuantity()">
+
+                −
+
+              </button>
+
+
+              <input
+                type="number"
+                id="quantity"
+                value="1"
+                min="1">
+
+
+              <button
+                type="button"
+                onclick="increaseQuantity()">
+
+                +
+
+              </button>
+
+            </div>
+
+
+            <button
+              class="buy-btn"
+              type="button"
+              onclick="buyNow()">
+
+              BUY NOW
+
+            </button>
+
+
+            <button
+              class="add-cart-btn"
+              type="button"
+              onclick="addProductToCart()">
+
+              🛒 ADD TO CART
+
+            </button>
+
+
+            <a
+              href="products.html"
+              class="back-link">
+
+              ← Back to Products
+
+            </a>
+
+          </div>
+
+        </div>
+
+      `;
+
+
+      updateCartCount();
+
+    }
+
+
+    /* =========================
+       QUANTITY
+    ========================= */
+
+    function increaseQuantity() {
+
+      const input =
+        document.getElementById(
+          "quantity"
+        );
+
+      input.value =
+        Number(
+          input.value || 1
+        ) + 1;
+
+    }
+
+
+    function decreaseQuantity() {
+
+      const input =
+        document.getElementById(
+          "quantity"
+        );
+
+      let value =
+        Number(
+          input.value || 1
+        );
+
+
+      if (value > 1) {
+
+        value--;
+
+      }
+
+
+      input.value =
+        value;
+
+    }
+
+
+    /* =========================
+       CART
+    ========================= */
+
+    function getCart() {
+
+      try {
+
+        return JSON.parse(
+          localStorage.getItem(
+            "craftioCart"
+          )
+        ) || [];
+
+      } catch (error) {
+
+        return [];
+
+      }
+
+    }
+
+
+    function saveCart(
+      cart
+    ) {
+
+      localStorage.setItem(
+        "craftioCart",
+        JSON.stringify(
+          cart
+        )
+      );
+
+    }
+
+
+    function addProductToCart() {
+
+      if (!product) {
+        return;
+      }
+
+
+      const quantity =
+        Number(
+          document.getElementById(
+            "quantity"
+          ).value
+        ) || 1;
+
+
+      const customization =
+        getCustomization();
+
+
+      const cart =
+        getCart();
+
+
+      const existing =
+        cart.find(
+          function(item) {
+
+            return (
+              item.id ===
+              product.id
+            );
+
+          }
+        );
+
+
+      if (existing) {
+
+        existing.quantity =
+          Number(
+            existing.quantity || 0
+          ) + quantity;
+
+
+        existing.customization =
+          customization;
+
+      } else {
+
+        cart.push({
+
+          id:
+            product.id,
+
+          quantity:
+            quantity,
+
+          customization:
+            customization
+
+        });
+
+      }
+
+
+      saveCart(
+        cart
+      );
+
+
+      alert(
+        "Product added to your cart!"
+      );
+
+
+      window.location.href =
+        "products.html";
+
+    }
+
+
+    /* =========================
+       BUY NOW
+    ========================= */
+
+    function buyNow() {
+
+      if (!product) {
+        return;
+      }
+
+
+      const quantity =
+        Number(
+          document.getElementById(
+            "quantity"
+          ).value
+        ) || 1;
+
+
+      const customization =
+        getCustomization();
+
+
+      const buyNowCart = [
+
+        {
+
+          id:
+            product.id,
+
+          quantity:
+            quantity,
+
+          customization:
+            customization
+
+        }
+
+      ];
+
+
+      localStorage.setItem(
+        "craftioBuyNow",
+        JSON.stringify(
+          buyNowCart
+        )
+      );
+
+
+      window.location.href =
+        "checkout.html?buyNow=true";
+
+    }
+
+
+    /* =========================
+       CART COUNT
+    ========================= */
+
+    function updateCartCount() {
+
+      const count =
+        getCart().reduce(
+          function(total, item) {
+
+            return (
+              total +
+              (
+                Number(
+                  item.quantity || 0
+                )
+              )
+            );
+
+          },
+          0
+        );
+
+
+      const element =
+        document.getElementById(
+          "cartCount"
+        );
+
+
+      if (element) {
+
+        element.textContent =
+          count;
+
+      }
+
+    }
+
+
+    /* =========================
+       IMAGE ZOOM
+    ========================= */
 
     function openImageZoom() {
 
@@ -671,9 +1974,16 @@
           "zoomedImage"
         );
 
-      if (!mainImage.src) {
+
+      if (
+        !mainImage ||
+        !mainImage.src
+      ) {
+
         return;
+
       }
+
 
       zoomedImage.src =
         mainImage.src;
@@ -681,40 +1991,51 @@
       zoomedImage.alt =
         mainImage.alt;
 
+
       zoomedImage.classList.remove(
         "zoomed"
       );
 
+
       modal.classList.add(
         "active"
       );
+
 
       document.body.style.overflow =
         "hidden";
 
     }
 
-    function toggleImageZoom(event) {
+
+    function toggleImageZoom(
+      event
+    ) {
 
       event.stopPropagation();
 
-      const image =
-        document.getElementById(
-          "zoomedImage"
-        );
 
-      image.classList.toggle(
-        "zoomed"
-      );
+      document
+        .getElementById(
+          "zoomedImage"
+        )
+        .classList
+        .toggle(
+          "zoomed"
+        );
 
     }
 
-    function closeImageZoom(event) {
+
+    function closeImageZoom(
+      event
+    ) {
 
       const modal =
         document.getElementById(
           "imageModal"
         );
+
 
       if (
         event &&
@@ -723,216 +2044,74 @@
           "image-modal-close"
         )
       ) {
+
         return;
+
       }
+
 
       modal.classList.remove(
         "active"
       );
 
-      document.getElementById(
-        "zoomedImage"
-      ).classList.remove(
-        "zoomed"
-      );
+
+      document
+        .getElementById(
+          "zoomedImage"
+        )
+        .classList
+        .remove(
+          "zoomed"
+        );
+
 
       document.body.style.overflow =
         "";
 
     }
 
+
     document.addEventListener(
       "keydown",
       function(event) {
 
-        if (event.key === "Escape") {
+        if (
+          event.key ===
+          "Escape"
+        ) {
 
-          const modal =
-            document.getElementById(
+          document
+            .getElementById(
               "imageModal"
-            );
-
-          if (
-            modal.classList.contains(
-              "active"
             )
-          ) {
-
-            modal.classList.remove(
+            .classList
+            .remove(
               "active"
             );
 
-            document.getElementById(
+          document
+            .getElementById(
               "zoomedImage"
-            ).classList.remove(
+            )
+            .classList
+            .remove(
               "zoomed"
             );
 
-            document.body.style.overflow =
-              "";
-
-          }
+          document.body.style.overflow =
+            "";
 
         }
 
       }
     );
 
-    function increaseQuantity() {
 
-      const input =
-        document.getElementById(
-          "quantity"
-        );
+    /* =========================
+       START
+    ========================= */
 
-      input.value =
-        parseInt(input.value) + 1;
-
-    }
-
-    function decreaseQuantity() {
-
-      const input =
-        document.getElementById(
-          "quantity"
-        );
-
-      let value =
-        parseInt(input.value);
-
-      if (value > 1) {
-
-        input.value =
-          value - 1;
-
-      }
-
-    }
-
-    function getCart() {
-
-      return JSON.parse(
-        localStorage.getItem(
-          "craftioCart"
-        )
-      ) || [];
-
-    }
-
-    function saveCart(cart) {
-
-      localStorage.setItem(
-        "craftioCart",
-        JSON.stringify(cart)
-      );
-
-    }
-
-    function addProductToCart() {
-
-      if (!product) return;
-
-      const quantity =
-        parseInt(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
-
-      const cart =
-        getCart();
-
-      const existing =
-        cart.find(
-          item =>
-            item.id === product.id
-        );
-
-      if (existing) {
-
-        existing.quantity +=
-          quantity;
-
-      } else {
-
-        cart.push({
-
-          id: product.id,
-
-          quantity: quantity
-
-        });
-
-      }
-
-      saveCart(cart);
-      updateCartCount();
-
-      alert(
-        product.name +
-        " added to your cart!"
-      );
-
-      window.location.href =
-        "products.html";
-
-    }
-
-    function buyNow() {
-
-      if (!product) return;
-
-      const quantity =
-        parseInt(
-          document.getElementById(
-            "quantity"
-          ).value
-        ) || 1;
-
-      const buyNowCart = [
-
-        {
-
-          id: product.id,
-
-          quantity: quantity
-
-        }
-
-      ];
-
-      localStorage.setItem(
-        "craftioBuyNow",
-        JSON.stringify(
-          buyNowCart
-        )
-      );
-
-      window.location.href =
-        "checkout.html?buyNow=true";
-
-    }
-
-    function updateCartCount() {
-
-      const cart =
-        getCart();
-
-      const count =
-        cart.reduce(
-          (total, item) =>
-            total + item.quantity,
-          0
-        );
-
-      document.getElementById(
-        "cartCount"
-      ).textContent =
-        count;
-
-    }
-
-    updateCartCount();
+    loadProduct();
 
   </script>
 
