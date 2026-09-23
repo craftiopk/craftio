@@ -241,19 +241,39 @@
       font-size: 13px;
     }
 
-    .add-product-btn {
+    .heading-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .add-product-btn,
+    .manage-categories-btn {
       border: none;
       border-radius: 9px;
       padding: 12px 17px;
-      background: #00aef0;
       color: #fff;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
     }
 
+    .add-product-btn {
+      background: #00aef0;
+    }
+
     .add-product-btn:hover {
       background: #008fc5;
+    }
+
+    .manage-categories-btn {
+      background: #111;
+    }
+
+    .manage-categories-btn:hover {
+      background: #333;
     }
 
 
@@ -658,6 +678,10 @@
       padding: 25px;
     }
 
+    .category-modal-box {
+      max-width: 650px;
+    }
+
     .modal-header {
       display: flex;
 
@@ -708,6 +732,155 @@
 
 
     /* =========================
+       CATEGORY MANAGEMENT
+    ========================= */
+
+    .category-add-row {
+      display: grid;
+
+      grid-template-columns:
+        1fr auto;
+
+      gap: 10px;
+
+      margin-bottom: 20px;
+    }
+
+    .category-add-row input {
+      width: 100%;
+
+      padding: 11px 12px;
+
+      border: 1px solid #ddd;
+
+      border-radius: 9px;
+
+      outline: none;
+
+      font-size: 13px;
+    }
+
+    .category-add-row input:focus {
+      border-color: #00aef0;
+    }
+
+    .category-add-btn {
+      border: none;
+
+      border-radius: 9px;
+
+      padding: 11px 16px;
+
+      background: #00aef0;
+
+      color: #fff;
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+    }
+
+    .category-add-btn:hover {
+      background: #008fc5;
+    }
+
+    .category-list {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 9px;
+    }
+
+    .category-item {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+
+      padding: 11px 12px;
+
+      border: 1px solid #eee;
+
+      border-radius: 9px;
+
+      background: #fafafa;
+    }
+
+    .category-name {
+      font-size: 13px;
+
+      font-weight: 700;
+
+      line-height: 1.4;
+
+      word-break: break-word;
+    }
+
+    .category-actions {
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+
+      flex-shrink: 0;
+    }
+
+    .category-edit-btn,
+    .category-delete-btn {
+      border: none;
+
+      border-radius: 7px;
+
+      padding: 7px 10px;
+
+      font-size: 10px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .category-edit-btn {
+      background: #111;
+
+      color: #fff;
+    }
+
+    .category-edit-btn:hover {
+      background: #333;
+    }
+
+    .category-delete-btn {
+      background: #ffecec;
+
+      color: #d33;
+    }
+
+    .category-empty {
+      padding: 25px;
+
+      border: 1px dashed #ccc;
+
+      border-radius: 9px;
+
+      text-align: center;
+
+      color: #777;
+
+      font-size: 13px;
+    }
+
+
+    /* =========================
        MOBILE
     ========================= */
 
@@ -735,6 +908,17 @@
         align-items: stretch;
       }
 
+      .heading-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        width: 100%;
+      }
+
+      .add-product-btn,
+      .manage-categories-btn {
+        width: 100%;
+      }
+
       .toolbar {
         flex-direction: column;
       }
@@ -754,6 +938,22 @@
 
       .product-image {
         height: 250px;
+      }
+
+      .category-add-row {
+        grid-template-columns: 1fr;
+      }
+
+      .category-add-btn {
+        width: 100%;
+      }
+
+      .category-item {
+        align-items: flex-start;
+      }
+
+      .category-actions {
+        flex-direction: column;
       }
 
     }
@@ -910,13 +1110,28 @@
         </div>
 
 
-        <button
-          class="add-product-btn"
-          onclick="openCreateModal()">
+        <div class="heading-actions">
 
-          + ADD PRODUCT
 
-        </button>
+          <button
+            class="manage-categories-btn"
+            onclick="openCategoryModal()">
+
+            MANAGE CATEGORIES
+
+          </button>
+
+
+          <button
+            class="add-product-btn"
+            onclick="openCreateModal()">
+
+            + ADD PRODUCT
+
+          </button>
+
+
+        </div>
 
 
       </div>
@@ -1105,6 +1320,72 @@
   </div>
 
 
+  <!-- =================================
+       CATEGORY MANAGEMENT MODAL
+  ================================= -->
+
+  <div
+    class="modal"
+    id="categoryModal"
+    onclick="closeCategoryModalOutside(event)">
+
+
+    <div
+      class="modal-box category-modal-box">
+
+
+      <div class="modal-header">
+
+
+        <h2>
+          Categories Management
+        </h2>
+
+
+        <button
+          class="close-modal"
+          onclick="closeCategoryModal()">
+
+          ×
+
+        </button>
+
+
+      </div>
+
+
+      <div class="category-add-row">
+
+
+        <input
+          type="text"
+          id="newCategoryName"
+          placeholder="Enter new category name">
+
+
+        <button
+          class="category-add-btn"
+          onclick="addCategory()">
+
+          + ADD CATEGORY
+
+        </button>
+
+
+      </div>
+
+
+      <div
+        class="category-list"
+        id="categoryList">
+      </div>
+
+
+    </div>
+
+  </div>
+
+
   <script>
 
 
@@ -1131,10 +1412,10 @@
 
 
     /* =====================================
-       CATEGORIES
+       DEFAULT CATEGORIES
     ===================================== */
 
-    const categories = [
+    const defaultCategories = [
 
       "ISLAMIC COLLECTION",
 
@@ -1173,14 +1454,114 @@
     ];
 
 
+    let categories = [
+
+      ...defaultCategories
+
+    ];
+
+
     let products = [];
 
 
     /* =====================================
-       SETUP CATEGORIES
+       LOAD CATEGORIES
     ===================================== */
 
-    function setupCategories() {
+    async function loadCategories() {
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "categories"
+          )
+
+          .select(
+            "id, name"
+          )
+
+          .eq(
+            "active",
+            true
+          )
+
+          .order(
+            "created_at",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (error) {
+
+        console.error(
+          "Categories load error:",
+          error
+        );
+
+
+        categories =
+          [
+            ...defaultCategories
+          ];
+
+
+        setupCategorySelects();
+
+
+        renderCategoryList();
+
+
+        showStatus(
+          "Could not load categories table. Using default categories."
+        );
+
+
+        return;
+
+      }
+
+
+      categories =
+        (data || [])
+          .map(
+            function(item) {
+
+              return String(
+                item.name || ""
+              ).trim();
+
+            }
+          )
+          .filter(
+            function(name) {
+
+              return !!name;
+
+            }
+          );
+
+
+      setupCategorySelects();
+
+
+      renderCategoryList();
+
+    }
+
+
+    /* =====================================
+       SETUP CATEGORY SELECTS
+    ===================================== */
+
+    function setupCategorySelects() {
+
 
       const filter =
         document.getElementById(
@@ -1194,50 +1575,735 @@
         );
 
 
+      const currentFilter =
+        filter.value;
+
+
+      filter.innerHTML = `
+
+        <option value="ALL">
+          ALL CATEGORIES
+        </option>
+
+      `;
+
+
       categories.forEach(
         function(category) {
 
 
-          const option1 =
+          const option =
             document.createElement(
               "option"
             );
 
 
-          option1.value =
+          option.value =
             category;
 
 
-          option1.textContent =
+          option.textContent =
             category;
 
 
           filter.appendChild(
-            option1
-          );
-
-
-          const option2 =
-            document.createElement(
-              "option"
-            );
-
-
-          option2.value =
-            category;
-
-
-          option2.textContent =
-            category;
-
-
-          newCategory.appendChild(
-            option2
+            option
           );
 
 
         }
       );
+
+
+      if (
+        currentFilter === "ALL" ||
+        categories.includes(
+          currentFilter
+        )
+      ) {
+
+        filter.value =
+          currentFilter;
+
+      } else {
+
+        filter.value =
+          "ALL";
+
+      }
+
+
+      const currentNewCategory =
+        newCategory.value;
+
+
+      newCategory.innerHTML =
+        "";
+
+
+      categories.forEach(
+        function(category) {
+
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            category;
+
+
+          option.textContent =
+            category;
+
+
+          newCategory.appendChild(
+            option
+          );
+
+
+        }
+      );
+
+
+      if (
+        categories.includes(
+          currentNewCategory
+        )
+      ) {
+
+        newCategory.value =
+          currentNewCategory;
+
+      } else if (
+        categories.length > 0
+      ) {
+
+        newCategory.value =
+          categories[0];
+
+      }
+
+    }
+
+
+    /* =====================================
+       CATEGORY LIST
+    ===================================== */
+
+    function renderCategoryList() {
+
+
+      const list =
+        document.getElementById(
+          "categoryList"
+        );
+
+
+      if (
+        categories.length === 0
+      ) {
+
+        list.innerHTML = `
+
+          <div class="category-empty">
+
+            No categories found.
+
+          </div>
+
+        `;
+
+
+        return;
+
+      }
+
+
+      list.innerHTML =
+        categories
+          .map(
+            function(category) {
+
+
+              const jsCategory =
+                escapeJs(
+                  category
+                );
+
+
+              return `
+
+                <div class="category-item">
+
+
+                  <div class="category-name">
+
+                    ${escapeHtml(
+                      category
+                    )}
+
+                  </div>
+
+
+                  <div class="category-actions">
+
+
+                    <button
+                      type="button"
+                      class="category-edit-btn"
+                      onclick="editCategory(
+                        '${jsCategory}'
+                      )">
+
+                      EDIT
+
+                    </button>
+
+
+                    <button
+                      type="button"
+                      class="category-delete-btn"
+                      onclick="deleteCategory(
+                        '${jsCategory}'
+                      )">
+
+                      DELETE
+
+                    </button>
+
+
+                  </div>
+
+
+                </div>
+
+              `;
+
+            }
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================
+       ADD CATEGORY
+    ===================================== */
+
+    async function addCategory() {
+
+
+      const input =
+        document.getElementById(
+          "newCategoryName"
+        );
+
+
+      const name =
+        input.value.trim();
+
+
+      if (!name) {
+
+        alert(
+          "Category name is required."
+        );
+
+        return;
+
+      }
+
+
+      const exists =
+        categories.some(
+          function(category) {
+
+            return (
+              category.toLowerCase() ===
+              name.toLowerCase()
+            );
+
+          }
+        );
+
+
+      if (exists) {
+
+        alert(
+          "This category already exists."
+        );
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Adding category..."
+      );
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "categories"
+          )
+
+          .insert({
+
+            name:
+              name,
+
+            active:
+              true
+
+          });
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      input.value =
+        "";
+
+
+      await loadCategories();
+
+
+      showStatus(
+        "Category added successfully."
+      );
+
+    }
+
+
+    /* =====================================
+       EDIT CATEGORY
+    ===================================== */
+
+    async function editCategory(
+      oldName
+    ) {
+
+
+      const newNameInput =
+        prompt(
+          "Enter new category name:",
+          oldName
+        );
+
+
+      if (
+        newNameInput === null
+      ) {
+
+        return;
+
+      }
+
+
+      const newName =
+        newNameInput.trim();
+
+
+      if (!newName) {
+
+        alert(
+          "Category name is required."
+        );
+
+        return;
+
+      }
+
+
+      if (
+        newName === oldName
+      ) {
+
+        return;
+
+      }
+
+
+      const exists =
+        categories.some(
+          function(category) {
+
+            return (
+              category !== oldName &&
+              category.toLowerCase() ===
+              newName.toLowerCase()
+            );
+
+          }
+        );
+
+
+      if (exists) {
+
+        alert(
+          "This category already exists."
+        );
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          "Rename category from \"" +
+          oldName +
+          "\" to \"" +
+          newName +
+          "\"?\n\nAll products using this category will also be updated."
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Updating category..."
+      );
+
+
+      /* UPDATE CATEGORY */
+
+      const {
+        error:
+          categoryError
+      } =
+        await supabaseClient
+
+          .from(
+            "categories"
+          )
+
+          .update({
+
+            name:
+              newName,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "name",
+            oldName
+          );
+
+
+      if (categoryError) {
+
+        alert(
+          categoryError.message
+        );
+
+        return;
+
+      }
+
+
+      /* UPDATE PRODUCTS */
+
+      const {
+        error:
+          productError
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .update({
+
+            category:
+              newName,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "category",
+            oldName
+          );
+
+
+      if (productError) {
+
+
+        /* TRY TO ROLLBACK CATEGORY */
+
+        await supabaseClient
+
+          .from(
+            "categories"
+          )
+
+          .update({
+
+            name:
+              oldName,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "name",
+            newName
+          );
+
+
+        alert(
+          "Category was changed but products could not be updated. The category change was rolled back.\n\n" +
+          productError.message
+        );
+
+
+        await loadCategories();
+
+
+        return;
+
+      }
+
+
+      await loadCategories();
+
+
+      await loadProducts();
+
+
+      showStatus(
+        "Category renamed successfully."
+      );
+
+    }
+
+
+    /* =====================================
+       DELETE CATEGORY
+    ===================================== */
+
+    async function deleteCategory(
+      categoryName
+    ) {
+
+
+      const {
+        count,
+        error:
+          countError
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .select(
+            "id",
+            {
+              count:
+                "exact",
+              head:
+                true
+            }
+          )
+
+          .eq(
+            "category",
+            categoryName
+          );
+
+
+      if (countError) {
+
+        alert(
+          countError.message
+        );
+
+        return;
+
+      }
+
+
+      if (
+        Number(
+          count || 0
+        ) > 0
+      ) {
+
+        alert(
+          "This category has " +
+          count +
+          " product(s).\n\nPlease move those products to another category before deleting this category."
+        );
+
+        return;
+
+      }
+
+
+      const confirmed =
+        confirm(
+          "Delete category \"" +
+          categoryName +
+          "\" permanently?"
+        );
+
+
+      if (!confirmed) {
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Deleting category..."
+      );
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "categories"
+          )
+
+          .delete()
+
+          .eq(
+            "name",
+            categoryName
+          );
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      await loadCategories();
+
+
+      showStatus(
+        "Category deleted successfully."
+      );
+
+    }
+
+
+    /* =====================================
+       CATEGORY MODAL
+    ===================================== */
+
+    function openCategoryModal() {
+
+
+      renderCategoryList();
+
+
+      document
+        .getElementById(
+          "categoryModal"
+        )
+        .classList
+        .add(
+          "active"
+        );
+
+
+      setTimeout(
+        function() {
+
+          document
+            .getElementById(
+              "newCategoryName"
+            )
+            .focus();
+
+        },
+        50
+      );
+
+    }
+
+
+    function closeCategoryModal() {
+
+
+      document
+        .getElementById(
+          "categoryModal"
+        )
+        .classList
+        .remove(
+          "active"
+        );
+
+
+      document
+        .getElementById(
+          "newCategoryName"
+        )
+        .value = "";
+
+    }
+
+
+    function closeCategoryModalOutside(
+      event
+    ) {
+
+
+      if (
+        event.target.id ===
+        "categoryModal"
+      ) {
+
+        closeCategoryModal();
+
+      }
 
     }
 
@@ -1548,6 +2614,9 @@
       );
 
 
+      await loadCategories();
+
+
       await loadProducts();
 
     }
@@ -1823,6 +2892,33 @@
         product.active !== false;
 
 
+      const productCategory =
+        String(
+          product.category ||
+          ""
+        );
+
+
+      const categoryOptions =
+        [
+          ...categories
+        ];
+
+
+      if (
+        productCategory &&
+        !categoryOptions.includes(
+          productCategory
+        )
+      ) {
+
+        categoryOptions.unshift(
+          productCategory
+        );
+
+      }
+
+
       return `
 
         <div
@@ -1984,7 +3080,7 @@
 
 
                 ${
-                  categories
+                  categoryOptions
                     .map(
                       function(category) {
 
@@ -2606,6 +3702,17 @@
       }
 
 
+      if (!category) {
+
+        alert(
+          "Please create at least one category first."
+        );
+
+        return;
+
+      }
+
+
       showStatus(
         "Creating product..."
       );
@@ -2941,6 +4048,22 @@
       .replace(
         /'/g,
         "\\'"
+      )
+      .replace(
+        /\r/g,
+        "\\r"
+      )
+      .replace(
+        /\n/g,
+        "\\n"
+      )
+      .replace(
+        /\u2028/g,
+        "\\u2028"
+      )
+      .replace(
+        /\u2029/g,
+        "\\u2029"
       );
 
     }
@@ -2949,8 +4072,6 @@
     /* =====================================
        START
     ===================================== */
-
-    setupCategories();
 
     checkSession();
 
