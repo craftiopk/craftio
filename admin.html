@@ -4,13 +4,19 @@
 <head>
 
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0">
 
   <title>Admin Panel | Craftio Gifts</title>
 
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="favicon.png">
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
   <style>
 
@@ -32,6 +38,7 @@
       font: inherit;
     }
 
+
     /* =========================
        LOGIN
     ========================= */
@@ -50,7 +57,8 @@
       background: #fff;
       padding: 35px;
       border-radius: 18px;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.10);
+      box-shadow:
+        0 15px 45px rgba(0,0,0,0.10);
     }
 
     .login-logo {
@@ -122,8 +130,8 @@
     }
 
     .login-message {
-      margin-top: 14px;
       min-height: 20px;
+      margin-top: 14px;
       text-align: center;
       font-size: 13px;
     }
@@ -148,16 +156,20 @@
     ========================= */
 
     .topbar {
-      background: #111;
-      color: #fff;
-      padding: 16px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
       position: sticky;
       top: 0;
       z-index: 1000;
+
+      background: #111;
+      color: #fff;
+
+      padding: 16px 5%;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
     }
 
     .brand {
@@ -177,9 +189,9 @@
     }
 
     .top-btn {
+      padding: 9px 13px;
       border: none;
       border-radius: 8px;
-      padding: 9px 13px;
       font-size: 12px;
       font-weight: 800;
       cursor: pointer;
@@ -207,7 +219,7 @@
 
     .container {
       max-width: 1250px;
-      margin: 0 auto;
+      margin: auto;
       padding: 35px 20px 60px;
     }
 
@@ -229,6 +241,47 @@
       font-size: 13px;
     }
 
+    .add-product-btn {
+      border: none;
+      border-radius: 9px;
+      padding: 12px 17px;
+      background: #00aef0;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .add-product-btn:hover {
+      background: #008fc5;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      display: none;
+
+      background: #eaf9ff;
+      color: #008fc5;
+
+      padding: 12px;
+      border-radius: 9px;
+
+      margin-bottom: 15px;
+
+      text-align: center;
+
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status.show {
+      display: block;
+    }
+
 
     /* =========================
        TOOLBAR
@@ -236,21 +289,33 @@
 
     .toolbar {
       background: #fff;
+
       padding: 15px;
+
       border-radius: 13px;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+
+      box-shadow:
+        0 7px 25px rgba(0,0,0,0.05);
+
       display: flex;
+
       gap: 10px;
+
       margin-bottom: 20px;
     }
 
     .toolbar input,
     .toolbar select {
       padding: 11px 12px;
+
       border: 1px solid #ddd;
+
       border-radius: 9px;
+
       outline: none;
+
       background: #fff;
+
       font-size: 13px;
     }
 
@@ -264,65 +329,103 @@
 
 
     /* =========================
-       STATUS
-    ========================= */
-
-    .status {
-      display: none;
-      background: #eaf9ff;
-      color: #008fc5;
-      padding: 12px;
-      border-radius: 9px;
-      margin-bottom: 15px;
-      text-align: center;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .status.show {
-      display: block;
-    }
-
-
-    /* =========================
-       PRODUCTS
+       PRODUCT GRID
     ========================= */
 
     .products-list {
       display: grid;
+
       grid-template-columns:
         repeat(auto-fill, minmax(310px, 1fr));
+
       gap: 20px;
     }
 
+
+    /* =========================
+       PRODUCT CARD
+    ========================= */
+
     .product-card {
       background: #fff;
+
       border-radius: 15px;
+
       overflow: hidden;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+
+      box-shadow:
+        0 7px 25px rgba(0,0,0,0.05);
+
+      position: relative;
+    }
+
+    .product-card.hidden-product {
+      opacity: 0.58;
     }
 
     .product-image {
       width: 100%;
       height: 225px;
+
       background: #fff;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       border-bottom: 1px solid #eee;
     }
 
     .product-image img {
       width: 100%;
       height: 100%;
+
       object-fit: contain;
+
       padding: 10px;
+
       display: block;
     }
 
     .no-image {
       color: #999;
       font-size: 13px;
+    }
+
+    .hidden-badge {
+      position: absolute;
+
+      top: 10px;
+      left: 10px;
+
+      background: #666;
+      color: #fff;
+
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      font-size: 10px;
+
+      font-weight: 800;
+    }
+
+    .sale-badge {
+      position: absolute;
+
+      top: 10px;
+      right: 10px;
+
+      background: #00aef0;
+      color: #fff;
+
+      padding: 6px 9px;
+
+      border-radius: 999px;
+
+      font-size: 10px;
+
+      font-weight: 800;
     }
 
     .product-body {
@@ -337,8 +440,11 @@
 
     .category-display {
       color: #008fc5;
+
       font-size: 11px;
+
       font-weight: 800;
+
       margin-bottom: 15px;
     }
 
@@ -348,34 +454,51 @@
 
     .edit-field label {
       display: block;
+
       margin-bottom: 5px;
+
       font-size: 11px;
+
       font-weight: 800;
     }
 
     .edit-field input,
     .edit-field select {
       width: 100%;
+
       padding: 9px;
+
       border: 1px solid #ddd;
+
       border-radius: 7px;
+
       outline: none;
+
       background: #fff;
+
       font-size: 12px;
     }
 
     .two-column {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+
+      grid-template-columns:
+        1fr 1fr;
+
       gap: 10px;
     }
 
     .sale-row {
       display: flex;
+
       align-items: center;
+
       gap: 7px;
+
       margin: 5px 0 12px;
+
       font-size: 12px;
+
       font-weight: 700;
     }
 
@@ -383,33 +506,112 @@
       width: auto;
     }
 
-    .save-btn {
-      width: 100%;
-      padding: 11px;
+
+    /* =========================
+       ACTION BUTTONS
+    ========================= */
+
+    .action-row {
+      display: grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap: 8px;
+
+      margin-top: 8px;
+    }
+
+    .save-btn,
+    .hide-btn,
+    .delete-btn {
       border: none;
-      border-radius: 8px;
+
+      border-radius: 7px;
+
+      padding: 10px;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 800;
+    }
+
+    .save-btn {
       background: #111;
       color: #fff;
-      font-size: 12px;
-      font-weight: 800;
-      cursor: pointer;
     }
 
     .save-btn:hover {
       background: #333;
     }
 
-    .save-btn.saving {
-      opacity: 0.65;
-      cursor: wait;
+    .hide-btn {
+      background: #eef8fc;
+      color: #008fc5;
     }
+
+    .delete-btn {
+      grid-column: 1 / -1;
+
+      background: #ffecec;
+
+      color: #d33;
+    }
+
+
+    /* =========================
+       IMAGE UPLOAD
+    ========================= */
+
+    .upload-label {
+      display: block;
+
+      padding: 9px;
+
+      text-align: center;
+
+      border: 1px dashed #aaa;
+
+      border-radius: 7px;
+
+      color: #666;
+
+      cursor: pointer;
+
+      font-size: 11px;
+
+      font-weight: 700;
+
+      margin-bottom: 10px;
+    }
+
+    .upload-label:hover {
+      border-color: #00aef0;
+      color: #00aef0;
+    }
+
+    .upload-input {
+      display: none;
+    }
+
+
+    /* =========================
+       EMPTY
+    ========================= */
 
     .empty-products {
       grid-column: 1 / -1;
+
       background: #fff;
+
       border-radius: 15px;
+
       padding: 60px 20px;
+
       text-align: center;
+
       color: #777;
     }
 
@@ -420,12 +622,19 @@
 
     .modal {
       position: fixed;
+
       inset: 0;
+
       background: rgba(0,0,0,0.55);
+
       display: none;
+
       align-items: center;
+
       justify-content: center;
+
       padding: 20px;
+
       z-index: 5000;
     }
 
@@ -435,18 +644,27 @@
 
     .modal-box {
       width: 100%;
+
       max-width: 500px;
+
       max-height: 90vh;
+
       overflow-y: auto;
+
       background: #fff;
+
       border-radius: 15px;
+
       padding: 25px;
     }
 
     .modal-header {
       display: flex;
+
       align-items: center;
+
       justify-content: space-between;
+
       margin-bottom: 20px;
     }
 
@@ -456,20 +674,36 @@
 
     .close-modal {
       border: none;
+
       background: none;
+
       font-size: 28px;
+
       cursor: pointer;
     }
 
     .create-btn {
       width: 100%;
+
       padding: 13px;
+
       border: none;
+
       border-radius: 8px;
+
       background: #00aef0;
+
       color: #fff;
+
       font-weight: 800;
+
       cursor: pointer;
+
+      margin-top: 5px;
+    }
+
+    .create-btn:hover {
+      background: #008fc5;
     }
 
 
@@ -518,6 +752,10 @@
         grid-template-columns: 1fr;
       }
 
+      .product-image {
+        height: 250px;
+      }
+
     }
 
   </style>
@@ -528,15 +766,17 @@
 <body>
 
 
-  <!-- =====================================
+  <!-- =================================
        LOGIN
-  ===================================== -->
+  ================================= -->
 
   <div
     class="login-screen"
     id="loginScreen">
 
+
     <div class="login-box">
+
 
       <div class="login-logo">
 
@@ -594,14 +834,15 @@
         id="loginMessage">
       </div>
 
+
     </div>
 
   </div>
 
 
-  <!-- =====================================
-       ADMIN APP
-  ===================================== -->
+  <!-- =================================
+       ADMIN
+  ================================= -->
 
   <div
     class="admin-app"
@@ -609,6 +850,7 @@
 
 
     <div class="topbar">
+
 
       <div class="brand">
 
@@ -619,6 +861,7 @@
 
 
       <div class="top-actions">
+
 
         <a
           href="index.html"
@@ -637,7 +880,9 @@
 
         </button>
 
+
       </div>
+
 
     </div>
 
@@ -646,6 +891,7 @@
 
 
       <div class="page-heading">
+
 
         <div>
 
@@ -663,6 +909,16 @@
 
         </div>
 
+
+        <button
+          class="add-product-btn"
+          onclick="openCreateModal()">
+
+          + ADD PRODUCT
+
+        </button>
+
+
       </div>
 
 
@@ -672,7 +928,10 @@
       </div>
 
 
+      <!-- SEARCH -->
+
       <div class="toolbar">
+
 
         <input
           type="search"
@@ -691,8 +950,11 @@
 
         </select>
 
+
       </div>
 
+
+      <!-- PRODUCTS -->
 
       <div
         class="products-list"
@@ -702,13 +964,152 @@
 
     </main>
 
+
+  </div>
+
+
+  <!-- =================================
+       ADD PRODUCT MODAL
+  ================================= -->
+
+  <div
+    class="modal"
+    id="createModal"
+    onclick="closeModalOutside(event)">
+
+
+    <div class="modal-box">
+
+
+      <div class="modal-header">
+
+
+        <h2>
+          Add Product
+        </h2>
+
+
+        <button
+          class="close-modal"
+          onclick="closeCreateModal()">
+
+          ×
+
+        </button>
+
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Product Name
+        </label>
+
+        <input
+          type="text"
+          id="newName"
+          placeholder="Enter product name">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Category
+        </label>
+
+        <select
+          id="newCategory">
+        </select>
+
+      </div>
+
+
+      <div class="two-column">
+
+
+        <div class="field">
+
+          <label>
+            Price
+          </label>
+
+          <input
+            type="number"
+            min="0"
+            id="newPrice"
+            value="0">
+
+        </div>
+
+
+        <div class="field">
+
+          <label>
+            Sale Price
+          </label>
+
+          <input
+            type="number"
+            min="0"
+            id="newSalePrice"
+            placeholder="Optional">
+
+        </div>
+
+
+      </div>
+
+
+      <div class="sale-row">
+
+        <input
+          type="checkbox"
+          id="newSale">
+
+        <label for="newSale">
+          Sale Active
+        </label>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Product Image
+        </label>
+
+        <input
+          type="file"
+          id="newImage"
+          accept="image/*">
+
+      </div>
+
+
+      <button
+        class="create-btn"
+        onclick="createProduct()">
+
+        ADD PRODUCT
+
+      </button>
+
+
+    </div>
+
   </div>
 
 
   <script>
 
+
     /* =====================================
-       SUPABASE CONNECTION
+       SUPABASE
     ===================================== */
 
     const SUPABASE_URL =
@@ -721,8 +1122,11 @@
 
     const supabaseClient =
       window.supabase.createClient(
+
         SUPABASE_URL,
+
         SUPABASE_PUBLISHABLE_KEY
+
       );
 
 
@@ -773,7 +1177,7 @@
 
 
     /* =====================================
-       SETUP CATEGORY FILTER
+       SETUP CATEGORIES
     ===================================== */
 
     function setupCategories() {
@@ -784,26 +1188,53 @@
         );
 
 
-      categories.forEach(
-        category => {
+      const newCategory =
+        document.getElementById(
+          "newCategory"
+        );
 
-          const option =
+
+      categories.forEach(
+        function(category) {
+
+
+          const option1 =
             document.createElement(
               "option"
             );
 
 
-          option.value =
+          option1.value =
             category;
 
 
-          option.textContent =
+          option1.textContent =
             category;
 
 
           filter.appendChild(
-            option
+            option1
           );
+
+
+          const option2 =
+            document.createElement(
+              "option"
+            );
+
+
+          option2.value =
+            category;
+
+
+          option2.textContent =
+            category;
+
+
+          newCategory.appendChild(
+            option2
+          );
+
 
         }
       );
@@ -816,6 +1247,7 @@
     ===================================== */
 
     async function login() {
+
 
       const email =
         document.getElementById(
@@ -849,8 +1281,10 @@
         message.style.color =
           "#d33";
 
+
         message.textContent =
           "Please enter email and password.";
+
 
         return;
 
@@ -875,6 +1309,7 @@
 
       try {
 
+
         const {
           data,
           error
@@ -897,25 +1332,28 @@
           message.style.color =
             "#d33";
 
+
           message.textContent =
             error.message;
+
 
           button.disabled =
             false;
 
+
           button.textContent =
             "LOGIN";
+
 
           return;
 
         }
 
 
-        /* CHECK ADMIN */
-
         const {
           data: admin,
-          error: adminError
+          error:
+            adminError
         } =
           await supabaseClient
 
@@ -945,14 +1383,18 @@
           message.style.color =
             "#d33";
 
+
           message.textContent =
             adminError.message;
+
 
           button.disabled =
             false;
 
+
           button.textContent =
             "LOGIN";
+
 
           return;
 
@@ -972,14 +1414,18 @@
           message.style.color =
             "#d33";
 
+
           message.textContent =
             "This account is not an admin.";
+
 
           button.disabled =
             false;
 
+
           button.textContent =
             "LOGIN";
+
 
           return;
 
@@ -988,19 +1434,22 @@
 
         await showAdmin();
 
-      }
 
-      catch (error) {
+      } catch (error) {
+
 
         message.style.color =
           "#d33";
+
 
         message.textContent =
           error.message ||
           "Login failed.";
 
+
         button.disabled =
           false;
+
 
         button.textContent =
           "LOGIN";
@@ -1011,12 +1460,14 @@
 
 
     /* =====================================
-       SESSION CHECK
+       SESSION
     ===================================== */
 
     async function checkSession() {
 
+
       try {
+
 
         const {
           data
@@ -1065,9 +1516,8 @@
 
         }
 
-      }
 
-      catch (error) {
+      } catch (error) {
 
         console.error(
           error
@@ -1083,6 +1533,7 @@
     ===================================== */
 
     async function showAdmin() {
+
 
       document.getElementById(
         "loginScreen"
@@ -1103,10 +1554,28 @@
 
 
     /* =====================================
+       LOGOUT
+    ===================================== */
+
+    async function logout() {
+
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+
+      location.reload();
+
+    }
+
+
+    /* =====================================
        LOAD PRODUCTS
     ===================================== */
 
     async function loadProducts() {
+
 
       showStatus(
         "Loading products..."
@@ -1139,10 +1608,12 @@
           error.message
         );
 
+
         document.getElementById(
           "productCount"
         ).textContent =
           "Could not load products.";
+
 
         return;
 
@@ -1151,13 +1622,6 @@
 
       products =
         data || [];
-
-
-      document.getElementById(
-        "productCount"
-      ).textContent =
-        products.length +
-        " products";
 
 
       renderProducts();
@@ -1176,6 +1640,7 @@
     ===================================== */
 
     function renderProducts() {
+
 
       const list =
         document.getElementById(
@@ -1200,23 +1665,26 @@
 
       const filtered =
         products.filter(
-          product => {
+          function(product) {
+
 
             const name =
               String(
                 product.name ||
                 ""
-              ).toLowerCase();
+              )
+              .toLowerCase();
 
 
             const id =
               String(
                 product.id ||
                 ""
-              ).toLowerCase();
+              )
+              .toLowerCase();
 
 
-            const matchesSearch =
+            const searchMatch =
 
               !search
 
@@ -1233,9 +1701,10 @@
               );
 
 
-            const matchesCategory =
+            const categoryMatch =
 
-              category === "ALL"
+              category ===
+                "ALL"
 
               ||
 
@@ -1244,8 +1713,8 @@
 
 
             return (
-              matchesSearch &&
-              matchesCategory
+              searchMatch &&
+              categoryMatch
             );
 
           }
@@ -1255,6 +1724,7 @@
       document.getElementById(
         "productCount"
       ).textContent =
+
         filtered.length +
         " of " +
         products.length +
@@ -1262,7 +1732,7 @@
 
 
       if (
-        !filtered.length
+        filtered.length === 0
       ) {
 
         list.innerHTML = `
@@ -1275,6 +1745,7 @@
 
         `;
 
+
         return;
 
       }
@@ -1283,10 +1754,13 @@
       list.innerHTML =
         filtered
           .map(
-            product =>
-              createProductCard(
+            function(product) {
+
+              return productCard(
                 product
-              )
+              );
+
+            }
           )
           .join("");
 
@@ -1297,9 +1771,22 @@
        PRODUCT CARD
     ===================================== */
 
-    function createProductCard(
+    function productCard(
       product
     ) {
+
+
+      const id =
+        escapeHtml(
+          product.id
+        );
+
+
+      const jsId =
+        escapeJs(
+          product.id
+        );
+
 
       const image =
         product.image_url ||
@@ -1332,14 +1819,58 @@
         product.sale === true;
 
 
+      const active =
+        product.active !== false;
+
+
       return `
 
         <div
-          class="product-card">
+          class="product-card
+            ${
+              active
+                ? ""
+                : "hidden-product"
+            }">
 
 
-          <div
-            class="product-image">
+          ${
+            !active
+
+            ?
+
+            `
+              <div class="hidden-badge">
+                HIDDEN
+              </div>
+            `
+
+            :
+
+            ""
+
+          }
+
+
+          ${
+            sale
+
+            ?
+
+            `
+              <div class="sale-badge">
+                SALE
+              </div>
+            `
+
+            :
+
+            ""
+
+          }
+
+
+          <div class="product-image">
 
 
             ${
@@ -1367,19 +1898,24 @@
           </div>
 
 
-          <div
-            class="product-body">
+          <div class="product-body">
 
 
             <h3>
-              ${escapeHtml(product.name)}
+
+              ${escapeHtml(
+                product.name
+              )}
+
             </h3>
 
 
             <div
               class="category-display">
 
-              ${escapeHtml(product.category)}
+              ${escapeHtml(
+                product.category
+              )}
 
             </div>
 
@@ -1393,18 +1929,18 @@
 
               <input
                 type="text"
-                id="name-${product.id}"
-                value="${escapeHtml(product.name)}">
+                id="name-${id}"
+                value="${escapeHtml(
+                  product.name
+                )}">
 
             </div>
 
 
-            <div
-              class="two-column">
+            <div class="two-column">
 
 
-              <div
-                class="edit-field">
+              <div class="edit-field">
 
                 <label>
                   Price
@@ -1413,14 +1949,13 @@
                 <input
                   type="number"
                   min="0"
-                  id="price-${product.id}"
+                  id="price-${id}"
                   value="${price}">
 
               </div>
 
 
-              <div
-                class="edit-field">
+              <div class="edit-field">
 
                 <label>
                   Sale Price
@@ -1429,7 +1964,7 @@
                 <input
                   type="number"
                   min="0"
-                  id="saleprice-${product.id}"
+                  id="saleprice-${id}"
                   value="${salePrice}">
 
               </div>
@@ -1438,78 +1973,143 @@
             </div>
 
 
-            <div
-              class="edit-field">
+            <div class="edit-field">
 
               <label>
                 Category
               </label>
 
               <select
-                id="category-${product.id}">
+                id="category-${id}">
+
 
                 ${
                   categories
                     .map(
-                      category => `
+                      function(category) {
 
-                        <option
-                          value="${escapeHtml(category)}"
-                          ${
-                            product.category ===
-                            category
-                              ? "selected"
-                              : ""
-                          }>
+                        return `
 
-                          ${escapeHtml(category)}
+                          <option
+                            value="${escapeHtml(
+                              category
+                            )}"
 
-                        </option>
+                            ${
+                              product.category ===
+                              category
+                                ? "selected"
+                                : ""
+                            }>
 
-                      `
+                            ${escapeHtml(
+                              category
+                            )}
+
+                          </option>
+
+                        `;
+
+                      }
                     )
                     .join("")
                 }
+
 
               </select>
 
             </div>
 
 
-            <div
-              class="sale-row">
+            <div class="sale-row">
+
 
               <input
                 type="checkbox"
-                id="sale-${product.id}"
+                id="sale-${id}"
                 ${
                   sale
                     ? "checked"
                     : ""
                 }>
 
+
               <label
-                for="sale-${product.id}">
+                for="sale-${id}">
 
                 Sale Active
 
               </label>
 
+
             </div>
 
 
-            <button
-              type="button"
-              class="save-btn"
-              id="save-${product.id}"
-              onclick="saveProduct('${escapeJs(product.id)}')">
+            <label
+              class="upload-label">
 
-              SAVE
+              CHANGE IMAGE
 
-            </button>
+              <input
+                class="upload-input"
+                type="file"
+                accept="image/*"
+                onchange="uploadImage(
+                  '${jsId}',
+                  this.files[0]
+                )">
+
+            </label>
+
+
+            <div class="action-row">
+
+
+              <button
+                type="button"
+                class="save-btn"
+                onclick="saveProduct(
+                  '${jsId}'
+                )">
+
+                SAVE
+
+              </button>
+
+
+              <button
+                type="button"
+                class="hide-btn"
+                onclick="toggleActive(
+                  '${jsId}'
+                )">
+
+                ${
+                  active
+                    ? "HIDE"
+                    : "SHOW"
+                }
+
+              </button>
+
+
+              <button
+                type="button"
+                class="delete-btn"
+                onclick="deleteProduct(
+                  '${jsId}'
+                )">
+
+                DELETE PRODUCT
+
+              </button>
+
+
+            </div>
 
 
           </div>
+
 
         </div>
 
@@ -1526,66 +2126,46 @@
       id
     ) {
 
-      const nameInput =
-        document.getElementById(
-          "name-" + id
-        );
-
-
-      const priceInput =
-        document.getElementById(
-          "price-" + id
-        );
-
-
-      const salePriceInput =
-        document.getElementById(
-          "saleprice-" + id
-        );
-
-
-      const categoryInput =
-        document.getElementById(
-          "category-" + id
-        );
-
-
-      const saleInput =
-        document.getElementById(
-          "sale-" + id
-        );
-
-
-      const saveButton =
-        document.getElementById(
-          "save-" + id
-        );
-
 
       const name =
-        nameInput.value.trim();
+        document.getElementById(
+          "name-" + id
+        ).value
+          .trim();
 
 
       const price =
         Number(
-          priceInput.value
+          document.getElementById(
+            "price-" + id
+          ).value
         );
 
 
+      const salePriceText =
+        document.getElementById(
+          "saleprice-" + id
+        ).value;
+
+
       const salePrice =
-        salePriceInput.value
+        salePriceText
           ? Number(
-              salePriceInput.value
+              salePriceText
             )
           : null;
 
 
       const category =
-        categoryInput.value;
+        document.getElementById(
+          "category-" + id
+        ).value;
 
 
       const sale =
-        saleInput.checked;
+        document.getElementById(
+          "sale-" + id
+        ).checked;
 
 
       if (!name) {
@@ -1599,15 +2179,9 @@
       }
 
 
-      saveButton.disabled =
-        true;
-
-      saveButton.classList.add(
-        "saving"
+      showStatus(
+        "Saving product..."
       );
-
-      saveButton.textContent =
-        "SAVING...";
 
 
       const {
@@ -1656,17 +2230,6 @@
           error.message
         );
 
-
-        saveButton.disabled =
-          false;
-
-        saveButton.classList.remove(
-          "saving"
-        );
-
-        saveButton.textContent =
-          "SAVE";
-
         return;
 
       }
@@ -1677,25 +2240,80 @@
       );
 
 
-      saveButton.disabled =
-        false;
+      await loadProducts();
 
-      saveButton.classList.remove(
-        "saving"
-      );
-
-      saveButton.textContent =
-        "SAVED ✓";
+    }
 
 
-      setTimeout(
-        function() {
+    /* =====================================
+       HIDE / SHOW
+    ===================================== */
 
-          saveButton.textContent =
-            "SAVE";
+    async function toggleActive(
+      id
+    ) {
 
-        },
-        1200
+
+      const product =
+        products.find(
+          function(item) {
+
+            return item.id === id;
+
+          }
+        );
+
+
+      if (!product) {
+        return;
+      }
+
+
+      const newActive =
+        product.active === false;
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .update({
+
+            active:
+              newActive,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      showStatus(
+        newActive
+          ? "Product is now visible."
+          : "Product is now hidden."
       );
 
 
@@ -1705,17 +2323,528 @@
 
 
     /* =====================================
-       LOGOUT
+       DELETE PRODUCT
     ===================================== */
 
-    async function logout() {
-
-      await supabaseClient
-        .auth
-        .signOut();
+    async function deleteProduct(
+      id
+    ) {
 
 
-      location.reload();
+      const product =
+        products.find(
+          function(item) {
+
+            return item.id === id;
+
+          }
+        );
+
+
+      if (!product) {
+        return;
+      }
+
+
+      const confirmed =
+        confirm(
+          "Delete " +
+          product.name +
+          " permanently?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      showStatus(
+        "Deleting product..."
+      );
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .delete()
+
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Product deleted."
+      );
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =====================================
+       UPLOAD IMAGE
+    ===================================== */
+
+    async function uploadImage(
+      productId,
+      file
+    ) {
+
+
+      if (!file) {
+        return;
+      }
+
+
+      showStatus(
+        "Uploading image..."
+      );
+
+
+      const safeName =
+        file.name.replace(
+          /[^a-zA-Z0-9._-]/g,
+          "-"
+        );
+
+
+      const filePath =
+        "products/" +
+        crypto.randomUUID() +
+        "-" +
+        safeName;
+
+
+      const {
+        error:
+          uploadError
+      } =
+        await supabaseClient
+
+          .storage
+
+          .from(
+            "product-images"
+          )
+
+          .upload(
+            filePath,
+            file,
+            {
+              cacheControl:
+                "3600",
+
+              upsert:
+                false
+            }
+          );
+
+
+      if (uploadError) {
+
+        alert(
+          uploadError.message
+        );
+
+        return;
+
+      }
+
+
+      const {
+        data:
+          publicData
+      } =
+        supabaseClient
+
+          .storage
+
+          .from(
+            "product-images"
+          )
+
+          .getPublicUrl(
+            filePath
+          );
+
+
+      const imageUrl =
+        publicData.publicUrl;
+
+
+      const {
+        error:
+          updateError
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .update({
+
+            image_url:
+              imageUrl,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "id",
+            productId
+          );
+
+
+      if (updateError) {
+
+        alert(
+          updateError.message
+        );
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Image updated successfully."
+      );
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =====================================
+       ADD PRODUCT
+    ===================================== */
+
+    async function createProduct() {
+
+
+      const name =
+        document.getElementById(
+          "newName"
+        ).value
+          .trim();
+
+
+      const category =
+        document.getElementById(
+          "newCategory"
+        ).value;
+
+
+      const price =
+        Number(
+          document.getElementById(
+            "newPrice"
+          ).value
+        );
+
+
+      const salePriceText =
+        document.getElementById(
+          "newSalePrice"
+        ).value;
+
+
+      const salePrice =
+        salePriceText
+          ? Number(
+              salePriceText
+            )
+          : null;
+
+
+      const sale =
+        document.getElementById(
+          "newSale"
+        ).checked;
+
+
+      const imageFile =
+        document.getElementById(
+          "newImage"
+        ).files[0];
+
+
+      if (!name) {
+
+        alert(
+          "Product name is required."
+        );
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Creating product..."
+      );
+
+
+      /* CREATE ID AUTOMATICALLY */
+
+      const baseId =
+        name
+          .toLowerCase()
+          .replace(
+            /[^a-z0-9]+/g,
+            "-"
+          )
+          .replace(
+            /^-|-$/g,
+            ""
+          );
+
+
+      const id =
+        baseId +
+        "-" +
+        Date.now();
+
+
+      let imageUrl =
+        null;
+
+
+      /* UPLOAD IMAGE FIRST */
+
+      if (imageFile) {
+
+
+        const safeName =
+          imageFile.name.replace(
+            /[^a-zA-Z0-9._-]/g,
+            "-"
+          );
+
+
+        const filePath =
+          "products/" +
+          crypto.randomUUID() +
+          "-" +
+          safeName;
+
+
+        const {
+          error:
+            uploadError
+        } =
+          await supabaseClient
+
+            .storage
+
+            .from(
+              "product-images"
+            )
+
+            .upload(
+              filePath,
+              imageFile,
+              {
+                cacheControl:
+                  "3600",
+
+                upsert:
+                  false
+              }
+            );
+
+
+        if (uploadError) {
+
+          alert(
+            uploadError.message
+          );
+
+          return;
+
+        }
+
+
+        const {
+          data:
+            publicData
+        } =
+          supabaseClient
+
+            .storage
+
+            .from(
+              "product-images"
+            )
+
+            .getPublicUrl(
+              filePath
+            );
+
+
+        imageUrl =
+          publicData.publicUrl;
+
+      }
+
+
+      /* INSERT PRODUCT */
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .insert({
+
+            id:
+              id,
+
+            name:
+              name,
+
+            category:
+              category,
+
+            price:
+              price || 0,
+
+            sale:
+              sale,
+
+            sale_price:
+              sale
+                ? salePrice
+                : null,
+
+            image_url:
+              imageUrl,
+
+            active:
+              true
+
+          });
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      closeCreateModal();
+
+
+      showStatus(
+        "Product added successfully."
+      );
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =====================================
+       MODAL
+    ===================================== */
+
+    function openCreateModal() {
+
+      document
+        .getElementById(
+          "createModal"
+        )
+        .classList
+        .add("active");
+
+    }
+
+
+    function closeCreateModal() {
+
+      document
+        .getElementById(
+          "createModal"
+        )
+        .classList
+        .remove("active");
+
+
+      document.getElementById(
+        "newName"
+      ).value = "";
+
+
+      document.getElementById(
+        "newPrice"
+      ).value = "0";
+
+
+      document.getElementById(
+        "newSalePrice"
+      ).value = "";
+
+
+      document.getElementById(
+        "newSale"
+      ).checked = false;
+
+
+      document.getElementById(
+        "newImage"
+      ).value = "";
+
+    }
+
+
+    function closeModalOutside(
+      event
+    ) {
+
+      if (
+        event.target.id ===
+        "createModal"
+      ) {
+
+        closeCreateModal();
+
+      }
 
     }
 
@@ -1764,7 +2893,7 @@
 
 
     /* =====================================
-       ESCAPE HTML
+       ESCAPE
     ===================================== */
 
     function escapeHtml(
@@ -1826,6 +2955,7 @@
     checkSession();
 
   </script>
+
 
 </body>
 
