@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Craftio Gifts - Admin Login</title>
+  <title>Admin Panel | Craftio Gifts</title>
 
   <link rel="icon" type="image/png" href="favicon.png">
 
@@ -15,150 +16,704 @@
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f7f9;
+      color: #111;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    /* =========================
+       LOGIN
+    ========================= */
+
+    .login-screen {
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f5f7f9;
-      font-family: Arial, sans-serif;
+      padding: 20px;
     }
 
     .login-box {
-      width: 90%;
-      max-width: 380px;
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 12px 35px rgba(0,0,0,0.10);
+      width: 100%;
+      max-width: 410px;
+      background: #fff;
+      padding: 35px;
+      border-radius: 18px;
+      box-shadow: 0 15px 45px rgba(0,0,0,0.10);
     }
 
-    h1 {
+    .login-logo {
       text-align: center;
-      margin: 0 0 8px;
-      font-size: 27px;
+      margin-bottom: 28px;
     }
 
-    h1 span {
+    .login-logo h1 {
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    .login-logo h1 span {
       color: #00aef0;
     }
 
-    .subtitle {
-      text-align: center;
+    .login-logo p {
+      margin-top: 8px;
       color: #777;
-      margin-bottom: 25px;
+      font-size: 14px;
     }
 
-    label {
+    .field {
+      margin-bottom: 15px;
+    }
+
+    .field label {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       font-size: 13px;
       font-weight: 700;
     }
 
-    input {
+    .field input,
+    .field select {
       width: 100%;
       padding: 12px;
-      margin-bottom: 15px;
       border: 1px solid #ddd;
-      border-radius: 8px;
+      border-radius: 9px;
       outline: none;
+      background: #fff;
+      font-size: 14px;
     }
 
-    input:focus {
+    .field input:focus,
+    .field select:focus {
       border-color: #00aef0;
     }
 
-    button {
+    .login-btn {
       width: 100%;
       padding: 13px;
-      border: 0;
-      border-radius: 8px;
+      border: none;
+      border-radius: 9px;
       background: #00aef0;
-      color: white;
+      color: #fff;
       font-size: 15px;
       font-weight: 800;
       cursor: pointer;
     }
 
-    button:hover {
+    .login-btn:hover {
       background: #008fc5;
     }
 
-    button:disabled {
-      opacity: 0.6;
+    .login-btn:disabled {
+      opacity: 0.7;
       cursor: not-allowed;
     }
 
-    #message {
-      text-align: center;
-      margin-top: 15px;
+    .login-message {
+      margin-top: 14px;
       min-height: 20px;
+      text-align: center;
       font-size: 13px;
+    }
+
+
+    /* =========================
+       ADMIN APP
+    ========================= */
+
+    .admin-app {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .admin-app.active {
+      display: block;
+    }
+
+
+    /* =========================
+       TOPBAR
+    ========================= */
+
+    .topbar {
+      background: #111;
+      color: #fff;
+      padding: 16px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .brand {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .brand span {
+      color: #00aef0;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .top-btn {
+      border: none;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .website-btn {
+      background: #00aef0;
+      color: #fff;
+    }
+
+    .website-btn:hover {
+      background: #008fc5;
+    }
+
+    .logout-btn {
+      background: #fff;
+      color: #111;
+    }
+
+
+    /* =========================
+       MAIN
+    ========================= */
+
+    .container {
+      max-width: 1250px;
+      margin: 0 auto;
+      padding: 35px 20px 60px;
+    }
+
+    .page-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .page-heading h1 {
+      font-size: 31px;
+    }
+
+    .product-count {
+      margin-top: 6px;
+      color: #777;
+      font-size: 13px;
+    }
+
+
+    /* =========================
+       TOOLBAR
+    ========================= */
+
+    .toolbar {
+      background: #fff;
+      padding: 15px;
+      border-radius: 13px;
+      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .toolbar input,
+    .toolbar select {
+      padding: 11px 12px;
+      border: 1px solid #ddd;
+      border-radius: 9px;
+      outline: none;
+      background: #fff;
+      font-size: 13px;
+    }
+
+    .toolbar input {
+      flex: 1;
+    }
+
+    .toolbar select {
+      min-width: 240px;
+    }
+
+
+    /* =========================
+       STATUS
+    ========================= */
+
+    .status {
+      display: none;
+      background: #eaf9ff;
+      color: #008fc5;
+      padding: 12px;
+      border-radius: 9px;
+      margin-bottom: 15px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products-list {
+      display: grid;
+      grid-template-columns:
+        repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 225px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      display: block;
+    }
+
+    .no-image {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .product-body {
+      padding: 17px;
+    }
+
+    .product-body h3 {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .category-display {
+      color: #008fc5;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .edit-field {
+      margin-bottom: 11px;
+    }
+
+    .edit-field label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .edit-field input,
+    .edit-field select {
+      width: 100%;
+      padding: 9px;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      outline: none;
+      background: #fff;
+      font-size: 12px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .sale-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 5px 0 12px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sale-row input {
+      width: auto;
+    }
+
+    .save-btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 8px;
+      background: #111;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background: #333;
+    }
+
+    .save-btn.saving {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .empty-products {
+      grid-column: 1 / -1;
+      background: #fff;
+      border-radius: 15px;
+      padding: 60px 20px;
+      text-align: center;
+      color: #777;
+    }
+
+
+    /* =========================
+       MODAL
+    ========================= */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 5000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      font-size: 22px;
+    }
+
+    .close-modal {
+      border: none;
+      background: none;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .create-btn {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 8px;
+      background: #00aef0;
+      color: #fff;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      .topbar {
+        padding: 13px 15px;
+      }
+
+      .brand {
+        font-size: 19px;
+      }
+
+      .top-btn {
+        padding: 8px;
+        font-size: 10px;
+      }
+
+      .container {
+        padding: 25px 12px 50px;
+      }
+
+      .page-heading {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar {
+        flex-direction: column;
+      }
+
+      .toolbar select {
+        width: 100%;
+        min-width: 0;
+      }
+
+      .products-list {
+        grid-template-columns: 1fr;
+      }
+
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
 
-  <div class="login-box">
 
-    <h1>
-      CRAFTIO <span>GIFTS</span>
-    </h1>
+  <!-- =====================================
+       LOGIN
+  ===================================== -->
 
-    <div class="subtitle">
-      Admin Login
+  <div
+    class="login-screen"
+    id="loginScreen">
+
+    <div class="login-box">
+
+      <div class="login-logo">
+
+        <h1>
+          CRAFTIO <span>GIFTS</span>
+        </h1>
+
+        <p>
+          Admin Panel
+        </p>
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="loginEmail"
+          placeholder="Admin email">
+
+      </div>
+
+
+      <div class="field">
+
+        <label>
+          Password
+        </label>
+
+        <input
+          type="password"
+          id="loginPassword"
+          placeholder="Password">
+
+      </div>
+
+
+      <button
+        class="login-btn"
+        id="loginButton"
+        onclick="login()">
+
+        LOGIN
+
+      </button>
+
+
+      <div
+        class="login-message"
+        id="loginMessage">
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================
+       ADMIN APP
+  ===================================== -->
+
+  <div
+    class="admin-app"
+    id="adminApp">
+
+
+    <div class="topbar">
+
+      <div class="brand">
+
+        CRAFTIO
+        <span>GIFTS</span>
+
+      </div>
+
+
+      <div class="top-actions">
+
+        <a
+          href="index.html"
+          class="top-btn website-btn">
+
+          WEBSITE
+
+        </a>
+
+
+        <button
+          class="top-btn logout-btn"
+          onclick="logout()">
+
+          LOGOUT
+
+        </button>
+
+      </div>
+
     </div>
 
 
-    <label for="email">
-      Email
-    </label>
-
-    <input
-      type="email"
-      id="email"
-      placeholder="Enter admin email">
+    <main class="container">
 
 
-    <label for="password">
-      Password
-    </label>
+      <div class="page-heading">
 
-    <input
-      type="password"
-      id="password"
-      placeholder="Enter password">
+        <div>
+
+          <h1>
+            Products
+          </h1>
+
+          <div
+            class="product-count"
+            id="productCount">
+
+            Loading...
+
+          </div>
+
+        </div>
+
+      </div>
 
 
-    <button
-      id="loginBtn"
-      onclick="login()">
-
-      LOGIN
-
-    </button>
+      <div
+        class="status"
+        id="statusBox">
+      </div>
 
 
-    <div id="message"></div>
+      <div class="toolbar">
+
+        <input
+          type="search"
+          id="searchProducts"
+          placeholder="Search product..."
+          oninput="renderProducts()">
+
+
+        <select
+          id="categoryFilter"
+          onchange="renderProducts()">
+
+          <option value="ALL">
+            ALL CATEGORIES
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <div
+        class="products-list"
+        id="productsList">
+      </div>
+
+
+    </main>
 
   </div>
 
 
   <script>
 
-    /* =========================
-       SUPABASE
-    ========================= */
+    /* =====================================
+       SUPABASE CONNECTION
+    ===================================== */
 
     const SUPABASE_URL =
       "https://hujwsdixdxhofwhibjff.supabase.co";
+
 
     const SUPABASE_PUBLISHABLE_KEY =
       "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
@@ -171,28 +726,128 @@
       );
 
 
-    /* =========================
+    /* =====================================
+       CATEGORIES
+    ===================================== */
+
+    const categories = [
+
+      "ISLAMIC COLLECTION",
+
+      "LED PICTURE FRAME",
+
+      "ANNIVERSARY FRAMES",
+
+      "NIKKAH FRAMES",
+
+      "BIRTHDAY FRAMES",
+
+      "PICTURE FRAMES",
+
+      "MUG COLLECTION",
+
+      "MAGIC MUGS",
+
+      "NEW BORN FRAMES",
+
+      "SNAPCHAT / TIKTOK / INSTAGRAM PVC CARDS",
+
+      "FRIENDSHIP LICENCE CARD",
+
+      "EYE NECKLACE",
+
+      "WEDDING RING PLATES",
+
+      "TRENDY CHARTS",
+
+      "NAME KEYCHAINS",
+
+      "PVC CARD",
+
+      "MAGIC LAMPS"
+
+    ];
+
+
+    let products = [];
+
+
+    /* =====================================
+       SETUP CATEGORY FILTER
+    ===================================== */
+
+    function setupCategories() {
+
+      const filter =
+        document.getElementById(
+          "categoryFilter"
+        );
+
+
+      categories.forEach(
+        category => {
+
+          const option =
+            document.createElement(
+              "option"
+            );
+
+
+          option.value =
+            category;
+
+
+          option.textContent =
+            category;
+
+
+          filter.appendChild(
+            option
+          );
+
+        }
+      );
+
+    }
+
+
+    /* =====================================
        LOGIN
-    ========================= */
+    ===================================== */
 
     async function login() {
 
       const email =
-        document.getElementById("email").value.trim();
+        document.getElementById(
+          "loginEmail"
+        ).value.trim();
+
 
       const password =
-        document.getElementById("password").value;
+        document.getElementById(
+          "loginPassword"
+        ).value;
+
 
       const button =
-        document.getElementById("loginBtn");
+        document.getElementById(
+          "loginButton"
+        );
+
 
       const message =
-        document.getElementById("message");
+        document.getElementById(
+          "loginMessage"
+        );
 
 
-      if (!email || !password) {
+      if (
+        !email ||
+        !password
+      ) {
 
-        message.style.color = "#d33";
+        message.style.color =
+          "#d33";
 
         message.textContent =
           "Please enter email and password.";
@@ -202,12 +857,17 @@
       }
 
 
-      button.disabled = true;
+      button.disabled =
+        true;
+
 
       button.textContent =
         "LOGGING IN...";
 
-      message.style.color = "#777";
+
+      message.style.color =
+        "#777";
+
 
       message.textContent =
         "Please wait...";
@@ -215,100 +875,132 @@
 
       try {
 
-        const { data, error } =
+        const {
+          data,
+          error
+        } =
           await supabaseClient
             .auth
             .signInWithPassword({
 
-              email: email,
+              email:
+                email,
 
-              password: password
+              password:
+                password
 
             });
 
 
         if (error) {
 
-          message.style.color = "#d33";
+          message.style.color =
+            "#d33";
 
           message.textContent =
             error.message;
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
-          button.textContent = "LOGIN";
+          button.textContent =
+            "LOGIN";
 
           return;
 
         }
 
 
-        /* =========================
-           CHECK ADMIN
-        ========================= */
+        /* CHECK ADMIN */
 
-        const { data: admin, error: adminError } =
+        const {
+          data: admin,
+          error: adminError
+        } =
           await supabaseClient
-            .from("admin_users")
-            .select("user_id, role")
-            .eq("user_id", data.user.id)
+
+            .from(
+              "admin_users"
+            )
+
+            .select(
+              "user_id, role"
+            )
+
+            .eq(
+              "user_id",
+              data.user.id
+            )
+
             .maybeSingle();
 
 
         if (adminError) {
 
-          message.style.color = "#d33";
+          await supabaseClient
+            .auth
+            .signOut();
+
+
+          message.style.color =
+            "#d33";
 
           message.textContent =
             adminError.message;
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
-          button.textContent = "LOGIN";
+          button.textContent =
+            "LOGIN";
 
           return;
 
         }
 
 
-        if (!admin || admin.role !== "admin") {
+        if (
+          !admin ||
+          admin.role !== "admin"
+        ) {
 
           await supabaseClient
             .auth
             .signOut();
 
-          message.style.color = "#d33";
+
+          message.style.color =
+            "#d33";
 
           message.textContent =
             "This account is not an admin.";
 
-          button.disabled = false;
+          button.disabled =
+            false;
 
-          button.textContent = "LOGIN";
+          button.textContent =
+            "LOGIN";
 
           return;
 
         }
 
 
-        message.style.color = "#079455";
+        await showAdmin();
+
+      }
+
+      catch (error) {
+
+        message.style.color =
+          "#d33";
 
         message.textContent =
-          "LOGIN SUCCESSFUL ✅";
+          error.message ||
+          "Login failed.";
 
-        button.textContent =
-          "SUCCESS";
-
-
-      } catch (error) {
-
-        message.style.color = "#d33";
-
-        message.textContent =
-          "Connection error: " +
-          error.message;
-
-        button.disabled = false;
+        button.disabled =
+          false;
 
         button.textContent =
           "LOGIN";
@@ -317,7 +1009,824 @@
 
     }
 
+
+    /* =====================================
+       SESSION CHECK
+    ===================================== */
+
+    async function checkSession() {
+
+      try {
+
+        const {
+          data
+        } =
+          await supabaseClient
+            .auth
+            .getSession();
+
+
+        if (
+          !data.session
+        ) {
+
+          return;
+
+        }
+
+
+        const {
+          data: admin
+        } =
+          await supabaseClient
+
+            .from(
+              "admin_users"
+            )
+
+            .select(
+              "user_id, role"
+            )
+
+            .eq(
+              "user_id",
+              data.session.user.id
+            )
+
+            .maybeSingle();
+
+
+        if (
+          admin &&
+          admin.role === "admin"
+        ) {
+
+          await showAdmin();
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.error(
+          error
+        );
+
+      }
+
+    }
+
+
+    /* =====================================
+       SHOW ADMIN
+    ===================================== */
+
+    async function showAdmin() {
+
+      document.getElementById(
+        "loginScreen"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "adminApp"
+      ).classList.add(
+        "active"
+      );
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =====================================
+       LOAD PRODUCTS
+    ===================================== */
+
+    async function loadProducts() {
+
+      showStatus(
+        "Loading products..."
+      );
+
+
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .select("*")
+
+          .order(
+            "created_at",
+            {
+              ascending: true
+            }
+          );
+
+
+      if (error) {
+
+        showStatus(
+          error.message
+        );
+
+        document.getElementById(
+          "productCount"
+        ).textContent =
+          "Could not load products.";
+
+        return;
+
+      }
+
+
+      products =
+        data || [];
+
+
+      document.getElementById(
+        "productCount"
+      ).textContent =
+        products.length +
+        " products";
+
+
+      renderProducts();
+
+
+      showStatus(
+        products.length +
+        " products loaded."
+      );
+
+    }
+
+
+    /* =====================================
+       RENDER PRODUCTS
+    ===================================== */
+
+    function renderProducts() {
+
+      const list =
+        document.getElementById(
+          "productsList"
+        );
+
+
+      const search =
+        document.getElementById(
+          "searchProducts"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+      const category =
+        document.getElementById(
+          "categoryFilter"
+        ).value;
+
+
+      const filtered =
+        products.filter(
+          product => {
+
+            const name =
+              String(
+                product.name ||
+                ""
+              ).toLowerCase();
+
+
+            const id =
+              String(
+                product.id ||
+                ""
+              ).toLowerCase();
+
+
+            const matchesSearch =
+
+              !search
+
+              ||
+
+              name.includes(
+                search
+              )
+
+              ||
+
+              id.includes(
+                search
+              );
+
+
+            const matchesCategory =
+
+              category === "ALL"
+
+              ||
+
+              product.category ===
+                category;
+
+
+            return (
+              matchesSearch &&
+              matchesCategory
+            );
+
+          }
+        );
+
+
+      document.getElementById(
+        "productCount"
+      ).textContent =
+        filtered.length +
+        " of " +
+        products.length +
+        " products";
+
+
+      if (
+        !filtered.length
+      ) {
+
+        list.innerHTML = `
+
+          <div class="empty-products">
+
+            No products found.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      list.innerHTML =
+        filtered
+          .map(
+            product =>
+              createProductCard(
+                product
+              )
+          )
+          .join("");
+
+    }
+
+
+    /* =====================================
+       PRODUCT CARD
+    ===================================== */
+
+    function createProductCard(
+      product
+    ) {
+
+      const image =
+        product.image_url ||
+        "";
+
+
+      const price =
+        Number(
+          product.price ||
+          0
+        );
+
+
+      const salePrice =
+        product.sale_price !== null &&
+        product.sale_price !== undefined
+
+          ?
+
+          Number(
+            product.sale_price
+          )
+
+          :
+
+          "";
+
+
+      const sale =
+        product.sale === true;
+
+
+      return `
+
+        <div
+          class="product-card">
+
+
+          <div
+            class="product-image">
+
+
+            ${
+              image
+
+              ?
+
+              `
+                <img
+                  src="${escapeHtml(image)}"
+                  alt="${escapeHtml(product.name)}">
+              `
+
+              :
+
+              `
+                <span class="no-image">
+                  No image
+                </span>
+              `
+
+            }
+
+
+          </div>
+
+
+          <div
+            class="product-body">
+
+
+            <h3>
+              ${escapeHtml(product.name)}
+            </h3>
+
+
+            <div
+              class="category-display">
+
+              ${escapeHtml(product.category)}
+
+            </div>
+
+
+            <div
+              class="edit-field">
+
+              <label>
+                Product Name
+              </label>
+
+              <input
+                type="text"
+                id="name-${product.id}"
+                value="${escapeHtml(product.name)}">
+
+            </div>
+
+
+            <div
+              class="two-column">
+
+
+              <div
+                class="edit-field">
+
+                <label>
+                  Price
+                </label>
+
+                <input
+                  type="number"
+                  min="0"
+                  id="price-${product.id}"
+                  value="${price}">
+
+              </div>
+
+
+              <div
+                class="edit-field">
+
+                <label>
+                  Sale Price
+                </label>
+
+                <input
+                  type="number"
+                  min="0"
+                  id="saleprice-${product.id}"
+                  value="${salePrice}">
+
+              </div>
+
+
+            </div>
+
+
+            <div
+              class="edit-field">
+
+              <label>
+                Category
+              </label>
+
+              <select
+                id="category-${product.id}">
+
+                ${
+                  categories
+                    .map(
+                      category => `
+
+                        <option
+                          value="${escapeHtml(category)}"
+                          ${
+                            product.category ===
+                            category
+                              ? "selected"
+                              : ""
+                          }>
+
+                          ${escapeHtml(category)}
+
+                        </option>
+
+                      `
+                    )
+                    .join("")
+                }
+
+              </select>
+
+            </div>
+
+
+            <div
+              class="sale-row">
+
+              <input
+                type="checkbox"
+                id="sale-${product.id}"
+                ${
+                  sale
+                    ? "checked"
+                    : ""
+                }>
+
+              <label
+                for="sale-${product.id}">
+
+                Sale Active
+
+              </label>
+
+            </div>
+
+
+            <button
+              type="button"
+              class="save-btn"
+              id="save-${product.id}"
+              onclick="saveProduct('${escapeJs(product.id)}')">
+
+              SAVE
+
+            </button>
+
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =====================================
+       SAVE PRODUCT
+    ===================================== */
+
+    async function saveProduct(
+      id
+    ) {
+
+      const nameInput =
+        document.getElementById(
+          "name-" + id
+        );
+
+
+      const priceInput =
+        document.getElementById(
+          "price-" + id
+        );
+
+
+      const salePriceInput =
+        document.getElementById(
+          "saleprice-" + id
+        );
+
+
+      const categoryInput =
+        document.getElementById(
+          "category-" + id
+        );
+
+
+      const saleInput =
+        document.getElementById(
+          "sale-" + id
+        );
+
+
+      const saveButton =
+        document.getElementById(
+          "save-" + id
+        );
+
+
+      const name =
+        nameInput.value.trim();
+
+
+      const price =
+        Number(
+          priceInput.value
+        );
+
+
+      const salePrice =
+        salePriceInput.value
+          ? Number(
+              salePriceInput.value
+            )
+          : null;
+
+
+      const category =
+        categoryInput.value;
+
+
+      const sale =
+        saleInput.checked;
+
+
+      if (!name) {
+
+        alert(
+          "Product name is required."
+        );
+
+        return;
+
+      }
+
+
+      saveButton.disabled =
+        true;
+
+      saveButton.classList.add(
+        "saving"
+      );
+
+      saveButton.textContent =
+        "SAVING...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from(
+            "products"
+          )
+
+          .update({
+
+            name:
+              name,
+
+            price:
+              price,
+
+            category:
+              category,
+
+            sale:
+              sale,
+
+            sale_price:
+              sale
+                ? salePrice
+                : null,
+
+            updated_at:
+              new Date()
+                .toISOString()
+
+          })
+
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (error) {
+
+        alert(
+          error.message
+        );
+
+
+        saveButton.disabled =
+          false;
+
+        saveButton.classList.remove(
+          "saving"
+        );
+
+        saveButton.textContent =
+          "SAVE";
+
+        return;
+
+      }
+
+
+      showStatus(
+        "Product saved successfully."
+      );
+
+
+      saveButton.disabled =
+        false;
+
+      saveButton.classList.remove(
+        "saving"
+      );
+
+      saveButton.textContent =
+        "SAVED ✓";
+
+
+      setTimeout(
+        function() {
+
+          saveButton.textContent =
+            "SAVE";
+
+        },
+        1200
+      );
+
+
+      await loadProducts();
+
+    }
+
+
+    /* =====================================
+       LOGOUT
+    ===================================== */
+
+    async function logout() {
+
+      await supabaseClient
+        .auth
+        .signOut();
+
+
+      location.reload();
+
+    }
+
+
+    /* =====================================
+       STATUS
+    ===================================== */
+
+    function showStatus(
+      message
+    ) {
+
+      const box =
+        document.getElementById(
+          "statusBox"
+        );
+
+
+      box.textContent =
+        message;
+
+
+      box.classList.add(
+        "show"
+      );
+
+
+      clearTimeout(
+        window.statusTimer
+      );
+
+
+      window.statusTimer =
+        setTimeout(
+          function() {
+
+            box.classList.remove(
+              "show"
+            );
+
+          },
+          2500
+        );
+
+    }
+
+
+    /* =====================================
+       ESCAPE HTML
+    ===================================== */
+
+    function escapeHtml(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+      .replace(
+        /'/g,
+        "&#039;"
+      );
+
+    }
+
+
+    function escapeJs(
+      value
+    ) {
+
+      return String(
+        value ?? ""
+      )
+      .replace(
+        /\\/g,
+        "\\\\"
+      )
+      .replace(
+        /'/g,
+        "\\'"
+      );
+
+    }
+
+
+    /* =====================================
+       START
+    ===================================== */
+
+    setupCategories();
+
+    checkSession();
+
   </script>
 
 </body>
+
 </html>
