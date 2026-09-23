@@ -3,6 +3,7 @@
 <head>
 
   <meta charset="UTF-8">
+
   <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0">
@@ -11,372 +12,366 @@
 
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <style>
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    body{
-      font-family:Arial,sans-serif;
-      background:#f7f7f7;
-      color:#111;
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      background: #f7f7f7;
+      color: #111;
     }
 
-    nav{
-      background:#111;
-      color:white;
-      padding:18px 7%;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+    button,
+    input,
+    textarea,
+    select {
+      font-family: inherit;
     }
 
-    .logo-text{
-      font-size:25px;
-      font-weight:800;
-      letter-spacing:1px;
+    nav {
+      background: #111;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .logo-text span{
-      color:#00aef0;
+    .logo-text {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .nav-links{
-      display:flex;
-      gap:25px;
+    .logo-text span {
+      color: #00aef0;
     }
 
-    .nav-links a{
-      color:white;
-      text-decoration:none;
-      font-size:15px;
-      font-weight:600;
+    .nav-links {
+      display: flex;
+      gap: 25px;
     }
 
-    .nav-links a:hover{
-      color:#00aef0;
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
     }
 
-    .checkout-page{
-      max-width:1100px;
-      margin:50px auto;
-      padding:0 20px;
+    .nav-links a:hover {
+      color: #00aef0;
     }
 
-    .page-title{
-      text-align:center;
-      margin-bottom:35px;
+    .checkout-page {
+      max-width: 1100px;
+      margin: 50px auto;
+      padding: 0 20px;
     }
 
-    .page-title h1{
-      font-size:38px;
-      margin-bottom:8px;
+    .page-title {
+      text-align: center;
+      margin-bottom: 35px;
     }
 
-    .page-title h1 span{
-      color:#00aef0;
+    .page-title h1 {
+      font-size: 38px;
+      margin-bottom: 8px;
     }
 
-    .checkout-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:30px;
+    .page-title h1 span {
+      color: #00aef0;
     }
 
-    .box{
-      background:white;
-      border-radius:15px;
-      padding:30px;
-      box-shadow:0 8px 25px rgba(0,0,0,.05);
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
     }
 
-    .box h2{
-      margin-bottom:25px;
-      font-size:23px;
+    .box {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.05);
     }
 
-    .order-item{
-      display:flex;
-      gap:15px;
-      padding:15px 0;
-      border-bottom:1px solid #eee;
+    .box h2 {
+      margin-bottom: 25px;
+      font-size: 23px;
     }
 
-    .order-item img{
-      width:100px;
-      height:100px;
-      object-fit:contain;
-      border-radius:8px;
-      background:#f7f7f7;
-      padding:5px;
-      cursor:zoom-in;
-      flex-shrink:0;
+    /* =========================
+       ORDER ITEMS
+    ========================= */
+
+    .order-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eee;
     }
 
-    .order-item-info{
-      flex:1;
+    .order-item img {
+      width: 85px;
+      height: 85px;
+      object-fit: contain;
+      border-radius: 8px;
+      background: #f7f7f7;
+      padding: 5px;
+      cursor: zoom-in;
+      flex-shrink: 0;
     }
 
-    .order-item-info h3{
-      font-size:15px;
-      line-height:1.35;
-      margin-bottom:8px;
+    .order-item-info {
+      flex: 1;
     }
 
-    .order-item-info p{
-      color:#666;
-      margin-bottom:5px;
+    .order-item-info h3 {
+      font-size: 15px;
+      line-height: 1.35;
+      margin-bottom: 8px;
     }
 
-    .order-item-price{
-      color:#00aef0;
-      font-weight:800;
+    .order-item-info p {
+      color: #666;
+      margin-bottom: 5px;
     }
 
-    .custom-summary{
-      margin-top:12px;
-      padding:11px;
-      background:#f8fcfe;
-      border:1px solid #d8eef7;
-      border-radius:7px;
-      font-size:13px;
-      line-height:1.7;
+    .order-item-price {
+      color: #00aef0;
+      font-weight: 800;
     }
 
-    .custom-summary strong{
-      color:#111;
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
     }
 
-    .whatsapp-note{
-      margin-top:10px;
-      padding:10px 12px;
-      background:white;
-      border-left:4px solid #00aef0;
-      color:#444;
-      font-size:13px;
-      line-height:1.5;
-      border-radius:5px;
+    .quantity-controls button {
+      width: 28px;
+      height: 28px;
+      border: 1px solid #ccc;
+      background: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .quantity-controls{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      margin-top:10px;
-      flex-wrap:wrap;
+    .remove-btn {
+      width: auto !important;
+      padding: 0 8px;
+      color: #d00;
     }
 
-    .quantity-controls button{
-      width:28px;
-      height:28px;
-      border:1px solid #ccc;
-      background:white;
-      border-radius:5px;
-      cursor:pointer;
-      font-weight:bold;
+    .total-box {
+      margin-top: 25px;
+      border-top: 2px solid #111;
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 21px;
+      font-weight: 800;
     }
 
-    .remove-btn{
-      width:auto !important;
-      padding:0 8px !important;
-      color:#d00;
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+      margin-bottom: 18px;
     }
 
-    .total-box{
-      margin-top:25px;
-      border-top:2px solid #111;
-      padding-top:18px;
-      display:flex;
-      justify-content:space-between;
-      font-size:21px;
-      font-weight:800;
-    }
-
-    .form-group{
-      margin-bottom:18px;
-    }
-
-    .form-group label{
-      display:block;
-      margin-bottom:7px;
-      font-weight:700;
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
     }
 
     .form-group input,
-    .form-group textarea{
-      width:100%;
-      padding:13px;
-      border:1px solid #ccc;
-      border-radius:8px;
-      font-size:15px;
-      outline:none;
-      font-family:Arial,sans-serif;
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
     }
 
     .form-group input:focus,
-    .form-group textarea:focus{
-      border-color:#00aef0;
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #00aef0;
     }
 
-    .form-group textarea{
-      height:110px;
-      resize:vertical;
+    .form-group textarea {
+      height: 110px;
+      resize: vertical;
     }
 
-    .payment-box{
-      margin-top:25px;
-      padding:18px;
-      background:#f5fbfe;
-      border:1px solid #d8eef7;
-      border-radius:10px;
+    .payment-box {
+      margin-top: 25px;
+      padding: 18px;
+      background: #f5fbfe;
+      border: 1px solid #d8eef7;
+      border-radius: 10px;
     }
 
-    .payment-box h3{
-      margin-bottom:10px;
+    .payment-box h3 {
+      margin-bottom: 10px;
     }
 
-    .payment-option{
-      display:flex;
-      gap:8px;
-      align-items:center;
+    .payment-option {
+      display: flex;
+      gap: 8px;
+      align-items: center;
     }
 
-    .place-order{
-      width:100%;
-      border:none;
-      background:#111;
-      color:white;
-      padding:16px;
-      border-radius:9px;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
-      margin-top:25px;
+    .place-order {
+      width: 100%;
+      border: none;
+      background: #111;
+      color: white;
+      padding: 16px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      margin-top: 25px;
     }
 
-    .place-order:hover{
-      background:#333;
+    .place-order:hover {
+      background: #333;
     }
 
-    .back-products{
-      display:inline-block;
-      margin-top:20px;
-      color:#555;
-      text-decoration:none;
-      font-weight:600;
+    .back-products {
+      display: inline-block;
+      margin-top: 20px;
+      color: #555;
+      text-decoration: none;
+      font-weight: 600;
     }
 
-    .back-products:hover{
-      color:#00aef0;
+    .back-products:hover {
+      color: #00aef0;
     }
 
-    .empty-message{
-      text-align:center;
-      padding:30px 10px;
-      color:#777;
+    .empty-message {
+      text-align: center;
+      padding: 30px 10px;
+      color: #777;
     }
 
-    .image-modal{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.88);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      padding:25px;
-      z-index:3000;
-      overflow:auto;
+    /* =========================
+       IMAGE ZOOM MODAL
+    ========================= */
+
+    .image-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 25px;
+      z-index: 3000;
+      overflow: auto;
     }
 
-    .image-modal.active{
-      display:flex;
+    .image-modal.active {
+      display: flex;
     }
 
-    .image-modal img{
-      max-width:92vw;
-      max-height:90vh;
-      width:auto;
-      height:auto;
-      object-fit:contain;
-      border-radius:10px;
-      cursor:zoom-in;
-      transition:transform .25s ease;
-      touch-action:pinch-zoom;
-      box-shadow:0 10px 40px rgba(0,0,0,.4);
+    .image-modal img {
+      max-width: 92vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+      touch-action: pinch-zoom;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
     }
 
-    .image-modal img.zoomed{
-      transform:scale(1.7);
-      cursor:zoom-out;
+    .image-modal img.zoomed {
+      transform: scale(1.7);
+      cursor: zoom-out;
     }
 
-    .image-modal-close{
-      position:fixed;
-      top:18px;
-      right:22px;
-      width:45px;
-      height:45px;
-      border:none;
-      border-radius:50%;
-      background:white;
-      color:#111;
-      font-size:32px;
-      line-height:1;
-      cursor:pointer;
-      z-index:3001;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+    .image-modal-close {
+      position: fixed;
+      top: 18px;
+      right: 22px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background: white;
+      color: #111;
+      font-size: 32px;
+      line-height: 1;
+      cursor: pointer;
+      z-index: 3001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    footer{
-      background:#111;
-      color:white;
-      text-align:center;
-      padding:25px;
-      font-size:14px;
-      margin-top:60px;
+    .image-modal-close:hover {
+      background: #eee;
     }
 
-    footer strong{
-      color:#00aef0;
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 25px;
+      font-size: 14px;
+      margin-top: 60px;
     }
 
-    @media(max-width:800px){
+    footer strong {
+      color: #00aef0;
+    }
 
-      nav{
-        flex-direction:column;
-        gap:15px;
+    @media (max-width: 800px) {
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
       }
 
-      .checkout-grid{
-        grid-template-columns:1fr;
+      .checkout-grid {
+        grid-template-columns: 1fr;
       }
 
-      .page-title h1{
-        font-size:30px;
+      .image-modal {
+        padding: 15px;
       }
 
-      .box{
-        padding:20px;
+      .image-modal img {
+        max-width: 94vw;
+        max-height: 85vh;
       }
 
-    }
-
-    @media(max-width:500px){
-
-      .order-item{
-        align-items:flex-start;
-      }
-
-      .order-item img{
-        width:80px;
-        height:80px;
+      .image-modal img.zoomed {
+        transform: scale(1.45);
       }
 
     }
@@ -387,1394 +382,807 @@
 
 <body>
 
-<nav>
+  <nav>
 
-  <div class="logo-text">
-    CRAFTIO <span>GIFTS</span>
-  </div>
+    <div class="logo-text">
+      CRAFTIO <span>GIFTS</span>
+    </div>
 
-  <div class="nav-links">
+    <div class="nav-links">
 
-    <a href="index.html">
-      Home
-    </a>
+      <a href="index.html">
+        Home
+      </a>
 
-    <a href="products.html">
-      Products
-    </a>
-
-  </div>
-
-</nav>
-
-
-<main class="checkout-page">
-
-  <div class="page-title">
-
-    <h1>
-      Complete Your <span>Order</span>
-    </h1>
-
-    <p>
-      Please enter your delivery details below.
-    </p>
-
-  </div>
-
-
-  <div class="checkout-grid">
-
-
-    <!-- =========================
-         ORDER
-    ========================== -->
-
-    <div class="box">
-
-      <h2>
-        🛒 Your Order
-      </h2>
-
-      <div id="orderItems"></div>
-
-      <div id="totalBox"></div>
-
-      <a
-        href="products.html"
-        class="back-products"
-      >
-        ← Continue Shopping
+      <a href="products.html">
+        Products
       </a>
 
     </div>
 
+  </nav>
 
-    <!-- =========================
-         DELIVERY
-    ========================== -->
+  <main class="checkout-page">
 
-    <div class="box">
+    <div class="page-title">
 
-      <h2>
-        Delivery Details
-      </h2>
+      <h1>
+        Complete Your <span>Order</span>
+      </h1>
 
-
-      <form id="checkoutForm">
-
-
-        <div class="form-group">
-
-          <label>
-            Full Name
-          </label>
-
-          <input
-            type="text"
-            id="fullName"
-            placeholder="Enter your full name"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Phone Number
-          </label>
-
-          <input
-            type="tel"
-            id="phone"
-            placeholder="03XXXXXXXXX"
-            required
-          >
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            Complete Delivery Address
-          </label>
-
-          <textarea
-            id="address"
-            placeholder="House no, street, area..."
-            required
-          ></textarea>
-
-        </div>
-
-
-        <div class="form-group">
-
-          <label>
-            City
-          </label>
-
-          <input
-            type="text"
-            id="city"
-            placeholder="Enter your city"
-            required
-          >
-
-        </div>
-
-
-        <div class="payment-box">
-
-          <h3>
-            Payment Method
-          </h3>
-
-          <label class="payment-option">
-
-            <input
-              type="radio"
-              checked
-              disabled
-            >
-
-            Cash on Delivery
-
-          </label>
-
-        </div>
-
-
-        <button
-          type="submit"
-          class="place-order"
-        >
-          PLACE ORDER ON WHATSAPP
-        </button>
-
-      </form>
+      <p>
+        Please enter your delivery details below.
+      </p>
 
     </div>
 
-  </div>
+    <div class="checkout-grid">
 
-</main>
+      <div class="box">
 
+        <h2>
+          🛒 Your Order
+        </h2>
 
-<!-- =========================
-     IMAGE ZOOM
-========================== -->
+        <div id="orderItems"></div>
 
-<div
-  class="image-modal"
-  id="imageModal"
-  onclick="closeImageZoom(event)"
->
+        <div id="totalBox"></div>
 
-  <button
-    class="image-modal-close"
-    type="button"
-    onclick="closeImageZoom(event)"
-  >
-    ×
-  </button>
-
-  <img
-    id="zoomedImage"
-    src=""
-    alt=""
-    onclick="toggleImageZoom(event)"
-  >
-
-</div>
-
-
-<footer>
-
-  © 2026 <strong>Craftio Gifts</strong>.
-  All Rights Reserved.
-
-</footer>
-
-
-<script>
-
-/* =========================
-   SUPABASE
-========================= */
-
-const SUPABASE_URL =
-  "https://hujwsdixdxhofwhibjff.supabase.co";
-
-const SUPABASE_PUBLISHABLE_KEY =
-  "sb_publishable_cdGRvXXS3R663XWC6ZjgaQ_s1LuK2hf";
-
-const supabaseClient =
-  supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
-
-
-/* =========================
-   WHATSAPP
-========================= */
-
-const WHATSAPP_NUMBER =
-  "923360763055";
-
-
-/* =========================
-   BUY NOW?
-========================= */
-
-const urlParams =
-  new URLSearchParams(
-    window.location.search
-  );
-
-const isBuyNow =
-  urlParams.get("buyNow") === "true";
-
-
-let cart = [];
-
-let products = [];
-
-
-/* =========================
-   PRODUCT GROUPS
-========================= */
-
-const GROUPS = {
-
-  led:[
-    "led-picture-frame-1",
-    "led-picture-frame-2",
-    "led-picture-frame-3"
-  ],
-
-  birthdayFrame:[
-    "birthday-frame-1",
-    "birthday-frame-2",
-    "birthday-frame-3",
-    "birthday-frame-4",
-    "birthday-frame-5",
-    "birthday-frame-6",
-    "birthday-frame-7",
-    "birthday-frame-8"
-  ],
-
-  pictureFrame:[
-    "picture-frame-1",
-    "picture-frame-2"
-  ],
-
-  mug:[
-    "mug-1",
-    "mug-2"
-  ],
-
-  birthdayMug:[
-    "birthday-mug-2",
-    "birthday-mug-3"
-  ],
-
-  magicMug:[
-    "magic-mug-1",
-    "magic-mug-2"
-  ],
-
-  social:[
-    "social-card-1"
-  ],
-
-  friendship:[
-    "friendship-card-1",
-    "friendship-card-2"
-  ],
-
-  eye:[
-    "necklace-1",
-    "necklace-2",
-    "necklace-3",
-    "necklace-4",
-    "necklace-5",
-    "necklace-6",
-    "necklace-7"
-  ],
-
-  plate:[
-    "nikkah-plaque-1",
-    "nikkah-plaque-2"
-  ],
-
-  trendy:[
-    "trendy-chart-1"
-  ],
-
-  keychain:[
-    "name-keychain-1"
-  ],
-
-  pvc:[
-    "pvc-card-1"
-  ],
-
-  lamp:[
-    "moon-lamp-1",
-    "moon-lamp-2"
-  ]
-
-};
-
-
-/* =========================
-   PRODUCT TYPE
-========================= */
-
-function getProductType(product){
-
-  for(
-    const type in GROUPS
-  ){
-
-    if(
-      GROUPS[type].includes(
-        product.id
-      )
-    ){
-
-      return type;
-    }
-
-  }
-
-  return null;
-}
-
-
-/* =========================
-   WHATSAPP NOTE
-========================= */
-
-function getWhatsAppInstruction(
-  product
-){
-
-  const type =
-    getProductType(product);
-
-
-  if(
-    type === "led" ||
-    type === "birthdayFrame" ||
-    type === "pictureFrame" ||
-    type === "mug" ||
-    type === "birthdayMug" ||
-    type === "magicMug" ||
-    type === "friendship" ||
-    type === "lamp"
-  ){
-
-    return
-      "Please send your picture on WhatsApp after placing your order.";
-
-  }
-
-
-  if(type === "eye"){
-
-    return
-      "Please send your eye picture on WhatsApp after placing your order.";
-
-  }
-
-
-  if(type === "social"){
-
-    return
-      "Please send your profile information on WhatsApp after placing your order.";
-
-  }
-
-
-  if(type === "trendy"){
-
-    return
-      "Please send your pictures on WhatsApp after placing your order.";
-
-  }
-
-
-  if(type === "pvc"){
-
-    return
-      "Please send your picture and details on WhatsApp after placing your order.";
-
-  }
-
-
-  if(type === "plate"){
-
-    return
-      "Your wedding details will be sent on WhatsApp with your order.";
-
-  }
-
-
-  if(type === "keychain"){
-
-    return
-      "Your keychain name will be sent on WhatsApp with your order.";
-
-  }
-
-
-  return "";
-}
-
-
-/* =========================
-   PRICE
-========================= */
-
-function getProductPrice(
-  product
-){
-
-  if(
-    product.sale === true &&
-    Number(product.sale_price) > 0
-  ){
-
-    return Number(
-      product.sale_price
-    );
-
-  }
-
-  return Number(
-    product.price
-  ) || 0;
-}
-
-
-/* =========================
-   STORED CART
-========================= */
-
-function getStoredCart(){
-
-  const key =
-    isBuyNow
-      ? "craftioBuyNow"
-      : "craftioCart";
-
-
-  return JSON.parse(
-    localStorage.getItem(key)
-  ) || [];
-}
-
-
-/* =========================
-   LOAD PRODUCTS
-========================= */
-
-async function loadProducts(){
-
-  cart =
-    getStoredCart();
-
-
-  if(!cart.length){
-
-    renderOrder();
-
-    return;
-  }
-
-
-  const ids =
-    [
-      ...new Set(
-        cart.map(
-          item => item.id
-        )
-      )
-    ];
-
-
-  const {
-    data,
-    error
-  } =
-    await supabaseClient
-      .from("products")
-      .select("*")
-      .in("id",ids);
-
-
-  if(error){
-
-    console.error(error);
-
-    document.getElementById(
-      "orderItems"
-    ).innerHTML = `
-      <div class="empty-message">
-        Unable to load your order.
-      </div>
-    `;
-
-    return;
-  }
-
-
-  products =
-    data || [];
-
-
-  renderOrder();
-}
-
-
-/* =========================
-   ESCAPE HTML
-========================= */
-
-function escapeHtml(
-  value
-){
-
-  return String(
-    value || ""
-  )
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
-}
-
-
-/* =========================
-   LABELS
-========================= */
-
-const CUSTOM_LABELS = {
-
-  name:"Name",
-
-  date:"Date",
-
-  profileInfo:"Profile Information",
-
-  groomName:"Groom Name",
-
-  brideName:"Bride Name",
-
-  nikahDate:"Nikkah Date",
-
-  otherDetails:"Other Details"
-
-};
-
-
-/* =========================
-   CUSTOMIZATION HTML
-========================= */
-
-function getCustomizationHtml(
-  customization
-){
-
-  if(
-    !customization ||
-    Object.keys(customization).length === 0
-  ){
-
-    return "";
-  }
-
-
-  let html =
-    `<div class="custom-summary">
-      <strong>Customization:</strong><br>`;
-
-
-  for(
-    const key in customization
-  ){
-
-    const value =
-      customization[key];
-
-
-    if(!value) continue;
-
-
-    html += `
-      ${CUSTOM_LABELS[key] || key}:
-      ${escapeHtml(value)}
-      <br>
-    `;
-
-  }
-
-
-  html +=
-    `</div>`;
-
-
-  return html;
-}
-
-
-/* =========================
-   DISPLAY ORDER
-========================= */
-
-function renderOrder(){
-
-  const orderItems =
-    document.getElementById(
-      "orderItems"
-    );
-
-
-  const totalBox =
-    document.getElementById(
-      "totalBox"
-    );
-
-
-  if(!cart.length){
-
-    orderItems.innerHTML = `
-      <div class="empty-message">
-
-        <h3>
-          Your cart is empty.
-        </h3>
-
-        <p>
-          Please select a product first.
-        </p>
+        <a
+          href="products.html"
+          class="back-products">
+          ← Continue Shopping
+        </a>
 
       </div>
-    `;
 
+      <div class="box">
 
-    totalBox.innerHTML =
-      "";
+        <h2>
+          Delivery Details
+        </h2>
 
+        <form id="checkoutForm">
 
-    return;
-  }
+          <div class="form-group">
 
+            <label>
+              Full Name
+            </label>
 
-  let total = 0;
+            <input
+              type="text"
+              id="fullName"
+              placeholder="Enter your full name"
+              required>
 
+          </div>
 
-  orderItems.innerHTML =
-    "";
+          <div class="form-group">
 
+            <label>
+              Phone Number
+            </label>
 
-  cart.forEach(
-    (item,index) => {
+            <input
+              type="tel"
+              id="phone"
+              placeholder="03XXXXXXXXX"
+              required>
 
-      const product =
-        products.find(
-          p =>
-            p.id === item.id
-        );
+          </div>
 
+          <div class="form-group">
 
-      if(!product) return;
+            <label>
+              Complete Delivery Address
+            </label>
 
+            <textarea
+              id="address"
+              placeholder="House no, street, area..."
+              required></textarea>
 
-      const price =
-        getProductPrice(product);
+          </div>
 
+          <div class="form-group">
 
-      const itemTotal =
-        price *
-        Number(item.quantity);
+            <label>
+              City
+            </label>
 
+            <input
+              type="text"
+              id="city"
+              placeholder="Enter your city"
+              required>
 
-      total +=
-        itemTotal;
+          </div>
 
-
-      const customHtml =
-        getCustomizationHtml(
-          item.customization
-        );
-
-
-      const note =
-        getWhatsAppInstruction(
-          product
-        );
-
-
-      const imageUrl =
-        product.image_url || "";
-
-
-      orderItems.innerHTML += `
-
-        <div class="order-item">
-
-          <img
-            src="${escapeHtml(imageUrl)}"
-            alt="${escapeHtml(product.name)}"
-            onclick="openImageZoom(
-              '${escapeHtml(imageUrl)}',
-              '${escapeHtml(product.name)}'
-            )"
-          >
-
-          <div class="order-item-info">
+          <div class="payment-box">
 
             <h3>
-              ${escapeHtml(product.name)}
+              Payment Method
+            </h3>
+
+            <label class="payment-option">
+
+              <input
+                type="radio"
+                checked
+                disabled>
+
+              Cash on Delivery
+
+            </label>
+
+          </div>
+
+          <button
+            type="submit"
+            class="place-order">
+
+            PLACE ORDER ON WHATSAPP
+
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <div
+    class="image-modal"
+    id="imageModal"
+    onclick="closeImageZoom(event)">
+
+    <button
+      class="image-modal-close"
+      type="button"
+      onclick="closeImageZoom(event)">
+      ×
+    </button>
+
+    <img
+      id="zoomedImage"
+      src=""
+      alt=""
+      onclick="toggleImageZoom(event)">
+
+  </div>
+
+  <footer>
+
+    © 2026 <strong>Craftio Gifts</strong>.
+    All Rights Reserved.
+
+  </footer>
+
+  <script>
+
+    const products = [
+
+      {
+        id: "led-photo-frame",
+        name: "CUSTOMIZED LED PHOTO FRAME",
+        price: 2000,
+        image: "Light%20frame.jpeg"
+      },
+
+      {
+        id: "birthday-frame",
+        name: "CUSTOMIZED BIRTHDAY FRAME",
+        price: 999,
+        image: "Birthday%20Frame.jpeg"
+      },
+
+      {
+        id: "birthday-mug",
+        name: "CUSTOMIZED BIRTHDAY MUG",
+        price: 999,
+        image: "birthday%20mug.jpeg"
+      },
+
+      {
+        id: "led-heart-lamp",
+        name: "CUSTOMIZED LED HEART LAMP",
+        price: 2500,
+        image: "MOON%20PICTURE%20FRAME.jpeg"
+      },
+
+      {
+        id: "nikkah-signature-frame",
+        name: "CUSTOMIZED NIKKAH SIGNATURE FRAME",
+        price: 999,
+        image: "nikkah%20frame.jpeg"
+      },
+
+      {
+        id: "magic-mug",
+        name: "CUSTOMIZED MAGIC MUG",
+        price: 1400,
+        image: "magic%20mug.jpeg"
+      },
+
+      {
+        id: "wedding-ring-plaque",
+        name: "CUSTOMIZED WEDDING RING PLAQUE",
+        price: 2500,
+        image: "NIKKAH%20PLAQUE.jpeg"
+      },
+
+      {
+        id: "trendy-charts",
+        name: "CUSTOMIZED TRENDY CHARTS",
+        price: 1350,
+        image: "TRENDY%20CHARTS.jpeg"
+      },
+
+      {
+        id: "eye-pendant-necklace",
+        name: "CUSTOMIZED EYE PENDANT NECKLACE",
+        price: 1300,
+        image: "EYE%20NECKLACE.jpeg"
+      },
+
+      {
+        id: "picture-frame",
+        name: "CUSTOMIZED PICTURE FRAME",
+        price: 900,
+        image: "PICTURE%20FRAME.jpg"
+      },
+
+      {
+        id: "friendship-license-card",
+        name: "CUSTOMIZED FRIENDSHIP LICENSE CARD",
+        price: 900,
+        image: "FRIENSHIP%20LICENSE%20CAED.jpeg"
+      },
+
+      {
+        id: "name-key-chain",
+        name: "CUSTOMIZED NAME KEY CHAIN",
+        price: 800,
+        image: "NAME%20KEY.jpeg"
+      },
+
+      {
+        id: "picture-mug-colors",
+        name: "CUSTOMIZED PICTURE MUG WITH DIFFERENT COLORS",
+        price: 1350,
+        image: "CUSTOMIZED%20MUG%20WITH%20COLORS.jpg"
+      },
+
+      {
+        id: "pubg-mobile-card",
+        name: "CUSTOMIZED PUBG MOBILE CARD",
+        price: 800,
+        image: "PUBG%20CARD.jpeg"
+      },
+
+      {
+        id: "snapchat-tiktok-instagram-card",
+        name: "CUSTOMIZED SNAPCHAT TIKTOK & INSTAGRAM CARD",
+        price: 800,
+        image: "SNAPCHAT%20CARD.jpeg"
+      },
+
+      {
+        id: "pvc-card",
+        name: "CUSTOMIZED PVC CARD",
+        price: 850,
+        image: "PVC%20CARD.jpg"
+      }
+
+    ];
+
+    const WHATSAPP_NUMBER =
+      "923360763055";
+
+    const urlParams =
+      new URLSearchParams(
+        window.location.search
+      );
+
+    const isBuyNow =
+      urlParams.get("buyNow") === "true";
+
+    function getCart() {
+
+      if (isBuyNow) {
+
+        return JSON.parse(
+          localStorage.getItem(
+            "craftioBuyNow"
+          )
+        ) || [];
+
+      }
+
+      return JSON.parse(
+        localStorage.getItem(
+          "craftioCart"
+        )
+      ) || [];
+
+    }
+
+    let cart = getCart();
+
+    function renderOrder() {
+
+      const orderItems =
+        document.getElementById(
+          "orderItems"
+        );
+
+      const totalBox =
+        document.getElementById(
+          "totalBox"
+        );
+
+      if (cart.length === 0) {
+
+        orderItems.innerHTML = `
+
+          <div class="empty-message">
+
+            <h3>
+              Your cart is empty.
             </h3>
 
             <p>
-              ${
-                price > 0
-                  ? "Rs. " +
-                    price.toLocaleString("en-PK")
-                  : "Price will be updated"
-              }
-              × ${item.quantity}
+              Please select a product first.
             </p>
 
-            <div class="order-item-price">
+          </div>
 
-              ${
-                itemTotal > 0
-                  ? "Rs. " +
-                    itemTotal.toLocaleString("en-PK")
-                  : "Price will be updated"
-              }
+        `;
 
-            </div>
+        totalBox.innerHTML = "";
 
-            ${customHtml}
+        return;
 
-            ${
-              note
-                ? `
-                  <div class="whatsapp-note">
-                    ${note}
-                  </div>
-                `
-                : ""
-            }
+      }
 
+      let total = 0;
 
-            <div class="quantity-controls">
+      orderItems.innerHTML = "";
 
-              <button
-                onclick="changeQuantity(
-                  '${product.id}',
-                  -1
-                )"
-              >
-                −
-              </button>
+      cart.forEach(item => {
 
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
 
-              <strong>
+        if (!product) return;
+
+        const itemTotal =
+          product.price *
+          item.quantity;
+
+        total += itemTotal;
+
+        orderItems.innerHTML += `
+
+          <div class="order-item">
+
+            <img
+              src="${product.image}"
+              alt="${product.name}"
+              onclick="openImageZoom(this.src, this.alt)"
+            >
+
+            <div class="order-item-info">
+
+              <h3>
+                ${product.name}
+              </h3>
+
+              <p>
+                Rs. ${product.price} ×
                 ${item.quantity}
-              </strong>
+              </p>
 
+              <div class="order-item-price">
+                Rs. ${itemTotal}
+              </div>
 
-              <button
-                onclick="changeQuantity(
-                  '${product.id}',
-                  1
-                )"
-              >
-                +
-              </button>
+              <div class="quantity-controls">
 
+                <button
+                  onclick="changeQuantity('${product.id}', -1)">
+                  −
+                </button>
 
-              <button
-                class="remove-btn"
-                onclick="removeItem(
-                  '${product.id}'
-                )"
-              >
-                Remove
-              </button>
+                <strong>
+                  ${item.quantity}
+                </strong>
+
+                <button
+                  onclick="changeQuantity('${product.id}', 1)">
+                  +
+                </button>
+
+                <button
+                  class="remove-btn"
+                  onclick="removeItem('${product.id}')">
+                  Remove
+                </button>
+
+              </div>
 
             </div>
 
           </div>
+
+        `;
+
+      });
+
+      totalBox.innerHTML = `
+
+        <div class="total-box">
+
+          <span>
+            Total
+          </span>
+
+          <span>
+            Rs. ${total}
+          </span>
 
         </div>
 
       `;
 
     }
-  );
 
-
-  totalBox.innerHTML = `
-
-    <div class="total-box">
-
-      <span>
-        Total
-      </span>
-
-      <span>
-        ${
-          total > 0
-            ? "Rs. " +
-              total.toLocaleString("en-PK")
-            : "Price will be updated"
-        }
-      </span>
-
-    </div>
-
-  `;
-}
-
-
-/* =========================
-   IMAGE ZOOM
-========================= */
-
-function openImageZoom(
-  src,
-  alt
-){
-
-  const modal =
-    document.getElementById(
-      "imageModal"
-    );
-
-
-  const image =
-    document.getElementById(
-      "zoomedImage"
-    );
-
-
-  image.src =
-    src;
-
-  image.alt =
-    alt || "";
-
-
-  image.classList.remove(
-    "zoomed"
-  );
-
-
-  modal.classList.add(
-    "active"
-  );
-
-
-  document.body.style.overflow =
-    "hidden";
-}
-
-
-function toggleImageZoom(
-  event
-){
-
-  event.stopPropagation();
-
-
-  document
-    .getElementById(
-      "zoomedImage"
-    )
-    .classList.toggle(
-      "zoomed"
-    );
-}
-
-
-function closeImageZoom(
-  event
-){
-
-  const modal =
-    document.getElementById(
-      "imageModal"
-    );
-
-
-  if(
-    event &&
-    event.target !== modal &&
-    !event.target.classList.contains(
-      "image-modal-close"
-    )
-  ){
-
-    return;
-  }
-
-
-  modal.classList.remove(
-    "active"
-  );
-
-
-  document
-    .getElementById(
-      "zoomedImage"
-    )
-    .classList.remove(
-      "zoomed"
-    );
-
-
-  document.body.style.overflow =
-    "";
-}
-
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key === "Escape"
-    ){
+    function openImageZoom(src, alt) {
 
       const modal =
         document.getElementById(
           "imageModal"
         );
 
-
-      if(
-        modal.classList.contains(
-          "active"
-        )
-      ){
-
-        modal.classList.remove(
-          "active"
+      const zoomedImage =
+        document.getElementById(
+          "zoomedImage"
         );
 
+      zoomedImage.src = src;
+      zoomedImage.alt = alt || "";
 
-        document
-          .getElementById(
-            "zoomedImage"
-          )
-          .classList.remove(
-            "zoomed"
-          );
+      zoomedImage.classList.remove(
+        "zoomed"
+      );
 
+      modal.classList.add("active");
 
-        document.body.style.overflow =
-          "";
+      document.body.style.overflow =
+        "hidden";
+
+    }
+
+    function toggleImageZoom(event) {
+
+      event.stopPropagation();
+
+      const image =
+        document.getElementById(
+          "zoomedImage"
+        );
+
+      image.classList.toggle(
+        "zoomed"
+      );
+
+    }
+
+    function closeImageZoom(event) {
+
+      const modal =
+        document.getElementById(
+          "imageModal"
+        );
+
+      if (
+        event &&
+        event.target !== modal &&
+        !event.target.classList.contains(
+          "image-modal-close"
+        )
+      ) {
+        return;
       }
 
-    }
-
-  }
-);
-
-
-/* =========================
-   CHANGE QUANTITY
-========================= */
-
-function changeQuantity(
-  productId,
-  amount
-){
-
-  const item =
-    cart.find(
-      item =>
-        item.id === productId
-    );
-
-
-  if(!item) return;
-
-
-  item.quantity +=
-    amount;
-
-
-  if(
-    item.quantity <= 0
-  ){
-
-    cart =
-      cart.filter(
-        item =>
-          item.id !== productId
-      );
-  }
-
-
-  saveCurrentCart();
-
-  renderOrder();
-}
-
-
-/* =========================
-   REMOVE ITEM
-========================= */
-
-function removeItem(
-  productId
-){
-
-  cart =
-    cart.filter(
-      item =>
-        item.id !== productId
-    );
-
-
-  saveCurrentCart();
-
-  renderOrder();
-}
-
-
-/* =========================
-   SAVE CART
-========================= */
-
-function saveCurrentCart(){
-
-  const key =
-    isBuyNow
-      ? "craftioBuyNow"
-      : "craftioCart";
-
-
-  localStorage.setItem(
-    key,
-    JSON.stringify(cart)
-  );
-}
-
-
-/* =========================
-   TOTAL
-========================= */
-
-function getTotal(){
-
-  let total = 0;
-
-
-  cart.forEach(
-    item => {
-
-      const product =
-        products.find(
-          p =>
-            p.id === item.id
-        );
-
-
-      if(!product) return;
-
-
-      total +=
-        getProductPrice(product) *
-        Number(item.quantity);
-
-    }
-  );
-
-
-  return total;
-}
-
-
-/* =========================
-   WHATSAPP ORDER
-========================= */
-
-document.getElementById(
-  "checkoutForm"
-).addEventListener(
-  "submit",
-  function(event){
-
-    event.preventDefault();
-
-
-    if(!cart.length){
-
-      alert(
-        "Your cart is empty. Please select a product first."
+      modal.classList.remove(
+        "active"
       );
 
-      return;
+      document.getElementById(
+        "zoomedImage"
+      ).classList.remove(
+        "zoomed"
+      );
+
+      document.body.style.overflow =
+        "";
+
     }
 
+    document.addEventListener(
+      "keydown",
+      function(event) {
 
-    const fullName =
-      document.getElementById(
-        "fullName"
-      ).value.trim();
+        if (event.key === "Escape") {
 
-
-    const phone =
-      document.getElementById(
-        "phone"
-      ).value.trim();
-
-
-    const address =
-      document.getElementById(
-        "address"
-      ).value.trim();
-
-
-    const city =
-      document.getElementById(
-        "city"
-      ).value.trim();
-
-
-    const total =
-      getTotal();
-
-
-    const lines = [];
-
-
-    lines.push(
-      "🛍️ NEW ORDER - CRAFTIO GIFTS"
-    );
-
-
-    lines.push("");
-
-
-    lines.push(
-      "CUSTOMER DETAILS"
-    );
-
-
-    lines.push(
-      "Name: " +
-      fullName
-    );
-
-
-    lines.push(
-      "Phone: " +
-      phone
-    );
-
-
-    lines.push(
-      "Address: " +
-      address
-    );
-
-
-    lines.push(
-      "City: " +
-      city
-    );
-
-
-    lines.push("");
-
-
-    lines.push(
-      "ORDER DETAILS"
-    );
-
-
-    cart.forEach(
-      (item,index) => {
-
-        const product =
-          products.find(
-            p =>
-              p.id === item.id
-          );
-
-
-        if(!product) return;
-
-
-        const price =
-          getProductPrice(product);
-
-
-        const itemTotal =
-          price *
-          Number(item.quantity);
-
-
-        lines.push("");
-
-
-        lines.push(
-          (index + 1) +
-          ". " +
-          product.name
-        );
-
-
-        lines.push(
-          "Qty: " +
-          item.quantity
-        );
-
-
-        lines.push(
-          "Price: " +
-          (
-            itemTotal > 0
-              ? "Rs. " +
-                itemTotal.toLocaleString("en-PK")
-              : "Price will be updated"
-          )
-        );
-
-
-        const custom =
-          item.customization || {};
-
-
-        if(
-          Object.keys(custom).length
-        ){
-
-          lines.push(
-            "Customization:"
-          );
-
-
-          for(
-            const key in custom
-          ){
-
-            if(
-              !custom[key]
-            ){
-              continue;
-            }
-
-
-            lines.push(
-              (CUSTOM_LABELS[key] || key) +
-              ": " +
-              custom[key]
+          const modal =
+            document.getElementById(
+              "imageModal"
             );
+
+          if (
+            modal.classList.contains(
+              "active"
+            )
+          ) {
+
+            modal.classList.remove(
+              "active"
+            );
+
+            document.getElementById(
+              "zoomedImage"
+            ).classList.remove(
+              "zoomed"
+            );
+
+            document.body.style.overflow =
+              "";
 
           }
 
         }
 
+      }
+    );
 
-        const note =
-          getWhatsAppInstruction(
-            product
+    function changeQuantity(
+      productId,
+      amount
+    ) {
+
+      const item =
+        cart.find(
+          item => item.id === productId
+        );
+
+      if (!item) return;
+
+      item.quantity += amount;
+
+      if (item.quantity <= 0) {
+
+        cart =
+          cart.filter(
+            item =>
+              item.id !== productId
           );
 
+      }
 
-        if(note){
+      saveCurrentCart();
+      renderOrder();
 
-          lines.push(
-            "Note: " +
-            note
+    }
+
+    function removeItem(productId) {
+
+      cart =
+        cart.filter(
+          item =>
+            item.id !== productId
+        );
+
+      saveCurrentCart();
+      renderOrder();
+
+    }
+
+    function saveCurrentCart() {
+
+      if (isBuyNow) {
+
+        localStorage.setItem(
+          "craftioBuyNow",
+          JSON.stringify(cart)
+        );
+
+      } else {
+
+        localStorage.setItem(
+          "craftioCart",
+          JSON.stringify(cart)
+        );
+
+      }
+
+    }
+
+    function getTotal() {
+
+      let total = 0;
+
+      cart.forEach(item => {
+
+        const product =
+          products.find(
+            p => p.id === item.id
+          );
+
+        if (product) {
+
+          total +=
+            product.price *
+            item.quantity;
+
+        }
+
+      });
+
+      return total;
+
+    }
+
+    document.getElementById(
+      "checkoutForm"
+    ).addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        if (cart.length === 0) {
+
+          alert(
+            "Your cart is empty. Please select a product first."
+          );
+
+          return;
+
+        }
+
+        const fullName =
+          document.getElementById(
+            "fullName"
+          ).value.trim();
+
+        const phone =
+          document.getElementById(
+            "phone"
+          ).value.trim();
+
+        const address =
+          document.getElementById(
+            "address"
+          ).value.trim();
+
+        const city =
+          document.getElementById(
+            "city"
+          ).value.trim();
+
+        const total =
+          getTotal();
+
+        let message =
+          "🛍️ *NEW ORDER - CRAFTIO GIFTS*%0A%0A";
+
+        message +=
+          "*Customer Details*%0A";
+
+        message +=
+          "Name: " +
+          encodeURIComponent(fullName) +
+          "%0A";
+
+        message +=
+          "Phone: " +
+          encodeURIComponent(phone) +
+          "%0A";
+
+        message +=
+          "Address: " +
+          encodeURIComponent(address) +
+          "%0A";
+
+        message +=
+          "City: " +
+          encodeURIComponent(city) +
+          "%0A%0A";
+
+        message +=
+          "*Order Details*%0A";
+
+        cart.forEach(
+          (item, index) => {
+
+            const product =
+              products.find(
+                p => p.id === item.id
+              );
+
+            if (!product) return;
+
+            const itemTotal =
+              product.price *
+              item.quantity;
+
+            message +=
+              (index + 1) +
+              ". " +
+              encodeURIComponent(
+                product.name
+              ) +
+              "%0A";
+
+            message +=
+              "Qty: " +
+              item.quantity +
+              "%0A";
+
+            message +=
+              "Price: Rs. " +
+              itemTotal +
+              "%0A%0A";
+
+          }
+        );
+
+        message +=
+          "*TOTAL: Rs. " +
+          total +
+          "*%0A%0A";
+
+        message +=
+          "Payment: Cash on Delivery";
+
+        const whatsappURL =
+          "https://wa.me/" +
+          WHATSAPP_NUMBER +
+          "?text=" +
+          message;
+
+        if (isBuyNow) {
+
+          localStorage.removeItem(
+            "craftioBuyNow"
+          );
+
+        } else {
+
+          localStorage.removeItem(
+            "craftioCart"
           );
 
         }
 
+        window.open(
+          whatsappURL,
+          "_blank"
+        );
+
       }
     );
 
+    renderOrder();
 
-    lines.push("");
-
-
-    lines.push(
-      "TOTAL: " +
-      (
-        total > 0
-          ? "Rs. " +
-            total.toLocaleString("en-PK")
-          : "Price will be updated"
-      )
-    );
-
-
-    lines.push("");
-
-
-    lines.push(
-      "Payment: Cash on Delivery"
-    );
-
-
-    const whatsappURL =
-      "https://wa.me/" +
-      WHATSAPP_NUMBER +
-      "?text=" +
-      encodeURIComponent(
-        lines.join("\n")
-      );
-
-
-    if(isBuyNow){
-
-      localStorage.removeItem(
-        "craftioBuyNow"
-      );
-
-    }else{
-
-      localStorage.removeItem(
-        "craftioCart"
-      );
-
-    }
-
-
-    window.open(
-      whatsappURL,
-      "_blank"
-    );
-
-  }
-);
-
-
-/* =========================
-   START
-========================= */
-
-loadProducts();
-
-</script>
+  </script>
 
 </body>
 </html>
